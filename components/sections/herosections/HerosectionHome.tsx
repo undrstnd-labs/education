@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
 
-import { PlayIcon } from "@components/overall/Icons";
+import { PlayIcon } from "@components/icons/Overall";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 export default function HerosectionHome() {
