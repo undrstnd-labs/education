@@ -3,11 +3,12 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
 
+import { PlayIcon } from "@components/overall/Icons";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 export default function HerosectionHome() {
   return (
-    <div>
+    <div className="relative isolate overflow-hidden">
       <svg
         className="absolute inset-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true"
@@ -34,19 +35,19 @@ export default function HerosectionHome() {
       <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
           <Image
-            height={600}
-            width={600}
-            className="h-11"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            height={200}
+            width={200}
+            className="h-11 w-auto"
+            src="/images/logos/clean.svg"
             alt="Your Company"
           />
           <div className="mt-24 sm:mt-32 lg:mt-16">
             <Link href="/changelog" className="inline-flex space-x-6">
-              <span className="rounded-full bg-indigo-600/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-600 ring-1 ring-inset ring-indigo-600/10">
+              <span className="rounded-full bg-sky-600/10 px-3 py-1 text-sm font-semibold leading-6 text-sky-600 ring-1 ring-inset ring-sky-600/10">
                 What's new
               </span>
               <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
-                <span>v0.1.0 is under development</span>
+                <span>v0.1.0</span>
                 <ChevronRightIcon
                   className="h-5 w-5 text-gray-400"
                   aria-hidden="true"
@@ -56,7 +57,7 @@ export default function HerosectionHome() {
           </div>
           <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Unleash Document Insights with{" "}
-            <span className="text-indigo-600">Undrstnd_</span>
+            <span className="text-sky-600">Undrstnd_</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Elevate your document experience with Undrstnd. Just upload your
@@ -65,17 +66,20 @@ export default function HerosectionHome() {
 
           {/* TODO: Fix routing */}
           <div className="mt-10 flex items-center gap-x-6">
-            <Link
-              href="/signup"
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Get started
+            <Link href="/signup">
+              <Button className="font-semibold bg-sky-600 hover:bg-sky-500">
+                Get started
+              </Button>
             </Link>
+
             <Link
-              href="/docs"
-              className="text-sm font-semibold leading-6 text-gray-900"
+              target="_blank"
+              href="https://www.youtube.com/shorts/-1UjTQhkvLU"
             >
-              Learn more <span aria-hidden="true">→</span>
+              <Button variant="outline">
+                <PlayIcon className="h-6 w-6 flex-none" />
+                <span className="ml-2.5">Watch the video</span>
+              </Button>
             </Link>
           </div>
         </div>
