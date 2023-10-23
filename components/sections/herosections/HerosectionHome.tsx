@@ -38,8 +38,8 @@ export default function HerosectionHome() {
             height={200}
             width={200}
             className="h-11 w-auto"
-            src="/images/logos/clean.svg"
-            alt="Your Company"
+            src="/images/logos/Clean.svg"
+            alt="Undrstnd clean version logo."
           />
           <div className="mt-24 sm:mt-32 lg:mt-16">
             <Link href="/changelog" className="inline-flex space-x-6">
