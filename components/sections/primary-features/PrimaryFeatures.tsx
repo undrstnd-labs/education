@@ -1,3 +1,5 @@
+import Container from "@/components/ui/Container";
+
 import FeaturesDesktop from "@/components/sections/primary-features/FeaturesDesktop";
 import FeaturesMobile from "@/components/sections/primary-features/FeaturesMobile";
 
@@ -8,7 +10,7 @@ export function PrimaryFeatures() {
       aria-label="Features for investing all your money"
       className="bg-gray-900 py-20 sm:py-32 "
     >
-      <div className="mx-auto max-w-7xl px-2 sm:px-2 lg:px-8">
+      <Container>
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-3xl">
           <h2 className="text-3xl font-medium tracking-tight text-white">
             Transform Your Experience with Advanced Features
@@ -26,7 +28,7 @@ export function PrimaryFeatures() {
         <div className="hidden md:mt-20 md:block">
           <FeaturesDesktop />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

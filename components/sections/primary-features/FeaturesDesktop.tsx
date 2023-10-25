@@ -9,7 +9,7 @@ import { Tab } from "@headlessui/react";
 import { usePrevious } from "@/lib/hooks";
 import { PrimaryFeaures } from "@/lib/consts";
 
-import { CircleBackground } from "@/components/overall/CircleBackground";
+import { CircleBackground } from "@/components/sections/primary-features/CircleBackground";
 import { PhoneFrame } from "@/components/icons/Overall";
 
 export default function FeaturesDesktop() {

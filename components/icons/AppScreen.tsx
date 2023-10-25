@@ -1,51 +1,7 @@
 import { forwardRef, SVGProps, ReactNode } from "react";
 import clsx from "clsx";
 
-function Logo(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 659.66 191.16" {...props}>
-      <g id="Layer_1">
-        <circle
-          cx="85.59"
-          cy="102.92"
-          r="79.59"
-          fill="#0ea5e9"
-          stroke="#0ea5e9"
-          stroke-miterlimit="10"
-          stroke-width="12"
-        />
-        <text
-          transform="translate(29.39 97.27) rotate(45) scale(.86 1)"
-          fill="#0ea5e9"
-          font-family="MyriadPro-Regular, 'Myriad Pro'"
-          font-size="164.35"
-        >
-          <tspan x="0" y="0">
-            U
-          </tspan>
-        </text>
-        <path
-          d="m85.68,25.59h45.78v91.46c0,12.63-10.26,22.89-22.89,22.89h0c-12.63,0-22.89-10.26-22.89-22.89V25.59h0Z"
-          transform="translate(90.32 -52.53) rotate(45)"
-          fill="#111827"
-        />
-      </g>
-      <g id="Layer_2">
-        <text
-          transform="translate(250.34 144.06)"
-          fill="#f2f2f2"
-          font-family="Roboto-Medium, Roboto"
-          font-size="100"
-          font-weight="500"
-        >
-          <tspan x="0" y="0">
-            Undrstnd
-          </tspan>
-        </text>
-      </g>
-    </svg>
-  );
-}
+import { LogoText } from "@/components/icons/Overall";
 
 function MenuIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -87,7 +43,7 @@ export function AppScreen({
     <div className={clsx("flex flex-col", className)} {...props}>
       <div className="flex justify-between px-4 pt-4">
         <MenuIcon className="h-6 w-6 flex-none" />
-        <Logo className="h-6 flex-none" />
+        <LogoText className="h-6 flex-none" />
         <UserIcon className="h-6 w-6 flex-none" />
       </div>
       {children}

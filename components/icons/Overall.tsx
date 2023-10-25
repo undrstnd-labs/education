@@ -5,6 +5,83 @@ import clsx from "clsx";
 
 import frame from "@images/phone-frame.svg";
 
+export function Logo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 191.45 191.16" {...props}>
+      <circle
+        cx="85.59"
+        cy="102.96"
+        r="79.59"
+        fill="#0ea5e9"
+        stroke="#0ea5e9"
+        stroke-miterlimit="10"
+        stroke-width="12"
+      />
+      <text
+        transform="translate(29.35 97.27) rotate(45) scale(.86 1)"
+        fill="#0ea5e9"
+        font-family="MyriadPro-Regular, 'Myriad Pro'"
+        font-size="164.35"
+      >
+        <tspan x="0" y="0">
+          U
+        </tspan>
+      </text>
+      <path
+        d="m85.68,25.63h45.78v91.46c0,12.63-10.26,22.89-22.89,22.89h0c-12.63,0-22.89-10.26-22.89-22.89V25.63h0Z"
+        transform="translate(90.35 -52.52) rotate(45)"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
+export function LogoText(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 659.66 191.16" {...props}>
+      <g id="Layer_1">
+        <circle
+          cx="85.59"
+          cy="102.92"
+          r="79.59"
+          fill="#0ea5e9"
+          stroke="#0ea5e9"
+          stroke-miterlimit="10"
+          stroke-width="12"
+        />
+        <text
+          transform="translate(29.39 97.27) rotate(45) scale(.86 1)"
+          fill="#0ea5e9"
+          font-family="MyriadPro-Regular, 'Myriad Pro'"
+          font-size="164.35"
+        >
+          <tspan x="0" y="0">
+            U
+          </tspan>
+        </text>
+        <path
+          d="m85.68,25.59h45.78v91.46c0,12.63-10.26,22.89-22.89,22.89h0c-12.63,0-22.89-10.26-22.89-22.89V25.59h0Z"
+          transform="translate(90.32 -52.53) rotate(45)"
+          fill="#111827"
+        />
+      </g>
+      <g id="Layer_2">
+        <text
+          transform="translate(250.34 144.06)"
+          fill="#f2f2f2"
+          font-family="Roboto-Medium, Roboto"
+          font-size="100"
+          font-weight="500"
+        >
+          <tspan x="0" y="0">
+            Undrstnd
+          </tspan>
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 function PlaceholderFrame(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 366 729" aria-hidden="true" {...props}>

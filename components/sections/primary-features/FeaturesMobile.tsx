@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-import { CircleBackground } from "@/components/overall/CircleBackground";
+import { CircleBackground } from "@/components/sections/primary-features/CircleBackground";
 import { PhoneFrame } from "@/components/icons/Overall";
 
 import { PrimaryFeaures } from "@/lib/consts";
