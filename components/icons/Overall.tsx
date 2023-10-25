@@ -4,7 +4,6 @@ import Image from "next/image";
 import clsx from "clsx";
 
 import frame from "@images/phone-frame.svg";
-import Clean from "@images/logos/clean.svg";
 
 function PlaceholderFrame(props: SVGProps<SVGSVGElement>) {
   return (
@@ -19,8 +18,6 @@ function PlaceholderFrame(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-
 
 export function PhoneFrame({
   className,
