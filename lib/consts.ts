@@ -5,12 +5,20 @@ import {
   DeviceTouchIcon,
   DeviceUserIcon,
 } from "@/components/icons/Overall";
+import {
+  AiFillFilePdf,
+  AiFillWechat,
+  AiFillDatabase,
+  AiFillQuestionCircle,
+  AiFillBell,
+  AiFillMobile
+} from "react-icons/ai";
 
 import {
   InviteScreen,
   StocksScreen,
   InvestScreen,
-} from "@/components/sections/primary-features/Screens";
+} from "@/components/sections/easy-steps/Screens";
 
 export const PrimaryFeaures = {
   maxZIndex: 2147483647,
@@ -78,3 +86,36 @@ export const PrimaryFeaures = {
     transition: { duration: 0.4 },
   },
 };
+
+export const featuresList = [
+  {
+    name: "Dynamic Document Viewing",
+    description: "Interactive document viewing for engaging learning.",
+    icon: AiFillFilePdf,
+  },
+  {
+    name: "Real-time Document Messaging",
+    description: "Instant chat for seamless collaboration.",
+    icon: AiFillWechat,
+  },
+  {
+    name: "Limitless Document Storage",
+    description: "Unlimited document storage for easy access.",
+    icon: AiFillDatabase,
+  },
+  {
+    name: "Intelligent Q&A Generation",
+    description: "Generate questions and answers effortlessly.",
+    icon: AiFillQuestionCircle,
+  },
+  {
+    name: "Customizable Notifications",
+    description: "Tailored notifications for important updates.",
+    icon: AiFillBell,
+  },
+  {
+    name: "Cross-Device Accessibility",
+    description: "Access documents anywhere, anytime.",
+    icon: AiFillMobile,
+  },
+];

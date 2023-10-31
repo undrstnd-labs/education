@@ -1,9 +1,9 @@
 import Container from "@/components/ui/Container";
 
-import FeaturesDesktop from "@/components/sections/primary-features/FeaturesDesktop";
-import FeaturesMobile from "@/components/sections/primary-features/FeaturesMobile";
+import FeaturesDesktop from "@/components/sections/easy-steps/FeaturesDesktop";
+import FeaturesMobile from "@/components/sections/easy-steps/FeaturesMobile";
 
-export function PrimaryFeatures() {
+export default function EasySteps() {
   return (
     <section
       id="features"

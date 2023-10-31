@@ -32,7 +32,7 @@ export default function HerosectionHome() {
           fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
         />
       </svg>
-      <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+      <div className="mx-auto max-w-7xl px-6  pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36 lg:py-18">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
           <Image
             height={200}
