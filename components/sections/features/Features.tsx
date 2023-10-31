@@ -1,5 +1,4 @@
-import { featuresList } from "@lib/consts";
-
+import FeatureList from "@/components/sections/features/FeatureList";
 
 export default function Features() {
   return (
@@ -18,25 +17,7 @@ export default function Features() {
           </p>
         </div>
         <div className="mx-auto mt-8 max-w-2xl sm:mt-20 lg:mt-10 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none lg:grid-cols-3">
-            {featuresList.map((feature) => (
-              <div
-                key={feature.name}
-                className="flex flex-col p-4 border-solid border-2 border-gray-500/20 rounded-lg"
-              >
-                <feature.icon
-                  className="h-5 w-5 text-cyan-600"
-                  aria-hidden="true"
-                />
-                <dt className="pt-4 text-base font-semibold leading-7 text-gray-900">
-                  {feature.name}
-                </dt>
-                <dd className="flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{feature.description}</p>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <FeatureList />
         </div>
       </div>
     </div>
