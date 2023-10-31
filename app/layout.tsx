@@ -1,9 +1,7 @@
 import "@styles/globals.css";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { GeistSans } from 'geist/font'
 
 export const metadata: Metadata = {
   title: "Undrstnd | Give Your Documents Intelligence.",
@@ -19,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={GeistSans.className}>
         <Header />
         {children}
       </body>

@@ -2,10 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["tailwindui.com"],
-  },
-  experimental: {
-    scrollRestoration: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'tailwindui.com',
+        port: '',
+        pathname: '/img/component-images/**',
+      }
+    ],
   },
 };
 
