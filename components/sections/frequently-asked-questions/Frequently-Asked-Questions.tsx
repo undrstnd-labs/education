@@ -30,7 +30,7 @@ export default function FAQs() {
           looking for? Reach out to our support team by{" "}
           <Link
             href="/contact"
-            className="font-semibold text-cyan-600 hover:text-cyan-500"
+            className="font-semibold text-sky-600 hover:text-sky-500"
           >
             sending us a message
           </Link>{" "}

@@ -50,7 +50,7 @@ export function InviteScreen({
               </div>
             ))}
           </div>
-          <div className="mt-6 rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
+          <div className="mt-6 rounded-lg bg-sky-500 px-3 py-2 text-center text-sm font-semibold text-white">
             Invite person
           </div>
         </div>
@@ -150,7 +150,7 @@ export function StocksScreen({
                   className={clsx(
                     "text-xs leading-5",
                     stock.change.startsWith("+")
-                      ? "text-cyan-500"
+                      ? "text-sky-500"
                       : "text-gray-500"
                   )}
                 >
@@ -214,7 +214,7 @@ export function InvestScreen({
                 </div>
               </div>
             ))}
-            <div className="rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
+            <div className="rounded-lg bg-sky-500 px-3 py-2 text-center text-sm font-semibold text-white">
               Buy shares
             </div>
           </div>

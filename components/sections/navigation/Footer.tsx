@@ -29,7 +29,7 @@ export default function Footer() {
             <div key={item.name} className="pb-6">
               <Link
                 href={item.href}
-                className="text-sm leading-6 px-3 py-2 rounded-xl text-gray-600 hover:text-gray-900 hover:bg-slate-300/40"
+                className="text-sm leading-6 px-3 py-2 rounded-xl transition-colors delay-75 hover:delay-[150ms] text-gray-600 hover:text-gray-900 hover:bg-slate-300/40"
               >
                 {item.name}
               </Link>
@@ -55,7 +55,7 @@ export default function Footer() {
           Created by{" "}
           <Link
             target="_blank"
-            className="text-cyan-600"
+            className="text-sky-600"
             href="https://findservices.tech"
           >
             FindServices

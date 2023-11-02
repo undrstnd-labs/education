@@ -55,8 +55,8 @@ export default function Header() {
                 Log in
               </Button>
             </Link>
-            <Link href="#">
-              <Button className="hidden lg:block">Register</Button>
+            <Link href="/register">
+              <Button className="hidden lg:block bg-sky-600 hover:bg-sky-700">Register</Button>
             </Link>
           </div>
         </Container>
