@@ -42,7 +42,7 @@ export default function Pricing() {
     <div className="isolate overflow-hidden bg-gray-900">
       <div className="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-base font-semibold leading-7 text-sky-400">
+          <h2 className="text-base font-semibold leading-7 text-blue-400">
             Pricing
           </h2>
           <p className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
@@ -88,7 +88,7 @@ export default function Pricing() {
                   <div>
                     <h3
                       id={tier.id}
-                      className="text-base font-semibold leading-7 text-sky-600"
+                      className="text-base font-semibold leading-7 text-blue-600"
                     >
                       {tier.name}
                     </h3>
@@ -110,7 +110,7 @@ export default function Pricing() {
                       {tier.features.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
                           <CheckIcon
-                            className="h-6 w-5 flex-none text-sky-600"
+                            className="h-6 w-5 flex-none text-blue-600"
                             aria-hidden="true"
                           />
                           {feature}
@@ -119,7 +119,7 @@ export default function Pricing() {
                     </ul>
                   </div>
                   <Link href={tier.href} aria-describedby={tier.id}>
-                    <Button className="items-center mt-8 w-full bg-sky-600 hover:bg-sky-500 font-semibold">
+                    <Button className="items-center mt-8 w-full bg-blue-600 hover:bg-blue-500 font-semibold">
                       Get started today
                     </Button>
                   </Link>
@@ -127,7 +127,7 @@ export default function Pricing() {
               ))}
               <div className="flex flex-col items-start gap-x-8 gap-y-6 rounded-3xl p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-2 lg:flex-row lg:items-center">
                 <div className="lg:min-w-0 lg:flex-1">
-                  <h3 className="text-lg font-semibold leading-8 tracking-tight text-sky-600">
+                  <h3 className="text-lg font-semibold leading-8 tracking-tight text-blue-600">
                     Students and teachers
                   </h3>
                   <p className="mt-1 text-base leading-7 text-gray-600">
@@ -139,7 +139,7 @@ export default function Pricing() {
                 </div>
                 <Link href="/education">
                   <Button
-                    className="font-semibold leading-6 text-sky-600 hover:text-sky-700 ring-1 ring-inset ring-sky-200 hover:ring-sky-300"
+                    className="font-semibold leading-6 text-blue-600 hover:text-blue-700 ring-1 ring-inset ring-blue-200 hover:ring-blue-300"
                     variant={"outline"}
                   >
                     Apply now <span aria-hidden="true">&rarr;</span>

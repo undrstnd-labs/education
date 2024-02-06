@@ -17,7 +17,7 @@ export default function LoginForm() {
             type="email"
             autoComplete="email"
             required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -36,7 +36,7 @@ export default function LoginForm() {
             type="password"
             autoComplete="current-password"
             required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function LoginForm() {
             id="remember-me"
             name="remember-me"
             type="checkbox"
-            className="h-4 w-4 rounded border-gray-300 text-sky-600 focus:ring-sky-600"
+            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
           />
           <label
             htmlFor="remember-me"
@@ -60,7 +60,7 @@ export default function LoginForm() {
         <div className="text-sm leading-6">
           <Link
             href="/forgot-password"
-            className="font-semibold text-sky-600 hover:text-sky-500"
+            className="font-semibold text-blue-600 hover:text-blue-500"
           >
             Forgot password?
           </Link>
@@ -70,7 +70,7 @@ export default function LoginForm() {
       <div>
         <button
           type="submit"
-          className="flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
         >
           Sign in
         </button>

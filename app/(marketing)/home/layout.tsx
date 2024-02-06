@@ -1,7 +1,4 @@
-import "@styles/globals.css";
-
 import type { Metadata } from "next";
-import { GeistSans } from 'geist/font'
 
 export const metadata: Metadata = {
   title: "Undrstnd | Give Your Documents Intelligence.",
@@ -17,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>
+      <body>
         <Header />
         {children}
       </body>

@@ -43,7 +43,7 @@ export default function HerosectionHome() {
           />
           <div className="mt-24 sm:mt-32 lg:mt-16">
             <Link href="/changelog" className="inline-flex space-x-6">
-              <span className="rounded-full bg-sky-600/10 px-3 py-1 text-sm font-semibold leading-6 text-sky-600 ring-1 ring-inset ring-sky-600/10">
+              <span className="rounded-full bg-blue-600/10 px-3 py-1 text-sm font-semibold leading-6 text-blue-600 ring-1 ring-inset ring-blue-600/10">
                 What's new
               </span>
               <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
@@ -57,7 +57,7 @@ export default function HerosectionHome() {
           </div>
           <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Unleash Document Insights with{" "}
-            <span className="text-sky-600">Undrstnd_</span>
+            <span className="text-blue-600">Undrstnd_</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Elevate your document experience with Undrstnd. Just upload your
@@ -67,9 +67,7 @@ export default function HerosectionHome() {
           {/* TODO: Fix routing */}
           <div className="mt-10 flex items-center gap-x-6">
             <Link href="/signup">
-              <Button className="font-semibold bg-sky-600 hover:bg-sky-500">
-                Get started
-              </Button>
+              <Button className="font-semibold">Get started</Button>
             </Link>
 
             <Link

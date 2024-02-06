@@ -56,7 +56,7 @@ export default function Header() {
               </Button>
             </Link>
             <Link href="/register">
-              <Button className="hidden lg:block bg-sky-600 hover:bg-sky-700">Register</Button>
+              <Button className="hidden lg:block">Register</Button>
             </Link>
           </div>
         </Container>

@@ -36,6 +36,24 @@ export default function Footer() {
             </div>
           ))}
         </nav>
+
+        <p className="mt-10 text-center text-xs leading-5 text-gray-500">
+          &copy; {new Date().getFullYear()} Undrstnd, Inc. All rights reserved.
+          Created by{" "}
+          <Link
+            target="_blank"
+            className="text-blue-600"
+            href="https://www.findmalek.com"
+          >
+            @FindMalek
+          </Link>{" "}
+          and{" "}
+          <Link href="#" className="text-blue-600">
+            @Jguirim
+          </Link>
+          .
+        </p>
+        
         <div className="mt-10 flex justify-center space-x-10">
           {navigation.social.map((item) => (
             <Link
@@ -50,18 +68,6 @@ export default function Footer() {
             </Link>
           ))}
         </div>
-        <p className="mt-10 text-center text-xs leading-5 text-gray-500">
-          &copy; {new Date().getFullYear()} Undrstnd, Inc. All rights reserved.
-          Created by{" "}
-          <Link
-            target="_blank"
-            className="text-sky-600"
-            href="https://findservices.tech"
-          >
-            FindServices
-          </Link>
-          .
-        </p>
       </div>
     </footer>
   );
