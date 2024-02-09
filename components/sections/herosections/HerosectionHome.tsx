@@ -60,9 +60,7 @@ export default function HerosectionHome() {
           {/* TODO: Fix routing */}
           <div className="mt-10 flex items-center gap-x-6">
             <Link href="/signup">
-              <Button className="font-semibold">
-                Commencer
-              </Button>
+              <Button className="font-semibold">Commencer</Button>
             </Link>
 
             <Link

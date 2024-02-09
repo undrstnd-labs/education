@@ -4,18 +4,21 @@ const faqs = [
   {
     id: 1,
     question: "How can I apply for the beta?",
-    answer: "To apply for the beta, you must apply for the waitlist. We will send you an email with instructions on how to get started.",
+    answer:
+      "To apply for the beta, you must apply for the waitlist. We will send you an email with instructions on how to get started.",
   },
   {
     id: 2,
     question: "How can I apply for the Educator Pack?",
-    answer: "We support the students and educators who are working hard to learn and teach. To apply for the Educator Pack, you should login with your school email address or simply login with Github to verify your student status.",
+    answer:
+      "We support the students and educators who are working hard to learn and teach. To apply for the Educator Pack, you should login with your school email address or simply login with Github to verify your student status.",
   },
   {
     id: 3,
     question: "How can I try out the app?",
-    answer: "We offer a free pack, but with limited features. You can try out the app by signing up for the free pack and try it right now."
-  }
+    answer:
+      "We offer a free pack, but with limited features. You can try out the app by signing up for the free pack and try it right now.",
+  },
 ];
 
 export default function FAQs() {

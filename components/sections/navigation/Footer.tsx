@@ -53,7 +53,7 @@ export default function Footer() {
           </Link>
           .
         </p>
-        
+
         <div className="mt-10 flex justify-center space-x-10">
           {navigation.social.map((item) => (
             <Link

@@ -41,7 +41,10 @@ export default function CallToAction() {
                 Join Beta Now
               </Button>
             </Link>
-            <Link href="/docs" className="text-sm font-semibold leading-6 text-white">
+            <Link
+              href="/docs"
+              className="text-sm font-semibold leading-6 text-white"
+            >
               Learn more <span aria-hidden="true">→</span>
             </Link>
           </div>

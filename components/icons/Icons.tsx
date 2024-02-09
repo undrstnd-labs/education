@@ -87,5 +87,4 @@ export const Icons = {
   questions: AiFillQuestionCircle,
   notifications: AiFillBell,
   mobile: AiFillMobile,
-  
 };

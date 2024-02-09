@@ -28,14 +28,18 @@ export function InviteScreen({
 }) {
   return (
     <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(animated ? PrimaryFeaures.headerAnimation : {})}>
+      <MotionAppScreenHeader
+        {...(animated ? PrimaryFeaures.headerAnimation : {})}
+      >
         <AppScreen.Title>Invite people</AppScreen.Title>
         <AppScreen.Subtitle>
           Get tips <span className="text-white">5s sooner</span> for every
           invite.
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
-      <MotionAppScreenBody {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}>
+      <MotionAppScreenBody
+        {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}
+      >
         <div className="px-4 py-6">
           <div className="space-y-6">
             {[
@@ -68,11 +72,15 @@ export function StocksScreen({
 }) {
   return (
     <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(animated ? PrimaryFeaures.headerAnimation : {})}>
+      <MotionAppScreenHeader
+        {...(animated ? PrimaryFeaures.headerAnimation : {})}
+      >
         <AppScreen.Title>Stocks</AppScreen.Title>
         <AppScreen.Subtitle>March 9, 2022</AppScreen.Subtitle>
       </MotionAppScreenHeader>
-      <MotionAppScreenBody {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}>
+      <MotionAppScreenBody
+        {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}
+      >
         <div className="divide-y divide-gray-100">
           {[
             {
@@ -174,13 +182,17 @@ export function InvestScreen({
 }) {
   return (
     <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(animated ? PrimaryFeaures.headerAnimation : {})}>
+      <MotionAppScreenHeader
+        {...(animated ? PrimaryFeaures.headerAnimation : {})}
+      >
         <AppScreen.Title>Buy $LA</AppScreen.Title>
         <AppScreen.Subtitle>
           <span className="text-white">$34.28</span> per share
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
-      <MotionAppScreenBody {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}>
+      <MotionAppScreenBody
+        {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}
+      >
         <div className="px-4 py-6">
           <div className="space-y-4">
             {[
