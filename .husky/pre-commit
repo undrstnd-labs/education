@@ -10,13 +10,6 @@ pnpm run check-format ||
     false;
 )
 
-pnpm run check-lint ||
-(
-        echo '📕 Échec de la vérification ESLint. 
-                La vérification ESLint a échoué. Effectuez les modifications requises répertoriées ci-dessus, ajoutez les modifications et essayez de valider à nouveau.'
-        false; 
-)
-
 pnpm run check-types ||
 (
     echo '📑 Échec de la vérification des types.

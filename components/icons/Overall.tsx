@@ -13,14 +13,14 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         r="79.59"
         fill="#0ea5e9"
         stroke="#0ea5e9"
-        stroke-miterlimit="10"
-        stroke-width="12"
+        strokeMiterlimit="10"
+        strokeWidth="12"
       />
       <text
         transform="translate(29.35 97.27) rotate(45) scale(.86 1)"
         fill="#0ea5e9"
-        font-family="MyriadPro-Regular, 'Myriad Pro'"
-        font-size="164.35"
+        fontFamily="MyriadPro-Regular, 'Myriad Pro'"
+        fontSize="164.35"
       >
         <tspan x="0" y="0">
           U
@@ -59,14 +59,14 @@ export function LogoText(props: SVGProps<SVGSVGElement>) {
           r="79.59"
           fill="#0ea5e9"
           stroke="#0ea5e9"
-          stroke-miterlimit="10"
-          stroke-width="12"
+          strokeMiterlimit="10"
+          strokeWidth="12"
         />
         <text
           transform="translate(29.39 97.27) rotate(45) scale(.86 1)"
           fill="#0ea5e9"
-          font-family="MyriadPro-Regular, 'Myriad Pro'"
-          font-size="164.35"
+          fontFamily="MyriadPro-Regular, 'Myriad Pro'"
+          fontSize="164.35"
         >
           <tspan x="0" y="0">
             U
@@ -82,9 +82,9 @@ export function LogoText(props: SVGProps<SVGSVGElement>) {
         <text
           transform="translate(250.34 144.06)"
           fill="#f2f2f2"
-          font-family="Roboto-Medium, Roboto"
-          font-size="100"
-          font-weight="500"
+          fontFamily="Roboto-Medium, Roboto"
+          fontSize="100"
+          fontWeight="500"
         >
           <tspan x="0" y="0">
             Undrstnd
@@ -189,7 +189,7 @@ export function DeviceNotificationIcon(props: SVGProps<SVGSVGElement>) {
 }
 
 export function DeviceTouchIcon(props: SVGProps<SVGSVGElement>) {
-  let id = useId();
+  const id = useId();
 
   return (
     <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...props}>

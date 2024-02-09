@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@lib/utils";
 import { motion } from "framer-motion";
 
 import { customType } from "@/lib/types";
@@ -155,7 +155,7 @@ export function StocksScreen({
                   {stock.price}
                 </div>
                 <div
-                  className={clsx(
+                  className={cn(
                     "text-xs leading-5",
                     stock.change.startsWith("+")
                       ? "text-sky-500"

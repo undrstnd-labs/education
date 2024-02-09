@@ -9,14 +9,14 @@ import { PhoneFrame } from "@/components/icons/Overall";
 import { PrimaryFeaures } from "@/lib/consts";
 
 export default function FeaturesMobile() {
-  let [activeIndex, setActiveIndex] = useState(0);
-  let slideContainerRef = useRef<HTMLDivElement | null>(null);
-  let slideRefs = useRef<HTMLElement[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const slideContainerRef = useRef<HTMLDivElement | null>(null);
+  const slideRefs = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
-    let observer = new window.IntersectionObserver(
+    const observer = new window.IntersectionObserver(
       (entries) => {
-        for (let entry of entries) {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setActiveIndex(
               slideRefs.current.indexOf(entry.target as HTMLElement)
@@ -31,7 +31,7 @@ export default function FeaturesMobile() {
       }
     );
 
-    for (let slide of slideRefs.current) {
+    for (const slide of slideRefs.current) {
       if (slide) {
         observer.observe(slide);
       }

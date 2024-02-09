@@ -1,21 +1,9 @@
 import Link from "next/link";
 
-import { GithubIcon } from "@/components/icons/Overall";
+import { marketingConfig } from "@config/marketing";
+import { siteConfig } from "@config/site";
 
-const navigation = {
-  main: [
-    { name: "Features", href: "#features" },
-    { name: "Documentation", href: "/docs" },
-    { name: "Changelog", href: "/changelog" },
-  ],
-  social: [
-    {
-      name: "GitHub",
-      href: "https://github.com/FindMalek/undrstnd",
-      icon: GithubIcon,
-    },
-  ],
-};
+import { Icons } from "@components/icons/Icons";
 
 export default function Footer() {
   return (
@@ -25,13 +13,13 @@ export default function Footer() {
           className="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
           aria-label="Footer"
         >
-          {navigation.main.map((item) => (
-            <div key={item.name} className="pb-6">
+          {marketingConfig.mainNav.map((item) => (
+            <div key={item.title} className="pb-6">
               <Link
                 href={item.href}
                 className="text-sm leading-6 px-3 py-2 rounded-xl transition-colors delay-75 hover:delay-[150ms] text-gray-600 hover:text-gray-900 hover:bg-slate-300/40"
               >
-                {item.name}
+                {item.title}
               </Link>
             </div>
           ))}
@@ -55,18 +43,14 @@ export default function Footer() {
         </p>
 
         <div className="mt-10 flex justify-center space-x-10">
-          {navigation.social.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              target="_blank"
-              className="text-gray-400 hover:text-gray-500"
-            >
-              <span className="sr-only">{item.name}</span>
-              {/* @ts-ignore */}
-              <item.icon className="h-6 w-6" aria-hidden="true" />
-            </Link>
-          ))}
+          <Link
+            href={siteConfig.links.github}
+            target="_blank"
+            className="text-gray-400 hover:text-gray-500"
+          >
+            <span className="sr-only">Github</span>
+            <Icons.gitHub className="h-6 w-6" aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </footer>
