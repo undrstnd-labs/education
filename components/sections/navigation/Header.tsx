@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { Popover } from "@headlessui/react";
 
-import { Button } from "@/components/ui/Button";
-import Container from "@/components/ui/Container";
+import { Button } from "@components/ui/Button";
+import Container from "@components/ui/Container";
 
-import { Logo } from "@/components/icons/Overall";
-import { MenuIcon, ChevronUpIcon } from "@/components/icons/Navbar";
+import { LogoPNG } from "@components/icons/Overall";
+import { MenuIcon, ChevronUpIcon } from "@components/icons/Navbar";
 
-import NavLinks from "@/components/sections/navigation/NavLinks";
-import MobileAnimatePresence from "@/components/sections/navigation/MobileAnimatePresence";
+import NavLinks from "@components/sections/navigation/NavLinks";
+import MobileAnimatePresence from "@components/sections/navigation/MobileAnimatePresence";
 
 export default function Header() {
   return (
@@ -20,10 +20,8 @@ export default function Header() {
           <div className="relative z-10 flex items-center gap-10">
             <Link href="/" aria-label="Home">
               <div className="flex items-center gap-2">
-                <Logo className="-mt-1 h-10 w-auto" />
-                <p className="text-zinc-700 text-base font-bold ">
-                  Undrstnd
-                </p>
+                <LogoPNG className="-mt-1 h-10 w-auto" />
+                <p className="text-zinc-700 text-base font-bold ">Undrstnd</p>
               </div>
             </Link>
             <div className="hidden lg:flex lg:gap-10">

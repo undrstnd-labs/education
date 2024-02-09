@@ -1,6 +1,6 @@
 "use client";
 
-import { featuresList } from "@lib/consts";
+import { featuresList } from "@config/features";
 
 export default function FeatureList() {
   return (

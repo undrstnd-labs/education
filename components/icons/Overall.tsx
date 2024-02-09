@@ -1,9 +1,8 @@
-import { SVGProps, useId, ReactNode } from "react";
-
-import Image from "next/image";
 import clsx from "clsx";
+import Image from "next/image";
 
 import frame from "@images/phone-frame.svg";
+import { SVGProps, useId, ReactNode } from "react";
 
 export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
@@ -33,6 +32,20 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         fill="#fff"
       />
     </svg>
+  );
+}
+
+export function LogoPNG(
+  { className }: { className?: string } = { className: "" }
+) {
+  return (
+    <Image
+      src="/images/logos/Clean.png"
+      alt="Undrstnd Logo"
+      width={798}
+      height={798}
+      className={className}
+    />
   );
 }
 

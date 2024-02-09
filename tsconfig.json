@@ -24,6 +24,10 @@
       "@lib/*": ["./lib/*"],
       "@styles/*": ["./styles/*"],
       "@images/*": ["./public/images/*"],
+      "@config/*": ["./config/*"],
+      "@data/*": ["./data/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@types/*": ["./types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

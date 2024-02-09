@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@components/ui/Button";
 
 import { PlayIcon } from "@components/icons/Overall";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { Icons } from "@components/icons/Icons";
 
 export default function HerosectionHome() {
   return (
@@ -34,21 +34,14 @@ export default function HerosectionHome() {
       </svg>
       <div className="mx-auto max-w-7xl px-6  pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36 lg:py-18">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-          <Image
-            height={200}
-            width={200}
-            className="h-11 w-auto"
-            src="/images/logos/Clean.svg"
-            alt="Undrstnd clean version logo."
-          />
           <div className="mt-24 sm:mt-32 lg:mt-16">
             <Link href="/changelog" className="inline-flex space-x-6">
               <span className="rounded-full bg-blue-600/10 px-3 py-1 text-sm font-semibold leading-6 text-blue-600 ring-1 ring-inset ring-blue-600/10">
-                What's new
+                Quoi de neuf
               </span>
               <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
                 <span>v0.1.0</span>
-                <ChevronRightIcon
+                <Icons.chevronRight
                   className="h-5 w-5 text-gray-400"
                   aria-hidden="true"
                 />
@@ -56,18 +49,20 @@ export default function HerosectionHome() {
             </Link>
           </div>
           <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-            Unleash Document Insights with{" "}
+            Libérez les insights des documents avec{" "}
             <span className="text-blue-600">Undrstnd_</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Elevate your document experience with Undrstnd. Just upload your
-            files and begin exploring.
+            Élevez votre expérience documentaire avec Undrstnd. Il vous suffit
+            de télécharger vos fichiers et de commencer à explorer.
           </p>
 
           {/* TODO: Fix routing */}
           <div className="mt-10 flex items-center gap-x-6">
             <Link href="/signup">
-              <Button className="font-semibold">Get started</Button>
+              <Button className="font-semibold">
+                Commencer
+              </Button>
             </Link>
 
             <Link
@@ -76,7 +71,9 @@ export default function HerosectionHome() {
             >
               <Button variant="outline">
                 <PlayIcon className="h-6 w-6 flex-none" />
-                <span className="ml-2.5">Watch the video</span>
+                <span className="ml-2.5">
+                  Regarder la vidéo de démonstration
+                </span>
               </Button>
             </Link>
           </div>
