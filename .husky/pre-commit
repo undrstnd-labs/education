@@ -1,0 +1,29 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "👷 Avant de valider vos modifications, nous effectuons une série d'opérations pour assurer la qualité du code."
+
+pnpm run check-format ||
+(
+    echo '🤢 Formatage incorrect.
+            La vérification de Prettier a échoué. Exécutez "pnpm run format", ajoutez les modifications et essayez de valider à nouveau.';
+    false;
+)
+
+pnpm run check-types ||
+(
+    echo '📑 Échec de la vérification des types.
+            Voulez-vous vraiment écrire cela ? Effectuez les modifications requises ci-dessus.'
+    false;
+)
+
+echo '🏗️ Tentative de construction du projet...'
+
+pnpm run build ||
+(
+    echo '❌ Échec de la construction.
+            La construction avec Next.js a échoué : consultez les erreurs ci-dessus pour en connaître la raison.'
+    false;
+)
+
+echo '✅ Tout est passé avec succès. Vous pouvez valider vos modifications maintenant.'

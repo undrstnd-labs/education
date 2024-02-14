@@ -10,7 +10,7 @@ import {
   InviteScreen,
   StocksScreen,
   InvestScreen,
-} from "@/components/sections/primary-features/Screens";
+} from "@/components/sections/easy-steps/Screens";
 
 export const PrimaryFeaures = {
   maxZIndex: 2147483647,

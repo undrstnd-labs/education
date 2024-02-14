@@ -1,4 +1,7 @@
-import { SVGProps } from "react";
+/* eslint-disable require-jsdoc */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
+import React, { type SVGProps } from "react";
 
 export function LaravelLogo(props: SVGProps<SVGSVGElement>) {
   return (

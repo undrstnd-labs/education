@@ -9,16 +9,16 @@ import { Tab } from "@headlessui/react";
 import { usePrevious } from "@/lib/hooks";
 import { PrimaryFeaures } from "@/lib/consts";
 
-import { CircleBackground } from "@/components/sections/primary-features/CircleBackground";
+import { CircleBackground } from "@/components/sections/easy-steps/CircleBackground";
 import { PhoneFrame } from "@/components/icons/Overall";
 
 export default function FeaturesDesktop() {
-  let [changeCount, setChangeCount] = useState(0);
-  let [selectedIndex, setSelectedIndex] = useState(0);
-  let prevIndex = usePrevious(selectedIndex);
-  let isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex;
+  const [changeCount, setChangeCount] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const prevIndex = usePrevious(selectedIndex);
+  const isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex;
 
-  let onChange = useDebouncedCallback(
+  const onChange = useDebouncedCallback(
     (selectedIndex) => {
       setSelectedIndex(selectedIndex);
       setChangeCount((changeCount) => changeCount + 1);

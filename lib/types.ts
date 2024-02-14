@@ -1,4 +1,4 @@
-export type customType = {
-    changeCount: number;
-    isForwards: boolean;
+export interface customType {
+  changeCount: number;
+  isForwards: boolean;
 }

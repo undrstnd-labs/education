@@ -33,3 +33,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# latex files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.lof
+*.toc

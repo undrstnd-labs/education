@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { Popover } from "@headlessui/react";
 
-import { Button } from "@/components/ui/Button";
-import Container from "@/components/ui/Container";
+import { Button } from "@components/ui/Button";
+import Container from "@components/ui/Container";
 
-import { Logo } from "@/components/icons/Overall";
-import { MenuIcon, ChevronUpIcon } from "@/components/icons/Navbar";
+import { LogoPNG } from "@components/icons/Overall";
+import { MenuIcon, ChevronUpIcon } from "@components/icons/Navbar";
 
-import NavLinks from "@/components/sections/navigation/NavLinks";
-import MobileAnimatePresence from "@/components/sections/navigation/MobileAnimatePresence";
+import NavLinks from "@components/sections/navigation/NavLinks";
+import MobileAnimatePresence from "@components/sections/navigation/MobileAnimatePresence";
 
 export default function Header() {
   return (
@@ -20,10 +20,8 @@ export default function Header() {
           <div className="relative z-10 flex items-center gap-10">
             <Link href="/" aria-label="Home">
               <div className="flex items-center gap-2">
-                <Logo className="-mt-1 h-10 w-auto" />
-                <p className="text-zinc-700 text-base font-bold ">
-                  Undrstnd
-                </p>
+                <LogoPNG className="-mt-1 h-10 w-auto" />
+                <p className="text-zinc-700 text-base font-bold ">Undrstnd</p>
               </div>
             </Link>
             <div className="hidden lg:flex lg:gap-10">
@@ -35,7 +33,7 @@ export default function Header() {
               {({ open }) => (
                 <>
                   <Popover.Button
-                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
+                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-800/50 hover:stroke-gray-600 active:stroke-gray-900 [&:not(:focus-visible)]:focus:outline-none"
                     aria-label="Toggle site navigation"
                   >
                     {({ open }) =>
@@ -55,7 +53,7 @@ export default function Header() {
                 Log in
               </Button>
             </Link>
-            <Link href="#">
+            <Link href="/register">
               <Button className="hidden lg:block">Register</Button>
             </Link>
           </div>

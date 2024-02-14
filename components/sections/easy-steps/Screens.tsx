@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@lib/utils";
 import { motion } from "framer-motion";
 
 import { customType } from "@/lib/types";
@@ -28,14 +28,18 @@ export function InviteScreen({
 }) {
   return (
     <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(animated ? PrimaryFeaures.headerAnimation : {})}>
+      <MotionAppScreenHeader
+        {...(animated ? PrimaryFeaures.headerAnimation : {})}
+      >
         <AppScreen.Title>Invite people</AppScreen.Title>
         <AppScreen.Subtitle>
           Get tips <span className="text-white">5s sooner</span> for every
           invite.
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
-      <MotionAppScreenBody {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}>
+      <MotionAppScreenBody
+        {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}
+      >
         <div className="px-4 py-6">
           <div className="space-y-6">
             {[
@@ -50,7 +54,7 @@ export function InviteScreen({
               </div>
             ))}
           </div>
-          <div className="mt-6 rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
+          <div className="mt-6 rounded-lg px-3 py-2 text-center text-sm font-semibold text-white">
             Invite person
           </div>
         </div>
@@ -68,11 +72,15 @@ export function StocksScreen({
 }) {
   return (
     <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(animated ? PrimaryFeaures.headerAnimation : {})}>
+      <MotionAppScreenHeader
+        {...(animated ? PrimaryFeaures.headerAnimation : {})}
+      >
         <AppScreen.Title>Stocks</AppScreen.Title>
         <AppScreen.Subtitle>March 9, 2022</AppScreen.Subtitle>
       </MotionAppScreenHeader>
-      <MotionAppScreenBody {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}>
+      <MotionAppScreenBody
+        {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}
+      >
         <div className="divide-y divide-gray-100">
           {[
             {
@@ -147,10 +155,10 @@ export function StocksScreen({
                   {stock.price}
                 </div>
                 <div
-                  className={clsx(
+                  className={cn(
                     "text-xs leading-5",
                     stock.change.startsWith("+")
-                      ? "text-cyan-500"
+                      ? "text-sky-500"
                       : "text-gray-500"
                   )}
                 >
@@ -174,13 +182,17 @@ export function InvestScreen({
 }) {
   return (
     <AppScreen className="w-full">
-      <MotionAppScreenHeader {...(animated ? PrimaryFeaures.headerAnimation : {})}>
+      <MotionAppScreenHeader
+        {...(animated ? PrimaryFeaures.headerAnimation : {})}
+      >
         <AppScreen.Title>Buy $LA</AppScreen.Title>
         <AppScreen.Subtitle>
           <span className="text-white">$34.28</span> per share
         </AppScreen.Subtitle>
       </MotionAppScreenHeader>
-      <MotionAppScreenBody {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}>
+      <MotionAppScreenBody
+        {...(animated ? { ...PrimaryFeaures.bodyAnimation, custom } : {})}
+      >
         <div className="px-4 py-6">
           <div className="space-y-4">
             {[
@@ -214,7 +226,7 @@ export function InvestScreen({
                 </div>
               </div>
             ))}
-            <div className="rounded-lg bg-cyan-500 px-3 py-2 text-center text-sm font-semibold text-white">
+            <div className="rounded-lg px-3 py-2 text-center text-sm font-semibold text-white">
               Buy shares
             </div>
           </div>
