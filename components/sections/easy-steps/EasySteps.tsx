@@ -1,7 +1,7 @@
-import Container from "@components/ui/Container";
+import Container from "@component/ui/Container";
 
-import FeaturesDesktop from "@components/sections/easy-steps/FeaturesDesktop";
-import FeaturesMobile from "@components/sections/easy-steps/FeaturesMobile";
+import FeaturesMobile from "@component/sections/easy-steps/FeaturesMobile";
+import FeaturesDesktop from "@component/sections/easy-steps/FeaturesDesktop";
 
 export default function EasySteps() {
   return (

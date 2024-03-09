@@ -1,4 +1,4 @@
-import { Icons } from "@components/icons/Icons";
+import { Icons } from "@component/icons/Lucide";
 
 export const featuresList = [
   {

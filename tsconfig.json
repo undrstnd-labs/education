@@ -20,13 +20,13 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@components/*": ["./components/*"],
+      "@component/*": ["./components/*"],
       "@lib/*": ["./lib/*"],
-      "@styles/*": ["./styles/*"],
-      "@images/*": ["./public/images/*"],
+      "@style/*": ["./styles/*"],
+      "@image/*": ["./public/images/*"],
       "@config/*": ["./config/*"],
       "@data/*": ["./data/*"],
-      "@hooks/*": ["./hooks/*"],
+      "@hook/*": ["./hooks/*"],
       "@types/*": ["./types/*"]
     }
   },

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 
-import frame from "@images/phone-frame.svg";
+import frame from "@image/phone-frame.svg";
 import { SVGProps, useId, ReactNode } from "react";
 
 export function Logo(props: SVGProps<SVGSVGElement>) {
