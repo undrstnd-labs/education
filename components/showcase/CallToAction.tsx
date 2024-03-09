@@ -37,7 +37,7 @@ export default function CallToAction() {
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
             <Link href="/register">
-              <Button className="bg-white hover:bg-gray-100 text-gray-900 shadow-sm font-semibold ">
+              <Button className="bg-white hover:bg-gray-100 text-gray-900 shadow-sm font-semibold">
                 Join Beta Now
               </Button>
             </Link>
