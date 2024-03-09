@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useDebouncedCallback } from "use-debounce";
 import { Tab } from "@headlessui/react";
 
-import { usePrevious } from "@/lib/hooks";
+import { usePrevious } from "@hook/use-previous";
 import { PrimaryFeaures } from "@/lib/consts";
 
 import { CircleBackground } from "@/components/sections/easy-steps/CircleBackground";

@@ -15,11 +15,18 @@
     "test-all": "pnpm run check-format && pnpm run run check-lint && pnpm run check-types && pnpm run build"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^1.5.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.3.2",
+    "@next-auth/prisma-adapter": "^1.0.7",
+    "@prisma/client": "^5.10.2",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@react-email/components": "0.0.15",
+    "@react-email/render": "^0.0.12",
+    "@supabase/supabase-js": "^2.39.7",
     "@vercel/analytics": "^1.1.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -27,9 +34,12 @@
     "geist": "^1.0.0",
     "lucide-react": "^0.288.0",
     "next": "^14.0.1",
+    "next-auth": "^4.24.7",
     "next-themes": "^0.2.1",
+    "nodemailer": "^6.9.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-email": "2.1.0",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "tailwind-merge": "^1.14.0",
@@ -39,6 +49,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.8.10",
+    "@types/nodemailer": "^6.4.14",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
@@ -47,6 +58,7 @@
     "husky": "^8.0.0",
     "postcss": "^8.4.31",
     "prettier": "^3.2.5",
+    "prisma": "^5.10.2",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.2.2"
   }

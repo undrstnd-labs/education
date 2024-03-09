@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
-export default function Hello() {
+export default function Welcome() {
   return (
     <main>
       <div className="max-w-lg px-5 m-auto text-lg prose text-gray-400 mt-8 py-24">
