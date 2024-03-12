@@ -88,7 +88,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            Se connecter{" "}
+            <Icons.chevronRight className="ml-2 h-4 w-4 stroke-[3px]" />
           </button>
         </div>
       </form>
@@ -98,7 +99,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+            Ou connectez-vous avec
           </span>
         </div>
       </div>
@@ -120,4 +121,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       </button>
     </div>
   );
+}
+
+// #TODO: Create a skeleton for the UserAuthForm
+export function UserAuthSkeleton() {
+  return <>Skeleton</>;
 }

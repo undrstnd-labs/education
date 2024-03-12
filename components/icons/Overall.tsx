@@ -40,7 +40,7 @@ export function LogoPNG(
 ) {
   return (
     <Image
-      src="/images/logos/Clean.png"
+      src="/images/logos/Rounded.png"
       alt="Undrstnd Logo"
       width={798}
       height={798}

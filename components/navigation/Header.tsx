@@ -20,7 +20,7 @@ export default function Header() {
           <div className="relative z-10 flex items-center gap-10">
             <Link href="/" aria-label="Home">
               <div className="flex items-center gap-2">
-                <LogoPNG className="-mt-1 h-10 w-auto" />
+                <LogoPNG className="-mt-1 h-7 w-auto" />
                 <p className="text-zinc-700 text-base font-bold ">Undrstnd</p>
               </div>
             </Link>
@@ -50,11 +50,11 @@ export default function Header() {
             </Popover>
             <Link href="/login">
               <Button variant="outline" className="hidden lg:block">
-                Log in
+                Se connecter
               </Button>
             </Link>
             <Link href="/register">
-              <Button className="hidden lg:block">Register</Button>
+              <Button className="hidden lg:block">Créer un compte</Button>
             </Link>
           </div>
         </Container>

@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 import { Button } from "@component/ui/Button";
-
-import { Icons } from "@component/icons/Lucide";
 import { PlayIcon } from "@component/icons/Overall";
+import { TypingEffect } from "@component/ui/TypingEffect";
 
 export default function HerosectionHome() {
   return (
@@ -32,34 +31,21 @@ export default function HerosectionHome() {
           fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
         />
       </svg>
-      <div className="mx-auto max-w-7xl px-6  pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36 lg:py-18">
+      <div className="mx-auto max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36 lg:py-18">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-          <div className="mt-24 sm:mt-32 lg:mt-16">
-            <Link href="/changelog" className="inline-flex space-x-6">
-              <span className="rounded-full bg-blue-600/10 px-3 py-1 text-sm font-semibold leading-6 text-blue-600 ring-1 ring-inset ring-blue-600/10">
-                Quoi de neuf
-              </span>
-              <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
-                <span>v0.1.0</span>
-                <Icons.chevronRight
-                  className="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-              </span>
-            </Link>
-          </div>
-          <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <h1 className="mt-10 text-4xl flex flex-col font-bold tracking-tight text-gray-900 sm:text-6xl">
             Libérez les insights des documents avec{" "}
-            <span className="text-blue-600">Undrstnd_</span>
+            <span className="text-sky-500 self-start">
+              <TypingEffect text="Undrstnd_" />
+            </span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">
             Élevez votre expérience documentaire avec Undrstnd. Il vous suffit
             de télécharger vos fichiers et de commencer à explorer.
           </p>
 
-          {/* TODO: Fix routing */}
           <div className="mt-10 flex items-center gap-x-6">
-            <Link href="/signup">
+            <Link href="/register">
               <Button className="font-semibold">Commencer</Button>
             </Link>
 

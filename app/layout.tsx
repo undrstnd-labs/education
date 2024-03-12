@@ -8,8 +8,6 @@ import { Analytics } from "@component/config/Analytics";
 import { ThemeProvider } from "@component/config/ThemeProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
 
-import Header from "@component/navigation/Header";
-
 export const viewport: Viewport = {
   width: "device-width",
   height: "device-height",
@@ -94,7 +92,6 @@ export default function RootLayout({
       <head />
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <Header />
           {children}
           <Analytics />
           <TailwindIndicator />
