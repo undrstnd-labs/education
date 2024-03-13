@@ -5,12 +5,14 @@ import { Suspense } from "react";
 import { LogoPNG } from "@component/icons/Overall";
 import { buttonVariants } from "@component/ui/Button";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
+import { useTranslations } from "next-intl";
 
 export const metadata = {
   title: "Créer votre compte",
 };
 
 export default function RegisterPage() {
+  const t = useTranslations("Pages.Register");
   return (
     <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link
@@ -20,7 +22,7 @@ export default function RegisterPage() {
           "absolute right-4 top-4 md:right-8 md:top-8"
         )}
       >
-        Se connecter
+        {t("buttonConnection")}
       </Link>
       <div className="relative hidden h-full flex-col bg-muted p-10 lg:flex dark:border-r">
         <div className="absolute inset-0 bg-white-900" />
@@ -42,29 +44,29 @@ export default function RegisterPage() {
           <div className="flex flex-col space-y-2 text-center">
             <LogoPNG className="mx-auto h-6 w-6" />
             <h1 className="text-2xl font-semibold tracking-tight">
-              Créer votre compte
+              {t("registerTitle")}
             </h1>
             <p className="text-sm text-muted-foreground">
-              Saisissez votre email ci-dessous pour vous inscrire
+              {t("registerDescription")}
             </p>
           </div>
           <Suspense fallback={<UserAuthSkeleton />}>
-            <UserAuthForm />
+            <UserAuthForm type="register" />
           </Suspense>
           <p className="px-8 text-center text-sm text-muted-foreground">
-            Lors de la création de votre compte, vous acceptez nos{" "}
+            {t("labelAccept")}{" "}
             <Link
               href="/about/terms"
               className="hover:text-brand underline underline-offset-4"
             >
-              Conditions d'utilisation
+              {t("labelConditions")}
             </Link>{" "}
-            et{" "}
+            {t("labelAnd")}{" "}
             <Link
               href="/about/privacy"
               className="hover:text-brand underline underline-offset-4"
             >
-              Politique de confidentialité
+              {t("labelPolicy")}
             </Link>
             .
           </p>

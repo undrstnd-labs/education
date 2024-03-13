@@ -1,0 +1,34 @@
+{
+  "Pages": {
+    "Login": {
+      "buttonBack": "Back",
+      "loginTitle": "Welcome back",
+      "loginDescription": "Enter your email below to log in",
+      "buttonSignIn": "Sign In",
+      "labelChoice": "OR CONNECT WITH",
+      "labelNew": "New on the site?",
+      "labelCreateAccount": "Create an account"
+    },
+
+    "Register": {
+      "buttonConnection": "Log In",
+      "registerTitle": "Create your account",
+      "registerDescription": "Enter your email below to register",
+      "labelChoice": "OR CONNECT WITH",
+      "labelAccept": "When creating your account, you agree to our",
+      "labelConditions": "Terms of Service",
+      "labelAnd": "and",
+      "labelPolicy": "Privacy Policy."
+    }
+  },
+
+  "Components": {
+    "Form": {
+      "UserAuth": {
+        "labelEmail": "Email",
+        "buttonForm": "{type, select, login {Log In} register {Sign Up} other {#}}",
+        "labelChoice": "OR CONNECT WITH"
+      }
+    }
+  }
+}

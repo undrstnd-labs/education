@@ -16,12 +16,16 @@ import { buttonVariants } from "@component/ui/Button";
 
 import { toast } from "@hook/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  type: "login" | "register";
+}
 
 type FormData = z.infer<typeof userAuthSchema>;
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
+  const t = useTranslations("Components.Form.UserAuth");
   const {
     register,
     handleSubmit,
@@ -66,7 +70,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
-              Email
+              {t("labelEmail")}
             </Label>
             <Input
               id="email"
@@ -88,7 +92,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Se connecter{" "}
+            {t("buttonForm", { type: type })}{" "}
             <Icons.chevronRight className="ml-2 h-4 w-4 stroke-[3px]" />
           </button>
         </div>
@@ -99,7 +103,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Ou connectez-vous avec
+            {t("labelChoice")}
           </span>
         </div>
       </div>

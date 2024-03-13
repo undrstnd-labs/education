@@ -1,0 +1,32 @@
+{
+  "Pages": {
+    "Login": {
+      "buttonBack": "Retourner",
+      "loginTitle": "Bienvenue de retour",
+      "loginDescription": "Saisissez votre email ci-dessous pour vous connecter",
+      "labelNew": "Nouveau sur le site?",
+      "labelCreateAccount": "Créer un compte"
+    },
+
+    "Register": {
+      "buttonConnection": "Se connecter",
+      "registerTitle": "Créer votre compte",
+      "registerDescription": "Saisissez votre email ci-dessous pour vous inscrire",
+      "labelChoice": "OU CONNECTEZ-VOUS AVEC",
+      "labelAccept": "Lors de la création de votre compte, vous acceptez nos",
+      "labelConditions": "Conditions d'utilisation",
+      "labelAnd": "et",
+      "labelPolicy": "Politique de confidentialité."
+    }
+  },
+
+  "Components": {
+    "Form": {
+      "UserAuth": {
+        "labelEmail": "Email",
+        "buttonForm": "{type, select, login {Se connecter} register {S'inscrire} other {#}}",
+        "labelChoice": "OU CONNECTEZ-VOUS AVEC"
+      }
+    }
+  }
+}
