@@ -4,19 +4,21 @@ import * as z from "zod";
 import * as React from "react";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
 import { cn } from "@lib/utils";
 import { userAuthSchema } from "@config/schema";
 
 import { Label } from "@component/ui/Label";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@component/ui/Input";
 import { Icons } from "@component/icons/Lucide";
 import { buttonVariants } from "@component/ui/Button";
 
 import { toast } from "@hook/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
+
+import { EmailInput } from "@component/ui/PhoneInput";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: "login" | "register";
@@ -72,16 +74,13 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
             <Label className="sr-only" htmlFor="email">
               {t("labelEmail")}
             </Label>
-            <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
+
+            {/* <EmailInput
+              className="input"
               disabled={isLoading || isGitHubLoading}
               {...register("email")}
-            />
+            /> */}
+
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
                 {errors.email.message}
