@@ -25,7 +25,15 @@
       "UserAuth": {
         "labelEmail": "Email",
         "buttonForm": "{type, select, login {Se connecter} register {S'inscrire} other {#}}",
-        "labelChoice": "OU CONNECTEZ-VOUS AVEC"
+        "labelChoice": "OU CONNECTEZ-VOUS AVEC",
+        "placeholderEmail": "etudiant@université.com"
+      },
+      "EmailInput": {
+        "empty-command": "Aucune université trouvée",
+        "options": {
+          "isimm": "Institut Supérieur d'Informatique et de Mathématiques de Monastir",
+          "ensi": "École Nationale des Sciences de l'Informatique"
+        }
       }
     }
   }

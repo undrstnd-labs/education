@@ -96,7 +96,6 @@ export default function RootLayout({
     <html lang={locale}>
       <head />
       <body className={GeistSans.className}>
-        {" "}
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}

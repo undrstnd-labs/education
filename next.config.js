@@ -5,12 +5,18 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "tailwindui.com",
         port: "",
         pathname: "/img/component-images/**",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+        port: "",
       },
     ],
   },

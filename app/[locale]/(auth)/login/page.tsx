@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { cn } from "@/lib/utils";
 import { Suspense } from "react";
+import { useTranslations } from "next-intl";
+
+import { cn } from "@/lib/utils";
 
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";
 
 import { buttonVariants } from "@component/ui/Button";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
-import { useTranslations } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Se connecter à votre compte",

@@ -11,14 +11,14 @@ import { cn } from "@lib/utils";
 import { userAuthSchema } from "@config/schema";
 
 import { Label } from "@component/ui/Label";
-import { Input } from "@component/ui/Input";
 import { Icons } from "@component/icons/Lucide";
+import { Skeleton } from "@component/ui/Skeleton";
 import { buttonVariants } from "@component/ui/Button";
 
 import { toast } from "@hook/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { EmailInput } from "@component/ui/PhoneInput";
+import { EmailInput } from "@component/form/EmailInput";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: "login" | "register";
@@ -75,11 +75,12 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
               {t("labelEmail")}
             </Label>
 
-            {/* <EmailInput
-              className="input"
+            <EmailInput
+              value={""}
               disabled={isLoading || isGitHubLoading}
+              placeholder={t("placeholderEmail")}
               {...register("email")}
-            /> */}
+            />
 
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
@@ -128,5 +129,5 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
 
 // #TODO: Create a skeleton for the UserAuthForm
 export function UserAuthSkeleton() {
-  return <>Skeleton</>;
+  return <Skeleton />;
 }

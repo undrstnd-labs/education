@@ -1,7 +1,6 @@
-import { locales } from "@/config/locale";
+import { locales } from "@config/locale";
 import createMiddleware from "next-intl/middleware";
 
-// #TODO : Make it autodetect
 export default createMiddleware({
   locales: locales,
   localeDetection: true,

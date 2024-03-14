@@ -27,7 +27,15 @@
       "UserAuth": {
         "labelEmail": "Email",
         "buttonForm": "{type, select, login {Log In} register {Sign Up} other {#}}",
-        "labelChoice": "OR CONNECT WITH"
+        "labelChoice": "OR CONNECT WITH",
+        "placeholderEmail": "student@university.com"
+      },
+      "EmailInput": {
+        "empty-command": "No university found.",
+        "options": {
+          "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
+          "ensi": "National School of Computer Science"
+        }
       }
     }
   }
