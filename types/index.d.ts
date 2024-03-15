@@ -20,3 +20,12 @@ export interface SiteConfig {
 export interface MarketingConfig {
   mainNav: MainNavItem[];
 }
+
+export type TranslationFunction = (key: string) => string;
+
+export type EmailOption = {
+  label: string;
+  abbrev: string;
+  value: string;
+  avatarUrl: string;
+};

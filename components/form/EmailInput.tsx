@@ -17,8 +17,10 @@ import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
 import { Popover, PopoverContent, PopoverTrigger } from "@component/ui/Popover";
 
 import { cn } from "@lib/utils";
+import { EmailOption } from "@/types";
+import { EmailSelectProps } from "@/types/auth";
 import { useMediaQuery } from "@hook/use-media-query";
-import { EmailSelectProps, EmailSelectOption } from "@/types/auth";
+import { getEmailOptions } from "@config/universities";
 
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
@@ -31,17 +33,19 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
 );
 InputComponent.displayName = "InputComponent";
 
-const AvatarComponent = ({ avatar }: { avatar: string }) => {
+const AvatarComponent = ({ university }: { university: EmailOption }) => {
   return (
     <span className="flex h-4 w-6 overflow-hidden rounded-sm bg-foreground/20">
-      {avatar && (
-        <Image
-          src={avatar}
-          alt="University avatar"
-          className="h-4 w-6 object-cover"
-          width={24}
-          height={24}
-        />
+      {university && (
+        <>
+          <Image
+            src={university.avatarUrl}
+            alt={university.label}
+            className="h-4 w-6 object-cover"
+            width={24}
+            height={24}
+          />
+        </>
       )}
     </span>
   );
@@ -68,7 +72,7 @@ function EmailSelectResponsive({
             disabled={disabled}
           >
             <AvatarComponent
-              avatar={options.find((x) => x.value === value)?.avatarUrl || ""}
+              university={options.find((x) => x.value === value) || ""}
             />
             <Icons.chevronsUpDown
               className={cn(
@@ -99,7 +103,7 @@ function EmailSelectResponsive({
           disabled={disabled}
         >
           <AvatarComponent
-            avatar={options.find((x) => x.value === value)?.avatarUrl || ""}
+            university={options.find((x) => x.value === value) || ""}
           />
           <Icons.chevronsUpDown
             className={cn(
@@ -129,14 +133,14 @@ function EmailOptionsList({
 }: {
   value: string;
   onSelect: (option: string) => void;
-  options: EmailSelectOption[];
+  options: EmailOption[];
 }) {
   const t = useTranslations("Components.Form.EmailInput");
 
   return (
     <Command>
       <CommandList>
-        <CommandInput placeholder="Search for university..." />
+        <CommandInput placeholder={t("search-command")} />
         <CommandEmpty>{t("empty-command")}</CommandEmpty>
         <CommandGroup>
           {options
@@ -147,7 +151,7 @@ function EmailOptionsList({
                 key={option.value}
                 onSelect={() => onSelect(option.value)}
               >
-                <AvatarComponent avatar={option.avatarUrl} />
+                <AvatarComponent university={option} />
                 <span className="text-sm flex-1">{option.label}</span>
                 {option.value && (
                   <span className="text-sm text-foreground/50">
@@ -178,6 +182,7 @@ const EmailInput = ({
 } & InputProps) => {
   const [emailValue, setEmailValue] = React.useState("");
   const t = useTranslations("Components.Form.EmailInput");
+  const options = getEmailOptions(t);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(event.target.value);
@@ -186,19 +191,6 @@ const EmailInput = ({
   const handleSelect = (value: string) => {
     setEmailValue(value);
   };
-
-  const options = [
-    {
-      label: t("options.isimm"),
-      value: "@isimm.edu.tn",
-      avatarUrl: "https://placehold.co/600x400?text=ISIMM",
-    },
-    {
-      label: t("options.ensi"),
-      value: "@ensi.rnu.tn",
-      avatarUrl: "https://placehold.co/600x400?text=ENSI",
-    },
-  ];
 
   return (
     <div className="flex items-center">

@@ -26,13 +26,26 @@
         "labelEmail": "Email",
         "buttonForm": "{type, select, login {Se connecter} register {S'inscrire} other {#}}",
         "labelChoice": "OU CONNECTEZ-VOUS AVEC",
-        "placeholderEmail": "etudiant@université.com"
+        "placeholderEmail": "etudiant@université.com",
+        "invalidEmail": "S'il vous plaît, entrez un email universitaire valide"
       },
       "EmailInput": {
         "empty-command": "Aucune université trouvée",
+        "search-command": "Recherchez votre université",
         "options": {
           "isimm": "Institut Supérieur d'Informatique et de Mathématiques de Monastir",
-          "ensi": "École Nationale des Sciences de l'Informatique"
+          "ensi": "École Nationale des Sciences de l'Informatique",
+          "insat": "Institut National des Sciences Appliquées et de Technologie",
+          "fst": "Faculté des Sciences de Tunis",
+          "ipeit": "Institut Préparatoire aux Études d'Ingénieurs de Tunis",
+          "ihec": "Institut Supérieur de Commerce de Carthage",
+          "ipeis": "Institut Préparatoire aux Études d'Ingénieurs de Sfax",
+          "ipest": "Institut Préparatoire aux Études d'Ingénieurs de Tunis",
+          "iset": "Institut Supérieur d'Études Technologiques de Sousse",
+          "isetn": "Institut Supérieur d'Études Technologiques de Nabeul",
+          "issatso": "Institut Supérieur des Sciences Appliquées et de Technologie de Sousse",
+          "esstt": "École Supérieure des Sciences et Technologies de Tunis",
+          "enit": "École Nationale d'Ingénieurs de Tunis"
         }
       }
     }

@@ -17,12 +17,6 @@ declare module "next-auth/jwt" {
   type JWT = User;
 }
 
-export type EmailSelectOption = {
-  label: string;
-  value: string;
-  avatarUrl: string;
-};
-
 export type EmailSelectProps = {
   disabled?: boolean;
   value: string;

@@ -28,13 +28,26 @@
         "labelEmail": "Email",
         "buttonForm": "{type, select, login {Log In} register {Sign Up} other {#}}",
         "labelChoice": "OR CONNECT WITH",
-        "placeholderEmail": "student@university.com"
+        "placeholderEmail": "student@university.com",
+        "invalidEmail": "Please enter a valid university email address."
       },
       "EmailInput": {
         "empty-command": "No university found.",
+        "search-command": "Search for a university",
         "options": {
           "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
-          "ensi": "National School of Computer Science"
+          "ensi": "National School of Computer Science",
+          "insat": "National Institute of Applied Sciences and Technology",
+          "fst": "Faculty of Sciences of Tunis",
+          "ipeit": "Preparatory Institute for Engineering Studies of Tunis",
+          "ihec": "Carthage Higher Institute of Commerce",
+          "ipeis": "Preparatory Institute for Engineering Studies of Sfax",
+          "ipest": "Preparatory Institute for Engineering Studies of Tunis",
+          "iset": "Higher Institute of Technological Studies of Sousse",
+          "isetn": "Higher Institute of Technological Studies of Nabeul",
+          "issatso": "Higher Institute of Applied Sciences and Technology of Sousse",
+          "esstt": "Higher School of Sciences and Technology of Tunis",
+          "enit": "National Engineering School of Tunis"
         }
       }
     }
