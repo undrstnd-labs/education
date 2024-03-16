@@ -1,6 +1,8 @@
+import * as z from "zod";
 import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { UseFormRegister } from "react-hook-form";
 
 import {
   Command,
@@ -18,9 +20,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "@component/ui/Popover";
 
 import { cn } from "@lib/utils";
 import { EmailOption } from "@/types";
+import { userAuthSchema } from "@config/schema";
 import { EmailSelectProps } from "@/types/auth";
 import { useMediaQuery } from "@hook/use-media-query";
 import { getEmailOptions } from "@config/universities";
+
+type FormData = z.infer<typeof userAuthSchema>;
 
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
@@ -176,35 +181,47 @@ function EmailOptionsList({
 
 const EmailInput = ({
   disabled,
+  register,
   ...props
 }: {
   disabled: boolean;
+  register: UseFormRegister<FormData>;
 } & InputProps) => {
-  const [emailValue, setEmailValue] = React.useState("");
   const t = useTranslations("Components.Form.EmailInput");
   const options = getEmailOptions(t);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmailValue(event.target.value);
-  };
+  const [email, setEmail] = React.useState("");
+  const [selectedUniversity, setSelectedUniversity] = React.useState("");
 
-  const handleSelect = (value: string) => {
-    setEmailValue(value);
+  React.useEffect(() => {
+    if (selectedUniversity) {
+      const emailParts = email.split("@");
+      if (emailParts.length > 1) {
+        setEmail(`${emailParts[0]}@${selectedUniversity}`);
+      } else {
+        setEmail(`${email}@${selectedUniversity}`);
+      }
+    }
+  }, [selectedUniversity, email]);
+
+  const handleSelect = (option: string) => {
+    setSelectedUniversity(option);
   };
 
   return (
     <div className="flex items-center">
       <InputComponent
-        disabled={disabled}
-        value={emailValue}
-        onChange={handleInputChange}
         {...props}
+        {...register("email")}
+        disabled={disabled}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <EmailSelectResponsive
         disabled={disabled}
-        value={emailValue}
         options={options}
+        value={selectedUniversity}
         onSelect={handleSelect}
       />
     </div>

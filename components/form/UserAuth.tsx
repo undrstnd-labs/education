@@ -14,11 +14,10 @@ import { Label } from "@component/ui/Label";
 import { Icons } from "@component/icons/Lucide";
 import { Skeleton } from "@component/ui/Skeleton";
 import { buttonVariants } from "@component/ui/Button";
+import { EmailInput } from "@component/form/EmailInput";
 
 import { toast } from "@hook/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { EmailInput } from "@component/form/EmailInput";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: "login" | "register";
@@ -48,8 +47,6 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       callbackUrl: searchParams?.get("from") || "/dashboard",
     });
 
-    // TODO: Check the rate limit of the mailer
-
     setIsLoading(false);
 
     if (!signInResult?.ok) {
@@ -76,10 +73,9 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
             </Label>
 
             <EmailInput
-              value={""}
               disabled={isLoading || isGitHubLoading}
               placeholder={t("placeholderEmail")}
-              {...register("email")}
+              register={register}
             />
 
             {errors?.email && (
@@ -127,7 +123,6 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
   );
 }
 
-// #TODO: Create a skeleton for the UserAuthForm
 export function UserAuthSkeleton() {
-  return <Skeleton />;
+  return <Skeleton className="h-12 w-[200px]" />;
 }
