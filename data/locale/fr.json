@@ -27,7 +27,12 @@
         "buttonForm": "{type, select, login {Se connecter} register {S'inscrire} other {#}}",
         "labelChoice": "OU CONNECTEZ-VOUS AVEC",
         "placeholderEmail": "etudiant@université.com",
-        "invalidEmail": "S'il vous plaît, entrez un email universitaire valide"
+        "invalidEmail": "S'il vous plaît, entrez un email universitaire valide",
+        "invalidUniversityEmail": "S'il vous plaît, entrez un email universitaire valide",
+        "toastSignInFailedTitle": "Quelque chose s'est mal passé",
+        "toastSignInFailedDescription": "Votre attempt de connexion a échoué",
+        "toastSignInSuccessTitle": "Vérifiez votre courrier électronique",
+        "toastSignInSuccessDescription": "Nous vous avons envoyé un lien de connexion. Assurez-vous également de vérifier vos spams."
       },
       "EmailInput": {
         "empty-command": "Aucune université trouvée",

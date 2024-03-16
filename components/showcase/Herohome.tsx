@@ -36,7 +36,7 @@ export default function HerosectionHome() {
           <h1 className="mt-10 text-4xl flex flex-col font-bold tracking-tight text-gray-900 sm:text-6xl">
             Libérez les insights des documents avec{" "}
             <span className="text-sky-500 self-start">
-              <TypingEffect text="Undrstnd_" />
+              <TypingEffect text="Undrstnd" />
             </span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-600">

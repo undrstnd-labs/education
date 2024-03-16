@@ -3,12 +3,12 @@ import "@style/globals.css";
 import { GeistSans } from "geist/font";
 import { siteConfig } from "@config/site";
 import type { Viewport, Metadata } from "next";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
+import { Toaster } from "@component/ui/Toaster";
 import { Analytics } from "@component/config/Analytics";
 import { ThemeProvider } from "@component/config/ThemeProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
-
-import { NextIntlClientProvider, useMessages } from "next-intl";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -99,6 +99,7 @@ export default function RootLayout({
         <NextIntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             {children}
+            <Toaster />
             <Analytics />
             <TailwindIndicator />
           </ThemeProvider>

@@ -1,8 +1,6 @@
-import * as z from "zod";
 import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { UseFormRegister } from "react-hook-form";
 
 import {
   Command,
@@ -20,12 +18,9 @@ import { Popover, PopoverContent, PopoverTrigger } from "@component/ui/Popover";
 
 import { cn } from "@lib/utils";
 import { EmailOption } from "@/types";
-import { userAuthSchema } from "@config/schema";
 import { EmailSelectProps } from "@/types/auth";
 import { useMediaQuery } from "@hook/use-media-query";
-import { getEmailOptions } from "@config/universities";
-
-type FormData = z.infer<typeof userAuthSchema>;
+import { getTranslatedEmailOptions } from "@config/universities";
 
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
@@ -185,10 +180,10 @@ const EmailInput = ({
   ...props
 }: {
   disabled: boolean;
-  register: UseFormRegister<FormData>;
+  register: any;
 } & InputProps) => {
   const t = useTranslations("Components.Form.EmailInput");
-  const options = getEmailOptions(t);
+  const options = getTranslatedEmailOptions(t);
 
   const [email, setEmail] = React.useState("");
   const [selectedUniversity, setSelectedUniversity] = React.useState("");

@@ -1,11 +1,32 @@
 import { TranslationFunction, EmailOption } from "@/types";
 
-export function getEmailOptions(t: TranslationFunction): EmailOption[] {
+// #TODO: Create an API & NPM package for list of universities
+export function getEmailOptions() {
+  return [
+    "isimm.u-monastir.tn",
+    "ensi.rnu.tn",
+    "insat.rnu.tn",
+    "fst.rnu.tn",
+    "ipeit.rnu.tn",
+    "ihec.rnu.tn",
+    "ipeis.rnu.tn",
+    "ipest.rnu.tn",
+    "iset.rnu.tn",
+    "isetn.rnu.tn",
+    "issatso.rnu.tn",
+    "esstt.rnu.tn",
+    "enit.rnu.tn",
+  ];
+}
+
+export function getTranslatedEmailOptions(
+  t: TranslationFunction
+): EmailOption[] {
   return [
     {
       label: t("options.isimm"),
       abbrev: "ISIMM",
-      value: "isimm.edu.tn",
+      value: "isimm.u-monastir.tn",
       avatarUrl: "https://placehold.co/600x400?text=ISIMM",
     },
     {

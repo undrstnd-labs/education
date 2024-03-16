@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
 import { cn } from "@lib/utils";
-import { userAuthSchema } from "@config/schema";
+import { getUserAuthSchema } from "@config/schema";
 
 import { Label } from "@component/ui/Label";
 import { Icons } from "@component/icons/Lucide";
@@ -23,10 +23,14 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: "login" | "register";
 }
 
-type FormData = z.infer<typeof userAuthSchema>;
-
 export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
   const t = useTranslations("Components.Form.UserAuth");
+  const userAuthSchema = getUserAuthSchema(
+    t("invalidEmail"),
+    t("invalidUniversityEmail")
+  );
+  type FormData = z.infer<typeof userAuthSchema>;
+
   const {
     register,
     handleSubmit,
@@ -51,15 +55,15 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
 
     if (!signInResult?.ok) {
       return toast({
-        title: "Something went wrong.",
-        description: "Your sign in request failed. Please try again.",
+        title: t("toastSignInFailedTitle"),
+        description: t("toastSignInFailedDescription"),
         variant: "destructive",
       });
     }
 
     return toast({
-      title: "Check your email",
-      description: "We sent you a login link. Be sure to check your spam too.",
+      title: t("toastSignInSuccessTitle"),
+      description: t("toastSignInSuccessDescription"),
     });
   }
 
@@ -76,6 +80,7 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
               disabled={isLoading || isGitHubLoading}
               placeholder={t("placeholderEmail")}
               register={register}
+              {...FormData}
             />
 
             {errors?.email && (

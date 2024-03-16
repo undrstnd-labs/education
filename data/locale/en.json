@@ -29,7 +29,12 @@
         "buttonForm": "{type, select, login {Log In} register {Sign Up} other {#}}",
         "labelChoice": "OR CONNECT WITH",
         "placeholderEmail": "student@university.com",
-        "invalidEmail": "Please enter a valid university email address."
+        "invalidEmail": "Please enter a valid university email address.",
+        "invalidUniversityEmail": "Please enter a valid university email address.",
+        "toastSignInFailedTitle": "Something went wrong",
+        "toastSignInFailedDescription": "Your sign in attempt failed",
+        "toastSignInSuccessTitle": "Check your email",
+        "toastSignInSuccessDescription": "We sent you a login link. Be sure to check your spam too."
       },
       "EmailInput": {
         "empty-command": "No university found.",
