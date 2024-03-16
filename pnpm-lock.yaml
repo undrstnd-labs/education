@@ -98,9 +98,6 @@ dependencies:
   react-icons:
     specifier: ^4.11.0
     version: 4.11.0(react@18.2.0)
-  react-phone-number-input:
-    specifier: ^3.3.9
-    version: 3.3.9(react-dom@18.2.0)(react@18.2.0)
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -3688,13 +3685,6 @@ packages:
       clsx: 2.0.0
     dev: false
 
-  /classnames@2.5.1:
-    resolution:
-      {
-        integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==,
-      }
-    dev: false
-
   /cli-cursor@3.1.0:
     resolution:
       {
@@ -3888,13 +3878,6 @@ packages:
     dependencies:
       object-assign: 4.1.1
       vary: 1.1.2
-    dev: false
-
-  /country-flag-icons@1.5.9:
-    resolution:
-      {
-        integrity: sha512-9jrjv2w7kRbqNtdtMdK2j3gmDIZzd5l9L2pZiQjF9J0mUcB+NKIGDNADTDHBEp8EQtjOkCOcciJGGSOpERdXPQ==,
-      }
     dev: false
 
   /cross-spawn@7.0.3:
@@ -4938,15 +4921,6 @@ packages:
       }
     dev: false
 
-  /input-format@0.3.9:
-    resolution:
-      {
-        integrity: sha512-99Gew2huiuYpNsyZoucauy5OT3oXEoWUeINGES4SlU74eFxbtYqNO+yEP6uKFhfB0UKTvq4gOC+6/3Oskru+IQ==,
-      }
-    dependencies:
-      prop-types: 15.8.1
-    dev: false
-
   /interpret@1.4.0:
     resolution:
       {
@@ -5219,13 +5193,6 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
-
-  /libphonenumber-js@1.10.58:
-    resolution:
-      {
-        integrity: sha512-53A0IpJFL9LdHbpeatwizf8KSwPICrqn9H0g3Y7WQ+Jgeu9cQ4Ew3WrRtrLBu/CX2lXd5+rgT01/tGlkbkzOjw==,
-      }
-    dev: false
 
   /lilconfig@2.1.0:
     resolution:
@@ -6263,17 +6230,6 @@ packages:
     engines: { node: ">=6" }
     dev: false
 
-  /prop-types@15.8.1:
-    resolution:
-      {
-        integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==,
-      }
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react-is: 16.13.1
-    dev: false
-
   /proto-list@1.2.4:
     resolution:
       {
@@ -6410,31 +6366,6 @@ packages:
       react: "*"
     dependencies:
       react: 18.2.0
-    dev: false
-
-  /react-is@16.13.1:
-    resolution:
-      {
-        integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==,
-      }
-    dev: false
-
-  /react-phone-number-input@3.3.9(react-dom@18.2.0)(react@18.2.0):
-    resolution:
-      {
-        integrity: sha512-TKK8VoFWR9RfPi90j/3Rr6j/S9V8/eovqUgNNNSyD0+WtaeLTlJVWb8DD7P57eZqkLv303sL8JMiZoExwKICxw==,
-      }
-    peerDependencies:
-      react: ">=16.8"
-      react-dom: ">=16.8"
-    dependencies:
-      classnames: 2.5.1
-      country-flag-icons: 1.5.9
-      input-format: 0.3.9
-      libphonenumber-js: 1.10.58
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-remove-scroll-bar@2.3.5(@types/react@18.2.33)(react@18.2.0):

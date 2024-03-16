@@ -46,7 +46,6 @@
     "react-email": "2.1.0",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
-    "react-phone-number-input": "^3.3.9",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^9.0.4",
