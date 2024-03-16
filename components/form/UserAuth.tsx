@@ -4,24 +4,33 @@ import * as z from "zod";
 import * as React from "react";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
 import { cn } from "@lib/utils";
-import { userAuthSchema } from "@config/schema";
+import { getUserAuthSchema } from "@config/schema";
 
 import { Label } from "@component/ui/Label";
-import { Input } from "@/components/ui/Input";
 import { Icons } from "@component/icons/Lucide";
+import { Skeleton } from "@component/ui/Skeleton";
 import { buttonVariants } from "@component/ui/Button";
+import { EmailInput } from "@component/form/EmailInput";
 
 import { toast } from "@hook/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+  type: "login" | "register";
+}
 
-type FormData = z.infer<typeof userAuthSchema>;
+export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
+  const t = useTranslations("Components.Form.UserAuth");
+  const userAuthSchema = getUserAuthSchema(
+    t("invalidEmail"),
+    t("invalidUniversityEmail")
+  );
+  type FormData = z.infer<typeof userAuthSchema>;
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const {
     register,
     handleSubmit,
@@ -42,21 +51,19 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       callbackUrl: searchParams?.get("from") || "/dashboard",
     });
 
-    // TODO: Check the rate limit of the mailer
-
     setIsLoading(false);
 
     if (!signInResult?.ok) {
       return toast({
-        title: "Something went wrong.",
-        description: "Your sign in request failed. Please try again.",
+        title: t("toastSignInFailedTitle"),
+        description: t("toastSignInFailedDescription"),
         variant: "destructive",
       });
     }
 
     return toast({
-      title: "Check your email",
-      description: "We sent you a login link. Be sure to check your spam too.",
+      title: t("toastSignInSuccessTitle"),
+      description: t("toastSignInSuccessDescription"),
     });
   }
 
@@ -66,18 +73,16 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
-              Email
+              {t("labelEmail")}
             </Label>
-            <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
+
+            <EmailInput
               disabled={isLoading || isGitHubLoading}
-              {...register("email")}
+              placeholder={t("placeholderEmail")}
+              register={register}
+              {...FormData}
             />
+
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
                 {errors.email.message}
@@ -88,7 +93,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Se connecter{" "}
+            {t("buttonForm", { type: type })}{" "}
             <Icons.chevronRight className="ml-2 h-4 w-4 stroke-[3px]" />
           </button>
         </div>
@@ -99,7 +104,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Ou connectez-vous avec
+            {t("labelChoice")}
           </span>
         </div>
       </div>
@@ -123,7 +128,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   );
 }
 
-// #TODO: Create a skeleton for the UserAuthForm
 export function UserAuthSkeleton() {
-  return <>Skeleton</>;
+  return <Skeleton className="h-12 w-[200px]" />;
 }

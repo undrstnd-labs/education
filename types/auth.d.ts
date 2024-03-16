@@ -16,3 +16,10 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
   type JWT = User;
 }
+
+export type EmailSelectProps = {
+  disabled?: boolean;
+  value: string;
+  onSelect: (value: string) => void;
+  options: EmalSelectOption[];
+};

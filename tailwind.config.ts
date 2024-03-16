@@ -78,6 +78,11 @@ module.exports = {
             transform: "rotate(-360deg)",
           },
         },
+        "pulse-fast": {
+          "0%": { opacity: 0 },
+          "50%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -89,6 +94,7 @@ module.exports = {
         "spin-reverse": "spin-reverse 1s linear infinite",
         "spin-reverse-slow": "spin-reverse 4s linear infinite",
         "spin-reverse-slower": "spin-reverse 6s linear infinite",
+        "pulse-fast": "pulse-fast 1s ease-in-out infinite",
       },
     },
   },

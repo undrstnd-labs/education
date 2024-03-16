@@ -1,0 +1,60 @@
+{
+  "Pages": {
+    "Login": {
+      "buttonBack": "Back",
+      "loginTitle": "Welcome back",
+      "loginDescription": "Enter your email below to log in",
+      "buttonSignIn": "Sign In",
+      "labelChoice": "OR CONNECT WITH",
+      "labelNew": "New on the site?",
+      "labelCreateAccount": "Create an account"
+    },
+
+    "Register": {
+      "buttonConnection": "Log In",
+      "registerTitle": "Create your account",
+      "registerDescription": "Enter your email below to register",
+      "labelChoice": "OR CONNECT WITH",
+      "labelAccept": "When creating your account, you agree to our",
+      "labelConditions": "Terms of Service",
+      "labelAnd": "and",
+      "labelPolicy": "Privacy Policy."
+    }
+  },
+
+  "Components": {
+    "Form": {
+      "UserAuth": {
+        "labelEmail": "Email",
+        "buttonForm": "{type, select, login {Log In} register {Sign Up} other {#}}",
+        "labelChoice": "OR CONNECT WITH",
+        "placeholderEmail": "student@university.com",
+        "invalidEmail": "Please enter a valid university email address.",
+        "invalidUniversityEmail": "Please enter a valid university email address.",
+        "toastSignInFailedTitle": "Something went wrong",
+        "toastSignInFailedDescription": "Your sign in attempt failed",
+        "toastSignInSuccessTitle": "Check your email",
+        "toastSignInSuccessDescription": "We sent you a login link. Be sure to check your spam too."
+      },
+      "EmailInput": {
+        "empty-command": "No university found.",
+        "search-command": "Search for a university",
+        "options": {
+          "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
+          "ensi": "National School of Computer Science",
+          "insat": "National Institute of Applied Sciences and Technology",
+          "fst": "Faculty of Sciences of Tunis",
+          "ipeit": "Preparatory Institute for Engineering Studies of Tunis",
+          "ihec": "Carthage Higher Institute of Commerce",
+          "ipeis": "Preparatory Institute for Engineering Studies of Sfax",
+          "ipest": "Preparatory Institute for Engineering Studies of Tunis",
+          "iset": "Higher Institute of Technological Studies of Sousse",
+          "isetn": "Higher Institute of Technological Studies of Nabeul",
+          "issatso": "Higher Institute of Applied Sciences and Technology of Sousse",
+          "esstt": "Higher School of Sciences and Technology of Tunis",
+          "enit": "National Engineering School of Tunis"
+        }
+      }
+    }
+  }
+}

@@ -15,25 +15,26 @@ import {
 import { MagicLinkData } from "@/types/auth";
 import * as React from "react";
 
+// #TODO: Translate this file
 export function MagicLink({ magicLink }: { magicLink: MagicLinkData }) {
   return (
     <Html>
       <Head />
       <Preview>
-        Confirm your e-mail for UniswapHooks by clicking the button below.
+        Confirm your e-mail for Undrstnd by clicking the button below.
       </Preview>
       <Body style={main}>
         <Container style={container}>
           <Img
-            src="https://react-email-demo-bdj5iju9r-resend.vercel.app/static/linear-logo.png"
+            src="https://undrstnd.vercel.app/_next/image?url=%2Fimages%2Flogos%2FRounded.png&w=828&q=75"
             height="42"
-            alt="UniswapHooks logo"
+            alt="Undrstnd logo"
             style={logo}
           />
-          <Heading style={heading}>Your login code for UniswapHooks</Heading>
+          <Heading style={heading}>Your login code for Undrstnd</Heading>
           <Section style={buttonContainer}>
             <Button style={button} href={`${magicLink.otp_link}`}>
-              Login to UniswapHooks
+              Login to Undrstnd
             </Button>
           </Section>
           <Text style={paragraph}>
@@ -42,8 +43,8 @@ export function MagicLink({ magicLink }: { magicLink: MagicLinkData }) {
             directly:
           </Text>
           <Hr style={hr} />
-          <Link href="https://www.uniswaphooks.com" style={reportLink}>
-            UniswapHooks
+          <Link href="https://www.undrstnd.vercel.app" style={reportLink}>
+            Undrstnd
           </Link>
         </Container>
       </Body>
@@ -90,7 +91,7 @@ const buttonContainer = {
 };
 
 const button = {
-  backgroundColor: "#5e6ad2",
+  backgroundColor: "#005167",
   borderRadius: "3px",
   fontWeight: "600",
   color: "#fff",

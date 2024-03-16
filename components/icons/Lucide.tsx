@@ -25,6 +25,7 @@ import {
   BookOpenText,
   LucideIcon,
   Github,
+  ChevronsUpDown,
 } from "lucide-react";
 
 import {
@@ -71,4 +72,5 @@ export const Icons = {
   questions: AiFillQuestionCircle,
   notifications: AiFillBell,
   mobile: AiFillMobile,
+  chevronsUpDown: ChevronsUpDown,
 };

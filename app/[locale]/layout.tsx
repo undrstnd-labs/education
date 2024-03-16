@@ -3,7 +3,9 @@ import "@style/globals.css";
 import { GeistSans } from "geist/font";
 import { siteConfig } from "@config/site";
 import type { Viewport, Metadata } from "next";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
+import { Toaster } from "@component/ui/Toaster";
 import { Analytics } from "@component/config/Analytics";
 import { ThemeProvider } from "@component/config/ThemeProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
@@ -84,18 +86,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: { locale },
 }: {
   children: React.ReactNode;
+  params: { locale: string };
 }) {
+  const messages = useMessages();
   return (
-    <html lang="fr">
+    <html lang={locale}>
       <head />
       <body className={GeistSans.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {children}
-          <Analytics />
-          <TailwindIndicator />
-        </ThemeProvider>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+            {children}
+            <Toaster />
+            <Analytics />
+            <TailwindIndicator />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

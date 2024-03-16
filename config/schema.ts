@@ -1,5 +1,26 @@
 import * as z from "zod";
+import { getEmailOptions } from "@config/universities";
 
-export const userAuthSchema = z.object({
-  email: z.string().email(),
-});
+const emailOptions = getEmailOptions();
+
+export function getUserAuthSchema(
+  invalidEmail: string,
+  invalidUniversityEmail: string
+) {
+  return z.object({
+    email: z
+      .string()
+      .email({
+        message: invalidEmail,
+      })
+      .refine(
+        (value) => {
+          const [, domain] = value.split("@");
+          return emailOptions.includes(domain);
+        },
+        {
+          message: invalidUniversityEmail,
+        }
+      ),
+  });
+}
