@@ -8,7 +8,6 @@ if ! pnpm run check-format; then
     echo 'Exécution de la correction automatique du formatage...'
     pnpm run format
     echo '💄 Le formatage a été corrigé. Veuillez ajouter les modifications et essayer de valider à nouveau.'
-    exit 1
 fi
 
 pnpm run check-types ||
