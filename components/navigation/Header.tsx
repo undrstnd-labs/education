@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@lib/navigation";
 import { Popover } from "@headlessui/react";
 
 import { Button } from "@component/ui/Button";
@@ -21,7 +21,9 @@ export default function Header() {
             <Link href="/" aria-label="Home">
               <div className="flex items-center gap-2">
                 <LogoPNG className="-mt-1 h-7 w-auto" />
-                <p className="text-zinc-700 dark:text-zinc-300 text-base font-bold ">Undrstnd</p>
+                <p className="text-zinc-700 dark:text-zinc-300 text-base font-bold ">
+                  Undrstnd
+                </p>
               </div>
             </Link>
             <div className="hidden lg:flex lg:gap-10">

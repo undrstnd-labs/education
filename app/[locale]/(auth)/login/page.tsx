@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";

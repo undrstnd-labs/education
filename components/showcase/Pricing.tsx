@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@lib/navigation";
 import { Button } from "@/components/ui/Button";
 import { CheckIcon } from "@heroicons/react/20/solid";
 

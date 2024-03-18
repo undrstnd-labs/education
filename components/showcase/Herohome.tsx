@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import { Link } from "@lib/navigation";
 
 import { Button } from "@component/ui/Button";
 import { PlayIcon } from "@component/icons/Overall";

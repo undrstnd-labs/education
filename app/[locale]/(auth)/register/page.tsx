@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Suspense } from "react";
+import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
 
 import { LogoPNG } from "@component/icons/Overall";
