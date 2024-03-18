@@ -33,13 +33,13 @@ export default function HerosectionHome() {
       </svg>
       <div className="mx-auto max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36 lg:py-18">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-          <h1 className="mt-10 text-4xl flex flex-col font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <h1 className="mt-10 text-4xl flex flex-col font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
             Libérez les insights des documents avec{" "}
             <span className="text-sky-500 self-start">
               <TypingEffect text="Undrstnd" />
             </span>
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
             Élevez votre expérience documentaire avec Undrstnd. Il vous suffit
             de télécharger vos fichiers et de commencer à explorer.
           </p>

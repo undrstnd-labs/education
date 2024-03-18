@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function PresenceAnimate() {
   return (
     <motion.span
-      className="absolute inset-0 rounded-lg bg-gray-100"
+      className="absolute inset-0 rounded-lg bg-gray-100 dark:bg-gray-800/50"
       layoutId="hoverBackground"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.15 } }}
