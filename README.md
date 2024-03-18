@@ -1,5 +1,5 @@
-# undrstnd - A Modern Fullstack SaaS AI Powered Platform
+# Undrstnd - The Perfect Solution for every Student
+Undrstnd est une plateforme révolutionnaire conçue pour améliorer l'expérience d'apprentissage des étudiants en utilisant l'intelligence artificielle et les technologies cloud. Cette application vous permet d'accéder à des ressources éducatives, de poser des questions et d'obtenir des réponses instantanées, le tout dans un environnement convivial et interactif.
 
-Undrstnd: SaaS web app with TypeScript, React, Node.js. Auth, Stripe plans, PDF viewer, real-time API, clean UI, drag &amp; drop, tRPC, LangChain, PineCone, Prisma &amp; more!
 
-If you have any questions or want to collaborate, don't hesitate to hi@findmalek.com.
+![](https://undrstnd.vercel.app/images/readme.png)

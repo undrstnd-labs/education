@@ -3,17 +3,17 @@
 
 echo "👷 Avant de valider vos modifications, nous effectuons une série d'opérations pour assurer la qualité du code."
 
-pnpm run check-format ||
-(
-    echo '🤢 Formatage incorrect.
-            La vérification de Prettier a échoué. Exécutez "pnpm run format", ajoutez les modifications et essayez de valider à nouveau.';
-    false;
-)
+if ! pnpm run check-format; then
+    echo '🤢 Formatage incorrect.'
+    echo 'Exécution de la correction automatique du formatage...'
+    pnpm run format
+    echo '💄 Le formatage a été corrigé. Veuillez ajouter les modifications et essayer de valider à nouveau.'
+fi
 
 pnpm run check-types ||
 (
-    echo '📑 Échec de la vérification des types.
-            Voulez-vous vraiment écrire cela ? Effectuez les modifications requises ci-dessus.'
+    echo '📑 Échec de la vérification des types.'
+    echo 'Voulez-vous vraiment écrire cela ? Effectuez les modifications requises ci-dessus.'
     false;
 )
 
@@ -21,8 +21,8 @@ echo '🏗️ Tentative de construction du projet...'
 
 pnpm run build ||
 (
-    echo '❌ Échec de la construction.
-            La construction avec Next.js a échoué : consultez les erreurs ci-dessus pour en connaître la raison.'
+    echo '❌ Échec de la construction.'
+    echo 'La construction avec Next.js a échoué : consultez les erreurs ci-dessus pour en connaître la raison.'
     false;
 )
 

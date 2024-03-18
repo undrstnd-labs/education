@@ -1,6 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bienvenu",
+};
+
 export default function Welcome() {
   return (
     <main>
@@ -54,7 +60,7 @@ export default function Welcome() {
           Ou bien, vous pouvez nous contacter via{" "}
           <Link
             className="text-sky-500 text-lg font-semibold"
-            href="https://www.findmalek.com/"
+            href="https://www.findmalek.com"
           >
             @FindMalek
           </Link>{" "}
