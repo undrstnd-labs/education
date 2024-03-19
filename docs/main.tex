@@ -1,11 +1,7 @@
-\documentclass{report}
+\documentclass[a4paper,12pt,final]{report} 
 
-\usepackage{graphicx}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-
-\input{styles/page.tex}
-\input{styles/chapters.tex}
+\input{packages/package.tex}
+\input{packages/style.tex}
 
 \title{
     {Mémoire de Projet de Fin d'Etudes}\\
@@ -16,18 +12,20 @@
 \date{Date}
 
 \begin{document}
-
     \maketitle
-        
+    \pagenumbering{roman}
+    \cleardoublepage
+
     \include{specials/asbtract}
+    \cleardoublepage
+
     \include{specials/dedication}
+    \cleardoublepage
+
     \include{specials/list}
     \include{specials/introduction}
 
-    %Start counting pages from here 
     \pagenumbering{arabic}
-
+    
     \include{chapitres/chapitre-1}
-
-
 \end{document}

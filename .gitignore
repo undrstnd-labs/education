@@ -46,3 +46,7 @@ next-env.d.ts
 *synctex
 *.synctex(busy)
 *.lot
+*.maf
+*.mtc
+*.mtc0
+*.out
