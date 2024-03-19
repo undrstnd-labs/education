@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.20)  19 MAR 2024 10:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.20)  19 MAR 2024 11:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -137,8 +137,6 @@ Arabic processor `ArabTeX' [20060702 patch level 3.11s (02.07.2006)]
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks39
 \inpenc@posthook=\toks40
-) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
-Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
@@ -185,71 +183,51 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/capt-of\capt-of.sty
 Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
-) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
-Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen176
-\captionmargin=\dimen177
-\caption@leftmargin=\dimen178
-\caption@rightmargin=\dimen179
-\caption@width=\dimen180
-\caption@indent=\dimen181
-\caption@parindent=\dimen182
-\caption@hangindent=\dimen183
-Package caption Info: Standard document class detected.
-Package caption Info: french babel package is loaded.
-)
-\c@caption@flags=\count304
-\c@continuedfloat=\count305
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count306
+\c@float@type=\count304
 \float@exts=\toks43
 \float@box=\box67
 \@float@everytoks=\toks44
 \@floatcapt=\box68
-) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tools\varioref.sty
-Package: varioref 2022/01/09 v1.6f package for extended references (FMi)
-\c@vrcnt=\count307
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/lettrine\lettrine.sty
 File: lettrine.sty 2024-01-20 v2.60 (Daniel Flipo)
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xfp\xfp.sty (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
 Package: expl3 2024-01-04 L3 programming layer (loader) 
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count308
+\l__color_backend_stack_int=\count305
 \l__pdf_internal_box=\box69
 ))
 Package: xfp 2023-10-10 L3 Floating point unit
 )
-\c@DefaultLines=\count309
-\c@DefaultDepth=\count310
-\DefaultFindent=\dimen184
-\DefaultNindent=\dimen185
-\DefaultSlope=\dimen186
-\DiscardVskip=\dimen187
+\c@DefaultLines=\count306
+\c@DefaultDepth=\count307
+\DefaultFindent=\dimen176
+\DefaultNindent=\dimen177
+\DefaultSlope=\dimen178
+\DiscardVskip=\dimen179
 \L@lettrine=\box70
 \L@lbox=\box71
 \L@tbox=\box72
-\c@L@lines=\count311
-\c@L@depth=\count312
-\L@Pindent=\dimen188
-\L@Findent=\dimen189
-\L@Nindent=\dimen190
-\L@lraise=\dimen191
-\L@first=\dimen192
-\L@next=\dimen193
-\L@slope=\dimen194
-\L@height=\dimen195
-\L@novskip=\dimen196
-\L@ruleht=\dimen197
-\L@target@ht=\dimen198
-\L@target@dp=\dimen199
-\L@target@tht=\dimen256
-\LettrineWidth=\dimen257
-\LettrineHeight=\dimen258
-\LettrineDepth=\dimen259
+\c@L@lines=\count308
+\c@L@depth=\count309
+\L@Pindent=\dimen180
+\L@Findent=\dimen181
+\L@Nindent=\dimen182
+\L@lraise=\dimen183
+\L@first=\dimen184
+\L@next=\dimen185
+\L@slope=\dimen186
+\L@height=\dimen187
+\L@novskip=\dimen188
+\L@ruleht=\dimen189
+\L@target@ht=\dimen190
+\L@target@dp=\dimen191
+\L@target@tht=\dimen192
+\LettrineWidth=\dimen193
+\LettrineHeight=\dimen194
+\LettrineDepth=\dimen195
 
 Loading lettrine.cfg
 (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/lettrine\lettrine.cfg)
@@ -260,51 +238,65 @@ Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
 \LTright=\skip63
 \LTpre=\skip64
 \LTpost=\skip65
-\LTchunksize=\count313
-\LTcapwidth=\dimen260
+\LTchunksize=\count310
+\LTcapwidth=\dimen196
 \LT@head=\box73
 \LT@firsthead=\box74
 \LT@foot=\box75
 \LT@lastfoot=\box76
 \LT@gbox=\box77
-\LT@cols=\count314
-\LT@rows=\count315
-\c@LT@tables=\count316
-\c@LT@chunks=\count317
+\LT@cols=\count311
+\LT@rows=\count312
+\c@LT@tables=\count313
+\c@LT@chunks=\count314
 \LT@p@ftn=\toks46
-) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
-Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen261
-\ar@mcellbox=\box78
-\extrarowheight=\dimen262
-\NC@list=\toks47
-\extratabsurround=\skip66
-\backup@length=\skip67
-\ar@cellbox=\box79
-) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen197
+\captionmargin=\dimen198
+\caption@leftmargin=\dimen199
+\caption@rightmargin=\dimen256
+\caption@width=\dimen257
+\caption@indent=\dimen258
+\caption@parindent=\dimen259
+\caption@hangindent=\dimen260
+Package caption Info: Standard document class detected.
+Package caption Info: french babel package is loaded.
+)
+\c@caption@flags=\count315
+\c@continuedfloat=\count316
+Package caption Info: float package is loaded.
+Package caption Info: longtable package is loaded.
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
 Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
-\c@tracingmulticols=\count318
-\mult@box=\box80
-\multicol@leftmargin=\dimen263
-\c@unbalance=\count319
-\c@collectmore=\count320
-\doublecol@number=\count321
-\multicoltolerance=\count322
-\multicolpretolerance=\count323
-\full@width=\dimen264
-\page@free=\dimen265
-\premulticols=\dimen266
-\postmulticols=\dimen267
-\multicolsep=\skip68
-\multicolbaselineskip=\skip69
-\partial@page=\box81
-\last@line=\box82
-\mc@boxedresult=\box83
-\maxbalancingoverflow=\dimen268
-\mult@rightbox=\box84
-\mult@grightbox=\box85
-\mult@firstbox=\box86
-\mult@gfirstbox=\box87
+\c@tracingmulticols=\count317
+\mult@box=\box78
+\multicol@leftmargin=\dimen261
+\c@unbalance=\count318
+\c@collectmore=\count319
+\doublecol@number=\count320
+\multicoltolerance=\count321
+\multicolpretolerance=\count322
+\full@width=\dimen262
+\page@free=\dimen263
+\premulticols=\dimen264
+\postmulticols=\dimen265
+\multicolsep=\skip66
+\multicolbaselineskip=\skip67
+\partial@page=\box79
+\last@line=\box80
+\mc@boxedresult=\box81
+\maxbalancingoverflow=\dimen266
+\mult@rightbox=\box82
+\mult@grightbox=\box83
+\mult@firstbox=\box84
+\mult@gfirstbox=\box85
+\@tempa=\box86
+\@tempa=\box87
 \@tempa=\box88
 \@tempa=\box89
 \@tempa=\box90
@@ -339,27 +331,34 @@ Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
 \@tempa=\box119
 \@tempa=\box120
 \@tempa=\box121
-\@tempa=\box122
-\@tempa=\box123
-\c@minrows=\count324
-\c@columnbadness=\count325
-\c@finalcolumnbadness=\count326
-\last@try=\dimen269
-\multicolovershoot=\dimen270
-\multicolundershoot=\dimen271
-\mult@nat@firstbox=\box124
-\colbreak@box=\box125
-\mc@col@check@num=\count327
+\c@minrows=\count323
+\c@columnbadness=\count324
+\c@finalcolumnbadness=\count325
+\last@try=\dimen267
+\multicolovershoot=\dimen268
+\multicolundershoot=\dimen269
+\mult@nat@firstbox=\box122
+\colbreak@box=\box123
+\mc@col@check@num=\count326
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen270
+\ar@mcellbox=\box124
+\extrarowheight=\dimen271
+\NC@list=\toks47
+\extratabsurround=\skip68
+\backup@length=\skip69
+\ar@cellbox=\box125
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip70
-\multirow@cntb=\count328
+\multirow@cntb=\count327
 \multirow@dima=\skip71
 \bigstrutjot=\dimen272
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen273
-\c@nlinenum=\count329
+\c@nlinenum=\count328
 \TeXr@lab=\toks48
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/extsizes\extsizes.sty
 Package: extsizes 1996/10/08 v1.0 Non Standard LaTeX Package
@@ -379,7 +378,10 @@ LaTeX Info: Redefining \large on input line 82.
 LaTeX Info: Redefining \Large on input line 83.
 LaTeX Info: Redefining \LARGE on input line 84.
 LaTeX Info: Redefining \huge on input line 85.
-)) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/nomencl\nomencl.sty
+)) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tools\varioref.sty
+Package: varioref 2022/01/09 v1.6f package for extended references (FMi)
+\c@vrcnt=\count329
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/nomencl\nomencl.sty
 Package: nomencl 2021/11/10 v5.6 Nomenclature package
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
@@ -899,7 +901,7 @@ File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbposter.code.tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.2.0'
-))) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+)) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2023-11-26 v7.01g Hypertext links for LaTeX
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
@@ -998,7 +1000,63 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip109
-) (packages/style.tex) (main.aux (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/fr\babel-french.tex
+)) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxtext.sty
+Package: newtxtext 2024/02/08 v1.738(Michael Sharpe) latex and unicode latex support for TeXGyreTermesX
+ `newtxtext' v1.738, 2024/02/08 Text macros taking advantage of TeXGyre Termes and its extensions (msharpe) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+Package: xparse 2023-10-10 L3 Experimental document command parser
+)) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex
+\xs_counta=\count403
+\xs_countb=\count404
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+)
+LaTeX Font Info:    Setting ntxLF sub-encoding to TS1/0 on input line 24.
+LaTeX Font Info:    Setting ntxTLF sub-encoding to TS1/0 on input line 24.
+LaTeX Font Info:    Setting ntxOsF sub-encoding to TS1/0 on input line 24.
+LaTeX Font Info:    Setting ntxTOsF sub-encoding to TS1/0 on input line 24.
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
+\ntx@tmpcnta=\count405
+\ntx@cnt=\count406
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/fontaxes\fontaxes.sty
+Package: fontaxes 2020/07/21 v1.0e Font selection axes
+LaTeX Info: Redefining \upshape on input line 29.
+LaTeX Info: Redefining \itshape on input line 31.
+LaTeX Info: Redefining \slshape on input line 33.
+LaTeX Info: Redefining \swshape on input line 35.
+LaTeX Info: Redefining \scshape on input line 37.
+LaTeX Info: Redefining \sscshape on input line 39.
+LaTeX Info: Redefining \ulcshape on input line 41.
+LaTeX Info: Redefining \textsw on input line 47.
+LaTeX Info: Redefining \textssc on input line 48.
+LaTeX Info: Redefining \textulc on input line 49.
+)
+\tx@sixem=\dimen364
+\tx@y=\dimen365
+\tx@x=\dimen366
+\tx@tmpdima=\dimen367
+\tx@tmpdimb=\dimen368
+\tx@tmpdimc=\dimen369
+\tx@tmpdimd=\dimen370
+\tx@tmpdime=\dimen371
+\tx@tmpdimf=\dimen372
+\tx@dimA=\dimen373
+\tx@dimAA=\dimen374
+\tx@dimB=\dimen375
+\tx@dimBB=\dimen376
+\tx@dimC=\dimen377
+LaTeX Info: Redefining \oldstylenums on input line 896.
+) (packages/style.tex)
+LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 14.
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd
+File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
+)
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 14.
+ (main.aux (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/fr\babel-french.tex
 Package babel Info: Importing font and identification data for french
 (babel)             from babel-fr.ini. Reported on input line 11.
 ) (specials/asbtract.aux) (specials/dedication.aux) (specials/list.aux) (specials/introduction.aux) (chapitres/chapitre-1.aux))
@@ -1026,16 +1084,16 @@ LaTeX Info: Redefining \degres on input line 14.
 LaTeX Info: Redefining \up on input line 14.
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count403
-\scratchdimen=\dimen364
+\scratchcounter=\count407
+\scratchdimen=\dimen378
 \scratchbox=\box165
-\nofMPsegments=\count404
-\nofMParguments=\count405
+\nofMPsegments=\count408
+\nofMParguments=\count409
 \everyMPshowfont=\toks74
-\MPscratchCnt=\count406
-\MPscratchDim=\dimen365
-\MPnumerator=\count407
-\makeMPintoPDFobject=\count408
+\MPscratchCnt=\count410
+\MPscratchDim=\dimen379
+\MPnumerator=\count411
+\makeMPintoPDFobject=\count412
 \everyMPtoPDFconversion=\toks75
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1044,26 +1102,27 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
-Package caption Info: longtable package is loaded.
- (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
-Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-)
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count409
+\c@lstlisting=\count413
 Package hyperref Info: Link coloring OFF on input line 14.
  (main.out) (main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
+\c@mv@tabular=\count414
+\c@mv@boldtabular=\count415
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/arabtex\apatch.sty
-\a@lines=\count410
-\a@Lwidth=\dimen366
-\a@displaywidth=\dimen367
+\a@lines=\count416
+\a@Lwidth=\dimen380
+\a@displaywidth=\dimen381
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/arabtex\alocal.sty (ArabTeX) 3.11 local stub, 26.02.2006) (ArabTeX) version 3.11s (02.07.2006): second phase of patching)
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 20.74pt on input line 16.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 16.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1073,10 +1132,17 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/Users/malek/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+{C:/Users/malek/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}]
 \openout2 = `specials/asbtract.aux'.
 
- (specials/asbtract.tex) [1
+ (specials/asbtract.tex
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 4.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 17.28pt on input line 4.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 17.28pt on input line 4.
+) [1
 
 
 
@@ -1117,7 +1183,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ]
 \openout2 = `specials/introduction.aux'.
 
- (specials/introduction.tex) [6
+ (specials/introduction.tex
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 24.88pt on input line 4.
+) [6
 
 
 
@@ -1126,29 +1195,65 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  (chapitres/chapitre-1.tex
 Chapitre 1.
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1.
-(C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmss.fd
-File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 1.
+(C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qhv.fd
+File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 9.
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.8 
-     [1
+l.11 
+      [1
 
 
 
 
-]
-<images/gsi-logo.png, id=111, 200.75pt x 212.795pt>
+{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ec.enc}]
+<images/gsi-logo.png, id=105, 200.75pt x 212.795pt>
 File: images/gsi-logo.png Graphic file (type png)
 <use images/gsi-logo.png>
 Package pdftex.def Info: images/gsi-logo.png  used on input line 16.
 (pdftex.def)             Requested size: 195.0pt x 206.71284pt.
-) [2] [3 <./images/gsi-logo.png (PNG copy)>] (main.aux (specials/asbtract.aux) (specials/dedication.aux) (specials/list.aux) (specials/introduction.aux) (chapitres/chapitre-1.aux))
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
+(Font)              scaled to size 12.0pt on input line 17.
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 23.
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ts1ntxtlf.fd
+File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
+)
+LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 23.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+<images/logo.png, id=106, 200.9106pt x 200.9106pt>
+File: images/logo.png Graphic file (type png)
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png  used on input line 26.
+(pdftex.def)             Requested size: 11.99893pt x 12.0pt.
+[2{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1.enc} <./images/gsi-logo.png (PNG copy)> <./images/logo.png>])
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+File: images/logo.png Graphic file (type png)
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png  used on input line 30.
+(pdftex.def)             Requested size: 11.99893pt x 12.0pt.
+[3] (main.aux (specials/asbtract.aux) (specials/dedication.aux) (specials/list.aux) (specials/introduction.aux) (chapitres/chapitre-1.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
+L3 programming layer <2020/03/25>
  ***********
 
 
@@ -1187,7 +1292,6 @@ arabchrs.sty    1998/07/11  3.07 letter token definitions
    asect.sty    2003/04/26  3.11 section macros for Arabic
    atabg.sty    1997/01/21  3.05 LaTeX tabbing macros for Arabic
 inputenc.sty    2021/02/14 v1.3d Input encoding file
- fontenc.sty    2021/04/29 v2.0v Standard LaTeX package
 graphicx.sty    2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 graphics.sty    2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
     trig.sty    2021/08/11 v1.11 sin cos tan (DPC)
@@ -1198,22 +1302,23 @@ fancyhdr.sty    2022/11/09 v4.1 Extensive control of page headers and footers
  amssymb.sty    2013/01/14 v3.01 AMS font symbols
 amsfonts.sty    2013/01/14 v3.01 Basic AMSFonts support
  capt-of.sty    2009/12/29 v0.2 standard captions outside of floats
- caption.sty    2023/08/05 v3.6o Customizing captions (AR)
-caption3.sty    2023/07/31 v2.4d caption3 kernel (AR)
    float.sty    2001/11/08 v1.3d Float enhancements (AL)
-varioref.sty    2022/01/09 v1.6f package for extended references (FMi)
 lettrine.sty    2024-01-20 v2.60 (Daniel Flipo)
      xfp.sty    2023-10-10 L3 Floating point unit
    expl3.sty    2024-01-04 L3 programming layer (loader) 
 l3backend-pdftex.def    2024-01-04 L3 backend support: PDF output (pdfTeX)
 lettrine.cfg
 longtable.sty    2023-11-01 v4.19 Multi-page Table package (DPC)
-   array.sty    2023/10/16 v2.5g Tabular extension package (FMi)
+ caption.sty    2023/08/05 v3.6o Customizing captions (AR)
+caption3.sty    2023/07/31 v2.4d caption3 kernel (AR)
+ltcaption.sty    2021/01/08 v1.4c longtable captions (AR)
 multicol.sty    2023/03/30 v1.9f multicolumn formatting (FMi)
+   array.sty    2023/10/16 v2.5g Tabular extension package (FMi)
 multirow.sty    2021/03/15 v2.8 Span multiple rows of a table
 makecell.sty    2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 extsizes.sty    1996/10/08 v1.0 Non Standard LaTeX Package
   size12.clo    2023/05/17 v1.4n Standard LaTeX file (size option)
+varioref.sty    2022/01/09 v1.6f package for extended references (FMi)
  nomencl.sty    2021/11/10 v5.6 Nomenclature package
  xkeyval.sty    2022/06/16 v2.9 package option processing (HA)
  xkeyval.tex    2014/12/03 v2.7a key=value parser (HA)
@@ -1303,12 +1408,19 @@ atveryend-ltx.sty    2020/08/19 v1.0a Emulation of the original atveryend packag
 with kernel methods
 rerunfilecheck.sty    2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 uniquecounter.sty    2019/12/15 v1.4 Provide unlimited unique counter (HO)
+newtxtext.sty    2024/02/08 v1.738(Michael Sharpe) latex and unicode latex support for TeXGyreTermesX
+  xpatch.sty    2020/03/25 v0.3a Extending etoolbox patching commands
+  xparse.sty    2023-10-10 L3 Experimental document command parser
+textcomp.sty    2020/02/02 v2.0n Standard LaTeX package
+ xstring.sty    2023/08/22 v1.86 String manipulations (CT)
+  binhex.tex
+fontaxes.sty    2020/07/21 v1.0e Font selection axes
 packages/style.tex
+t1ntxtlf.fd    2021/05/24 v1.1 font definition file for T1/ntx/tlf
 babel-french.tex
 supp-pdf.mkii
 epstopdf-base.sty    2020-01-24 v2.11 Base part for package epstopdf
 epstopdf-sys.cfg    2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-ltcaption.sty    2021/01/08 v1.4c longtable captions (AR)
     main.out
     main.out
   apatch.sty    2006/07/02  3.11s last minute patches 
@@ -1319,8 +1431,11 @@ specials/dedication.tex
 specials/list.tex
 specials/introduction.tex
 chapitres/chapitre-1.tex
-  t1cmss.fd    2023/04/13 v2.5m Standard LaTeX font definitions
+   t1qhv.fd    2009/09/25 v1.2 font definition file for T1/qhv
 images/gsi-logo.png
+ts1ntxtlf.fd    2015/01/18 v1.0 fd file for TS1/ntxtlf
+images/logo.png
+images/logo.png
  ***********
 
 Package rerunfilecheck Info: File `main.out' has not changed.
@@ -1331,17 +1446,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 ### semi simple group (level 1) entered at line 14 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 37322 strings out of 474486
- 724266 string characters out of 5743755
- 1931542 words of memory out of 5000000
- 58846 multiletter control sequences out of 15000+600000
- 575920 words of font info for 80 fonts, out of 8000000 for 9000
+ 38516 strings out of 474486
+ 745922 string characters out of 5743755
+ 1932542 words of memory out of 5000000
+ 60009 multiletter control sequences out of 15000+600000
+ 604641 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,7n,110p,850b,2587s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1200.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss2488.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1728.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\malek\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk>
-Output written on main.pdf (10 pages, 182123 bytes).
+ 115i,14n,110p,850b,2722s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qhvr.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
+Output written on main.pdf (10 pages, 212626 bytes).
 PDF statistics:
- 391 PDF objects out of 1000 (max. 8388607)
+ 150 PDF objects out of 1000 (max. 8388607)
  20 named destinations out of 1000 (max. 500000)
- 194 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 199 words of extra memory for PDF output out of 10000 (max. 10000000)
 
