@@ -1,9 +1,8 @@
-import { JWT } from "next-auth/jwt";
+import { db } from "@lib/prisma";
 import nodemailer from "nodemailer";
 import { selectMailOptions } from "@lib/email-template";
 
-import { db } from "@lib/prisma";
-
+import { JWT } from "next-auth/jwt";
 import { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
@@ -25,6 +24,7 @@ export const authOptions: NextAuthOptions = {
     }),
     EmailProvider({
       from: process.env.SMTP_FROM,
+      maxAge: 5 * 60,
       sendVerificationRequest: async ({
         identifier,
         url,
