@@ -54,15 +54,7 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
         callbackUrl: searchParams?.get("from") || "/dashboard",
       });
 
-      const passCodeUpdateRequest = await fetch(
-        `/api/auth/token/${data.email.toLowerCase()}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    
     } catch (error) {
       return toast({
         title: t("toastSignInFailedTitle"),

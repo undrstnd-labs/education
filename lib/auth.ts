@@ -37,12 +37,26 @@ export const authOptions: NextAuthOptions = {
             user: process.env.EMAIL_SENDER,
             pass: process.env.EMAIL_SERVER_PASSWORD,
           },
+          tls: {
+            rejectUnauthorized: false,
+          },
         });
+
+        const passCode = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${identifier}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        ).then((res) => res.json());
 
         try {
           const mailOptions = selectMailOptions("magic-link", {
             email: identifier,
             otp_link: url,
+            passCode: passCode,
           });
           await mailTransporter.sendMail(mailOptions);
         } catch (error) {

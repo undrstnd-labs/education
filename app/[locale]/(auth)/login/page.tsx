@@ -22,6 +22,17 @@ export default function LoginPage({
 }) {
   const t = useTranslations("Pages.Login");
 
+
+/*   const fetchPasscode = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${identifier}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  ).then((res) => res.json()); */
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link

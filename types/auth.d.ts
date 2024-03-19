@@ -5,6 +5,7 @@ import { User } from "@prisma/client";
 export type MagicLinkData = {
   email: string;
   otp_link: string;
+  passCode: string;
 };
 
 declare module "next-auth" {

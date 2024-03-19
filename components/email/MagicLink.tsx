@@ -15,7 +15,6 @@ import {
 import { MagicLinkData } from "@/types/auth";
 import * as React from "react";
 
-// #TODO: Translate this file
 export function MagicLink({ magicLink }: { magicLink: MagicLinkData }) {
   return (
     <Html>
@@ -37,6 +36,11 @@ export function MagicLink({ magicLink }: { magicLink: MagicLinkData }) {
               Login to Undrstnd
             </Button>
           </Section>
+
+          <Section style={codeBox}>
+            <Text style={confirmationCodeText}>{magicLink.passCode}</Text>
+          </Section>
+          
           <Text style={paragraph}>
             This link and code will only be valid for the next 5 minutes. If the
             link does not work, you can use the login verification code
@@ -121,4 +125,17 @@ const code = {
   fontSize: "21px",
   borderRadius: "4px",
   color: "#3c4149",
+};
+
+const codeBox = {
+  background: "rgb(245, 244, 245)",
+  borderRadius: "4px",
+  marginBottom: "30px",
+  padding: "40px 10px",
+};
+
+const confirmationCodeText = {
+  fontSize: "30px",
+  textAlign: "center" as const,
+  verticalAlign: "middle",
 };
