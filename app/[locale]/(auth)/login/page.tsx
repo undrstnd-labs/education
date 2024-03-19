@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
@@ -15,8 +15,13 @@ export const metadata: Metadata = {
   title: "Se connecter à votre compte",
 };
 
-export default function LoginPage() {
+export default function LoginPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const t = useTranslations("Pages.Login");
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
@@ -41,7 +46,7 @@ export default function LoginPage() {
         </div>
 
         <Suspense fallback={<UserAuthSkeleton />}>
-          <UserAuthForm type="login" />
+          {searchParams.email ? <>fgds</> : <UserAuthForm type="login" />}
         </Suspense>
 
         <p className="px-8 text-center text-sm text-muted-foreground">

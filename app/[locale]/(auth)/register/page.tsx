@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Suspense } from "react";
+import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
 
 import { LogoPNG } from "@component/icons/Overall";
@@ -11,7 +11,11 @@ export const metadata = {
   title: "Créer votre compte",
 };
 
-export default function RegisterPage() {
+export default function RegisterPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const t = useTranslations("Pages.Register");
   return (
     <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -56,9 +60,15 @@ export default function RegisterPage() {
               {t("registerDescription")}
             </p>
           </div>
+
           <Suspense fallback={<UserAuthSkeleton />}>
             <UserAuthForm type="register" />
           </Suspense>
+
+          <Suspense fallback={<UserAuthSkeleton />}>
+            {searchParams.email ? <>fgds</> : <UserAuthForm type="register" />}
+          </Suspense>
+
           <p className="px-8 text-center text-sm text-muted-foreground">
             {t("labelAccept")}{" "}
             <Link

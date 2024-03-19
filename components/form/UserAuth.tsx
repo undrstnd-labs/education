@@ -5,7 +5,7 @@ import * as React from "react";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@lib/utils";
 import { getUserAuthSchema } from "@config/schema";
@@ -38,6 +38,8 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
   });
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false);
@@ -45,26 +47,36 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
   async function onSubmit(data: FormData) {
     setIsLoading(true);
 
-    const signInResult = await signIn("email", {
-      email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
-    });
+    try {
+      const signInResult = await signIn("email", {
+        email: data.email.toLowerCase(),
+        redirect: false,
+        callbackUrl: searchParams?.get("from") || "/dashboard",
+      });
 
-    setIsLoading(false);
-
-    if (!signInResult?.ok) {
+      const passCodeUpdateRequest = await fetch(
+        `/api/auth/token/${data.email.toLowerCase()}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (error) {
       return toast({
         title: t("toastSignInFailedTitle"),
         description: t("toastSignInFailedDescription"),
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
+      router.push(pathname + "?email=" + data.email.toLowerCase());
+      return toast({
+        title: t("toastSignInSuccessTitle"),
+        description: t("toastSignInSuccessDescription"),
+      });
     }
-
-    return toast({
-      title: t("toastSignInSuccessTitle"),
-      description: t("toastSignInSuccessDescription"),
-    });
   }
 
   return (

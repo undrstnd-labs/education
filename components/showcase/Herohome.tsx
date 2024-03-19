@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import { Link } from "@lib/navigation";
 
 import { Button } from "@component/ui/Button";
 import { PlayIcon } from "@component/icons/Overall";
@@ -33,13 +33,13 @@ export default function HerosectionHome() {
       </svg>
       <div className="mx-auto max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36 lg:py-18">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-          <h1 className="mt-10 text-4xl flex flex-col font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <h1 className="mt-10 text-4xl flex flex-col font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
             Libérez les insights des documents avec{" "}
             <span className="text-sky-500 self-start">
               <TypingEffect text="Undrstnd" />
             </span>
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-400">
             Élevez votre expérience documentaire avec Undrstnd. Il vous suffit
             de télécharger vos fichiers et de commencer à explorer.
           </p>
@@ -65,6 +65,9 @@ export default function HerosectionHome() {
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
             <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+              {/**
+               * TODO: Image for light and dark mode
+               */}
               <Image
                 src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
                 alt="App screenshot"
