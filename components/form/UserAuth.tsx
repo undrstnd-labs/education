@@ -53,8 +53,6 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
         redirect: false,
         callbackUrl: searchParams?.get("from") || "/dashboard",
       });
-
-    
     } catch (error) {
       return toast({
         title: t("toastSignInFailedTitle"),

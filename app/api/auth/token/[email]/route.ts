@@ -75,12 +75,12 @@ export async function PUT(
       },
     });
 
-   return new Response(JSON.stringify(passCode), {
-     status: 200,
-     headers: {
-       "Content-Type": "application/json",
-     },
-   });
+    return new Response(JSON.stringify(passCode), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error: any) {
     console.log(error);
     return new Response(null, { status: 500 });

@@ -40,7 +40,7 @@ export function MagicLink({ magicLink }: { magicLink: MagicLinkData }) {
           <Section style={codeBox}>
             <Text style={confirmationCodeText}>{magicLink.passCode}</Text>
           </Section>
-          
+
           <Text style={paragraph}>
             This link and code will only be valid for the next 5 minutes. If the
             link does not work, you can use the login verification code

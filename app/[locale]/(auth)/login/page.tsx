@@ -22,8 +22,7 @@ export default function LoginPage({
 }) {
   const t = useTranslations("Pages.Login");
 
-
-/*   const fetchPasscode = await fetch(
+  /*   const fetchPasscode = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${identifier}`,
     {
       method: "GET",
