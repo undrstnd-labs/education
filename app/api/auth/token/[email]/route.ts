@@ -42,9 +42,6 @@ export async function PUT(
     return new Response(null, { status: 204 });
   } catch (error: any) {
     console.log(error);
-    return {
-      status: 500,
-      body: error.message,
-    };
+    return new Response(null, { status: 500 });
   }
 }

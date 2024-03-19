@@ -55,7 +55,7 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       });
 
       const passCodeUpdateRequest = await fetch(
-        `/auth/token/${data.email.toLowerCase()}`,
+        `/api/auth/token/${data.email.toLowerCase()}`,
         {
           method: "PUT",
           headers: {
