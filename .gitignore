@@ -48,5 +48,5 @@ next-env.d.ts
 *.lot
 *.maf
 *.mtc
-*.mtc0
+*.mtc*
 *.out

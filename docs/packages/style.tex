@@ -7,11 +7,19 @@
 \linespread{1.3}
 \setlength{\marginparwidth}{2cm}
 
+\setlength{\headheight}{14.5pt} 
+\addtolength{\topmargin}{-2.5pt} 
+
 \fancyhead{} 
 \fancyfoot{} 
 \fancyhead[L]{\nouppercase{\leftmark}} 
 \fancyfoot[L]{\thepage} 
-\fancyfoot[R]{\includegraphics[height=12pt]{images/logo.png} \textbf{Undrstnd}} 
+\fancyfoot[R]{\includegraphics[height=10pt]{images/logo.png} \fontfamily{phv}\selectfont\textbf{Undrstnd}}
 \renewcommand{\headrulewidth}{0.3pt} 
 \renewcommand{\footrulewidth}{0.2pt} 
 \pagestyle{fancy} 
+
+\dominitoc
+\setcounter{tocdepth}{2}
+
+\renewcommand{\thesection}{\arabic{section}}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.20)  19 MAR 2024 11:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.20)  19 MAR 2024 13:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -639,27 +639,16 @@ Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
 \backskip=\skip84
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
-Package: titlesec 2023/10/27 v2.16 Sectioning titles
-\ttl@box=\box138
-\beforetitleunit=\skip85
-\aftertitleunit=\skip86
-\ttl@plus=\dimen328
-\ttl@minus=\dimen329
-\ttl@toksa=\toks63
-\titlewidth=\dimen330
-\titlewidthlast=\dimen331
-\titlewidthfirst=\dimen332
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/graphics\epsfig.sty
 Package: epsfig 2017/06/25 v1.7b (e)psfig emulation (SPQR)
-\epsfxsize=\dimen333
-\epsfysize=\dimen334
+\epsfxsize=\dimen328
+\epsfysize=\dimen329
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/algorithm2e\algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
 \c@AlgoLine=\count356
-\algocf@hangindent=\skip87
+\algocf@hangindent=\skip85
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
 \c@checkoddpage=\count357
@@ -668,78 +657,78 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/relsize\relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
-\skiptotal=\skip88
-\skiplinenumber=\skip89
-\skiprule=\skip90
-\skiphlne=\skip91
-\skiptext=\skip92
-\skiplength=\skip93
-\algomargin=\skip94
-\skipalgocfslide=\skip95
-\algowidth=\dimen335
-\inoutsize=\dimen336
-\inoutindent=\dimen337
-\interspacetitleruled=\dimen338
-\interspacealgoruled=\dimen339
-\interspacetitleboxruled=\dimen340
-\algocf@ruledwidth=\skip96
-\algocf@inoutbox=\box139
-\algocf@inputbox=\box140
-\AlCapSkip=\skip97
-\AlCapHSkip=\skip98
-\algoskipindent=\skip99
-\algocf@nlbox=\box141
-\algocf@hangingbox=\box142
-\algocf@untilbox=\box143
-\algocf@skipuntil=\skip100
-\algocf@capbox=\box144
-\algocf@lcaptionbox=\skip101
-\algoheightruledefault=\skip102
-\algoheightrule=\skip103
-\algotitleheightruledefault=\skip104
-\algotitleheightrule=\skip105
+\skiptotal=\skip86
+\skiplinenumber=\skip87
+\skiprule=\skip88
+\skiphlne=\skip89
+\skiptext=\skip90
+\skiplength=\skip91
+\algomargin=\skip92
+\skipalgocfslide=\skip93
+\algowidth=\dimen330
+\inoutsize=\dimen331
+\inoutindent=\dimen332
+\interspacetitleruled=\dimen333
+\interspacealgoruled=\dimen334
+\interspacetitleboxruled=\dimen335
+\algocf@ruledwidth=\skip94
+\algocf@inoutbox=\box138
+\algocf@inputbox=\box139
+\AlCapSkip=\skip95
+\AlCapHSkip=\skip96
+\algoskipindent=\skip97
+\algocf@nlbox=\box140
+\algocf@hangingbox=\box141
+\algocf@untilbox=\box142
+\algocf@skipuntil=\skip98
+\algocf@capbox=\box143
+\algocf@lcaptionbox=\skip99
+\algoheightruledefault=\skip100
+\algoheightrule=\skip101
+\algotitleheightruledefault=\skip102
+\algotitleheightrule=\skip103
 \c@algocfline=\count358
 \c@algocfproc=\count359
 \c@algocf=\count360
-\algocf@algoframe=\box145
-\algocf@algobox=\box146
+\algocf@algoframe=\box144
+\algocf@algobox=\box145
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
-\wrapoverhang=\dimen341
-\WF@size=\dimen342
+\wrapoverhang=\dimen336
+\WF@size=\dimen337
 \c@WF@wrappedlines=\count361
-\WF@box=\box147
-\WF@everypar=\toks64
+\WF@box=\box146
+\WF@everypar=\toks63
 Package: wrapfig 2003/01/31  v 3.6
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks65
-\verbatim@line=\toks66
+\every@verbatim=\toks64
+\verbatim@line=\toks65
 \verbatim@in@stream=\read4
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
-\@envbody=\toks67
+\@envbody=\toks66
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count362
 )
-\tcb@titlebox=\box148
-\tcb@upperbox=\box149
-\tcb@lowerbox=\box150
-\tcb@phantombox=\box151
+\tcb@titlebox=\box147
+\tcb@upperbox=\box148
+\tcb@lowerbox=\box149
+\tcb@phantombox=\box150
 \c@tcbbreakpart=\count363
 \c@tcblayer=\count364
 \c@tcolorbox@number=\count365
-\l__tcobox_tmpa_box=\box152
-\l__tcobox_tmpa_dim=\dimen343
+\l__tcobox_tmpa_box=\box151
+\l__tcobox_tmpa_dim=\dimen338
+\tcb@temp=\box152
 \tcb@temp=\box153
 \tcb@temp=\box154
 \tcb@temp=\box155
-\tcb@temp=\box156
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '6.2.0'
 \c@tcbrastercolumn=\count366
@@ -754,7 +743,7 @@ Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
 Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tikzfill\tikzlibraryfill.image.code.tex
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
-\l__tikzfill_img_box=\box157
+\l__tikzfill_img_box=\box156
 )) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
 )) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbbreakable.code.tex
@@ -769,27 +758,27 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box158
-\tcb@totalupperbox=\box159
-\tcb@totallowerbox=\box160
+\tcb@testbox=\box157
+\tcb@totalupperbox=\box158
+\tcb@totallowerbox=\box159
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbhooks.code.tex
 Library (tcolorbox): 'tcbhooks.code.tex' version '6.2.0'
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbtheorems.code.tex
 Library (tcolorbox): 'tcbtheorems.code.tex' version '6.2.0'
 (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
-\@mathmargin=\skip106
+\@mathmargin=\skip104
 
 For additional information on amsmath, use the `?' option.
 (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks68
-\ex@=\dimen344
+\@emptytoks=\toks67
+\ex@=\dimen339
 )) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen345
+\pmbraise@=\dimen340
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
@@ -804,13 +793,13 @@ LaTeX Info: Redefining \colon on input line 410.
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box161
-\strutbox@=\box162
+\Mathstrutbox@=\box160
+\strutbox@=\box161
 LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen346
+\big@size=\dimen341
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \macc@depth=\count375
@@ -823,28 +812,28 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \dotsspace@=\muskip16
 \c@parentequation=\count377
 \dspbrk@lvl=\count378
-\tag@help=\toks69
+\tag@help=\toks68
 \row@=\count379
 \column@=\count380
 \maxfields@=\count381
-\andhelp@=\toks70
-\eqnshift@=\dimen347
-\alignsep@=\dimen348
-\tagshift@=\dimen349
-\tagwidth@=\dimen350
-\totwidth@=\dimen351
-\lineht@=\dimen352
-\@envbody=\toks71
-\multlinegap=\skip107
-\multlinetaggap=\skip108
-\mathdisplay@stack=\toks72
+\andhelp@=\toks69
+\eqnshift@=\dimen342
+\alignsep@=\dimen343
+\tagshift@=\dimen344
+\tagwidth@=\dimen345
+\totwidth@=\dimen346
+\lineht@=\dimen347
+\@envbody=\toks70
+\multlinegap=\skip105
+\multlinetaggap=\skip106
+\mathdisplay@stack=\toks71
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '6.2.0'
-\tcbfitdim=\dimen353
-\tcb@lowerfitdim=\dimen354
-\tcb@upperfitdim=\dimen355
+\tcbfitdim=\dimen348
+\tcb@lowerfitdim=\dimen349
+\tcb@upperfitdim=\dimen350
 \tcb@cur@hbadness=\count382
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcblistingsutf8.code.tex
 Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.2.0'
@@ -852,22 +841,22 @@ Library (tcolorbox): 'tcblistingsutf8.code.tex' version '6.2.0'
 Library (tcolorbox): 'tcblistings.code.tex' version '6.2.0'
 (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
 \lst@mode=\count383
-\lst@gtempboxa=\box163
-\lst@token=\toks73
+\lst@gtempboxa=\box162
+\lst@token=\toks72
 \lst@length=\count384
-\lst@currlwidth=\dimen356
+\lst@currlwidth=\dimen351
 \lst@column=\count385
 \lst@pos=\count386
-\lst@lostspace=\dimen357
-\lst@width=\dimen358
+\lst@lostspace=\dimen352
+\lst@width=\dimen353
 \lst@newlines=\count387
 \lst@lineno=\count388
-\lst@maxwidth=\dimen359
+\lst@maxwidth=\dimen354
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 \c@lstnumber=\count389
 \lst@skipnumbers=\count390
-\lst@framebox=\box164
+\lst@framebox=\box163
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
@@ -929,7 +918,7 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count392
 )
-\@linkdim=\dimen360
+\@linkdim=\dimen355
 \Hy@linkcounter=\count393
 \Hy@pagecounter=\count394
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
@@ -959,15 +948,15 @@ Package hyperref Info: Bookmarks ON on input line 4448.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4786.
-\XeTeXLinkMargin=\dimen361
+\XeTeXLinkMargin=\dimen356
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count397
-\Field@Width=\dimen362
-\Fld@charsize=\dimen363
+\Field@Width=\dimen357
+\Fld@charsize=\dimen358
 Package hyperref Info: Hyper figures OFF on input line 6065.
 Package hyperref Info: Link nesting OFF on input line 6070.
 Package hyperref Info: Hyper index ON on input line 6073.
@@ -999,8 +988,8 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip109
-)) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxtext.sty
+\Hy@SectionHShift=\skip107
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxtext.sty
 Package: newtxtext 2024/02/08 v1.738(Michael Sharpe) latex and unicode latex support for TeXGyreTermesX
  `newtxtext' v1.738, 2024/02/08 Text macros taking advantage of TeXGyre Termes and its extensions (msharpe) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty
 Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
@@ -1034,22 +1023,92 @@ LaTeX Info: Redefining \textsw on input line 47.
 LaTeX Info: Redefining \textssc on input line 48.
 LaTeX Info: Redefining \textulc on input line 49.
 )
-\tx@sixem=\dimen364
-\tx@y=\dimen365
-\tx@x=\dimen366
-\tx@tmpdima=\dimen367
-\tx@tmpdimb=\dimen368
-\tx@tmpdimc=\dimen369
-\tx@tmpdimd=\dimen370
-\tx@tmpdime=\dimen371
-\tx@tmpdimf=\dimen372
-\tx@dimA=\dimen373
-\tx@dimAA=\dimen374
-\tx@dimB=\dimen375
-\tx@dimBB=\dimen376
-\tx@dimC=\dimen377
+\tx@sixem=\dimen359
+\tx@y=\dimen360
+\tx@x=\dimen361
+\tx@tmpdima=\dimen362
+\tx@tmpdimb=\dimen363
+\tx@tmpdimc=\dimen364
+\tx@tmpdimd=\dimen365
+\tx@tmpdime=\dimen366
+\tx@tmpdimf=\dimen367
+\tx@dimA=\dimen368
+\tx@dimAA=\dimen369
+\tx@dimB=\dimen370
+\tx@dimBB=\dimen371
+\tx@dimC=\dimen372
 LaTeX Info: Redefining \oldstylenums on input line 896.
-) (packages/style.tex)
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/ragged2e\ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip108
+\RaggedLeftLeftskip=\skip109
+\RaggedRightLeftskip=\skip110
+\CenteringRightskip=\skip111
+\RaggedLeftRightskip=\skip112
+\RaggedRightRightskip=\skip113
+\CenteringParfillskip=\skip114
+\RaggedLeftParfillskip=\skip115
+\RaggedRightParfillskip=\skip116
+\JustifyingParfillskip=\skip117
+\CenteringParindent=\skip118
+\RaggedLeftParindent=\skip119
+\RaggedRightParindent=\skip120
+\JustifyingParindent=\skip121
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/minitoc\minitoc.sty
+Package: minitoc 2018/07/12 v62 Package minitoc
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/minitoc\mtcmess.sty
+Package: mtcmess 2006/03/14
+)
+Package minitoc Info: I0001
+(minitoc)             *** minitoc package, version 62 ***.
+\tf@mtc=\write6
+\mtcindent=\skip122
+\mtcskipamount=\skip123
+Package minitoc Info: I0005
+(minitoc)             compatible with hyperref.
+Package minitoc Info: I0023
+(minitoc)             part level macros available.
+Package minitoc Info: I0003
+(minitoc)             chapter level macros available.
+\mtc@toks=\toks73
+\mtc@strutbox=\box164
+\mtc@hstrutbox=\box165
+Package minitoc Info: I0002
+(minitoc)             Autoconfiguration of extensions.
+\openout6 = `main.mtc0'.
+
+\openout6 = `main.mtc'.
+
+ (main.mtc0)
+Package minitoc Info: I0012
+(minitoc)             Long extensions (Unix-like) will be used.
+Package minitoc Info: I0031
+(minitoc)             ==> this version is configured for UNIX-like 
+(minitoc)                 (long extensions) file names.
+\openout6 = `main.mtc'.
+
+\openout6 = `main.mtc0'.
+
+\c@mtc=\count407
+\c@minitocdepth=\count408
+\c@ptc=\count409
+\c@parttocdepth=\count410
+\ptcindent=\skip124
+Package minitoc Info: I0010
+(minitoc)             The english language is selected.
+(minitoc)              on input line 4910.
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/minitoc\english.mld
+File: english.mld 2006/01/13
+) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/minitoc\english.mld
+File: english.mld 2006/01/13
+))) (packages/style.tex
+Package minitoc Info: I0024
+(minitoc)             PREPARING MINITOCS FROM main.toc on input line 23.
+Package minitoc Info: I0033
+(minitoc)             Writing main.mtc1.
+\openout6 = `main.mtc1'.
+
+)
 LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line 14.
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/newtx\t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
@@ -1084,20 +1143,26 @@ LaTeX Info: Redefining \degres on input line 14.
 LaTeX Info: Redefining \up on input line 14.
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count407
-\scratchdimen=\dimen378
-\scratchbox=\box165
-\nofMPsegments=\count408
-\nofMParguments=\count409
+\scratchcounter=\count411
+\scratchdimen=\dimen373
+\scratchbox=\box166
+\nofMPsegments=\count412
+\nofMParguments=\count413
 \everyMPshowfont=\toks74
-\MPscratchCnt=\count410
-\MPscratchDim=\dimen379
-\MPnumerator=\count411
-\makeMPintoPDFobject=\count412
+\MPscratchCnt=\count414
+\MPscratchDim=\dimen374
+\MPnumerator=\count415
+\makeMPintoPDFobject=\count416
 \everyMPtoPDFconversion=\toks75
 ) (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
@@ -1106,18 +1171,18 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count413
+\c@lstlisting=\count417
 Package hyperref Info: Link coloring OFF on input line 14.
  (main.out) (main.out)
-\@outlinefile=\write6
-\openout6 = `main.out'.
+\@outlinefile=\write7
+\openout7 = `main.out'.
 
-\c@mv@tabular=\count414
-\c@mv@boldtabular=\count415
+\c@mv@tabular=\count418
+\c@mv@boldtabular=\count419
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/arabtex\apatch.sty
-\a@lines=\count416
-\a@Lwidth=\dimen380
-\a@displaywidth=\dimen381
+\a@lines=\count420
+\a@Lwidth=\dimen375
+\a@displaywidth=\dimen376
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/arabtex\alocal.sty (ArabTeX) 3.11 local stub, 26.02.2006) (ArabTeX) version 3.11s (02.07.2006): second phase of patching)
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 20.74pt on input line 16.
@@ -1159,8 +1224,8 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 \openout2 = `specials/list.aux'.
 
  (specials/list.tex (main.toc)
-\tf@toc=\write7
-\openout7 = `main.toc'.
+\tf@toc=\write8
+\openout8 = `main.toc'.
 
  [3
 
@@ -1169,14 +1234,14 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 
 
 ] (main.lof)
-\tf@lof=\write8
-\openout8 = `main.lof'.
+\tf@lof=\write9
+\openout9 = `main.lof'.
 
  [4
 
 ] (main.lot)
-\tf@lot=\write9
-\openout9 = `main.lot'.
+\tf@lot=\write10
+\openout10 = `main.lot'.
 
 ) [5
 
@@ -1195,62 +1260,113 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 
  (chapitres/chapitre-1.tex
 Chapitre 1.
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 1.
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 2.
 (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
-LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 9.
+\openout6 = `main.mtc'.
 
+\openout6 = `main.mtc'.
+
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.95pt on input line 6.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 6.
+ (main.mtc1
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 1.
+)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.11 
-      [1
+l.9 \newpage
+             [1
 
 
 
 
 {C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ec.enc}]
-<images/gsi-logo.png, id=105, 200.75pt x 212.795pt>
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
+(Font)              scaled to size 12.0pt on input line 19.
+<images/gsi-logo.png, id=146, 200.75pt x 212.795pt>
 File: images/gsi-logo.png Graphic file (type png)
 <use images/gsi-logo.png>
-Package pdftex.def Info: images/gsi-logo.png  used on input line 16.
+Package pdftex.def Info: images/gsi-logo.png  used on input line 25.
 (pdftex.def)             Requested size: 195.0pt x 206.71284pt.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 17.
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 23.
+(Font)              scaled to size 12.0pt on input line 26.
+<images/logo.png, id=147, 200.9106pt x 200.9106pt>
+File: images/logo.png Graphic file (type png)
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png  used on input line 29.
+(pdftex.def)             Requested size: 9.99706pt x 10.0pt.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 29.
+ (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
+File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
+) [2{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <./images/logo.png>]
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 32.
  (C:\Users\malek\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 23.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-<images/logo.png, id=106, 200.9106pt x 200.9106pt>
+(Font)              scaled to size 12.0pt on input line 32.
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
-Package pdftex.def Info: images/logo.png  used on input line 26.
-(pdftex.def)             Requested size: 11.99893pt x 12.0pt.
-[2{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1.enc} <./images/gsi-logo.png (PNG copy)> <./images/logo.png>])
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
+Package pdftex.def Info: images/logo.png  used on input line 50.
+(pdftex.def)             Requested size: 9.99706pt x 10.0pt.
+ [3{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1.enc} <./images/gsi-logo.png (PNG copy)>]
+File: images/logo.png Graphic file (type png)
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png  used on input line 67.
+(pdftex.def)             Requested size: 9.99706pt x 10.0pt.
+ [4]
+File: images/logo.png Graphic file (type png)
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png  used on input line 81.
+(pdftex.def)             Requested size: 9.99706pt x 10.0pt.
+ [5]
+<images/google-classroom-logo.png, id=174, 283.0575pt x 243.91125pt>
+File: images/google-classroom-logo.png Graphic file (type png)
+<use images/google-classroom-logo.png>
+Package pdftex.def Info: images/google-classroom-logo.png  used on input line 95.
+(pdftex.def)             Requested size: 77.99881pt x 67.21164pt.
+File: images/logo.png Graphic file (type png)
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png  used on input line 103.
+(pdftex.def)             Requested size: 9.99706pt x 10.0pt.
+ [6 <./images/google-classroom-logo.png>]
+<images/piazza-logo.png, id=182, 1204.5pt x 320.19624pt>
+File: images/piazza-logo.png Graphic file (type png)
+<use images/piazza-logo.png>
+Package pdftex.def Info: images/piazza-logo.png  used on input line 107.
+(pdftex.def)             Requested size: 77.99881pt x 20.73042pt.
+<images/chatgpt-logo.png, id=184, 1027.84pt x 1027.84pt>
+File: images/chatgpt-logo.png Graphic file (type png)
+<use images/chatgpt-logo.png>
+Package pdftex.def Info: images/chatgpt-logo.png  used on input line 118.
+(pdftex.def)             Requested size: 77.99881pt x 77.99431pt.
+<images/poe-logo.png, id=186, 1505.625pt x 847.165pt>
+File: images/poe-logo.png Graphic file (type png)
+<use images/poe-logo.png>
+Package pdftex.def Info: images/poe-logo.png  used on input line 129.
+(pdftex.def)             Requested size: 77.99881pt x 43.88608pt.
+)
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
 Package pdftex.def Info: images/logo.png  used on input line 30.
-(pdftex.def)             Requested size: 11.99893pt x 12.0pt.
-[3] (main.aux (specials/asbtract.aux) (specials/dedication.aux) (specials/list.aux) (specials/introduction.aux) (chapitres/chapitre-1.aux))
+(pdftex.def)             Requested size: 9.99706pt x 10.0pt.
+ [7 <./images/piazza-logo.png (PNG copy)> <./images/chatgpt-logo.png>]
+File: images/logo.png Graphic file (type png)
+<use images/logo.png>
+Package pdftex.def Info: images/logo.png  used on input line 30.
+(pdftex.def)             Requested size: 9.99706pt x 10.0pt.
+ [8 <./images/poe-logo.png (PNG copy)>]
+Package minitoc Info: I0009
+(minitoc)             Listing minitoc auxiliary files. 
+(minitoc)             Creating the main.maf file.
+\openout6 = `main.maf'.
+
+ (main.aux (specials/asbtract.aux) (specials/dedication.aux) (specials/list.aux) (specials/introduction.aux) (chapitres/chapitre-1.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1354,7 +1470,6 @@ tikz.code.tex
     calc.sty    2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
 fncychap.sty    2007/07/30 v1.34 LaTeX package (Revised chapters)
  fontenc.sty    2021/04/29 v2.0v Standard LaTeX package
-titlesec.sty    2023/10/27 v2.16 Sectioning titles
 setspace.sty    2022/12/04 v6.7b set line spacing
   epsfig.sty    2017/06/25 v1.7b (e)psfig emulation (SPQR)
 algorithm2e.sty    2017/07/18 v5.2 algorithms environments
@@ -1415,11 +1530,18 @@ textcomp.sty    2020/02/02 v2.0n Standard LaTeX package
  xstring.sty    2023/08/22 v1.86 String manipulations (CT)
   binhex.tex
 fontaxes.sty    2020/07/21 v1.0e Font selection axes
+ragged2e.sty    2023/06/22 v3.6 ragged2e Package
+ minitoc.sty    2018/07/12 v62 Package minitoc
+ mtcmess.sty    2006/03/14
+    main.mtc0
+ english.mld    2006/01/13
+ english.mld    2006/01/13
 packages/style.tex
 t1ntxtlf.fd    2021/05/24 v1.1 font definition file for T1/ntx/tlf
 babel-french.tex
 supp-pdf.mkii
 epstopdf-base.sty    2020-01-24 v2.11 Base part for package epstopdf
+  grfext.sty    2019/12/03 v1.3 Manage graphics extensions (HO)
 epstopdf-sys.cfg    2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
     main.out
     main.out
@@ -1433,30 +1555,40 @@ specials/introduction.tex
 chapitres/chapitre-1.tex
    t1qhv.fd    2009/09/25 v1.2 font definition file for T1/qhv
 images/gsi-logo.png
+images/logo.png
+   t1phv.fd    2020/03/25 scalable font definitions for T1/phv.
 ts1ntxtlf.fd    2015/01/18 v1.0 fd file for TS1/ntxtlf
+images/logo.png
+images/logo.png
+images/logo.png
+images/google-classroom-logo.png
+images/logo.png
+images/piazza-logo.png
+images/chatgpt-logo.png
+images/poe-logo.png
 images/logo.png
 images/logo.png
  ***********
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CCB8345ABF75FCD0BF172C16E4AF660F;1069.
+(rerunfilecheck)             Checksum: 272C01AEA787D32055BC071643B79358;2298.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 14 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 38516 strings out of 474486
- 745922 string characters out of 5743755
- 1932542 words of memory out of 5000000
- 60009 multiletter control sequences out of 15000+600000
- 604641 words of font info for 81 fonts, out of 8000000 for 9000
+ 40447 strings out of 474486
+ 780330 string characters out of 5743755
+ 1935542 words of memory out of 5000000
+ 61891 multiletter control sequences out of 15000+600000
+ 619250 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 115i,14n,110p,850b,2722s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qhvr.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (10 pages, 212626 bytes).
+ 115i,15n,110p,841b,2945s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qhvr.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/malek/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
+Output written on main.pdf (15 pages, 514940 bytes).
 PDF statistics:
- 150 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
- 199 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 238 PDF objects out of 1000 (max. 8388607)
+ 35 named destinations out of 1000 (max. 500000)
+ 259 words of extra memory for PDF output out of 10000 (max. 10000000)
 

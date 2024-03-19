@@ -3,6 +3,12 @@
 
 
 \contentsline {chapter}{\numberline {1}Étude Préliminaire et Contextualisation du Projet}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Contexte général et cadre académique du projet}{1}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Cadre académique du projet}{2}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Présentation de l'entité d'accueil}{2}{subsection.1.1.2}%
+\contentsline {xchapter}{}{1}{chapter.1}%
+\contentsline {section}{\numberline {1}Contexte général et cadre académique du projet}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1}Cadre académique du projet}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.2}Présentation de l`entité d`accueil}{2}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.3}Identification de la problématique}{4}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.4}Idée générale du projet}{4}{subsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.5}Concepts de base liés à notre projet}{5}{subsection.1.1.5}%
+\contentsline {section}{\numberline {2}Analyse de l'existant et perspectives critiques}{6}{section.1.2}%
+\contentsline {subsection}{\numberline {2.1}Étude des solutions existantes}{6}{subsection.1.2.1}%
