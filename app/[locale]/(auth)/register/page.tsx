@@ -1,11 +1,13 @@
-import { cn } from "@/lib/utils";
 import { Suspense } from "react";
 import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
 
 import { LogoPNG } from "@component/icons/Overall";
 import { buttonVariants } from "@component/ui/Button";
+import { PassCodeAuth } from "@component/form/PassCodeAuth";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
+
+import { cn, verifyEmail } from "@/lib/utils";
 
 export const metadata = {
   title: "Créer votre compte",
@@ -17,12 +19,16 @@ export default function RegisterPage({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const t = useTranslations("Pages.Register");
+  const email = searchParams.email as string;
+
+  const isEmailValid = verifyEmail(email);
+
   return (
     <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link
         href="/login"
         className={cn(
-          buttonVariants({ variant: "ghost" }),
+          buttonVariants({ variant: "secondary" }),
           "absolute right-4 top-4 md:right-8 md:top-8"
         )}
       >
@@ -33,7 +39,7 @@ export default function RegisterPage({
         <Link
           href="/"
           className={cn(
-            buttonVariants({ variant: "secondary" }),
+            buttonVariants({ variant: "ghost" }),
             "relative z-20 flex items-center text-lg font-semibold w-fit"
           )}
         >
@@ -51,23 +57,23 @@ export default function RegisterPage({
       </div>
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <div className="flex flex-col space-y-2 text-center">
-            <LogoPNG className="mx-auto h-10 w-10" />
-            <h1 className="text-2xl font-semibold tracking-tight">
-              {t("registerTitle")}
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              {t("registerDescription")}
-            </p>
-          </div>
+          <LogoPNG className="mx-auto h-10 w-10" />
+          {isEmailValid ? (
+            <PassCodeAuth email={email} />
+          ) : (
+            <div className="flex flex-col space-y-2 text-center">
+              <h1 className="text-2xl font-semibold tracking-tight">
+                {t("registerTitle")}
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                {t("registerDescription")}
+              </p>
 
-          <Suspense fallback={<UserAuthSkeleton />}>
-            <UserAuthForm type="register" />
-          </Suspense>
-
-          <Suspense fallback={<UserAuthSkeleton />}>
-            {searchParams.email ? <>fgds</> : <UserAuthForm type="register" />}
-          </Suspense>
+              <Suspense fallback={<UserAuthSkeleton />}>
+                <UserAuthForm type="register" />
+              </Suspense>
+            </div>
+          )}
 
           <p className="px-8 text-center text-sm text-muted-foreground">
             {t("labelAccept")}{" "}

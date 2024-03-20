@@ -21,7 +21,6 @@
       "labelPolicy": "Privacy Policy."
     }
   },
-
   "Components": {
     "Form": {
       "UserAuth": {
@@ -54,6 +53,11 @@
           "esstt": "Higher School of Sciences and Technology of Tunis",
           "enit": "National Engineering School of Tunis"
         }
+      },
+      "PassCodeAuth": {
+        "verify-account": "Verify Your Account",
+        "verify-account-description": "Enter the 6-digit code sent to your email address",
+        "email-sent": "An email has been sent to"
       }
     }
   }

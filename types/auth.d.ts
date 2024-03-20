@@ -24,3 +24,10 @@ export type EmailSelectProps = {
   onSelect: (value: string) => void;
   options: EmalSelectOption[];
 };
+
+export type TokenType = {
+  identifier: string;
+  token: string;
+  expires: string;
+  passCode: string;
+};
