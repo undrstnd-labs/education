@@ -13,7 +13,6 @@ export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
-// Verify if an email is valid from emailSchema
 export function verifyEmail(email: string): boolean {
   return emailSchema.safeParse({ email }).success;
 }

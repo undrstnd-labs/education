@@ -48,10 +48,10 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
     setIsLoading(true);
 
     try {
-      const signInResult = await signIn("email", {
+      await signIn("email", {
         email: data.email.toLowerCase(),
         redirect: false,
-        callbackUrl: searchParams?.get("from") || "/dashboard",
+        callbackUrl: searchParams?.get("from") || "/verify-user",
       });
     } catch (error) {
       return toast({
@@ -113,11 +113,12 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       <button
         type="button"
         className={cn(buttonVariants({ variant: "outline" }))}
+        disabled
         onClick={() => {
           setIsGitHubLoading(true);
           signIn("github", { callbackUrl: "/dashboard" });
         }}
-        disabled={isLoading || isGitHubLoading}
+        /*        TODO:  disabled={isLoading || isGitHubLoading}*/
       >
         {isGitHubLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
