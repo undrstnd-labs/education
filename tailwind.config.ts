@@ -83,6 +83,10 @@ module.exports = {
           "50%": { opacity: 1 },
           "100%": { opacity: 0 },
         },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +99,7 @@ module.exports = {
         "spin-reverse-slow": "spin-reverse 4s linear infinite",
         "spin-reverse-slower": "spin-reverse 6s linear infinite",
         "pulse-fast": "pulse-fast 1s ease-in-out infinite",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
     },
   },

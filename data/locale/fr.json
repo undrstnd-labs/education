@@ -19,7 +19,6 @@
       "labelPolicy": "Politique de confidentialité."
     }
   },
-
   "Components": {
     "Form": {
       "UserAuth": {
@@ -52,6 +51,13 @@
           "esstt": "École Supérieure des Sciences et Technologies de Tunis",
           "enit": "École Nationale d'Ingénieurs de Tunis"
         }
+      },
+      "PassCodeAuth": {
+        "verify-account": "Vérifiez votre compte",
+        "verify-account-description": "Entrez le code à 6 chiffres envoyé à votre e-mail",
+        "email-sent": "Un e-mail a été envoyé à",
+        "error": "Code invalide",
+        "try-again": "S'il vous plaît, réessayez"
       }
     }
   }

@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
     }),
     EmailProvider({
       from: process.env.SMTP_FROM,
-      maxAge: 5 * 60,
+      maxAge: 60 * 60 + 5 * 60,
       sendVerificationRequest: async ({
         identifier,
         url,
@@ -37,12 +37,29 @@ export const authOptions: NextAuthOptions = {
             user: process.env.EMAIL_SENDER,
             pass: process.env.EMAIL_SERVER_PASSWORD,
           },
+          tls: {
+            rejectUnauthorized: false,
+          },
         });
+
+        const passCode = await fetch(
+          `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${identifier}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              url,
+            }),
+          }
+        ).then((res) => res.json());
 
         try {
           const mailOptions = selectMailOptions("magic-link", {
             email: identifier,
             otp_link: url,
+            passCode: passCode,
           });
           await mailTransporter.sendMail(mailOptions);
         } catch (error) {
