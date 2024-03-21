@@ -1,9 +1,16 @@
+import { redirect } from "@lib/navigation";
+import { getCurrentUser } from "@lib/session";
+
 interface AuthLayoutProps {
   children: React.ReactNode;
 }
 
-//TODO: If the user is authenticated, redirect to the explore page
+export default async function AuthLayout({ children }: AuthLayoutProps) {
+  const user = await getCurrentUser();
 
-export default function AuthLayout({ children }: AuthLayoutProps) {
+  if (user && user.role !== "NOT_ASSIGNED") {
+    redirect("/dashboard");
+  }
+
   return <div className="min-h-screen">{children}</div>;
 }

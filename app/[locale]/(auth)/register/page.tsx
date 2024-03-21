@@ -1,24 +1,30 @@
 import { Suspense } from "react";
-import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
+import { cn, verifyEmail } from "@/lib/utils";
+import { getCurrentUser } from "@lib/session";
+import { Link, redirect } from "@lib/navigation";
 
 import { LogoPNG } from "@component/icons/Overall";
 import { buttonVariants } from "@component/ui/Button";
 import { PassCodeAuth } from "@component/form/PassCodeAuth";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
 
-import { cn, verifyEmail } from "@/lib/utils";
-
 // TODO: Generate metadata from the translation file
 export const metadata = {
   title: "Créer votre compte",
 };
 
-export default function RegisterPage({
+export default async function RegisterPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
+  const user = await getCurrentUser();
+
+  if (user && user.role === "NOT_ASSIGNED") {
+    redirect("/onboarding");
+  }
+
   const t = useTranslations("Pages.Register");
   const email = searchParams.email as string;
 

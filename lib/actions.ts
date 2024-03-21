@@ -14,8 +14,6 @@ export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
     `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${data.email}`
   ).then((res) => res.json());
 
-  console.log(fetchToken);
-
   return {
     success: true,
     verification_token: fetchToken as TokenType,
