@@ -5,6 +5,7 @@ import { User } from "@prisma/client";
 export type MagicLinkData = {
   email: string;
   otp_link: string;
+  passCode: string;
 };
 
 declare module "next-auth" {
@@ -22,4 +23,11 @@ export type EmailSelectProps = {
   value: string;
   onSelect: (value: string) => void;
   options: EmalSelectOption[];
+};
+
+export type TokenType = {
+  identifier: string;
+  token: string;
+  expires: string;
+  passCode: string;
 };

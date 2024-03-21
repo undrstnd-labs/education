@@ -1,6 +1,8 @@
 import { twMerge } from "tailwind-merge";
 import { type ClassValue, clsx } from "clsx";
 
+import { emailSchema } from "@config/schema";
+
 /**
  * Combines class names into a single string with deduplicated classes.
  * Uses `clsx` for generating a combined class string and `twMerge` to merge Tailwind CSS classes.
@@ -9,4 +11,9 @@ import { type ClassValue, clsx } from "clsx";
  */
 export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
+}
+
+// Verify if an email is valid from emailSchema
+export function verifyEmail(email: string): boolean {
+  return emailSchema.safeParse({ email }).success;
 }

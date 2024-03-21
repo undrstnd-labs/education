@@ -24,3 +24,24 @@ export function getUserAuthSchema(
       ),
   });
 }
+
+export const emailSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .refine((value) => {
+      const [, domain] = value.split("@");
+      return emailOptions.includes(domain);
+    }),
+});
+
+export const pinSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .refine((value) => {
+      const [, domain] = value.split("@");
+      return emailOptions.includes(domain);
+    }),
+  pin: z.string().length(6),
+});
