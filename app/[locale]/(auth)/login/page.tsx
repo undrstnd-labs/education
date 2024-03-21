@@ -12,6 +12,7 @@ import { buttonVariants } from "@component/ui/Button";
 import { PassCodeAuth } from "@component/form/PassCodeAuth";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
 
+// TODO: Generate metadata from the translation file
 export const metadata: Metadata = {
   title: "Se connecter à votre compte",
 };

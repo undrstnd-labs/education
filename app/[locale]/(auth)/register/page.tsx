@@ -9,6 +9,7 @@ import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
 
 import { cn, verifyEmail } from "@/lib/utils";
 
+// TODO: Generate metadata from the translation file
 export const metadata = {
   title: "Créer votre compte",
 };

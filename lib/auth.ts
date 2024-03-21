@@ -1,5 +1,6 @@
 import { db } from "@lib/prisma";
 import nodemailer from "nodemailer";
+import { verifyEmail } from "@lib/utils";
 import { selectMailOptions } from "@lib/email-template";
 
 import { JWT } from "next-auth/jwt";
@@ -70,6 +71,8 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ token, session }) {
+      console.log("session", session);
+      console.log("token", token);
       if (token) {
         session.user.id = token.id;
         session.user.name = token.name;
@@ -81,29 +84,34 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async jwt({ token, user }): Promise<JWT> {
-      const dbUser = await db.user.findFirst({
-        where: {
-          email: token.email,
-        },
-      });
-
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id;
+      if (user) {
+        if (!verifyEmail(user.email as string)) {
+          throw new Error("Invalid email address");
         }
-        return token;
+
+        const dbUser = await db.user.findFirst({
+          where: {
+            email: user.email,
+          },
+        });
+
+        if (dbUser) {
+          return {
+            id: dbUser.id,
+            email: dbUser.email,
+            name: dbUser.name,
+            image: dbUser.image,
+            role: dbUser.role,
+            emailVerified: dbUser.emailVerified,
+            createdAt: dbUser.createdAt,
+            updatedAt: dbUser.updatedAt,
+          };
+        }
+
+        token.id = user?.id;
       }
 
-      return {
-        id: dbUser.id,
-        email: dbUser.email,
-        name: dbUser.name,
-        image: dbUser.image,
-        role: dbUser.role,
-        emailVerified: dbUser.emailVerified,
-        createdAt: dbUser.createdAt,
-        updatedAt: dbUser.updatedAt,
-      };
+      return token;
     },
   },
 };
