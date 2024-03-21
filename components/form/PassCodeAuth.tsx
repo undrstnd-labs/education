@@ -44,30 +44,18 @@ function OTPform({ email }: { email: string }) {
     try {
       const magicObj = await verifyPassCode(data);
 
-      console.log(magicObj.verification_token);
-      console.log(
-        `${process.env.NEXT_PUBLIC_URL}/api/auth/callback/email?callbackUrl=${process.env.NEXT_PUBLIC_URL}&token=${magicObj.verification_token.token}&email=${data.email}`
-      );
-
       if (magicObj.verification_token.passCode != data.pin) {
         throw new Error("Invalid passCode");
       }
 
-      // FIXME: This is a temporary solution and it dosent work
-      //http://localhost:3000/api/auth/callback/email?allbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&token=9118351b6a81b02f2dbde6f32fac70ec7a5361956b61fe35f1b3d68415b51507&email=fdfsdfdsfdsf%40ensi.rnu.tn
-      router.push(
-        `/api/auth/callback/email?callbackUrl=${process.env.NEXT_PUBLIC_URL}&token=${magicObj.verification_token.token}&email=${data.email}`
-      );
+      router.push(magicObj.verification_token.verificationUrl);
     } catch (error: any) {
       setLoading(false);
-      // TODO: Translate error message
       toast({
-        title: "Erreur",
-        description: error.message,
+        title: t("error"),
+        description: t("try-again"),
         variant: "destructive",
       });
-    } finally {
-      setLoading(false);
     }
   }
 

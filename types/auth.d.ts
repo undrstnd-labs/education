@@ -30,4 +30,5 @@ export type TokenType = {
   token: string;
   expires: string;
   passCode: string;
+  verificationUrl: string;
 };

@@ -57,7 +57,9 @@
       "PassCodeAuth": {
         "verify-account": "Verify Your Account",
         "verify-account-description": "Enter the 6-digit code sent to your email address",
-        "email-sent": "An email has been sent to"
+        "email-sent": "An email has been sent to",
+        "error": "Invalid code",
+        "try-again": "Please check your email and try again"
       }
     }
   }

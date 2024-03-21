@@ -47,6 +47,7 @@ export async function PUT(
 ) {
   try {
     const { params } = routeContextSchema.parse(context);
+    const { url } = await req.json();
 
     const verificationTokens = await db.verificationToken.findMany({
       where: {
@@ -72,6 +73,7 @@ export async function PUT(
       },
       data: {
         passCode,
+        verificationUrl: url,
       },
     });
 

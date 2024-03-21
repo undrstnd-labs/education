@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
     }),
     EmailProvider({
       from: process.env.SMTP_FROM,
-      maxAge: 5 * 60,
+      maxAge: 60 * 60 + 5 * 60,
       sendVerificationRequest: async ({
         identifier,
         url,
@@ -49,6 +49,9 @@ export const authOptions: NextAuthOptions = {
             headers: {
               "Content-Type": "application/json",
             },
+            body: JSON.stringify({
+              url,
+            }),
           }
         ).then((res) => res.json());
 
