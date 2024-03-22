@@ -51,7 +51,7 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       await signIn("email", {
         email: data.email.toLowerCase(),
         redirect: false,
-        callbackUrl: searchParams?.get("from") || "/verify-user",
+        callbackUrl: searchParams?.get("from") || "/dashboard",
       });
     } catch (error) {
       return toast({

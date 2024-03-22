@@ -60,6 +60,14 @@
         "email-sent": "An email has been sent to",
         "error": "Invalid code",
         "try-again": "Please check your email and try again"
+      },
+      "OnboardingAuth": {
+        "photo": "Profile picture",
+        "change-image": "Change image",
+        "name": "Full name",
+        "placeholderName": "Dali meksi",
+        "bio": "Bio",
+        "placeholderBio": "I'm a student at ..."
       }
     }
   }

@@ -58,6 +58,14 @@
         "email-sent": "Un e-mail a été envoyé à",
         "error": "Code invalide",
         "try-again": "S'il vous plaît, réessayez"
+      },
+      "OnboardingAuth": {
+        "photo": "Photo de profil",
+        "change-image": "Changer l'image",
+        "name": "Nom complet",
+        "placeholderName": "Dali meksi",
+        "bio": "Bio",
+        "placeholderBio": "Je suis étudiant à..."
       }
     }
   }

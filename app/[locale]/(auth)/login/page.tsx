@@ -2,9 +2,8 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 
-import { getCurrentUser } from "@lib/session";
-import { cn, verifyEmail } from "@/lib/utils";
-import { Link, redirect } from "@lib/navigation";
+import { Link } from "@lib/navigation";
+import { cn, verifyEmail } from "@lib/utils";
 
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";
@@ -18,17 +17,11 @@ export const metadata: Metadata = {
   title: "Se connecter à votre compte",
 };
 
-export default async function LoginPage({
+export default function LoginPage({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const user = await getCurrentUser();
-
-  if (user && user.role === "NOT_ASSIGNED") {
-    redirect("/onboarding");
-  }
-
   const t = useTranslations("Pages.Login");
   const email = searchParams.email as string;
 
