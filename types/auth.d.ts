@@ -32,3 +32,14 @@ export type TokenType = {
   passCode: string;
   verificationUrl: string;
 };
+
+export type UserType = {
+  id: string;
+  name: string?;
+  email: string?;
+  image: string?;
+  role: "NOT_ASSIGNED" | "STUDENT" | "TEACHER";
+  emailVerified: Date?;
+  createdAt: Date?;
+  updatedAt: Date?;
+};

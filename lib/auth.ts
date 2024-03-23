@@ -71,8 +71,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ token, session }) {
-      console.log("session", session);
-      console.log("token", token);
       if (token) {
         session.user.id = token.id;
         session.user.name = token.name;
@@ -102,6 +100,10 @@ export const authOptions: NextAuthOptions = {
             name: dbUser.name,
             image: dbUser.image,
             role: dbUser.role,
+            bio: dbUser.bio,
+            prefLang: dbUser.prefLang,
+            prefTheme: dbUser.prefTheme,
+            universitySlug: dbUser.universitySlug,
             emailVerified: dbUser.emailVerified,
             createdAt: dbUser.createdAt,
             updatedAt: dbUser.updatedAt,

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
-import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
 
-import { cn, verifyEmail } from "@/lib/utils";
+import { Link } from "@lib/navigation";
+import { cn, verifyEmail } from "@lib/utils";
 
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";

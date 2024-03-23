@@ -17,6 +17,9 @@
       "labelConditions": "Conditions d'utilisation",
       "labelAnd": "et",
       "labelPolicy": "Politique de confidentialité."
+    },
+    "Dashboard": {
+      "home": "Acceuil"
     }
   },
   "Components": {
@@ -58,6 +61,46 @@
         "email-sent": "Un e-mail a été envoyé à",
         "error": "Code invalide",
         "try-again": "S'il vous plaît, réessayez"
+      },
+      "OnboardingAuth": {
+        "photo": "Photo de profil",
+        "change-image": "Changer l'image",
+        "name": "Nom complet",
+        "placeholderName": "Dali meksi",
+        "bio": "Bio",
+        "placeholderBio": "Je suis étudiant à...",
+        "phone": "Appeler",
+        "email": "E-mail",
+        "submit": "Soumettre",
+        "role": "Rôle",
+        "placeholderRole": "Veuillez sélectionner votre rôle",
+        "student": "Étudiant",
+        "teacher": "Professeur",
+        "image-too-large": "L'image est trop grande",
+        "image-description-error": "Le taille de l'image doit être inférieure à 3 Mo"
+      }
+    },
+    "Display": {
+      "RoleBadge": {
+        "student": "Étudiant",
+        "teacher": "Professeur"
+      },
+      "StatusWidget": {
+        "operational": "Opérationnel",
+        "degraded-performance": "Dégradation des performances",
+        "partial-outage": "Panne partielle",
+        "major-outage": "Panne majeure",
+        "unknown": "Inconnu",
+        "incident": "Incident",
+        "under-maintenance": "En maintenance"
+      }
+    },
+    "Showcase": {
+      "UserDropdown": {
+        "account": "Compte",
+        "classrooms": "Classrooms",
+        "theme": "Theme",
+        "logout": "Se déconnecter"
       }
     }
   }

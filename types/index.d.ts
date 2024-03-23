@@ -27,5 +27,16 @@ export type EmailOption = {
   label: string;
   abbrev: string;
   value: string;
+  email: string;
+  phone: string;
+  avatarUrl: string;
+};
+
+export type University = {
+  label: string;
+  abbrev: string;
+  value: string;
+  email: string;
+  phone: string;
   avatarUrl: string;
 };

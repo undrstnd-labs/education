@@ -1,7 +1,17 @@
-export default function ExplorePage() {
+import { getCurrentUser } from "@lib/session";
+
+// TODO: Generate metadata from the translation file
+export const metadata = {
+  title: "Dashboard",
+};
+
+export default async function DashboardPage() {
+  const user = await getCurrentUser();
   return (
     <div>
-      <h1>Explore</h1>
+      <pre>
+        <code>{JSON.stringify(user, null, 2)}</code>
+      </pre>{" "}
     </div>
   );
 }
