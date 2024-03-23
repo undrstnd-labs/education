@@ -1,7 +1,13 @@
-export default function ExplorePage() {
+import { getCurrentUser } from "@lib/session";
+
+export default async function DashboardPage() {
+  const user = await getCurrentUser();
   return (
     <div>
-      <h1>Explore</h1>
-    </div>
+      <pre>
+        <code>
+          {JSON.stringify(user, null, 2)}
+        </code>
+      </pre>    </div>
   );
 }

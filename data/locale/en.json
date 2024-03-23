@@ -67,7 +67,16 @@
         "name": "Full name",
         "placeholderName": "Dali meksi",
         "bio": "Bio",
-        "placeholderBio": "I'm a student at ..."
+        "placeholderBio": "I'm a student at ...",
+        "phone": "Call",
+        "email": "Email",
+        "submit": "Submit",
+        "role": "Role",
+        "placeholderRole": "Please select your role",
+        "student": "Student",
+        "teacher": "Teacher",
+        "image-too-large": "Image is too large",
+        "image-description-error": "Please upload an image less than 3MB"
       }
     }
   }

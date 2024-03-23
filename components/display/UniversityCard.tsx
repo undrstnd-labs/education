@@ -1,7 +1,15 @@
-import { University } from "@/types";
-import { Icons } from "@component/icons/Lucide";
+import Image from "next/image";
 
-export function UniversityCard({ university }: { university: University }) {
+import { Icons } from "@component/icons/Lucide";
+import { University, TranslationFunction } from "@/types";
+
+export function UniversityCard({
+  university,
+  t,
+}: {
+  university: University;
+  t: TranslationFunction;
+}) {
   return (
     <div
       key={university.email}
@@ -18,10 +26,12 @@ export function UniversityCard({ university }: { university: University }) {
             {university.label}
           </p>
         </div>
-        <img
+        <Image
           className="h-10 w-10 flex-shrink-0 rounded-md bg-gray-300"
           src={university.avatarUrl}
-          alt=""
+          alt={university.label}
+          width={400}
+          height={600}
         />
       </div>
       <div>
@@ -35,7 +45,7 @@ export function UniversityCard({ university }: { university: University }) {
                 className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              Email
+              {t("email")}
             </a>
           </div>
           <div className="-ml-px flex w-0 flex-1">
@@ -47,7 +57,7 @@ export function UniversityCard({ university }: { university: University }) {
                 className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              Call
+              {t("phone")}
             </a>
           </div>
         </div>

@@ -13,6 +13,16 @@ enum Role {
   TEACHER
 }
 
+enum Theme {
+  LIGHT
+  DARK
+}
+
+enum Language {
+  EN
+  FR
+}
+
 model Account {
   id                String   @id @default(cuid())
   userId            String
@@ -49,11 +59,17 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
+  bio          String?
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+
   role          Role      @default(NOT_ASSIGNED)
+  universitySlug String?
+
+  prefTheme     Theme    @default(LIGHT)
+  prefLang      Language @default(FR)
 
   accounts  Account[]
   sessions  Session[]

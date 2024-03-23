@@ -11,6 +11,7 @@ export default async function OnboardingPage() {
 
   if (!user) {
     redirect("/login");
+    return null;
   }
 
   return (
@@ -46,7 +47,7 @@ export default async function OnboardingPage() {
             <LogoPNG className="mr-2 h-6 w-6" />
             Undrstnd
           </div>
-          <OnboardingAuthForm />
+          <OnboardingAuthForm user={user} />
         </div>
       </div>
     </div>

@@ -129,3 +129,13 @@ export function getTranslatedEmailOptions(
     },
   ];
 }
+
+export function fetchUniversityData({
+  email,
+  t,
+}: {
+  email: string;
+  t: TranslationFunction;
+}): EmailOption {
+  return getTranslatedEmailOptions(t).find((option) => option.value === email)!;
+}
