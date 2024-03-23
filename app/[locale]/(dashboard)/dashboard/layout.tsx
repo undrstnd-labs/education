@@ -21,10 +21,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@component/ui/DropdownMenu";
-import { Input } from "@component/ui/Input"
+import { Input } from "@component/ui/Input";
 import { buttonVariants, Button } from "@component/ui/Button";
-import { Sheet, SheetContent, SheetTrigger } from "@component/ui/Sheet"
-import { Avatar, AvatarFallback, AvatarImage } from "@component/ui/Avatar"
+import { Sheet, SheetContent, SheetTrigger } from "@component/ui/Sheet";
+import { Avatar, AvatarFallback, AvatarImage } from "@component/ui/Avatar";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -164,16 +164,16 @@ export default async function DashboardLayout({
               <Button variant="secondary" size="icon" className="rounded-full">
                 <Avatar className="h-9 w-9">
                   <AvatarImage src={user.image!} />
-                  <AvatarFallback>
-                    {user.name![0]}
-                  </AvatarFallback>
+                  <AvatarFallback>{user.name![0]}</AvatarFallback>
                 </Avatar>
                 <span className="sr-only">Toggle user menu</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-              <p className="text-sm text-muted-foreground px-2 -mt-2">{user.email}</p>
+              <p className="text-sm text-muted-foreground px-2 -mt-2">
+                {user.email}
+              </p>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Account</DropdownMenuItem>
               <DropdownMenuItem>Classrooms</DropdownMenuItem>
@@ -205,5 +205,5 @@ export default async function DashboardLayout({
         </main>
       </div>
     </div>
-  )
+  );
 }
