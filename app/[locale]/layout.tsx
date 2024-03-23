@@ -1,7 +1,7 @@
 import "@style/globals.css";
 
-import { GeistSans } from "geist/font";
 import { siteConfig } from "@config/site";
+import { GeistSans } from "geist/font/sans";
 import type { Viewport, Metadata } from "next";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 
@@ -97,7 +97,12 @@ export default function RootLayout({
       <head />
       <body className={GeistSans.className}>
         <NextIntlClientProvider messages={messages} locale={locale}>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             {children}
             <Toaster />
             <Analytics />

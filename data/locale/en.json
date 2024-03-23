@@ -9,7 +9,6 @@
       "labelNew": "New on the site?",
       "labelCreateAccount": "Create an account"
     },
-
     "Register": {
       "buttonConnection": "Log In",
       "registerTitle": "Create your account",
@@ -77,6 +76,29 @@
         "teacher": "Teacher",
         "image-too-large": "Image is too large",
         "image-description-error": "Please upload an image less than 3MB"
+      }
+    },
+    "Display": {
+      "RoleBadge": {
+        "student": "Student",
+        "teacher": "Teacher"
+      },
+      "StatusWidget": {
+        "operational": "Operational",
+        "degraded-performance": "Degraded Performance",
+        "partial-outage": "Partial Outage",
+        "major-outage": "Major Outage",
+        "unknown": "Unknown",
+        "incident": "Incident",
+        "under-maintenance": "nder Maintenance"
+      }
+    },
+    "Showcase": {
+      "UserDropdown": {
+        "account": "Account",
+        "classrooms": "Classrooms",
+        "theme": "Theme",
+        "logout": "Logout"
       }
     }
   }

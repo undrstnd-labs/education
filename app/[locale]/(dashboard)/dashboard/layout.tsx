@@ -1,7 +1,6 @@
 import { cn } from "@lib/utils";
-import { Link } from "@lib/navigation";
-import { redirect } from "@lib/navigation";
 import { getCurrentUser } from "@lib/session";
+import { Link, redirect } from "@lib/navigation";
 
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";
@@ -23,8 +22,12 @@ import {
 } from "@component/ui/DropdownMenu";
 import { Input } from "@component/ui/Input";
 import { buttonVariants, Button } from "@component/ui/Button";
+import { SignoutButton } from "@component/config/SignoutButton";
 import { Sheet, SheetContent, SheetTrigger } from "@component/ui/Sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@component/ui/Avatar";
+
+import { RoleBadge } from "@component/display/RoleBadge";
+import { UserDropdown } from "@component/showcase/UserDropdown";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -171,19 +174,10 @@ export default async function DashboardLayout({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-              <p className="text-sm text-muted-foreground px-2 -mt-2">
-                {user.email}
-              </p>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Account</DropdownMenuItem>
-              <DropdownMenuItem>Classrooms</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Theme</DropdownMenuItem>
-              <DropdownMenuItem>Language</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Operational</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <p className="text-sm text-muted-foreground px-2">{user.email}</p>
+              <RoleBadge role={user.role} />
+              <UserDropdown />
+              <SignoutButton />
             </DropdownMenuContent>
           </DropdownMenu>
         </header>

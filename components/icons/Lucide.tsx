@@ -13,9 +13,11 @@ import {
   Laptop,
   Loader2,
   Moon,
+  PencilIcon,
   MoreVertical,
   Pizza,
   Plus,
+  UserCogIcon,
   Settings,
   SunMedium,
   Trash,
@@ -26,6 +28,7 @@ import {
   MailIcon,
   BookOpenText,
   LucideIcon,
+  Monitor,
   Github,
   ChevronsUpDown,
 } from "lucide-react";
@@ -77,4 +80,8 @@ export const Icons = {
   chevronsUpDown: ChevronsUpDown,
   phone: PhoneIcon,
   mail: MailIcon,
+  pencil: PencilIcon,
+  student: PencilIcon,
+  teacher: UserCogIcon,
+  monitor: Monitor,
 };
