@@ -5,9 +5,8 @@ export default async function DashboardPage() {
   return (
     <div>
       <pre>
-        <code>
-          {JSON.stringify(user, null, 2)}
-        </code>
-      </pre>    </div>
+        <code>{JSON.stringify(user, null, 2)}</code>
+      </pre>{" "}
+    </div>
   );
 }

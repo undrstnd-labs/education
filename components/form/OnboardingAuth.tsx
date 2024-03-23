@@ -89,7 +89,7 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
       imageUrl = await manageAvatar(selectedImage, user.id);
       setImagePreviewUrl(imageUrl);
     } else {
-      imageUrl = `https://avatars.jakerunzer.com/${values.name}`
+      imageUrl = `https://avatars.jakerunzer.com/${values.name}`;
     }
 
     try {
