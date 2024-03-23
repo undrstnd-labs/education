@@ -71,7 +71,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ token, session }) {
-
       const dbUser = await db.user.findFirst({
         where: {
           email: session.user.email,
