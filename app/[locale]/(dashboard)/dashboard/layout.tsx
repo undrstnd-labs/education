@@ -162,7 +162,7 @@ export default async function DashboardLayout({
               </div>
             </form>
           </div>
-          <DropdownMenu>
+          <DropdownMenu >
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
                 <Avatar className="h-9 w-9">
@@ -172,7 +172,7 @@ export default async function DashboardLayout({
                 <span className="sr-only">Toggle user menu</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
+            <DropdownMenuContent align="end" className="min-w-[250px]">
               <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
               <p className="text-sm text-muted-foreground px-2">{user.email}</p>
               <RoleBadge role={user.role} />

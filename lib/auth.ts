@@ -71,12 +71,19 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ token, session }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.image;
-        session.user.role = token.role;
+
+      const dbUser = await db.user.findFirst({
+        where: {
+          email: session.user.email,
+        },
+      });
+
+      if (token && dbUser) {
+        session.user.id = dbUser.id;
+        session.user.name = dbUser.name;
+        session.user.email = dbUser.email;
+        session.user.image = dbUser.image;
+        session.user.role = dbUser.role;
       }
 
       return session;
