@@ -110,6 +110,7 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
       });
 
       router.push("/dashboard");
+      window.location.reload();
     } catch (error) {
       console.error(error);
       toast({
