@@ -1,6 +1,15 @@
 "use client";
 
 import { useTheme } from "next-themes";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@component/ui/Select";
 import { Icons } from "@component/icons/Lucide";
 
 type Theme = "dark" | "system" | "light";
@@ -25,24 +34,26 @@ export function ThemeSwitch() {
 
   return (
     <div className="flex items-center relative">
-      <select
-        className="text-xs border rounded-md appearance-none pl-6 pr-6 py-1.5 dark:bg-black outline-none capitalize w-full"
+      <Select
         defaultValue={theme}
-        onChange={(event) => setTheme(event.target.value)}
+        onValueChange={(value: Theme) => setTheme(value)}
       >
-        {themes.map((theme) => (
-          <option key={theme} value={theme}>
-            {theme}
-          </option>
-        ))}
-      </select>
+        <SelectTrigger className="w-full pl-6 pr-3 py-1.5 bg-transparent outline-none capitalize h-[32px] text-xs rounded-sm">
+          <SelectValue placeholder="Select theme" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {themes.map((theme) => (
+              <SelectItem key={theme} value={theme} className="capitalize">
+                {theme}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
 
       <div className="absolute left-2 pointer-events-none">
         <ThemeIcon currentTheme={theme as Theme} />
-      </div>
-
-      <div className="absolute right-2">
-        <Icons.chevronsUpDown size={12} />
       </div>
     </div>
   );
