@@ -59,31 +59,153 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
-  bio          String?
+  bio           String?
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
 
-  role          Role      @default(NOT_ASSIGNED)
+  role           Role    @default(NOT_ASSIGNED)
   universitySlug String?
 
-  prefTheme     Theme    @default(LIGHT)
-  prefLang      Language @default(FR)
+  prefTheme Theme    @default(LIGHT)
+  prefLang  Language @default(FR)
 
-  accounts  Account[]
-  sessions  Session[]
+  accounts Account[]
+  sessions Session[]
+  teacher  Teacher?
+  student  Student?
+
+  comments  Comment[]
+  reactions Reaction[]
 
   @@map(name: "users")
 }
 
+model Teacher {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  posts      Post[]
+  classrooms Classroom[]
+
+  @@map(name: "teachers")
+}
+
+model Student {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  files         File[]
+  classrooms    Classroom[]
+  conversations Conversation[]
+
+  @@map(name: "students")
+}
+
+model Classroom {
+  id        String  @id @default(cuid())
+  teacherId String  @unique
+  teacher   Teacher @relation(fields: [teacherId], references: [id])
+
+  posts    Post[]
+  students Student[]
+
+  @@map(name: "classrooms")
+}
+
+model Post {
+  id        String  @id @default(cuid())
+  teacherId String  @unique
+  teacher   Teacher @relation(fields: [teacherId], references: [id])
+
+  classroomId String?
+  Classroom   Classroom? @relation(fields: [classroomId], references: [id])
+
+  comments  Comment[]
+  reactions Reaction[]
+  sharedFiles SharedFile[]
+
+  @@map(name: "posts")
+}
+
+model SharedFile {
+  id     String @id @default(cuid())
+  postId String @unique
+  post   Post   @relation(fields: [postId], references: [id])
+  
+  name String
+  type String
+  size Int
+  url String
+
+  @@map(name: "shared_files")
+}
+
+model Comment {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  postId String?
+  post   Post?   @relation(fields: [postId], references: [id])
+
+  parentId String?
+  parent   Comment? @relation("Thread", fields: [parentId], references: [id])
+
+  reactions Reaction[]
+  replies   Comment[]  @relation("Thread")
+
+  @@map(name: "comments")
+}
+
+model Reaction {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  commentId String?
+  comment   Comment? @relation(fields: [commentId], references: [id])
+  postId    String?
+  post      Post?    @relation(fields: [postId], references: [id])
+
+  // Add a field to specify the type of reaction (like, dislike, etc.)
+  reactionType ReactionType
+
+  @@map(name: "reactions")
+}
+
+enum ReactionType {
+  LIKE
+  DISLIKE
+  // Add other reaction types as needed
+}
+
+model Conversation {
+  id        String  @id @default(cuid())
+  studentId String  @unique
+  student   Student @relation(fields: [studentId], references: [id])
+  // other fields
+
+  @@map(name: "conversations")
+}
+
+model File {
+  id        String  @id @default(cuid())
+  studentId String  @unique
+  student   Student @relation(fields: [studentId], references: [id])
+  // other fields
+
+  @@map(name: "files")
+}
 
 model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
-  
-  passCode   String?
+
+  passCode        String?
   verificationUrl String?
 
   @@unique([identifier, token])
