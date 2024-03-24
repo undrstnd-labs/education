@@ -162,7 +162,7 @@ export default async function DashboardLayout({
               </div>
             </form>
           </div>
-          <DropdownMenu >
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
                 <Avatar className="h-9 w-9">

@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         const passCode = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${identifier}`,
+          `${process.env.NEXTAUTH_URL}/api/auth/token/${identifier}`,
           {
             method: "PUT",
             headers: {
@@ -71,7 +71,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ token, session }) {
-
       const dbUser = await db.user.findFirst({
         where: {
           email: session.user.email,
