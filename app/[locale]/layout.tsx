@@ -9,6 +9,7 @@ import { Toaster } from "@component/ui/Toaster";
 import { Analytics } from "@component/config/Analytics";
 import { ThemeProvider } from "@component/config/ThemeProvider";
 import { TailwindIndicator } from "@component/config/TailwindIndicator";
+import { getTranslations } from "next-intl/server";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -24,65 +25,68 @@ export const viewport: Viewport = {
   ],
 };
 
-export const metadata: Metadata = {
-  title: {
-    default: "Undrstnd - Une meilleure expérience pour les étudiants",
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Auth",
-    "TypeScript",
-    "Langchain",
-    "Pinecon",
-    "Prisma",
-  ],
-  authors: [
-    {
-      name: "FindMalek",
-      url: "https://findmalek.com/",
+export async function generateMetadata() {
+  const t = await getTranslations("Metadata.Layout.PrincipalLayout");
+  return {
+    title: {
+      default: `${t("title")}`,
+      template: `%s | ${siteConfig.name}`,
     },
-    {
-      name: "Mohamed Amine Jguirim",
-      url: "#",
-    },
-  ],
-  creator: "FindMalek",
-  openGraph: {
-    type: "website",
-    locale: "fr_FR",
-    url: siteConfig.url,
-    title: siteConfig.name,
     description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
+    keywords: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Server Components",
+      "Auth",
+      "TypeScript",
+      "Langchain",
+      "Pinecon",
+      "Prisma",
+    ],
+    authors: [
       {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
+        name: "FindMalek",
+        url: "https://findmalek.com/",
+      },
+      {
+        name: "Mohamed Amine Jguirim",
+        url: "#",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: "@foundmalek",
-  },
-  icons: {
-    icon: "/favicons/favicon.ico",
-    shortcut: "/favicons/favicon-16x16.png",
-    apple: "/favicons/apple-touch-icon.png",
-  },
-  manifest: `${siteConfig.url}/site.webmanifest`,
-  metadataBase: new URL(siteConfig.url),
-};
+    creator: "FindMalek",
+    openGraph: {
+      type: "website",
+      locale: "fr_FR",
+      url: siteConfig.url,
+      title: siteConfig.name,
+      description: siteConfig.description,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteConfig.name,
+      description: siteConfig.description,
+      images: [siteConfig.ogImage],
+      creator: "@foundmalek",
+    },
+    icons: {
+      icon: "/favicons/favicon.ico",
+      shortcut: "/favicons/favicon-16x16.png",
+      apple: "/favicons/apple-touch-icon.png",
+    },
+    manifest: `${siteConfig.url}/site.webmanifest`,
+    metadataBase: new URL(siteConfig.url),
+  };
+}
 
 export default function RootLayout({
   children,

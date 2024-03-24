@@ -101,5 +101,23 @@
         "logout": "Logout"
       }
     }
+  },
+  "Metadata": {
+    "Layout": {
+      "PrincipalLayout": {
+        "title": "Undrstnd - A better experience for students"
+      }
+    },
+    "Pages": {
+      "Login": {
+        "title": "Log in to your account"
+      },
+      "Register": {
+        "title": "Create your account"
+      },
+      "Dashboard": {
+        "title": "Dashboard"
+      }
+    }
   }
 }

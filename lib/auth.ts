@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         const passCode = await fetch(
-          `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${identifier}`,
+          `${process.env.NEXTAUTH_URL}/api/auth/token/${identifier}`,
           {
             method: "PUT",
             headers: {

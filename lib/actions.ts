@@ -11,7 +11,7 @@ export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
   });
 
   const fetchToken = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/auth/token/${data.email}`
+    `${process.env.NEXTAUTH_URL}/api/auth/token/${data.email}`
   ).then((res) => res.json());
 
   return {

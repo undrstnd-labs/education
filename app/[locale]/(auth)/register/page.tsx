@@ -8,11 +8,13 @@ import { LogoPNG } from "@component/icons/Overall";
 import { buttonVariants } from "@component/ui/Button";
 import { PassCodeAuth } from "@component/form/PassCodeAuth";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
+import { getTranslations } from "next-intl/server";
 
 // TODO: Generate metadata from the translation file
-export const metadata = {
-  title: "Créer votre compte",
-};
+export async function generateMetadata() {
+  const t = await getTranslations("Metadata.Pages.Register");
+  return { title: `${t("title")}` };
+}
 
 export default function RegisterPage({
   searchParams,

@@ -103,5 +103,23 @@
         "logout": "Se déconnecter"
       }
     }
+  },
+  "Metadata": {
+    "Layout": {
+      "PrincipalLayout": {
+        "title": "Undrstnd - Une meilleure expérience pour les étudiants"
+      }
+    },
+    "Pages": {
+      "Login": {
+        "title": "Se connecter à votre compte"
+      },
+      "Register": {
+        "title": "Créer votre compte"
+      },
+      "Dashboard": {
+        "title": "Tableau de board"
+      }
+    }
   }
 }

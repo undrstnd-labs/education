@@ -11,11 +11,12 @@ import { LogoPNG } from "@component/icons/Overall";
 import { buttonVariants } from "@component/ui/Button";
 import { PassCodeAuth } from "@component/form/PassCodeAuth";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
+import { getTranslations } from "next-intl/server";
 
-// TODO: Generate metadata from the translation file
-export const metadata: Metadata = {
-  title: "Se connecter à votre compte",
-};
+export async function generateMetadata() {
+  const t = await getTranslations("Metadata.Pages.Login");
+  return { title: `${t("title")}` };
+}
 
 export default function LoginPage({
   searchParams,
