@@ -23,6 +23,15 @@ enum Language {
   FR
 }
 
+enum ReactionType {
+  LIKE
+  DISLIKE
+  LOVE
+  APPLAUSE
+  WOW
+  INSIGHTFUL
+}
+
 model Account {
   id                String   @id @default(cuid())
   userId            String
@@ -101,6 +110,7 @@ model Student {
   files         File[]
   classrooms    Classroom[]
   conversations Conversation[]
+  Message       Message[]
 
   @@map(name: "students")
 }
@@ -124,24 +134,46 @@ model Post {
   classroomId String?
   Classroom   Classroom? @relation(fields: [classroomId], references: [id])
 
-  comments  Comment[]
-  reactions Reaction[]
+  comments    Comment[]
+  reactions   Reaction[]
   sharedFiles SharedFile[]
 
   @@map(name: "posts")
 }
 
 model SharedFile {
-  id     String @id @default(cuid())
+  id String @id @default(cuid())
+
   postId String @unique
   post   Post   @relation(fields: [postId], references: [id])
-  
+
+  conversationId String       @unique
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
   name String
   type String
   size Int
-  url String
+  url  String
 
   @@map(name: "shared_files")
+}
+
+model File {
+  id String @id @default(cuid())
+
+  studentId String  @unique
+  student   Student @relation(fields: [studentId], references: [id])
+
+  conversationId String       @unique
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
+  name    String
+  type    String
+  size    Int
+  url     String
+  Message Message[]
+
+  @@map(name: "files")
 }
 
 model Comment {
@@ -170,34 +202,36 @@ model Reaction {
   postId    String?
   post      Post?    @relation(fields: [postId], references: [id])
 
-  // Add a field to specify the type of reaction (like, dislike, etc.)
-  reactionType ReactionType
+  reactionCount Int
+  reactionType  ReactionType
 
   @@map(name: "reactions")
-}
-
-enum ReactionType {
-  LIKE
-  DISLIKE
-  // Add other reaction types as needed
 }
 
 model Conversation {
   id        String  @id @default(cuid())
   studentId String  @unique
   student   Student @relation(fields: [studentId], references: [id])
-  // other fields
+
+  File       File?
+  SharedFile SharedFile?
 
   @@map(name: "conversations")
 }
 
-model File {
-  id        String  @id @default(cuid())
-  studentId String  @unique
-  student   Student @relation(fields: [studentId], references: [id])
-  // other fields
+model Message {
+  id   String @id @default(cuid())
+  text String @db.Text()
 
-  @@map(name: "files")
+  isUserMessage Boolean
+
+  studentId    String?
+  student   Student? @relation(fields: [studentId], references: [id])
+  fileId    String?
+  file      File?    @relation(fields: [fileId], references: [id])
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
 
 model VerificationToken {
