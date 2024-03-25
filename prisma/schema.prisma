@@ -13,16 +13,6 @@ enum Role {
   TEACHER
 }
 
-enum Theme {
-  LIGHT
-  DARK
-}
-
-enum Language {
-  EN
-  FR
-}
-
 enum ReactionType {
   LIKE
   DISLIKE
@@ -65,20 +55,16 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  bio           String?
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-
-  role           Role    @default(NOT_ASSIGNED)
+  id             String    @id @default(cuid())
+  name           String?
+  email          String?   @unique
+  bio            String?
+  emailVerified  DateTime?
+  image          String?
+  createdAt      DateTime  @default(now()) @map(name: "created_at")
+  updatedAt      DateTime  @default(now()) @map(name: "updated_at")
+  role           Role      @default(NOT_ASSIGNED)
   universitySlug String?
-
-  prefTheme Theme    @default(LIGHT)
-  prefLang  Language @default(FR)
 
   accounts Account[]
   sessions Session[]
@@ -89,6 +75,18 @@ model User {
   reactions Reaction[]
 
   @@map(name: "users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  passCode        String?
+  verificationUrl String?
+
+  @@unique([identifier, token])
+  @@map(name: "verification_tokens")
 }
 
 model Teacher {
@@ -132,46 +130,32 @@ model Post {
   teacher   Teacher @relation(fields: [teacherId], references: [id])
 
   classroomId String?
-  Classroom   Classroom? @relation(fields: [classroomId], references: [id])
+  classroom   Classroom? @relation(fields: [classroomId], references: [id])
 
-  comments    Comment[]
-  reactions   Reaction[]
-  sharedFiles SharedFile[]
+  comments  Comment[]
+  reactions Reaction[]
+  file      File[]
+
+  crcreatedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@map(name: "posts")
 }
 
-model SharedFile {
-  id String @id @default(cuid())
+model File {
+  id     String  @id @default(cuid())
+  postId String? @unique
+  post   Post?   @relation(fields: [postId], references: [id])
 
-  postId String @unique
-  post   Post   @relation(fields: [postId], references: [id])
+  studentId String?  @unique
+  student   Student? @relation(fields: [studentId], references: [id])
 
-  conversationId String       @unique
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversation Conversation[]
 
   name String
   type String
   size Int
   url  String
-
-  @@map(name: "shared_files")
-}
-
-model File {
-  id String @id @default(cuid())
-
-  studentId String  @unique
-  student   Student @relation(fields: [studentId], references: [id])
-
-  conversationId String       @unique
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
-
-  name    String
-  type    String
-  size    Int
-  url     String
-  Message Message[]
 
   @@map(name: "files")
 }
@@ -185,10 +169,10 @@ model Comment {
   post   Post?   @relation(fields: [postId], references: [id])
 
   parentId String?
-  parent   Comment? @relation("Thread", fields: [parentId], references: [id])
+  parent   Comment?  @relation("Thread", fields: [parentId], references: [id])
+  replies  Comment[] @relation("Thread")
 
   reactions Reaction[]
-  replies   Comment[]  @relation("Thread")
 
   @@map(name: "comments")
 }
@@ -209,12 +193,12 @@ model Reaction {
 }
 
 model Conversation {
-  id        String  @id @default(cuid())
-  studentId String  @unique
-  student   Student @relation(fields: [studentId], references: [id])
-
-  File       File?
-  SharedFile SharedFile?
+  id        String    @id @default(cuid())
+  studentId String    @unique
+  student   Student   @relation(fields: [studentId], references: [id])
+  fileId    String
+  file      File      @relation(fields: [fileId], references: [id])
+  messages  Message[]
 
   @@map(name: "conversations")
 }
@@ -225,23 +209,9 @@ model Message {
 
   isUserMessage Boolean
 
-  studentId    String?
-  student   Student? @relation(fields: [studentId], references: [id])
-  fileId    String?
-  file      File?    @relation(fields: [fileId], references: [id])
-
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-}
-
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  passCode        String?
-  verificationUrl String?
-
-  @@unique([identifier, token])
-  @@map(name: "verification_tokens")
+  studentId      String?
+  student        Student?      @relation(fields: [studentId], references: [id])
+  conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  conversationId String?
+  createdAt      DateTime      @default(now())
 }

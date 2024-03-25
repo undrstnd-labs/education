@@ -107,8 +107,6 @@ export const authOptions: NextAuthOptions = {
             image: dbUser.image,
             role: dbUser.role,
             bio: dbUser.bio,
-            prefLang: dbUser.prefLang,
-            prefTheme: dbUser.prefTheme,
             universitySlug: dbUser.universitySlug,
             emailVerified: dbUser.emailVerified,
             createdAt: dbUser.createdAt,
