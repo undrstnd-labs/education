@@ -92,7 +92,7 @@ model VerificationToken {
 model Teacher {
   id     String @id @default(cuid())
   userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   posts      Post[]
   classrooms Classroom[]
@@ -103,7 +103,7 @@ model Teacher {
 model Student {
   id     String @id @default(cuid())
   userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   files         File[]
   classrooms    Classroom[]
@@ -114,23 +114,31 @@ model Student {
 }
 
 model Classroom {
-  id        String  @id @default(cuid())
-  teacherId String  @unique
-  teacher   Teacher @relation(fields: [teacherId], references: [id])
+  id         String    @id @default(cuid())
+  name       String
+  bio        String?
+  teacherId  String
+  teacher    Teacher   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  isArchived Boolean   @default(false)
+  posts      Post[]
+  students   Student[]
 
-  posts    Post[]
-  students Student[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map(name: "classrooms")
 }
 
 model Post {
-  id        String  @id @default(cuid())
-  teacherId String  @unique
-  teacher   Teacher @relation(fields: [teacherId], references: [id])
+  id   String @id @default(cuid())
+  name String
+  text String
+
+  teacherId String  
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
 
   classroomId String?
-  classroom   Classroom? @relation(fields: [classroomId], references: [id])
+  classroom   Classroom? @relation(fields: [classroomId], references: [id], onDelete: Cascade)
 
   comments  Comment[]
   reactions Reaction[]
@@ -144,11 +152,11 @@ model Post {
 
 model File {
   id     String  @id @default(cuid())
-  postId String? @unique
-  post   Post?   @relation(fields: [postId], references: [id])
+  postId String? 
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  studentId String?  @unique
-  student   Student? @relation(fields: [studentId], references: [id])
+  studentId String?  
+  student   Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   conversation Conversation[]
 
@@ -161,15 +169,17 @@ model File {
 }
 
 model Comment {
-  id     String @id @default(cuid())
+  id   String @id @default(cuid())
+  text String
+
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   postId String?
-  post   Post?   @relation(fields: [postId], references: [id])
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   parentId String?
-  parent   Comment?  @relation("Thread", fields: [parentId], references: [id])
+  parent   Comment?  @relation("Thread", fields: [parentId], references: [id], onDelete: Cascade)
   replies  Comment[] @relation("Thread")
 
   reactions Reaction[]
@@ -180,11 +190,11 @@ model Comment {
 model Reaction {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   commentId String?
-  comment   Comment? @relation(fields: [commentId], references: [id])
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
   postId    String?
-  post      Post?    @relation(fields: [postId], references: [id])
+  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   reactionCount Int
   reactionType  ReactionType
@@ -194,10 +204,10 @@ model Reaction {
 
 model Conversation {
   id        String    @id @default(cuid())
-  studentId String    @unique
-  student   Student   @relation(fields: [studentId], references: [id])
+  studentId String    
+  student   Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
   fileId    String
-  file      File      @relation(fields: [fileId], references: [id])
+  file      File      @relation(fields: [fileId], references: [id], onDelete: Cascade)
   messages  Message[]
 
   @@map(name: "conversations")
@@ -210,8 +220,8 @@ model Message {
   isUserMessage Boolean
 
   studentId      String?
-  student        Student?      @relation(fields: [studentId], references: [id])
-  conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  student        Student?      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: Cascade)
   conversationId String?
   createdAt      DateTime      @default(now())
 }

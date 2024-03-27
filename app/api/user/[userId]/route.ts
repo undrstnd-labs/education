@@ -35,6 +35,20 @@ export async function PUT(
     },
   });
 
+  if (role === "TEACHER") {
+    const teacher = await db.teacher.create({
+      data: {
+        userId: params.userId,
+      },
+    });
+  }
+  if (role === "STUDENT") {
+    const student = await db.student.create({
+      data: {
+        userId: params.userId,
+      },
+    });
+  }
   return new Response(JSON.stringify(user), {
     headers: {
       "content-type": "application/json",

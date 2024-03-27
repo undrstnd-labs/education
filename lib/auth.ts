@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
     EmailProvider({
-      from: process.env.SMTP_FROM,
+      from: process.env.EMAIL_SENDER,
       maxAge: 60 * 60 + 5 * 60,
       sendVerificationRequest: async ({
         identifier,
