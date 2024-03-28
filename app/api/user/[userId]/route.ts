@@ -1,25 +1,8 @@
 import * as z from "zod";
-import { getServerSession } from "next-auth";
-
-import { db } from "@lib/prisma";
-import { authOptions } from "@lib/auth";
 import { NextResponse } from "next/server";
 
-async function verifyCurrentUser(userId: string) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return false;
-  }
-
-  const count = await db.user.count({
-    where: {
-      id: userId,
-    },
-  });
-
-  return count > 0;
-}
+import { db } from "@lib/prisma";
+import { verifyCurrentUser } from "@lib/session";
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -35,7 +18,10 @@ export async function PUT(
   const { name, email, bio, image, universitySlug, role } = await req.json();
 
   if (!(await verifyCurrentUser(params.userId))) {
-    return new Response(null, { status: 403 });
+    return NextResponse.json(
+      { message: "You are not authorized to update this user" },
+      { status: 403 }
+    );
   }
 
   const user = await db.user.update({
@@ -58,19 +44,19 @@ export async function PUT(
         userId: params.userId,
       },
     });
+
+    return NextResponse.json(teacher, { status: 200 });
   }
+
   if (role === "STUDENT") {
     const student = await db.student.create({
       data: {
         userId: params.userId,
       },
     });
+
+    return NextResponse.json(student, { status: 200 });
   }
-  return new Response(JSON.stringify(user), {
-    headers: {
-      "content-type": "application/json",
-    },
-  });
 }
 
 export async function DELETE(
@@ -90,9 +76,43 @@ export async function DELETE(
       },
     });
 
+    //FIXME: MAYBE delete from the students this classroom
+
     return NextResponse.json(user, { status: 200 });
   } catch (error: any) {
     console.log(error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function PATCH(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  const { params } = routeContextSchema.parse(context);
+  const { name, bio, image } = await req.json();
+
+  if (!(await verifyCurrentUser(params.userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to update this user" },
+      { status: 403 }
+    );
+  }
+
+  try {
+    const user = await db.user.update({
+      where: {
+        id: params.userId,
+      },
+      data: {
+        name,
+        bio,
+        image,
+      },
+    });
+
+    return NextResponse.json(user, { status: 200 });
+  } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

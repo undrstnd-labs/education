@@ -1,9 +1,9 @@
 import * as z from "zod";
-import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/session";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+
+import { db } from "@lib/prisma";
+import { getCurrentUser } from "@lib/session";
+import { verifyCurrentUser, verifyCurrentTeacher } from "@lib/session";
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -11,36 +11,7 @@ const routeContextSchema = z.object({
   }),
 });
 
-async function verifyCurrentTeacher(userId: string) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return false;
-  }
-  const count = await db.teacher.count({
-    where: {
-      userId,
-    },
-  });
-
-  return count > 0 && session.user.role === "TEACHER";
-}
-
-async function verifyCurrentUser(userId: string) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return false;
-  }
-  const count = await db.teacher.count({
-    where: {
-      userId,
-    },
-  });
-
-  return count > 0 && session.user.role !== "NOT_ASSIGNED";
-}
-
+// TODO: Make sure the user (teacher or student) is in the classroom and get all of the posts
 export async function GET(
   req: Request,
   context: z.infer<typeof routeContextSchema>
@@ -124,14 +95,14 @@ export async function POST(
       );
     }
 
-    const { name, text } = await req.json();
+    const { name, content } = await req.json();
     if (!name) {
       return NextResponse.json(
         { message: "Name is required" },
         { status: 400 }
       );
     }
-    if (!text) {
+    if (!content) {
       return NextResponse.json(
         { message: "Text is required" },
         { status: 400 }
@@ -140,7 +111,7 @@ export async function POST(
     const post = await db.post.create({
       data: {
         name,
-        text,
+        content,
         teacherId: teacher.id,
         classroomId,
       },

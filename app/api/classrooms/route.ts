@@ -1,89 +1,120 @@
-import * as z from "zod";
-import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/session";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-async function verifyCurrentTeacher(userId: string) {
-  const session = await getServerSession(authOptions);
+import { db } from "@lib/prisma";
+import { verifyCurrentUser, verifyCurrentTeacher } from "@lib/session";
 
-  if (!session) {
-    return false;
+export async function GET(req: Request) {
+  const { userId } = await req.json();
+
+  if (!(await verifyCurrentUser(userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to view this user" },
+      { status: 403 }
+    );
   }
-  const count = await db.teacher.count({
+
+  const user = await db.user.findUnique({
     where: {
-      userId,
+      id: userId,
     },
   });
 
-  return count > 0 && session.user.role === "TEACHER";
-}
+  if (!user) {
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
+  }
 
-export async function GET(req: Request) {
-  try {
-    const user = await getCurrentUser();
-    if (!(await verifyCurrentTeacher(user?.id!!))) {
-      return new Response(null, { status: 403 });
-    }
-
+  if (user.role === "TEACHER") {
     const teacher = await db.teacher.findUnique({
       where: {
-        userId: user?.id,
+        userId,
       },
     });
+
     if (!teacher) {
       return NextResponse.json(
         { message: "Teacher not found" },
         { status: 404 }
       );
     }
+
     const classrooms = await db.classroom.findMany({
       where: {
         teacherId: teacher.id,
       },
     });
+
     return NextResponse.json(classrooms, { status: 200 });
-  } catch (error: any) {
-    console.log(error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  if (user.role === "STUDENT") {
+    const student = await db.student.findUnique({
+      where: {
+        userId,
+      },
+    });
+
+    if (!student) {
+      return NextResponse.json(
+        { message: "Student not found" },
+        { status: 404 }
+      );
+    }
+
+    try {
+      const classrooms = await db.classroom.findMany({
+        where: {
+          teacherId: student.id,
+        },
+      });
+
+      return NextResponse.json(classrooms, { status: 200 });
+    } catch (error) {
+      return NextResponse.json(
+        { message: "Error fetching classrooms" },
+        { status: 500 }
+      );
+    }
   }
 }
 
 export async function POST(req: Request) {
+  const { userId, name, description } = await req.json();
+
+  if (!(await verifyCurrentTeacher(userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to create a classroom" },
+      { status: 403 }
+    );
+  }
+
+  const teacher = await db.teacher.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  if (!teacher) {
+    return NextResponse.json({ message: "Teacher not found" }, { status: 404 });
+  }
+
+  if (!name) {
+    return NextResponse.json({ message: "Name is required" }, { status: 400 });
+  }
+
   try {
-    const user = await getCurrentUser();
-    if (!(await verifyCurrentTeacher(user?.id!!))) {
-      return new Response(null, { status: 403 });
-    }
-    const teacher = await db.teacher.findUnique({
-      where: {
-        userId: user?.id,
-      },
-    });
-    if (!teacher) {
-      return NextResponse.json(
-        { message: "Teacher not found" },
-        { status: 404 }
-      );
-    }
-    const { name, bio } = await req.json();
-    if (!name) {
-      return NextResponse.json(
-        { message: "Name is required" },
-        { status: 400 }
-      );
-    }
     const classroom = await db.classroom.create({
       data: {
         name,
-        bio,
+        description,
         teacherId: teacher.id,
       },
     });
+
     return NextResponse.json(classroom, { status: 201 });
-  } catch (error: any) {
-    console.log(error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error creating classroom" },
+      { status: 500 }
+    );
   }
 }

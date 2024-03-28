@@ -1,7 +1,5 @@
 import { db } from "@lib/prisma";
-import nodemailer from "nodemailer";
 import { verifyEmail } from "@lib/utils";
-import { selectMailOptions } from "@lib/email-template";
 
 import { JWT } from "next-auth/jwt";
 import { NextAuthOptions } from "next-auth";
@@ -31,18 +29,6 @@ export const authOptions: NextAuthOptions = {
         url,
         provider: { server, from },
       }) => {
-        const mailTransporter = nodemailer.createTransport({
-          host: "smtp.gmail.com",
-          port: 587,
-          auth: {
-            user: process.env.EMAIL_SENDER,
-            pass: process.env.EMAIL_SERVER_PASSWORD,
-          },
-          tls: {
-            rejectUnauthorized: false,
-          },
-        });
-
         const passCode = await fetch(
           `${process.env.NEXTAUTH_URL}/api/auth/token/${identifier}`,
           {
@@ -56,16 +42,18 @@ export const authOptions: NextAuthOptions = {
           }
         ).then((res) => res.json());
 
-        try {
-          const mailOptions = selectMailOptions("magic-link", {
+        await fetch(`${process.env.NEXTAUTH_URL}/api/mailer`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: "magic-link",
             email: identifier,
             otp_link: url,
             passCode: passCode,
-          });
-          await mailTransporter.sendMail(mailOptions);
-        } catch (error) {
-          console.log("Error sending email:", error);
-        }
+          }),
+        }).then((res) => res.json());
       },
     }),
   ],

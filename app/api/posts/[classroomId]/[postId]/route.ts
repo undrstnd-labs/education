@@ -18,6 +18,7 @@ async function verifyCurrentTeacher(userId: string) {
   if (!session) {
     return false;
   }
+
   const count = await db.teacher.count({
     where: {
       userId,
@@ -119,16 +120,16 @@ export async function PUT(
         { status: 404 }
       );
     }
-    const { name, text } = await req.json();
+    const { name, content } = await req.json();
     if (!name) {
       return NextResponse.json(
         { message: "Name is required" },
         { status: 400 }
       );
     }
-    if (!text) {
+    if (!content) {
       return NextResponse.json(
-        { message: "Text is required" },
+        { message: "content is required" },
         { status: 400 }
       );
     }
@@ -139,7 +140,7 @@ export async function PUT(
       },
       data: {
         name,
-        text,
+        content,
       },
     });
 

@@ -1,9 +1,9 @@
 import * as z from "zod";
-import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/session";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+
+import { db } from "@lib/prisma";
+import { getCurrentUser } from "@lib/session";
+import { verifyCurrentUser, verifyCurrentTeacher } from "@lib/session";
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -11,37 +11,36 @@ const routeContextSchema = z.object({
   }),
 });
 
-async function verifyCurrentTeacher(userId: string) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return false;
-  }
-  const count = await db.teacher.count({
-    where: {
-      userId,
-    },
-  });
-
-  return count > 0 && session.user.role === "TEACHER";
-}
 export async function GET(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
-  try {
-    const {
-      params: { classroomId },
-    } = routeContextSchema.parse(context);
+  const { userId } = await req.json();
+  const {
+    params: { classroomId },
+  } = routeContextSchema.parse(context);
 
-    const user = await getCurrentUser();
-    if (!(await verifyCurrentTeacher(user?.id!!))) {
-      return new Response(null, { status: 403 });
-    }
+  if (!(await verifyCurrentUser(userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to view this user" },
+      { status: 403 }
+    );
+  }
 
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
+  }
+
+  if (user.role === "TEACHER") {
     const teacher = await db.teacher.findUnique({
       where: {
-        userId: user?.id,
+        userId,
       },
     });
 
@@ -52,17 +51,50 @@ export async function GET(
       );
     }
 
-    const classroom = await db.classroom.findUnique({
+    try {
+      const classroom = await db.classroom.findUnique({
+        where: {
+          id: classroomId,
+          teacherId: teacher.id,
+        },
+      });
+
+      return NextResponse.json(classroom, { status: 200 });
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+  }
+
+  if (user.role === "STUDENT") {
+    const student = await db.student.findUnique({
       where: {
-        id: classroomId,
-        teacherId: teacher.id,
+        userId,
       },
     });
 
-    return NextResponse.json(classroom, { status: 200 });
-  } catch (error: any) {
-    console.log(error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    if (!student) {
+      return NextResponse.json(
+        { message: "Student not found" },
+        { status: 404 }
+      );
+    }
+
+    try {
+      const classroom = await db.classroom.findUnique({
+        where: {
+          id: classroomId,
+          students: {
+            some: {
+              id: student.id,
+            },
+          },
+        },
+      });
+
+      return NextResponse.json(classroom, { status: 200 });
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
   }
 }
 
@@ -70,19 +102,32 @@ export async function PUT(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
-  try {
-    const {
-      params: { classroomId },
-    } = routeContextSchema.parse(context);
+  const { userId, name, description } = await req.json();
+  const {
+    params: { classroomId },
+  } = routeContextSchema.parse(context);
 
-    const user = await getCurrentUser();
-    if (!(await verifyCurrentTeacher(user?.id!!))) {
-      return new Response(null, { status: 403 });
-    }
+  if (!(await verifyCurrentTeacher(userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to update this classroom" },
+      { status: 403 }
+    );
+  }
 
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
+  }
+
+  if (user.role === "TEACHER") {
     const teacher = await db.teacher.findUnique({
       where: {
-        userId: user?.id,
+        userId,
       },
     });
 
@@ -93,30 +138,22 @@ export async function PUT(
       );
     }
 
-    const { name, bio } = await req.json();
+    try {
+      const classroom = await db.classroom.update({
+        where: {
+          id: classroomId,
+          teacherId: teacher.id,
+        },
+        data: {
+          name,
+          description,
+        },
+      });
 
-    if (!name) {
-      return NextResponse.json(
-        { message: "Name is required" },
-        { status: 400 }
-      );
+      return NextResponse.json(classroom, { status: 200 });
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
-
-    const classroom = await db.classroom.update({
-      where: {
-        id: classroomId,
-        teacherId: teacher.id,
-      },
-      data: {
-        name,
-        bio,
-      },
-    });
-
-    return NextResponse.json(classroom, { status: 200 });
-  } catch (error: any) {
-    console.log(error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
@@ -124,29 +161,39 @@ export async function DELETE(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
+  const { userId } = await req.json();
+  const {
+    params: { classroomId },
+  } = routeContextSchema.parse(context);
+
+  if (!(await verifyCurrentTeacher(userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to delete this classroom" },
+      { status: 403 }
+    );
+  }
+
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
+  }
+
+  const teacher = await db.teacher.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  if (!teacher) {
+    return NextResponse.json({ message: "Teacher not found" }, { status: 404 });
+  }
+
   try {
-    const {
-      params: { classroomId },
-    } = routeContextSchema.parse(context);
-
-    const user = await getCurrentUser();
-    if (!(await verifyCurrentTeacher(user?.id!!))) {
-      return new Response(null, { status: 403 });
-    }
-
-    const teacher = await db.teacher.findUnique({
-      where: {
-        userId: user?.id,
-      },
-    });
-
-    if (!teacher) {
-      return NextResponse.json(
-        { message: "Teacher not found" },
-        { status: 404 }
-      );
-    }
-
     const classroom = await db.classroom.delete({
       where: {
         id: classroomId,
@@ -154,11 +201,87 @@ export async function DELETE(
       },
     });
 
-    //Todo delete from the students this classroom
+    //FIXME: MAYBE delete from the students this classroom
+    const students = await db.student.findMany({
+      where: {
+        classrooms: {
+          some: {
+            id: classroomId,
+          },
+        },
+      },
+    });
+
+    for (const student of students) {
+      await db.student.update({
+        where: {
+          id: student.id,
+        },
+        data: {
+          classrooms: {
+            disconnect: {
+              id: classroomId,
+            },
+          },
+        },
+      });
+    }
 
     return NextResponse.json(classroom, { status: 200 });
   } catch (error: any) {
-    console.log(error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function PATCH(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  const { userId, isArchived } = await req.json();
+  const {
+    params: { classroomId },
+  } = routeContextSchema.parse(context);
+
+  if (!(await verifyCurrentTeacher(userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to archive this classroom" },
+      { status: 403 }
+    );
+  }
+
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    return NextResponse.json({ message: "User not found" }, { status: 404 });
+  }
+
+  const teacher = await db.teacher.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  if (!teacher) {
+    return NextResponse.json({ message: "Teacher not found" }, { status: 404 });
+  }
+
+  try {
+    const classroom = await db.classroom.update({
+      where: {
+        id: classroomId,
+        teacherId: teacher.id,
+      },
+      data: {
+        isArchived,
+      },
+    });
+
+    return NextResponse.json(classroom, { status: 200 });
+  } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

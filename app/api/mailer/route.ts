@@ -4,11 +4,7 @@ import { selectMailOptions } from "@lib/email-template";
 export async function POST(req: Request) {
   const body = await req.json();
 
-  if (
-    !process.env.EMAIL_SENDER ||
-    !process.env.EMAIL_SERVER_PASSWORD ||
-    !process.env.MAIN_EMAIL
-  ) {
+  if (!process.env.EMAIL_SENDER || !process.env.EMAIL_SERVER_PASSWORD) {
     return new Response(
       JSON.stringify({ error: "Server configuration error" }),
       {

@@ -16,3 +16,4 @@ export function cn(...inputs: ClassValue[]): string {
 export function verifyEmail(email: string): boolean {
   return emailSchema.safeParse({ email }).success;
 }
+

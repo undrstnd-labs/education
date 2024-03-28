@@ -22,6 +22,11 @@ enum ReactionType {
   INSIGHTFUL
 }
 
+enum MessageProvider {
+  USER
+  AI
+}
+
 model Account {
   id                String   @id @default(cuid())
   userId            String
@@ -61,18 +66,20 @@ model User {
   bio            String?
   emailVerified  DateTime?
   image          String?
-  createdAt      DateTime  @default(now()) @map(name: "created_at")
-  updatedAt      DateTime  @default(now()) @map(name: "updated_at")
   role           Role      @default(NOT_ASSIGNED)
   universitySlug String?
 
   accounts Account[]
   sessions Session[]
-  teacher  Teacher?
-  student  Student?
+
+  teacher Teacher?
+  student Student?
 
   comments  Comment[]
   reactions Reaction[]
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
 
   @@map(name: "users")
 }
@@ -108,20 +115,21 @@ model Student {
   files         File[]
   classrooms    Classroom[]
   conversations Conversation[]
-  Message       Message[]
 
   @@map(name: "students")
 }
 
 model Classroom {
-  id         String    @id @default(cuid())
+  id         String  @id @default(cuid())
   name       String
-  bio        String?
+  description        String?
+  
   teacherId  String
-  teacher    Teacher   @relation(fields: [teacherId], references: [id], onDelete: Cascade)
-  isArchived Boolean   @default(false)
-  posts      Post[]
-  students   Student[]
+  teacher    Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  isArchived Boolean @default(false)
+
+  posts    Post[]
+  students Student[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -130,39 +138,40 @@ model Classroom {
 }
 
 model Post {
-  id   String @id @default(cuid())
-  name String
-  text String
+  id      String @id @default(cuid())
+  name    String
+  content String
 
-  teacherId String  
+  teacherId String
   teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
 
-  classroomId String?
-  classroom   Classroom? @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+  classroomId String
+  classroom   Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
 
+  file      File[]
   comments  Comment[]
   reactions Reaction[]
-  file      File[]
 
-  crcreatedAt DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map(name: "posts")
 }
 
 model File {
-  id     String  @id @default(cuid())
-  postId String? 
+  id String @id @default(cuid())
+
+  postId String?
   post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
-  studentId String?  
+  studentId String?
   student   Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   conversation Conversation[]
 
+  size Int
   name String
   type String
-  size Int
   url  String
 
   @@map(name: "files")
@@ -175,53 +184,60 @@ model Comment {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  postId String?
-  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   parentId String?
-  parent   Comment?  @relation("Thread", fields: [parentId], references: [id], onDelete: Cascade)
   replies  Comment[] @relation("Thread")
+  parent   Comment?  @relation("Thread", fields: [parentId], references: [id], onDelete: Cascade)
 
   reactions Reaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map(name: "comments")
 }
 
 model Reaction {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  commentId String?
-  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  postId    String?
-  post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
-
-  reactionCount Int
+  id String @id @default(cuid())
+  
+  userId        String
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  commentId     String?
+  comment       Comment?     @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  
+  postId        String?
+  post          Post?        @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
   reactionType  ReactionType
-
-  @@map(name: "reactions")
+  
+  createdAt     DateTime     @default(now())
+  @@map(name: "reactions") 
 }
 
 model Conversation {
-  id        String    @id @default(cuid())
-  studentId String    
-  student   Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  fileId    String
-  file      File      @relation(fields: [fileId], references: [id], onDelete: Cascade)
-  messages  Message[]
+  id        String  @id @default(cuid())
+  studentId String
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  fileId String
+  file   File   @relation(fields: [fileId], references: [id], onDelete: Cascade)
+
+  messages Message[]
 
   @@map(name: "conversations")
 }
 
 model Message {
   id   String @id @default(cuid())
-  text String @db.Text()
+  text String
 
-  isUserMessage Boolean
-
-  studentId      String?
-  student        Student?      @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: Cascade)
   conversationId String?
-  createdAt      DateTime      @default(now())
+  conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  messageSource MessageProvider
+
+  createdAt DateTime @default(now())
 }
