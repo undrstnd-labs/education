@@ -3,6 +3,23 @@ import { getServerSession } from "next-auth";
 
 import { db } from "@lib/prisma";
 import { authOptions } from "@lib/auth";
+import { NextResponse } from "next/server";
+
+async function verifyCurrentUser(userId: string) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return false;
+  }
+
+  const count = await db.user.count({
+    where: {
+      id: userId,
+    },
+  });
+
+  return count > 0;
+}
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -56,18 +73,25 @@ export async function PUT(
   });
 }
 
-async function verifyCurrentUser(userId: string) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    return false;
+export async function DELETE(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  try {
+    const {
+      params: { userId },
+    } = routeContextSchema.parse(context);
+    if (!(await verifyCurrentUser(userId))) {
+      return new Response(null, { status: 403 });
+    }
+    const user = await db.user.delete({
+      where: {
+        id: userId,
+      },
+    });
+    return NextResponse.json(user, { status: 200 });
+  } catch (error: any) {
+    console.log(error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
-
-  const count = await db.user.count({
-    where: {
-      id: userId,
-    },
-  });
-
-  return count > 0;
 }

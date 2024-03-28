@@ -1,33 +1,50 @@
+import * as z from "zod";
+import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/session";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
+const routeContextSchema = z.object({
+  params: z.object({
+    classroomId: z.string(),
+  }),
+});
+
+async function verifyCurrentTeacher(userId: string) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return false;
+  }
+  const count = await db.teacher.count({
+    where: {
+      userId,
+    },
+  });
+
+  return count > 0 && session.user.role === "TEACHER";
+}
 export async function GET(
   req: Request,
-  { params: { classroomId } }: { params: { classroomId: string } }
+  context: z.infer<typeof routeContextSchema>
 ) {
   try {
-    if (!classroomId)
-      return NextResponse.json(
-        { message: "Classroom Id is required" },
-        { status: 400 }
-      );
+    const {
+      params: { classroomId },
+    } = routeContextSchema.parse(context);
 
     const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    if (!(await verifyCurrentTeacher(user?.id!!))) {
+      return new Response(null, { status: 403 });
     }
-    if (user.role !== "TEACHER") {
-      return NextResponse.json(
-        { message: "Only teacher can make this request" },
-        { status: 401 }
-      );
-    }
+
     const teacher = await db.teacher.findUnique({
       where: {
-        userId: user.id,
+        userId: user?.id,
       },
     });
+
     if (!teacher) {
       return NextResponse.json(
         { message: "Teacher not found" },
@@ -41,6 +58,7 @@ export async function GET(
         teacherId: teacher.id,
       },
     });
+
     return NextResponse.json(classroom, { status: 200 });
   } catch (error: any) {
     console.log(error);
@@ -50,43 +68,40 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params: { classroomId } }: { params: { classroomId: string } }
+  context: z.infer<typeof routeContextSchema>
 ) {
   try {
-    if (!classroomId)
-      return NextResponse.json(
-        { message: "Classroom Id is required" },
-        { status: 400 }
-      );
+    const {
+      params: { classroomId },
+    } = routeContextSchema.parse(context);
 
     const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    if (!(await verifyCurrentTeacher(user?.id!!))) {
+      return new Response(null, { status: 403 });
     }
-    if (user.role !== "TEACHER") {
-      return NextResponse.json(
-        { message: "Only teacher can make this request" },
-        { status: 401 }
-      );
-    }
+
     const teacher = await db.teacher.findUnique({
       where: {
-        userId: user.id,
+        userId: user?.id,
       },
     });
+
     if (!teacher) {
       return NextResponse.json(
         { message: "Teacher not found" },
         { status: 404 }
       );
     }
+
     const { name, bio } = await req.json();
+
     if (!name) {
       return NextResponse.json(
         { message: "Name is required" },
         { status: 400 }
       );
     }
+
     const classroom = await db.classroom.update({
       where: {
         id: classroomId,
@@ -97,6 +112,7 @@ export async function PUT(
         bio,
       },
     });
+
     return NextResponse.json(classroom, { status: 200 });
   } catch (error: any) {
     console.log(error);
@@ -106,42 +122,38 @@ export async function PUT(
 
 export async function DELETE(
   req: Request,
-  { params: { classroomId } }: { params: { classroomId: string } }
+  context: z.infer<typeof routeContextSchema>
 ) {
   try {
-    if (!classroomId)
-      return NextResponse.json(
-        { message: "Classroom Id is required" },
-        { status: 400 }
-      );
+    const {
+      params: { classroomId },
+    } = routeContextSchema.parse(context);
 
     const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    if (!(await verifyCurrentTeacher(user?.id!!))) {
+      return new Response(null, { status: 403 });
     }
-    if (user.role !== "TEACHER") {
-      return NextResponse.json(
-        { message: "Only teacher can make this request" },
-        { status: 401 }
-      );
-    }
+
     const teacher = await db.teacher.findUnique({
       where: {
-        userId: user.id,
+        userId: user?.id,
       },
     });
+
     if (!teacher) {
       return NextResponse.json(
         { message: "Teacher not found" },
         { status: 404 }
       );
     }
+
     const classroom = await db.classroom.delete({
       where: {
         id: classroomId,
         teacherId: teacher.id,
       },
     });
+
     //Todo delete from the students this classroom
 
     return NextResponse.json(classroom, { status: 200 });
