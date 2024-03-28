@@ -89,6 +89,7 @@ export async function DELETE(
         id: userId,
       },
     });
+
     return NextResponse.json(user, { status: 200 });
   } catch (error: any) {
     console.log(error);
