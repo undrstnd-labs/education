@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import { db } from "@lib/prisma";
 import { getCurrentUser } from "@lib/session";
-import { verifyCurrentUser, verifyCurrentTeacher } from "@lib/session";
+import { verifyCurrentTeacher } from "@lib/session";
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -18,19 +18,8 @@ export async function GET(
   const {
     params: { classroomId },
   } = routeContextSchema.parse(context);
-  const currentUser = await getCurrentUser();
-  if (!(await verifyCurrentUser(currentUser?.id!))) {
-    return NextResponse.json(
-      { message: "You are not authorized to view this user" },
-      { status: 403 }
-    );
-  }
 
-  const user = await db.user.findUnique({
-    where: {
-      id: currentUser?.id,
-    },
-  });
+  const user = await getCurrentUser();
 
   if (!user) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
@@ -123,36 +112,31 @@ export async function PUT(
     return NextResponse.json({ message: "User not found" }, { status: 404 });
   }
 
-  if (user.role === "TEACHER") {
-    const teacher = await db.teacher.findUnique({
+  const teacher = await db.teacher.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  if (!teacher) {
+    return NextResponse.json({ message: "Teacher not found" }, { status: 404 });
+  }
+
+  try {
+    const classroom = await db.classroom.update({
       where: {
-        userId,
+        id: classroomId,
+        teacherId: teacher.id,
+      },
+      data: {
+        name,
+        description,
       },
     });
 
-    if (!teacher) {
-      return NextResponse.json(
-        { message: "Teacher not found" },
-        { status: 404 }
-      );
-    }
-
-    try {
-      const classroom = await db.classroom.update({
-        where: {
-          id: classroomId,
-          teacherId: teacher.id,
-        },
-        data: {
-          name,
-          description,
-        },
-      });
-
-      return NextResponse.json(classroom, { status: 200 });
-    } catch (error: any) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
+    return NextResponse.json(classroom, { status: 200 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 

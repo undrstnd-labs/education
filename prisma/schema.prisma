@@ -148,7 +148,7 @@ model Post {
   classroomId String
   classroom   Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
 
-  file      File[]
+  files      File[]
   comments  Comment[]
   reactions Reaction[]
 
