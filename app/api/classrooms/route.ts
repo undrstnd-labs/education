@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
 
 import { db } from "@lib/prisma";
-import { verifyCurrentUser, verifyCurrentTeacher } from "@lib/session";
+import {
+  verifyCurrentUser,
+  verifyCurrentTeacher,
+  getCurrentUser,
+} from "@lib/session";
 
 export async function GET(req: Request) {
-  const { userId } = await req.json();
-
-  if (!(await verifyCurrentUser(userId))) {
+  const currentUser = await getCurrentUser();
+  if (!(await verifyCurrentUser(currentUser?.id!))) {
     return NextResponse.json(
       { message: "You are not authorized to view this user" },
       { status: 403 }
@@ -15,7 +18,7 @@ export async function GET(req: Request) {
 
   const user = await db.user.findUnique({
     where: {
-      id: userId,
+      id: currentUser?.id,
     },
   });
 
@@ -26,7 +29,7 @@ export async function GET(req: Request) {
   if (user.role === "TEACHER") {
     const teacher = await db.teacher.findUnique({
       where: {
-        userId,
+        userId: user.id,
       },
     });
 
@@ -49,7 +52,7 @@ export async function GET(req: Request) {
   if (user.role === "STUDENT") {
     const student = await db.student.findUnique({
       where: {
-        userId,
+        userId: user.id,
       },
     });
 
@@ -63,7 +66,11 @@ export async function GET(req: Request) {
     try {
       const classrooms = await db.classroom.findMany({
         where: {
-          teacherId: student.id,
+          students: {
+            some: {
+              id: student.id,
+            },
+          },
         },
       });
 

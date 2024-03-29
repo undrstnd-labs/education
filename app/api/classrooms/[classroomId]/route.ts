@@ -15,12 +15,11 @@ export async function GET(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
-  const { userId } = await req.json();
   const {
     params: { classroomId },
   } = routeContextSchema.parse(context);
-
-  if (!(await verifyCurrentUser(userId))) {
+  const currentUser = await getCurrentUser();
+  if (!(await verifyCurrentUser(currentUser?.id!))) {
     return NextResponse.json(
       { message: "You are not authorized to view this user" },
       { status: 403 }
@@ -29,7 +28,7 @@ export async function GET(
 
   const user = await db.user.findUnique({
     where: {
-      id: userId,
+      id: currentUser?.id,
     },
   });
 
@@ -40,7 +39,7 @@ export async function GET(
   if (user.role === "TEACHER") {
     const teacher = await db.teacher.findUnique({
       where: {
-        userId,
+        userId: user.id,
       },
     });
 
@@ -68,7 +67,7 @@ export async function GET(
   if (user.role === "STUDENT") {
     const student = await db.student.findUnique({
       where: {
-        userId,
+        userId: user.id,
       },
     });
 
