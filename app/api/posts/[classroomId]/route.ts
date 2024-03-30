@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import { db } from "@lib/prisma";
 import { getCurrentUser } from "@lib/session";
-import { verifyCurrentTeacher, verifyCurrentUser } from "@lib/session";
+import { verifyCurrentTeacher } from "@lib/session";
 
 const routeContextSchema = z.object({
   params: z.object({

@@ -120,10 +120,10 @@ model Student {
 }
 
 model Classroom {
-  id         String  @id @default(cuid())
-  name       String
-  description        String?
-  
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+
   teacherId  String
   teacher    Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   isArchived Boolean @default(false)
@@ -148,7 +148,7 @@ model Post {
   classroomId String
   classroom   Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
 
-  files      File[]
+  files     File[]
   comments  Comment[]
   reactions Reaction[]
 
@@ -201,20 +201,21 @@ model Comment {
 
 model Reaction {
   id String @id @default(cuid())
-  
-  userId        String
-  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  commentId     String?
-  comment       Comment?     @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  
-  postId        String?
-  post          Post?        @relation(fields: [postId], references: [id], onDelete: Cascade)
-  
-  reactionType  ReactionType
-  
-  createdAt     DateTime     @default(now())
-  @@map(name: "reactions") 
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  commentId String?
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  postId String?
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  reactionType ReactionType
+
+  createdAt DateTime @default(now())
+
+  @@map(name: "reactions")
 }
 
 model Conversation {
@@ -222,8 +223,8 @@ model Conversation {
   studentId String
   student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
-  fileId String
-  file   File   @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  fileId String?
+  file   File?   @relation(fields: [fileId], references: [id], onDelete: Cascade)
 
   messages Message[]
 
@@ -234,8 +235,8 @@ model Message {
   id   String @id @default(cuid())
   text String
 
-  conversationId String?
-  conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
   messageSource MessageProvider
 
