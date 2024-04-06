@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from "@component/ui/Select";
 import { Input } from "@component/ui/Input";
-import { buttonVariants } from "@component/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import { Textarea } from "@component/ui/Textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@component/ui/Avatar";
 
@@ -43,6 +43,7 @@ const formSchema = z.object({
   role: z.union([z.literal("STUDENT"), z.literal("TEACHER")]),
 });
 
+//FIXME: Create a Student and Teacher entities
 export function OnboardingAuthForm({ user }: { user: UserType }) {
   const { toast } = useToast();
   const router = useRouter();

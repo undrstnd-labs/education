@@ -76,6 +76,15 @@
         "teacher": "Teacher",
         "image-too-large": "Image is too large",
         "image-description-error": "Please upload an image less than 3MB"
+      },
+      "Prompt": {
+        "new-chat": "New Chat",
+        "send-message": "Send message"
+      },
+      "ChatPanel": {
+        "stop-generating": "Stop generating",
+        "regenerate": "Regenerate response",
+        "share": "Share"
       }
     },
     "Display": {
@@ -91,6 +100,20 @@
         "unknown": "Unknown",
         "incident": "Incident",
         "under-maintenance": "nder Maintenance"
+      },
+      "Chat": {
+        "placeholder": "Type a message",
+        "send": "Send"
+      },
+      "ChatHistory": {
+        "title": "Chat History",
+        "newChat": "New Chat"
+      },
+      "SidebarList": {
+        "no-chats": "No chat history"
+      },
+      "SidebarItem": {
+        "shared-chat": "This is a shared chat."
       }
     },
     "Showcase": {
@@ -99,6 +122,36 @@
         "classrooms": "Classrooms",
         "theme": "Theme",
         "logout": "Logout"
+      },
+      "ClearHistory": {
+        "clear-history": "Clear History",
+        "clear-history-title": "Are you sure you want to clear the chat history?",
+        "clear-history-description": "This will permanently delete your chat history and remove your data from our servers.",
+        "cancel": "Cancel",
+        "clear-history-confirm": "Confirm",
+        "clear-history-failed": "Failed to clear chat history"
+      },
+      "SidebarActions": {
+        "share-chat": "Share chat",
+        "delete-chat": "Delete chat",
+        "delete-chat-title": "Are you sure you want to delete this chat?",
+        "delete-chat-description": "This will permanently delete your chat message and remove your data from our servers.",
+        "cancel": "Cancel",
+        "delete-chat-confirm": "Confirm",
+        "delete-chat-error": "Failed to delete chat",
+        "delete-chat-success": "Chat deleted successfully"
+      },
+      "ChatShareDialog": {
+        "toast-error-title": "Could not copy share link to clipboard",
+        "toast-success-title": "Share link copied to clipboard",
+        "share-title": "Share link to chat",
+        "share-description": "Anyone with the URL will be able to view the shared chat.",
+        "sharing": "Sharing",
+        "copy": "Copy link"
+      },
+      "ChatFooter": {
+        "footer-text-1": "can make mistakes. Consider reading the",
+        "footer-text-2": "to understand how it works."
       }
     }
   },
@@ -117,6 +170,9 @@
       },
       "Dashboard": {
         "title": "Dashboard"
+      },
+      "Chat": {
+        "title": "Chat"
       }
     }
   }

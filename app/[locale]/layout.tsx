@@ -88,7 +88,7 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({
+export default function PrincipalLayout({
   children,
   params: { locale },
 }: {

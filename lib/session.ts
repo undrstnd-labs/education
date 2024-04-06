@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth/next";
 
 import { db } from "@lib/prisma";
 import { authOptions } from "@lib/auth";
+import { redirect } from "@lib/navigation";
+import { NextAuthUser } from "@/types/auth";
 
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
@@ -10,7 +12,7 @@ export async function getCurrentUser() {
 }
 
 export async function verifyCurrentUser(userId: string) {
-  const session = await getServerSession(authOptions);
+  const session = await getCurrentUser();
 
   if (!session) {
     return false;
@@ -32,7 +34,7 @@ export async function verifyCurrentUser(userId: string) {
 }
 
 export async function verifyCurrentTeacher(userId: string) {
-  const session = await getServerSession(authOptions);
+  const session = await getCurrentUser();
 
   if (!session) {
     return false;
@@ -48,7 +50,7 @@ export async function verifyCurrentTeacher(userId: string) {
 }
 
 export async function verifyCurrentStudent(userId: string) {
-  const session = await getServerSession(authOptions);
+  const session = await getCurrentUser();
 
   if (!session) {
     return false;
@@ -61,4 +63,26 @@ export async function verifyCurrentStudent(userId: string) {
   });
 
   return studentCount > 0;
+}
+
+export async function userAuthentificateVerification(
+  user: NextAuthUser,
+  allowedRoles?: string
+) {
+  if (!user) {
+    redirect("/login");
+    return false;
+  }
+
+  if (user.role === "NOT_ASSIGNED") {
+    redirect("/onboarding");
+    return false;
+  }
+
+  if (user.role !== allowedRoles) {
+    redirect("/dashboard");
+    return false;
+  }
+
+  return true;
 }
