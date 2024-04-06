@@ -70,6 +70,7 @@ export async function GET(
     try {
       const classroom = await db.classroom.findUnique({
         where: {
+          isArchived: false,
           id: classroomId,
           students: {
             some: {

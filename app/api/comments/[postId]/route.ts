@@ -16,18 +16,7 @@ export async function GET(
   const {
     params: { postId },
   } = routeContextSchema.parse(context);
-  const currentUser = await getCurrentUser();
-  if (!(await verifyCurrentUser(currentUser?.id!))) {
-    return NextResponse.json(
-      { message: "You are not authorized to view this user" },
-      { status: 403 }
-    );
-  }
-  const user = await db.user.findUnique({
-    where: {
-      id: currentUser?.id,
-    },
-  });
+  const user = await getCurrentUser();
 
   if (!user) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });

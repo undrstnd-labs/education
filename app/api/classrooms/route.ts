@@ -50,6 +50,7 @@ export async function GET(req: Request) {
     try {
       const classrooms = await db.classroom.findMany({
         where: {
+          isArchived: false,
           students: {
             some: {
               id: student.id,
