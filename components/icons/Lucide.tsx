@@ -31,6 +31,10 @@ import {
   Monitor,
   Github,
   ChevronsUpDown,
+  MoreHorizontal,
+  EditIcon,
+  ArchiveRestore,
+  TrashIcon,
 } from "lucide-react";
 
 import {
@@ -84,4 +88,8 @@ export const Icons = {
   student: PencilIcon,
   teacher: UserCogIcon,
   monitor: Monitor,
+  moreHorizontal: MoreHorizontal,
+  editClassroom: EditIcon,
+  archiveClassroom: ArchiveRestore,
+  deleteClassroom: TrashIcon,
 };

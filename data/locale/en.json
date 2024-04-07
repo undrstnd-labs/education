@@ -18,6 +18,21 @@
       "labelConditions": "Terms of Service",
       "labelAnd": "and",
       "labelPolicy": "Privacy Policy."
+    },
+    "Classroom": {
+      "buttonCreate": "Create classroom",
+      "formSchemaNameMessage": "Classroom name must be at least 4 characters.",
+      "toastTitleAddClassroom": "Classroom created successfully",
+      "toastDescriptionAddClassroom": "You have successfully created a classroom.",
+      "toastTitleUpdateClassroom": "Classroom updated successfully",
+      "toastDescriptionUpdateClassroom": "You have successfully updated a classroom.",
+      "formTitleAddClassroom": "Create Classroom",
+      "formTitleUpdateClassroom": "Update Classroom",
+      "formLabelClassroomName": "Classroom Name",
+      "formLabelClassroomDescription": "Classroom Description",
+      "formClassroomNamePlaceholder": "Enter your classroom name here",
+      "formClassroomDescriptionPlaceholder": "Enter your classroom name here",
+      "formClassroomButton": "Submit"
     }
   },
   "Components": {
@@ -91,6 +106,22 @@
         "unknown": "Unknown",
         "incident": "Incident",
         "under-maintenance": "nder Maintenance"
+      },
+      "ClassroomCardOptions": {
+        "classroomOption": "Classroom Options",
+        "editClassroom": "Edit ",
+        "deleteClassroom": "Delete",
+        "archiveClassroom": "Archive",
+        "alertDialogTitleArchive": "Are you sure you want to archive?",
+        "alertDialogDescriptionArchive": "This action can be undone. This will archive the classroom and hide it from the list of the students.",
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your classroom.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm",
+        "toastDescriptionDeleteClassroom": "You have successfully deleted a classroom.",
+        "toastTitleDeleteClassroom": "Classroom deleted",
+        "toastDescriptionArchiveClassroom": "You have successfully archived a classroom.",
+        "toastTitleArchiveClassroom": "Classroom archived avec succès"
       }
     },
     "Showcase": {
@@ -98,7 +129,13 @@
         "account": "Account",
         "classrooms": "Classrooms",
         "theme": "Theme",
+        "language": "Language",
         "logout": "Logout"
+      }
+    },
+    "Config": {
+      "LanguageSwitch": {
+        "locale": "{locale, select, en {English} fr {Frensh} other {Unknown}}"
       }
     }
   },

@@ -20,6 +20,21 @@
     },
     "Dashboard": {
       "home": "Acceuil"
+    },
+    "Classroom": {
+      "buttonCreate": "Créer classroom",
+      "formSchemaNameMessage": "Le nom de la classroom doit comporter au moins 4 caractères.",
+      "toastTitleAddClassroom": "Classroom créé avec succès",
+      "toastDescriptionAddClassroom": "Vous avez créé avec succès un classroom.",
+      "toastTitleUpdateClassroom": "Classroom modifié avec succès",
+      "toastDescriptionUpdateClassroom": "Vous avez modifié avec succès un classroom.",
+      "formTitleAddClassroom": "Créer Classroom",
+      "formTitleUpdateClassroom": "Modifier Classroom",
+      "formLabelClassroomName": "Nom du classroom",
+      "formLabelClassroomDescription": "Description du classroom",
+      "formClassroomNamePlaceholder": "Entrez le nom de votre classroom ici",
+      "formClassroomDescriptionPlaceholder": "Entrez la description de votre classroom ici",
+      "formClassroomButton": "Soumettre"
     }
   },
   "Components": {
@@ -93,6 +108,22 @@
         "unknown": "Inconnu",
         "incident": "Incident",
         "under-maintenance": "En maintenance"
+      },
+      "ClassroomCardOptions": {
+        "classroomOption": "Options de classroom",
+        "editClassroom": "Modifier",
+        "deleteClassroom": "Supprimer",
+        "archiveClassroom": "Archiver",
+        "alertDialogTitleArchive": "Êtes-vous sûr de vouloir archiver?",
+        "alertDialogDescriptionArchive": "Cette action peut être annulée. Cela archivera la classroom et la masquera de la liste des étudiants.",
+        "alertDialogTitleDelete": "Êtes-vous sûr que vous voulez supprimer?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre classroom. ",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer",
+        "toastDescriptionDeleteClassroom": "Vous avez supprimer avec succès un classroom.",
+        "toastTitleDeleteClassroom": "Classroom supprimé avec succès",
+        "toastDescriptionArchiveClassroom": "Vous avez archiver avec succès un classroom.",
+        "toastTitleArchiveClassroom": "Classroom archivé avec succès"
       }
     },
     "Showcase": {
@@ -100,7 +131,13 @@
         "account": "Compte",
         "classrooms": "Classrooms",
         "theme": "Theme",
+        "language": "Langue",
         "logout": "Se déconnecter"
+      }
+    },
+    "Config": {
+      "LanguageSwitch": {
+        "locale": "{locale, select, en {Anglais} fr {Français} other {Unknown}}"
       }
     }
   },
