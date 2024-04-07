@@ -3,7 +3,7 @@ import { getCurrentUser } from "@lib/session";
 import { Link, redirect } from "@lib/navigation";
 
 import { LogoPNG } from "@component/icons/Overall";
-import { buttonVariants } from "@component/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import { OnboardingAuthForm } from "@component/form/OnboardingAuth";
 
 export default async function OnboardingPage() {

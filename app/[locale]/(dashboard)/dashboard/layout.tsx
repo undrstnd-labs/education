@@ -1,6 +1,7 @@
 import { cn } from "@lib/utils";
-import { getCurrentUser } from "@lib/session";
-import { Link, redirect } from "@lib/navigation";
+import { Link } from "@lib/navigation";
+import { NextAuthUser } from "@/types/auth";
+import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
 
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";
@@ -12,39 +13,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@component/ui/Card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@component/ui/DropdownMenu";
 import { Input } from "@component/ui/Input";
-import { buttonVariants, Button } from "@component/ui/Button";
-import { SignoutButton } from "@component/config/SignoutButton";
+import { UserMenu } from "@/components/display/UserMenu";
+import { buttonVariants, Button } from "@/components/ui/Button";
 import { Sheet, SheetContent, SheetTrigger } from "@component/ui/Sheet";
-import { Avatar, AvatarFallback, AvatarImage } from "@component/ui/Avatar";
-
-import { RoleBadge } from "@component/display/RoleBadge";
-import { UserDropdown } from "@component/showcase/UserDropdown";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
+//FIXME: Rename this to feed instead of Dashboard to make more sense
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
   const user = await getCurrentUser();
 
-  if (!user) {
-    redirect("/login");
-    return null;
-  }
-
-  if (user.role === "NOT_ASSIGNED") {
-    redirect("/onboarding");
+  if (!user || !userAuthentificateVerification(user as NextAuthUser)) {
     return null;
   }
 
@@ -162,32 +146,10 @@ export default async function DashboardLayout({
               </div>
             </form>
           </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <Avatar className="h-9 w-9">
-                  <AvatarImage src={user.image!} />
-                  <AvatarFallback>{user.name![0]}</AvatarFallback>
-                </Avatar>
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-[250px]">
-              <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-              <p className="text-sm text-muted-foreground px-2">{user.email}</p>
-              <RoleBadge role={user.role} />
-              <UserDropdown />
-              <SignoutButton />
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <UserMenu user={user} />
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-          <div className="flex items-center">
-            <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
-          </div>
-          <div className="flex flex-col justify-center rounded-lg border border-dashed shadow-sm">
-            {children}
-          </div>
+          {children}
         </main>
       </div>
     </div>

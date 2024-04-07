@@ -241,4 +241,5 @@ model Message {
   messageSource MessageProvider
 
   createdAt DateTime @default(now())
+  @@map(name: "messages")
 }

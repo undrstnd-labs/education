@@ -93,6 +93,15 @@
         "teacher": "Professeur",
         "image-too-large": "L'image est trop grande",
         "image-description-error": "Le taille de l'image doit être inférieure à 3 Mo"
+      },
+      "Prompt": {
+        "new-chat": "Nouveau chat",
+        "send-message": "Envoyer un message"
+      },
+      "ChatPanel": {
+        "stop-generating": "Arrêter la génération",
+        "regenerate": "Régénérer",
+        "share": "Partager"
       }
     },
     "Display": {
@@ -124,6 +133,20 @@
         "toastTitleDeleteClassroom": "Classroom supprimé avec succès",
         "toastDescriptionArchiveClassroom": "Vous avez archiver avec succès un classroom.",
         "toastTitleArchiveClassroom": "Classroom archivé avec succès"
+      },
+      "Chat": {
+        "placeholder": "Écrivez un message...",
+        "send": "Envoyer"
+      },
+      "ChatHistory": {
+        "title": "Historique de chat",
+        "newChat": "Nouveau chat"
+      },
+      "SidebarList": {
+        "no-chats": "No chat history"
+      },
+      "SidebarItem": {
+        "shared-chat": "This is a shared chat."
       }
     },
     "Showcase": {
@@ -133,6 +156,36 @@
         "theme": "Theme",
         "language": "Langue",
         "logout": "Se déconnecter"
+      },
+      "ClearHistory": {
+        "clear-history": "Effacer l'historique",
+        "clear-history-title": "Êtes-vous sûr de vouloir effacer l'historique des discussions ?",
+        "clear-history-description": "Cela supprimera définitivement votre historique de discussion et supprimera vos données de nos serveurs.",
+        "cancel": "Annuler",
+        "clear-history-confirm": "Confirmer",
+        "clear-history-failed": "Quelque chose s'est mal passé"
+      },
+      "SidebarActions": {
+        "share-chat": "Partager la discussion",
+        "delete-chat": "Supprimer la discussion",
+        "delete-chat-title": "Êtes-vous sûr de vouloir supprimer cette discussion ?",
+        "delete-chat-description": "Cela supprimera définitivement votre message de discussion et supprimera vos données de nos serveurs.",
+        "cancel": "Annuler",
+        "delete-chat-confirm": "Confirmer",
+        "delete-chat-error": "Échec de la suppression de la discussion",
+        "delete-chat-success": "Discussion supprimée avec succès"
+      },
+      "ChatShareDialog": {
+        "toast-error-title": "Impossible de copier le lien de partage dans le presse-papiers",
+        "toast-success-title": "Lien de partage copié dans le presse-papiers",
+        "share-title": "Partager le lien vers le chat",
+        "share-description": "Toute personne disposant de l'URL pourra voir le chat partagé.",
+        "sharing": "Partage",
+        "copy": "Copier le lien"
+      },
+      "ChatFooter": {
+        "footer-text-1": "peut commettre des erreurs. Considérez la lecture du",
+        "footer-text-2": "pour comprendre son fonctionnement."
       }
     },
     "Config": {
@@ -156,6 +209,9 @@
       },
       "Dashboard": {
         "title": "Tableau de board"
+      },
+      "Chat": {
+        "title": "Conversation"
       }
     }
   }

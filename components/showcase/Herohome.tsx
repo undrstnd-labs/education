@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Link } from "@lib/navigation";
 
-import { Button } from "@component/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { PlayIcon } from "@component/icons/Overall";
 import { TypingEffect } from "@component/ui/TypingEffect";
 
