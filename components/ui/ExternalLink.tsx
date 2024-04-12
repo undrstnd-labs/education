@@ -9,7 +9,7 @@ export function ExternalLink({
     <a
       href={href}
       target="_blank"
-      className="inline-flex flex-1 justify-center gap-1 leading-4 hover:underline hover:text-black hover:opacity-100 transition-opacity duration-200"
+      className="inline-flex flex-1 justify-center gap-1 leading-4 hover:underline hover:text-black dark:hover:text-white/80 hover:opacity-100 transition-opacity duration-200"
     >
       <span>{children}</span>
       <svg
