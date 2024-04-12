@@ -1,3 +1,4 @@
+import { customAlphabet } from "nanoid";
 import { twMerge } from "tailwind-merge";
 import { type ClassValue, clsx } from "clsx";
 
@@ -16,3 +17,8 @@ export function cn(...inputs: ClassValue[]): string {
 export function verifyEmail(email: string): boolean {
   return emailSchema.safeParse({ email }).success;
 }
+
+export const nanoid = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+  7
+);

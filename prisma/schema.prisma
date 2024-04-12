@@ -13,14 +13,18 @@ enum Role {
   TEACHER
 }
 
-enum Theme {
-  LIGHT
-  DARK
+enum ReactionType {
+  LIKE
+  DISLIKE
+  LOVE
+  APPLAUSE
+  WOW
+  INSIGHTFUL
 }
 
-enum Language {
-  EN
-  FR
+enum MessageProvider {
+  USER
+  AI
 }
 
 model Account {
@@ -56,36 +60,188 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  bio          String?
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @default(now()) @map(name: "updated_at")
-
-  role          Role      @default(NOT_ASSIGNED)
+  id             String    @id @default(cuid())
+  name           String?
+  email          String?   @unique
+  bio            String?
+  emailVerified  DateTime?
+  image          String?
+  role           Role      @default(NOT_ASSIGNED)
   universitySlug String?
 
-  prefTheme     Theme    @default(LIGHT)
-  prefLang      Language @default(FR)
+  accounts Account[]
+  sessions Session[]
 
-  accounts  Account[]
-  sessions  Session[]
+  teacher Teacher?
+  student Student?
+
+  comments  Comment[]
+  reactions Reaction[]
+
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @default(now()) @map(name: "updated_at")
 
   @@map(name: "users")
 }
-
 
 model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
-  
-  passCode   String?
+
+  passCode        String?
   verificationUrl String?
 
   @@unique([identifier, token])
   @@map(name: "verification_tokens")
+}
+
+model Teacher {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  posts      Post[]
+  classrooms Classroom[]
+
+  @@map(name: "teachers")
+}
+
+model Student {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  files         File[]
+  classrooms    Classroom[]
+  conversations Conversation[]
+
+  @@map(name: "students")
+}
+
+model Classroom {
+  id          String  @id @default(cuid())
+  classCode   String  @unique
+  
+  name        String
+  description String?
+
+  teacherId  String
+  teacher    Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  isArchived Boolean @default(false)
+
+  posts    Post[]
+  students Student[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "classrooms")
+}
+
+model Post {
+  id      String @id @default(cuid())
+  name    String
+  content String
+
+  teacherId String
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  classroomId String
+  classroom   Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+
+  files     File[]
+  comments  Comment[]
+  reactions Reaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "posts")
+}
+
+model File {
+  id String @id @default(cuid())
+
+  postId String?
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  studentId String?
+  student   Student? @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  conversation Conversation[]
+
+  size Int
+  name String
+  type String
+  url  String
+
+  @@map(name: "files")
+}
+
+model Comment {
+  id   String @id @default(cuid())
+  text String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  parentId String?
+  replies  Comment[] @relation("Thread")
+  parent   Comment?  @relation("Thread", fields: [parentId], references: [id], onDelete: Cascade)
+
+  reactions Reaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map(name: "comments")
+}
+
+model Reaction {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  commentId String?
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  postId String?
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  reactionType ReactionType
+
+  createdAt DateTime @default(now())
+
+  @@map(name: "reactions")
+}
+
+model Conversation {
+  id        String  @id @default(cuid())
+  studentId String
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  fileId String?
+  file   File?   @relation(fields: [fileId], references: [id], onDelete: Cascade)
+
+  messages Message[]
+
+  @@map(name: "conversations")
+}
+
+model Message {
+  id   String @id @default(cuid())
+  text String
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  messageSource MessageProvider
+
+  createdAt DateTime @default(now())
+  @@map(name: "messages")
 }

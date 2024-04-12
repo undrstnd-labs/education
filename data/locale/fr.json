@@ -20,6 +20,25 @@
     },
     "Dashboard": {
       "home": "Acceuil"
+    },
+    "Classroom": {
+      "buttonCreate": "Créer classroom",
+      "formSchemaNameMessage": "Le nom de la classroom doit comporter au moins 4 caractères.",
+      "toastTitleAddClassroom": "Classroom créé avec succès",
+      "toastDescriptionAddClassroom": "Vous avez créé avec succès un classroom.",
+      "toastTitleUpdateClassroom": "Classroom modifié avec succès",
+      "toastDescriptionUpdateClassroom": "Vous avez modifié avec succès un classroom.",
+      "formTitleAddClassroom": "Créer Classroom",
+      "formTitleUpdateClassroom": "Modifier Classroom",
+      "formLabelClassroomName": "Nom du classroom",
+      "formLabelClassroomDescription": "Description du classroom",
+      "formClassroomNamePlaceholder": "Entrez le nom de votre classroom ici",
+      "formClassroomDescriptionPlaceholder": "Entrez la description de votre classroom ici",
+      "formClassroomButton": "Soumettre",
+      "toast-title-create-error": "Échec de la création de la salle de classe",
+      "toast-description-create-error": "Quelque chose s'est mal passé lors de la création de la salle de classe",
+      "toast-title-update-error": "Échec de la mise à jour de la salle de classe",
+      "toast-description-update-error": "Quelque chose s'est mal passé lors de la mise à jour de la salle de classe"
     }
   },
   "Components": {
@@ -78,6 +97,15 @@
         "teacher": "Professeur",
         "image-too-large": "L'image est trop grande",
         "image-description-error": "Le taille de l'image doit être inférieure à 3 Mo"
+      },
+      "Prompt": {
+        "new-chat": "Nouveau chat",
+        "send-message": "Envoyer un message"
+      },
+      "ChatPanel": {
+        "stop-generating": "Arrêter la génération",
+        "regenerate": "Régénérer",
+        "share": "Partager"
       }
     },
     "Display": {
@@ -93,6 +121,40 @@
         "unknown": "Inconnu",
         "incident": "Incident",
         "under-maintenance": "En maintenance"
+      },
+      "ClassroomCardOptions": {
+        "classroomOption": "Options de classroom",
+        "editClassroom": "Modifier",
+        "deleteClassroom": "Supprimer",
+        "archiveClassroom": "Archiver",
+        "alertDialogTitleArchive": "Êtes-vous sûr de vouloir archiver?",
+        "alertDialogDescriptionArchive": "Cette action peut être annulée. Cela archivera la classroom et la masquera de la liste des étudiants.",
+        "alertDialogTitleDelete": "Êtes-vous sûr que vous voulez supprimer?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre classroom. ",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer",
+        "toastDescriptionDeleteClassroom": "Vous avez supprimer avec succès un classroom.",
+        "toastTitleDeleteClassroom": "Classroom supprimé avec succès",
+        "toastDescriptionArchiveClassroom": "Vous avez archiver avec succès un classroom.",
+        "toastTitleArchiveClassroom": "Classroom archivé avec succès",
+        "error-toast-archive": "Échec de l'archivage de la salle de classe",
+        "error-description-toast-archive": "Quelque chose s'est mal passé lors de l'archivage de la salle de classe",
+        "error-toast-delete": "Échec de la suppression de la salle de classe",
+        "error-description-toast-delete": "Quelque chose s'est mal passé lors de la suppression de la salle de classe"
+      },
+      "Chat": {
+        "placeholder": "Écrivez un message...",
+        "send": "Envoyer"
+      },
+      "ChatHistory": {
+        "title": "Historique de chat",
+        "newChat": "Nouveau chat"
+      },
+      "SidebarList": {
+        "no-chats": "No chat history"
+      },
+      "SidebarItem": {
+        "shared-chat": "This is a shared chat."
       }
     },
     "Showcase": {
@@ -100,7 +162,43 @@
         "account": "Compte",
         "classrooms": "Classrooms",
         "theme": "Theme",
+        "language": "Langue",
         "logout": "Se déconnecter"
+      },
+      "ClearHistory": {
+        "clear-history": "Effacer l'historique",
+        "clear-history-title": "Êtes-vous sûr de vouloir effacer l'historique des discussions ?",
+        "clear-history-description": "Cela supprimera définitivement votre historique de discussion et supprimera vos données de nos serveurs.",
+        "cancel": "Annuler",
+        "clear-history-confirm": "Confirmer",
+        "clear-history-failed": "Quelque chose s'est mal passé"
+      },
+      "SidebarActions": {
+        "share-chat": "Partager la discussion",
+        "delete-chat": "Supprimer la discussion",
+        "delete-chat-title": "Êtes-vous sûr de vouloir supprimer cette discussion ?",
+        "delete-chat-description": "Cela supprimera définitivement votre message de discussion et supprimera vos données de nos serveurs.",
+        "cancel": "Annuler",
+        "delete-chat-confirm": "Confirmer",
+        "delete-chat-error": "Échec de la suppression de la discussion",
+        "delete-chat-success": "Discussion supprimée avec succès"
+      },
+      "ChatShareDialog": {
+        "toast-error-title": "Impossible de copier le lien de partage dans le presse-papiers",
+        "toast-success-title": "Lien de partage copié dans le presse-papiers",
+        "share-title": "Partager le lien vers le chat",
+        "share-description": "Toute personne disposant de l'URL pourra voir le chat partagé.",
+        "sharing": "Partage",
+        "copy": "Copier le lien"
+      },
+      "ChatFooter": {
+        "footer-text-1": "peut commettre des erreurs. Considérez la lecture du",
+        "footer-text-2": "pour comprendre son fonctionnement."
+      }
+    },
+    "Config": {
+      "LanguageSwitch": {
+        "locale": "{locale, select, en {Anglais} fr {Français} other {Unknown}}"
       }
     }
   },
@@ -119,6 +217,12 @@
       },
       "Dashboard": {
         "title": "Tableau de board"
+      },
+      "Chat": {
+        "title": "Conversation"
+      },
+      "Onboarding": {
+        "title": "Compléter votre profil"
       }
     }
   }

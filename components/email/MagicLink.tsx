@@ -37,15 +37,16 @@ export function MagicLink({ magicLink }: { magicLink: MagicLinkData }) {
             </Button>
           </Section>
 
-          <Section style={codeBox}>
-            <Text style={confirmationCodeText}>{magicLink.passCode}</Text>
-          </Section>
-
           <Text style={paragraph}>
             This link and code will only be valid for the next 5 minutes. If the
             link does not work, you can use the login verification code
             directly:
           </Text>
+
+          <Section style={codeBox}>
+            <Text style={confirmationCodeText}>{magicLink.passCode}</Text>
+          </Section>
+
           <Hr style={hr} />
           <Link href="https://www.undrstnd.vercel.app" style={reportLink}>
             Undrstnd

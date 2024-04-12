@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: "placehold.co",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.jakerunzer.com",
+        port: "",
+      },
     ],
   },
 };

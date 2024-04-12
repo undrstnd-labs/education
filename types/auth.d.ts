@@ -43,3 +43,7 @@ export type UserType = {
   createdAt: Date?;
   updatedAt: Date?;
 };
+
+export interface NextAuthUser extends User {
+  role: string;
+}

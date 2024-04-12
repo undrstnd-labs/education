@@ -2,7 +2,8 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
+import { Icons } from "@component/icons/Lucide";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -53,4 +54,33 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+interface ButtonScrollToBottomProps extends ButtonProps {
+  isAtBottom: boolean;
+  scrollToBottom: () => void;
+}
+
+function ButtonScrollToBottom({
+  className,
+  isAtBottom,
+  scrollToBottom,
+  ...props
+}: ButtonScrollToBottomProps) {
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      className={cn(
+        "absolute right-4 top-1 z-10 bg-background transition-opacity duration-300 sm:right-8 md:top-2",
+        isAtBottom ? "opacity-20" : "opacity-100",
+        className
+      )}
+      onClick={() => scrollToBottom()}
+      {...props}
+    >
+      <Icons.arrowDown className="size-6 stroke-current stroke-[1.25]" />
+      <span className="sr-only">Scroll to bottom</span>
+    </Button>
+  );
+}
+
+export { Button, ButtonScrollToBottom, buttonVariants };

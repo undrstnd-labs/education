@@ -40,3 +40,15 @@ export type University = {
   phone: string;
   avatarUrl: string;
 };
+
+export type ServerActionResult<Result> = Promise<
+  | Result
+  | {
+      error: string;
+    }
+>;
+
+export type customType = {
+  changeCount: number;
+  isForwards: boolean;
+};

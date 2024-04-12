@@ -45,3 +45,19 @@ export const pinSchema = z.object({
     }),
   pin: z.string().length(6),
 });
+
+export const addClassroomSchema = (t: (arg: string) => string) =>
+  z.object({
+    name: z.string().min(4, {
+      message: t("formSchemaNameMessage"),
+    }),
+    description: z.string().optional(),
+  });
+
+export const editClassroomSchema = (t: (arg: string) => string) =>
+  z.object({
+    name: z.string().min(4, {
+      message: t("formSchemaNameMessage"),
+    }),
+    description: z.string().optional(),
+  });

@@ -1,16 +1,15 @@
 import { Suspense } from "react";
 import { useTranslations } from "next-intl";
-import { cn, verifyEmail } from "@/lib/utils";
-
-import { Link } from "@lib/navigation";
-
-import { LogoPNG } from "@component/icons/Overall";
-import { buttonVariants } from "@component/ui/Button";
-import { PassCodeAuth } from "@component/form/PassCodeAuth";
-import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
 import { getTranslations } from "next-intl/server";
 
-// TODO: Generate metadata from the translation file
+import { Link } from "@lib/navigation";
+import { cn, verifyEmail } from "@/lib/utils";
+
+import { LogoPNG } from "@component/icons/Overall";
+import { buttonVariants } from "@/components/ui/Button";
+import { PassCodeAuth } from "@component/form/PassCodeAuth";
+import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
+
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Register");
   return { title: `${t("title")}` };

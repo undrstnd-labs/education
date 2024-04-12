@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 
@@ -8,7 +7,7 @@ import { cn, verifyEmail } from "@lib/utils";
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";
 
-import { buttonVariants } from "@component/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import { PassCodeAuth } from "@component/form/PassCodeAuth";
 import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
 import { getTranslations } from "next-intl/server";

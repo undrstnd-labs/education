@@ -10,7 +10,7 @@ import {
   CommandItem,
   CommandList,
 } from "@component/ui/Command";
-import { Button } from "@component/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Icons } from "@component/icons/Lucide";
 import { Input, InputProps } from "@component/ui/Input";
 import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
