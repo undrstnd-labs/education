@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
+import { redirect } from "@lib/navigation";
 import { NextAuthUser } from "@/types/auth";
 import { SidebarProvider } from "@hook/use-sidebar";
 import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
@@ -19,10 +20,16 @@ interface ChatLayoutProps {
 export default async function ChatLayout({ children }: ChatLayoutProps) {
   const user = await getCurrentUser();
 
-  if (
-    !user ||
-    !userAuthentificateVerification(user as NextAuthUser, "TEACHER")
-  ) {
+  const toRedirect = await userAuthentificateVerification(
+    user as NextAuthUser,
+    "STUDENT"
+  );
+
+  if (toRedirect) {
+    redirect(toRedirect);
+  }
+
+  if (!user) {
     return null;
   }
 

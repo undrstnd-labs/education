@@ -1,6 +1,6 @@
 import { cn } from "@lib/utils";
-import { Link } from "@lib/navigation";
 import { NextAuthUser } from "@/types/auth";
+import { Link, redirect } from "@lib/navigation";
 import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
 
 import { Icons } from "@component/icons/Lucide";
@@ -28,7 +28,12 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   const user = await getCurrentUser();
 
-  if (!user || !userAuthentificateVerification(user as NextAuthUser)) {
+  const toRedirect = await userAuthentificateVerification(user as NextAuthUser);
+  if (toRedirect) {
+    redirect(toRedirect);
+  }
+
+  if (!user) {
     return null;
   }
 

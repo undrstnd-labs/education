@@ -71,12 +71,12 @@ export function Prompt({ onSubmit, input, setInput, isLoading }: PromptProps) {
           ref={inputRef}
           tabIndex={0}
           onKeyDown={onKeyDown}
-          rows={1}
+          rows={2}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={t("send-message") + "..."}
           spellCheck={false}
-          className="min-h-[60px] w-full border-none resize-y bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm scrollbar-thin scrollbar-track-gray-100/10 scrollbar-thumb-sky-500/20 max-h-[400px] overflow-y-scroll "
+          className="min-h-[60px] w-full border-none resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
         <div className="absolute right-0 top-3 sm:right-4">
           <TooltipProvider>

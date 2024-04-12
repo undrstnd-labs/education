@@ -2,7 +2,6 @@ import { getServerSession } from "next-auth/next";
 
 import { db } from "@lib/prisma";
 import { authOptions } from "@lib/auth";
-import { redirect } from "@lib/navigation";
 import { NextAuthUser } from "@/types/auth";
 
 export async function getCurrentUser() {
@@ -69,19 +68,16 @@ export async function userAuthentificateVerification(
   allowedRoles?: string
 ) {
   if (!user) {
-    redirect("/login");
-    return false;
+    return "/login";
   }
 
   if (user.role === "NOT_ASSIGNED") {
-    redirect("/onboarding");
-    return false;
+    return "/onboarding";
   }
 
-  if (user.role !== allowedRoles) {
-    redirect("/dashboard");
-    return false;
+  if (allowedRoles && user.role !== allowedRoles) {
+    return "/dashboard";
   }
 
-  return true;
+  return null;
 }
