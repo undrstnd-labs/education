@@ -120,9 +120,9 @@ model Student {
 }
 
 model Classroom {
-  id          String  @id @default(cuid())
-  classCode   String  @unique
-  
+  id        String @id @default(cuid())
+  classCode String @unique
+
   name        String
   description String?
 
@@ -243,5 +243,6 @@ model Message {
   messageSource MessageProvider
 
   createdAt DateTime @default(now())
+
   @@map(name: "messages")
 }

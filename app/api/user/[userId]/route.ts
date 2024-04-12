@@ -2,7 +2,7 @@ import * as z from "zod";
 import { NextResponse } from "next/server";
 
 import { db } from "@lib/prisma";
-import { verifyCurrentUser } from "@lib/session";
+import { getCurrentUser, verifyCurrentUser } from "@lib/session";
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -17,7 +17,7 @@ export async function PUT(
   const { params } = routeContextSchema.parse(context);
   const { name, email, bio, image, universitySlug, role } = await req.json();
 
-  if (!(await verifyCurrentUser(params.userId))) {
+  if (!(await getCurrentUser())) {
     return NextResponse.json(
       { message: "You are not authorized to update this user" },
       { status: 403 }

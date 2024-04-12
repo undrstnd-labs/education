@@ -27,6 +27,13 @@ export async function GET(req: Request) {
       where: {
         teacherId: teacher.id,
       },
+      include: {
+        teacher: {
+          include: {
+            user: true,
+          },
+        },
+      },
     });
 
     return NextResponse.json(classrooms, { status: 200 });
@@ -56,6 +63,13 @@ export async function GET(req: Request) {
             },
           },
         },
+        include: {
+          teacher: {
+            include: {
+              user: true,
+            },
+          },
+        },
       });
 
       return NextResponse.json(classrooms, { status: 200 });
@@ -69,7 +83,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const { userId, name, description } = await req.json();
+  const { userId, name, description, classCode } = await req.json();
 
   if (!(await verifyCurrentTeacher(userId))) {
     return NextResponse.json(
@@ -91,14 +105,20 @@ export async function POST(req: Request) {
   if (!name) {
     return NextResponse.json({ message: "Name is required" }, { status: 400 });
   }
+  if (!classCode) {
+    return NextResponse.json(
+      { message: "Class code is required" },
+      { status: 400 }
+    );
+  }
 
   try {
     const classroom = await db.classroom.create({
       data: {
         name,
         description,
-        classCode: Math.random().toString(36).substring(2, 10),
         teacherId: teacher.id,
+        classCode,
       },
     });
 

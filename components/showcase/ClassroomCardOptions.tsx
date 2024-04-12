@@ -4,9 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Classroom, User } from "@prisma/client";
-
 import { toast } from "@hook/use-toast";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,10 +22,21 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@component/ui/AlertDialog";
+} from "@/components/ui/AlertDialog";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/Drawer";
 import { Button } from "@component/ui/Button";
 import { Icons } from "@component/icons/Lucide";
 import { EditClassroom } from "@component/form/EditClassroom";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 interface ClassroomCardProps {
   classroom: Classroom & {
@@ -36,12 +45,12 @@ interface ClassroomCardProps {
 }
 
 export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isModifyOpen, setIsModifyOpen] = useState(false);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
-
+  const [isModifyOpen, setIsModifyOpen] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const router = useRouter();
   const t = useTranslations("Components.Display.ClassroomCardOptions");
 
   const handleArchive = async () => {
@@ -135,8 +144,7 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
-      {isArchiveOpen && (
+      {isArchiveOpen && isDesktop ? (
         <AlertDialog open={isArchiveOpen} onOpenChange={setIsArchiveOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -155,9 +163,29 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+      ) : (
+        <Drawer open={isArchiveOpen} onOpenChange={setIsArchiveOpen}>
+          <DrawerContent className="pb-2">
+            <DrawerHeader className="text-left">
+              <DrawerTitle> {t("alertDialogTitleArchive")}</DrawerTitle>
+              <DrawerDescription>
+                {t("alertDialogDescriptionArchive")}
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button variant="default" onClick={handleArchive}>
+                  {t("alertDialogAction")}
+                </Button>
+              </DrawerClose>
+              <DrawerClose asChild>
+                <Button variant="outline">{t("alertDialogCancel")}</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       )}
-
-      {isDeleteOpen && (
+      {isDeleteOpen && isDesktop ? (
         <AlertDialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -167,9 +195,7 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel className="focus-visible:ring-red-700">
-                {t("alertDialogCancel")}
-              </AlertDialogCancel>
+              <AlertDialogCancel>{t("alertDialogCancel")}</AlertDialogCancel>
               <AlertDialogAction
                 className="bg-red-700 hover:bg-red-500"
                 onClick={handleDelete}
@@ -179,8 +205,32 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+      ) : (
+        <Drawer open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+          <DrawerContent className="pb-2">
+            <DrawerHeader className="text-left">
+              <DrawerTitle>{t("alertDialogTitleDelete")}</DrawerTitle>
+              <DrawerDescription>
+                {t("alertDialogDescriptionDelete")}
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button
+                  variant="outline"
+                  className="bg-red-700 hover:bg-red-500 text-white"
+                  onClick={handleDelete}
+                >
+                  {t("alertDialogAction")}
+                </Button>
+              </DrawerClose>
+              <DrawerClose asChild>
+                <Button variant="outline">{t("alertDialogCancel")}</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       )}
-
       {isModifyOpen && (
         <EditClassroom
           classroom={classroom}

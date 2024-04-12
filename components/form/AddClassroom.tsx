@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@hook/use-toast";
 import { addClassroomSchema } from "@config/schema";
 import { useMediaQuery } from "@/hooks/use-media-query";
-
+import crypto from "crypto";
 import {
   Form,
   FormControl,
@@ -36,6 +36,10 @@ export function AddClassroom({ userId }: AddClassroomProps) {
   const t = useTranslations("Pages.Classroom");
   const [isLoading, setIsLoading] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const timeStamp = Date.now();
+  const code = timeStamp + userId;
+  const hash = crypto.createHash("md5").update(code).digest("hex");
+  const classCode = hash.slice(0, 8);
 
   const formSchema = addClassroomSchema(t);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -58,6 +62,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
           name: values.name,
           description: values.description,
           userId,
+          classCode,
         }),
       });
 

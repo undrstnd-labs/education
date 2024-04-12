@@ -45,6 +45,7 @@ import {
   SlashIcon,
   PanelLeft,
   PanelRight,
+  Share2,
 } from "lucide-react";
 
 import {
@@ -55,6 +56,10 @@ import {
   AiFillBell,
   AiFillMobile,
 } from "react-icons/ai";
+
+import { GoSignOut } from "react-icons/go";
+
+import { TiTick } from "react-icons/ti";
 
 export type Icon = LucideIcon;
 
@@ -112,4 +117,7 @@ export const Icons = {
   slash: SlashIcon,
   panelLeft: PanelLeft,
   panelRight: PanelRight,
+  leaveClassroom: GoSignOut,
+  shareClassroom: Share2,
+  shareClassroomTaked: TiTick,
 };

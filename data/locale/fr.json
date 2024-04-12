@@ -23,7 +23,8 @@
     },
     "Classroom": {
       "buttonCreate": "Créer classroom",
-      "formSchemaNameMessage": "Le nom de la classroom doit comporter au moins 4 caractères.",
+      "formSchemaNameMessage": "Le nom du classroom doit comporter au moins 4 caractères.",
+      "formSchemaCodeMessage": "Le code du classroom doit comporter excatement 8 caractères.",
       "toastTitleAddClassroom": "Classroom créé avec succès",
       "toastDescriptionAddClassroom": "Vous avez créé avec succès un classroom.",
       "toastTitleUpdateClassroom": "Classroom modifié avec succès",
@@ -32,13 +33,25 @@
       "formTitleUpdateClassroom": "Modifier Classroom",
       "formLabelClassroomName": "Nom du classroom",
       "formLabelClassroomDescription": "Description du classroom",
+      "formLabelClassroomCode": "Code du classroom",
       "formClassroomNamePlaceholder": "Entrez le nom de votre classroom ici",
       "formClassroomDescriptionPlaceholder": "Entrez la description de votre classroom ici",
-      "formClassroomButton": "Soumettre",
+
       "toast-title-create-error": "Échec de la création de la salle de classe",
       "toast-description-create-error": "Quelque chose s'est mal passé lors de la création de la salle de classe",
       "toast-title-update-error": "Échec de la mise à jour de la salle de classe",
-      "toast-description-update-error": "Quelque chose s'est mal passé lors de la mise à jour de la salle de classe"
+      "toast-description-update-error": "Quelque chose s'est mal passé lors de la mise à jour de la salle de classe",
+      "formClassroomCodePlaceholder": "Entrez le code de votre classroom ici",
+      "formClassroomButton": "Soumettre",
+      "formClassroomJoinButton": "Rejoindre",
+      "joinApiSuccess": "Rejoindre le classroom avec succès",
+      "joinApiSuccessDescription": "Vous avez rejoint avec succès le classroom.",
+      "joinApiError": "Classroom introuvable",
+      "joinApiErrorDescription": "Le classroom que vous essayez de rejoindre n'existe pas.",
+      "joinApiAlreadyError": "Déjà membre de ce classroom",
+      "joinApiAlreadyErrorDescription": "Vous êtes déjà membre de ce classroom.",
+      "joinApiErrorArchived": "Classroom archivé",
+      "joinApiErrorArchivedDescription": "Le classroom que vous essayez de rejoindre a été archivé."
     }
   },
   "Components": {
@@ -133,6 +146,10 @@
         "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre classroom. ",
         "alertDialogCancel": "Annuler",
         "alertDialogAction": "Confirmer",
+        "leaveApiSuccess": "Quitter le classroom avec succès",
+        "leaveApiSuccessDescription": "Vous avez quitté avec succès le classroom.",
+        "alertDialogLeave": "Êtes-vous sûr de vouloir quitter ce classroom ?",
+        "alertDialogLeaveDescription": "Cette action peut être annulée. Cela vous retirera de la classe.",
         "toastDescriptionDeleteClassroom": "Vous avez supprimer avec succès un classroom.",
         "toastTitleDeleteClassroom": "Classroom supprimé avec succès",
         "toastDescriptionArchiveClassroom": "Vous avez archiver avec succès un classroom.",

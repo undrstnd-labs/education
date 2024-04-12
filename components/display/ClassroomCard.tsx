@@ -11,25 +11,41 @@ import {
 } from "@component/ui/Card";
 import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions";
 
+import { LeaveClassroom } from "@/components/showcase/LeaveClassroom";
+import ShareClassroom from "@/components/showcase/ShareClassroom";
+
 interface classroomCardProps {
   classroom: Classroom & {
     teacher: { user: User; id: string; userId: string };
   };
+  authorId: string;
 }
 
-export function ClassroomCard({ classroom }: classroomCardProps) {
+export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
   return (
     <Card className="w-full" key={classroom.id}>
       <CardHeader>
-        <CardTitle className="hover:underline">
-          <div className="flex justify-between">
+        <CardTitle>
+          <div className="flex justify-between items-center">
             <Link
               href={`/dashboard/classroom/${classroom.id}`}
               key={classroom.id}
+              className=" flex items-center"
             >
-              {classroom.name}
+              <div className="hover:underline">{classroom.name}</div>
+              <span className="text-gray-600">/</span>
+              <div className="text-sm leading-8 text-gray-500">
+                {classroom.classCode}
+              </div>
             </Link>
-            <ClassroomCardOptions classroom={classroom as any} />
+            <div className="flex gap-2">
+              <ShareClassroom classroom={classroom} />
+              {authorId === classroom.teacher.user.id ? (
+                <ClassroomCardOptions classroom={classroom} />
+              ) : (
+                <LeaveClassroom classroom={classroom} userId={authorId} />
+              )}
+            </div>
           </div>
         </CardTitle>
         <CardDescription className="hover:underline">
@@ -64,4 +80,4 @@ export function ClassroomCard({ classroom }: classroomCardProps) {
       </CardContent>
     </Card>
   );
-}
+};
