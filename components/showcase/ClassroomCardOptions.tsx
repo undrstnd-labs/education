@@ -1,8 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
-import { Icons } from "@/components/icons/Lucide";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Classroom, User } from "@prisma/client";
+
+import { toast } from "@hook/use-toast";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +14,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
+} from "@component/ui/DropdownMenu";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,70 +24,79 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/AlertDialog";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { EditClassroom } from "../form/EditClassroom";
-import { toast } from "@/hooks/use-toast";
+} from "@component/ui/AlertDialog";
+import { Button } from "@component/ui/Button";
+import { Icons } from "@component/icons/Lucide";
+import { EditClassroom } from "@component/form/EditClassroom";
+
 interface ClassroomCardProps {
   classroom: Classroom & {
     teacher: { user: User; id: string; userId: string };
   };
 }
 
-const ClassroomCardOptions = ({ classroom }: ClassroomCardProps) => {
+export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const [isModifyOpen, setIsModifyOpen] = useState(false);
-  const router = useRouter();
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+
   const t = useTranslations("Components.Display.ClassroomCardOptions");
+
   const handleArchive = async () => {
-    const res = await fetch(`/api/classrooms/${classroom.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: classroom.teacher.user.id,
-        isArchived: true,
-      }),
-    });
-    if (res.ok) {
-      toast({
-        title: t("toastTitleArchiveClassroom"),
-        variant: "default",
-        description: t("toastDescriptionArchiveClassroom"),
-      });
-      router.refresh();
-    }
     try {
+      const res = await fetch(`/api/classrooms/${classroom.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: classroom.teacher.user.id,
+          isArchived: true,
+        }),
+      });
+      if (res.ok) {
+        toast({
+          title: t("toastTitleArchiveClassroom"),
+          description: t("toastDescriptionArchiveClassroom"),
+        });
+        router.refresh();
+      }
     } catch (error) {
-      console.log(error);
+      toast({
+        title: t("error-toast-archive"),
+        description: t("error-description-toast-archive"),
+        variant: "destructive",
+      });
     }
   };
+
   const handleDelete = async () => {
-    const res = await fetch(`/api/classrooms/${classroom.id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: classroom.teacher.user.id,
-      }),
-    });
-    if (res.ok) {
-      toast({
-        title: t("toastTitleDeleteClassroom"),
-        variant: "default",
-        description: t("toastDescriptionDeleteClassroom"),
-      });
-      router.refresh();
-    }
     try {
+      const res = await fetch(`/api/classrooms/${classroom.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: classroom.teacher.user.id,
+        }),
+      });
+      if (res.ok) {
+        toast({
+          title: t("toastTitleDeleteClassroom"),
+          variant: "default",
+          description: t("toastDescriptionDeleteClassroom"),
+        });
+        router.refresh();
+      }
     } catch (error) {
-      console.log(error);
+      toast({
+        title: t("error-toast-delete"),
+        description: t("error-description-toast-arcdeletehive"),
+        variant: "destructive",
+      });
     }
   };
 
@@ -103,25 +116,26 @@ const ClassroomCardOptions = ({ classroom }: ClassroomCardProps) => {
             className="flex gap-2 items-center hover:cursor-pointer"
             onClick={() => setIsModifyOpen(true)}
           >
+            <Icons.editClassroom className="h-4 w-4 " />
             {t("editClassroom")}{" "}
-            <Icons.editClassroom className="h-4 w-4 text-gray-600 " />
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex gap-2 items-center hover:cursor-pointer"
             onClick={() => setIsArchiveOpen(true)}
           >
+            <Icons.archiveClassroom className="h-4 w-4" />
             {t("archiveClassroom")}
-            <Icons.archiveClassroom className="h-4 w-4 text-blue-600" />
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="flex gap-2 items-center hover:cursor-pointer"
+            className="flex gap-2 items-center hover:cursor-pointer text-red-600"
             onClick={() => setIsDeleteOpen(true)}
           >
+            <Icons.deleteClassroom className="h-4 w-4 " />
             {t("deleteClassroom")}
-            <Icons.deleteClassroom className="h-4 w-4 text-red-600 " />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
       {isArchiveOpen && (
         <AlertDialog open={isArchiveOpen} onOpenChange={setIsArchiveOpen}>
           <AlertDialogContent>
@@ -142,6 +156,7 @@ const ClassroomCardOptions = ({ classroom }: ClassroomCardProps) => {
           </AlertDialogContent>
         </AlertDialog>
       )}
+
       {isDeleteOpen && (
         <AlertDialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
           <AlertDialogContent>
@@ -165,6 +180,7 @@ const ClassroomCardOptions = ({ classroom }: ClassroomCardProps) => {
           </AlertDialogContent>
         </AlertDialog>
       )}
+
       {isModifyOpen && (
         <EditClassroom
           classroom={classroom}
@@ -174,6 +190,4 @@ const ClassroomCardOptions = ({ classroom }: ClassroomCardProps) => {
       )}
     </>
   );
-};
-
-export default ClassroomCardOptions;
+}

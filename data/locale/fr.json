@@ -34,7 +34,11 @@
       "formLabelClassroomDescription": "Description du classroom",
       "formClassroomNamePlaceholder": "Entrez le nom de votre classroom ici",
       "formClassroomDescriptionPlaceholder": "Entrez la description de votre classroom ici",
-      "formClassroomButton": "Soumettre"
+      "formClassroomButton": "Soumettre",
+      "toast-title-create-error": "Échec de la création de la salle de classe",
+      "toast-description-create-error": "Quelque chose s'est mal passé lors de la création de la salle de classe",
+      "toast-title-update-error": "Échec de la mise à jour de la salle de classe",
+      "toast-description-update-error": "Quelque chose s'est mal passé lors de la mise à jour de la salle de classe"
     }
   },
   "Components": {
@@ -132,7 +136,11 @@
         "toastDescriptionDeleteClassroom": "Vous avez supprimer avec succès un classroom.",
         "toastTitleDeleteClassroom": "Classroom supprimé avec succès",
         "toastDescriptionArchiveClassroom": "Vous avez archiver avec succès un classroom.",
-        "toastTitleArchiveClassroom": "Classroom archivé avec succès"
+        "toastTitleArchiveClassroom": "Classroom archivé avec succès",
+        "error-toast-archive": "Échec de l'archivage de la salle de classe",
+        "error-description-toast-archive": "Quelque chose s'est mal passé lors de l'archivage de la salle de classe",
+        "error-toast-delete": "Échec de la suppression de la salle de classe",
+        "error-description-toast-delete": "Quelque chose s'est mal passé lors de la suppression de la salle de classe"
       },
       "Chat": {
         "placeholder": "Écrivez un message...",
@@ -212,6 +220,9 @@
       },
       "Chat": {
         "title": "Conversation"
+      },
+      "Onboarding": {
+        "title": "Compléter votre profil"
       }
     }
   }

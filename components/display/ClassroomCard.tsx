@@ -1,15 +1,15 @@
+import Link from "next/link";
+import Image from "next/image";
+import { Classroom, User } from "@prisma/client";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { Classroom, User } from "@prisma/client";
-
-import Image from "next/image";
-import Link from "next/link";
-import ClassroomCardOptions from "./ClassroomCardOptions";
+} from "@component/ui/Card";
+import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions";
 
 interface classroomCardProps {
   classroom: Classroom & {
@@ -17,7 +17,7 @@ interface classroomCardProps {
   };
 }
 
-const ClassroomCard = ({ classroom }: classroomCardProps) => {
+export function ClassroomCard({ classroom }: classroomCardProps) {
   return (
     <Card className="w-full" key={classroom.id}>
       <CardHeader>
@@ -37,7 +37,6 @@ const ClassroomCard = ({ classroom }: classroomCardProps) => {
             href={`/dashboard/classroom/${classroom.id}`}
             key={classroom.id}
           >
-            {" "}
             {classroom.description}
           </Link>
         </CardDescription>
@@ -65,6 +64,4 @@ const ClassroomCard = ({ classroom }: classroomCardProps) => {
       </CardContent>
     </Card>
   );
-};
-
-export default ClassroomCard;
+}

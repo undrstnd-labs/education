@@ -1,9 +1,16 @@
+import { getTranslations } from "next-intl/server";
+
 import { NextAuthUser } from "@/types/auth";
 import { SidebarProvider } from "@hook/use-sidebar";
 import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
 
 import { Header } from "@component/navigation/ChatHeader";
 import { SidebarDesktop } from "@component/navigation/SidebarDesktop";
+
+export async function generateMetadata() {
+  const t = await getTranslations("Metadata.Pages.Chat");
+  return { title: `${t("title")}` };
+}
 
 interface ChatLayoutProps {
   children: React.ReactNode;

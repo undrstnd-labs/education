@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 

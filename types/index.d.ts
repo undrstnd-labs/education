@@ -47,3 +47,8 @@ export type ServerActionResult<Result> = Promise<
       error: string;
     }
 >;
+
+export type customType = {
+  changeCount: number;
+  isForwards: boolean;
+};

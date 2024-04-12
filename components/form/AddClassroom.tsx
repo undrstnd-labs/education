@@ -1,9 +1,16 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/Button";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/lib/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { toast } from "@hook/use-toast";
+import { addClassroomSchema } from "@config/schema";
+import { useMediaQuery } from "@/hooks/use-media-query";
+
 import {
   Form,
   FormControl,
@@ -11,37 +18,26 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
-import { Input } from "@/components/ui/Input";
-import { Textarea } from "../ui/Textarea";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@/lib/navigation";
-import { toast } from "@/hooks/use-toast";
-import { Icons } from "../icons/Lucide";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { Drawer, DrawerContent, DrawerTrigger } from "../ui/Drawer";
+} from "@component/ui/Form";
+import { Input } from "@component/ui/Input";
+import { Button } from "@component/ui/Button";
+import { Icons } from "@component/icons/Lucide";
+import { Textarea } from "@component/ui/Textarea";
+import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
+import { Dialog, DialogContent, DialogTrigger } from "@component/ui/Dialog";
 
 interface AddClassroomProps {
   userId: string;
 }
 
-const baseFormSchema = (t: (arg: string) => string) =>
-  z.object({
-    name: z.string().min(4, {
-      message: t("formSchemaNameMessage"),
-    }),
-    description: z.string().optional(),
-  });
-
 export function AddClassroom({ userId }: AddClassroomProps) {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const t = useTranslations("Pages.Classroom");
   const [isLoading, setIsLoading] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const router = useRouter();
-  const t = useTranslations("Pages.Classroom");
-  const formSchema = baseFormSchema(t);
+
+  const formSchema = addClassroomSchema(t);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -64,6 +60,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
           userId,
         }),
       });
+
       if (res.ok) {
         toast({
           title: t("toastTitleAddClassroom"),
@@ -72,6 +69,12 @@ export function AddClassroom({ userId }: AddClassroomProps) {
         });
         router.refresh();
         form.reset();
+      } else {
+        toast({
+          title: t("toast-title-create-error"),
+          description: t("toast-description-create-error"),
+          variant: "destructive",
+        });
       }
     } catch (error) {
       console.log(error);

@@ -1,4 +1,4 @@
-import { customType } from "@/lib/types";
+import { customType } from "@/types";
 
 import {
   DeviceNotificationIcon,

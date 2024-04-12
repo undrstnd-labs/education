@@ -121,6 +121,8 @@ model Student {
 
 model Classroom {
   id          String  @id @default(cuid())
+  classCode   String  @unique
+  
   name        String
   description String?
 

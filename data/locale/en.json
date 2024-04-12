@@ -32,7 +32,11 @@
       "formLabelClassroomDescription": "Classroom Description",
       "formClassroomNamePlaceholder": "Enter your classroom name here",
       "formClassroomDescriptionPlaceholder": "Enter your classroom name here",
-      "formClassroomButton": "Submit"
+      "formClassroomButton": "Submit",
+      "toast-title-create-error": "Failed to create classroom",
+      "toast-description-create-error": "Something went wrong while creating the classroom",
+      "toast-title-update-error": "Failed to update classroom",
+      "toast-description-update-error": "Something went wrong while updating the classroom"
     }
   },
   "Components": {
@@ -130,7 +134,11 @@
         "toastDescriptionDeleteClassroom": "You have successfully deleted a classroom.",
         "toastTitleDeleteClassroom": "Classroom deleted",
         "toastDescriptionArchiveClassroom": "You have successfully archived a classroom.",
-        "toastTitleArchiveClassroom": "Classroom archived avec succès"
+        "toastTitleArchiveClassroom": "Classroom archived avec succès",
+        "error-toast-archive": "Failed to archive classroom",
+        "error-description-toast-archive": "Something went wrong while archiving the classroom",
+        "error-toast-delete": "Failed to delete classroom",
+        "error-description-toast-delete": "Something went wrong while deleting the classroom"
       },
       "Chat": {
         "placeholder": "Type a message",
@@ -210,6 +218,9 @@
       },
       "Chat": {
         "title": "Chat"
+      },
+      "Onboarding": {
+        "title": "Onboarding"
       }
     }
   }

@@ -1,7 +1,7 @@
 import { cn } from "@lib/utils";
 import { motion } from "framer-motion";
 
-import { customType } from "@/lib/types";
+import { customType } from "@/types";
 import { PrimaryFeaures } from "@/lib/consts";
 
 import {

@@ -97,12 +97,14 @@ export async function POST(req: Request) {
       data: {
         name,
         description,
+        classCode: Math.random().toString(36).substring(2, 10),
         teacherId: teacher.id,
       },
     });
 
     return NextResponse.json(classroom, { status: 201 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "Error creating classroom" },
       { status: 500 }

@@ -1,3 +1,5 @@
+import { getTranslations } from "next-intl/server";
+
 import { cn } from "@lib/utils";
 import { getCurrentUser } from "@lib/session";
 import { Link, redirect } from "@lib/navigation";
@@ -5,6 +7,11 @@ import { Link, redirect } from "@lib/navigation";
 import { LogoPNG } from "@component/icons/Overall";
 import { buttonVariants } from "@/components/ui/Button";
 import { OnboardingAuthForm } from "@component/form/OnboardingAuth";
+
+export async function generateMetadata() {
+  const t = await getTranslations("Metadata.Pages.Onboarding");
+  return { title: `${t("title")}` };
+}
 
 export default async function OnboardingPage() {
   const user = await getCurrentUser();

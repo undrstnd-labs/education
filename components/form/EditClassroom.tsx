@@ -1,9 +1,17 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/Button";
+import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/lib/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Dispatch, SetStateAction, useState } from "react";
+
+import { toast } from "@hook/use-toast";
+import { Classroom, User } from "@prisma/client";
+import { editClassroomSchema } from "@config/schema";
+import { useMediaQuery } from "@/hooks/use-media-query";
+
 import {
   Form,
   FormControl,
@@ -11,18 +19,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog";
-import { Input } from "@/components/ui/Input";
-import { Textarea } from "../ui/Textarea";
-import { Dispatch, SetStateAction, useState } from "react";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@/lib/navigation";
-import { toast } from "@/hooks/use-toast";
+} from "@component/ui/Form";
 import { Icons } from "../icons/Lucide";
-import { Classroom, User } from "@prisma/client";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { Drawer, DrawerContent } from "../ui/Drawer";
+import { Input } from "@component/ui/Input";
+import { Button } from "@component/ui/Button";
+import { Textarea } from "@component/ui/Textarea";
+import { Drawer, DrawerContent } from "@component/ui/Drawer";
+import { Dialog, DialogContent } from "@component/ui/Dialog";
 
 interface EditClassroomProps {
   classroom: Classroom & {
@@ -32,24 +35,17 @@ interface EditClassroomProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const baseFormSchema = (t: (arg: string) => string) =>
-  z.object({
-    name: z.string().min(4, {
-      message: t("formSchemaNameMessage"),
-    }),
-    description: z.string().optional(),
-  });
-
 export function EditClassroom({
   classroom,
   open,
   setOpen,
 }: EditClassroomProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
   const router = useRouter();
   const t = useTranslations("Pages.Classroom");
-  const formSchema = baseFormSchema(t);
+  const [isLoading, setIsLoading] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  const formSchema = editClassroomSchema(t);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -79,6 +75,12 @@ export function EditClassroom({
           description: t("toastDescriptionUpdateClassroom"),
         });
         router.refresh();
+      } else {
+        toast({
+          title: t("toast-title-update-error"),
+          description: t("toast-description-update-error"),
+          variant: "destructive",
+        });
       }
     } catch (error) {
       console.log(error);

@@ -1,14 +1,18 @@
-import { redirect } from "@/lib/navigation";
-import { db } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/session";
-import { Classroom } from "@prisma/client";
 import { cookies } from "next/headers";
-import ClassroomCard from "@/components/display/ClassroomCard";
 import { getTranslations } from "next-intl/server";
+
+import { db } from "@lib/prisma";
+import { redirect } from "@lib/navigation";
+import { Classroom } from "@prisma/client";
+import { getCurrentUser } from "@lib/session";
+
 import { AddClassroom } from "@/components/form/AddClassroom";
+import { ClassroomCard } from "@/components/display/ClassroomCard";
+
 async function getCookie(name: string) {
   return cookies().get(name)?.value ?? "";
 }
+
 async function getClassroom() {
   const session = await getCookie("next-auth.session-token");
   const getUser = async (teacherId: string) => {

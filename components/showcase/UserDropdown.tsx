@@ -25,12 +25,11 @@ export function UserDropdown() {
         </Link>
       </DropdownMenuItem>
       <DropdownMenuSeparator />
-      <div className="flex flex-row justify-between items-center p-2">
+      <div className="flex flex-row justify-between items-center px-2 py-0.5">
         <p className="text-sm">{t("theme")}</p>
         <ThemeSwitch />
       </div>
-      <DropdownMenuSeparator />
-      <div className="flex flex-row justify-between items-center p-2">
+      <div className="flex flex-row justify-between items-center px-2 py-0.5">
         <p className="text-sm">{t("language")}</p>
         <LanguageSwitch />
       </div>

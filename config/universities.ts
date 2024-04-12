@@ -19,6 +19,7 @@ export function getEmailOptions() {
   ];
 }
 
+// TODO: Update the options to their correct informations
 export function getTranslatedEmailOptions(
   t: TranslationFunction
 ): EmailOption[] {
