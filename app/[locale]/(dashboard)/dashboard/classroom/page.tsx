@@ -1,14 +1,12 @@
 import { redirect } from "@/lib/navigation";
 import { getCurrentUser } from "@/lib/session";
-import { Classroom, User } from "@prisma/client";
+
 import { cookies } from "next/headers";
 import { AddClassroom } from "@/components/form/AddClassroom";
 import JoinClassroom from "@/components/form/JoinClassroom";
 import { ClassroomCard } from "@/components/display/ClassroomCard";
+import { classroom } from "@/types/classroom";
 
-type classroom = Classroom & {
-  teacher: { user: User; id: string; userId: string };
-};
 async function getCookie(name: string) {
   return cookies().get(name)?.value ?? "";
 }

@@ -61,3 +61,14 @@ export const editClassroomSchema = (t: (arg: string) => string) =>
     }),
     description: z.string().optional(),
   });
+
+export const addPostSchema = (t: (arg: string) => string) =>
+  z.object({
+    name: z.string().min(10, {
+      message: t("formSchemaPostName"),
+    }),
+    content: z.string().min(10, {
+      message: t("formSchemaDescriptionMessage"),
+    }),
+    files: z.array(z.unknown()).optional(),
+  });

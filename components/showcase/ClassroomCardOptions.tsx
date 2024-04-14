@@ -113,7 +113,11 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
     <>
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="h-8 w-8">
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+          >
             <Icons.moreHorizontal className="h-4 w-4" />
             <span className="sr-only">Toggle options of classroom</span>
           </Button>

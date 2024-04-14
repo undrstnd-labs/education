@@ -45,6 +45,13 @@ export async function GET(
           id: classroomId,
           teacherId: teacher.id,
         },
+        include: {
+          teacher: {
+            include: {
+              user: true,
+            },
+          },
+        },
       });
 
       return NextResponse.json(classroom, { status: 200 });
@@ -75,6 +82,13 @@ export async function GET(
           students: {
             some: {
               id: student.id,
+            },
+          },
+        },
+        include: {
+          teacher: {
+            include: {
+              user: true,
             },
           },
         },

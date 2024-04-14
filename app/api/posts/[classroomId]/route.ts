@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { db } from "@lib/prisma";
 import { getCurrentUser } from "@lib/session";
 import { verifyCurrentTeacher } from "@lib/session";
+import { supabaseFile } from "@/types/supabase";
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -115,7 +116,7 @@ export async function POST(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
-  const { userId, name, content } = await req.json();
+  const { userId, name, content, files } = await req.json();
   const {
     params: { classroomId },
   } = routeContextSchema.parse(context);
@@ -123,7 +124,7 @@ export async function POST(
   if (!name || !content) {
     return NextResponse.json(
       {
-        message: "Name and content are required",
+        message: "All fileds are required",
       },
       {
         status: 400,
@@ -162,13 +163,26 @@ export async function POST(
     );
   }
 
-  const post = await db.post.create({
-    data: {
-      name,
-      content,
-      classroomId,
-      teacherId: teacher.id,
-    },
-  });
-  return NextResponse.json(post, { status: 201 });
+  try {
+    const post = await db.post.create({
+      data: {
+        name,
+        content,
+        classroomId,
+        teacherId: teacher.id,
+        files: {
+          create: files.map((file: supabaseFile) => ({
+            size: file.size,
+            name: file.name,
+            type: file.type,
+            url: file.url,
+          })),
+        },
+      },
+    });
+    return NextResponse.json(post, { status: 201 });
+  } catch (error: any) {
+    console.log(error);
+    return NextResponse.json({ message: error.message }, { status: 500 });
+  }
 }

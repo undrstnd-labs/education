@@ -94,7 +94,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
         <DialogTrigger asChild>
           <Button className="mb-4">{t("buttonCreate")}</Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="text-center font-bold text-primary text-2xl mb-8">
@@ -156,7 +156,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
         <DrawerTrigger asChild>
           <Button className="mb-4">{t("buttonCreate")}</Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
