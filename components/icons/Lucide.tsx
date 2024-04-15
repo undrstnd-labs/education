@@ -46,6 +46,8 @@ import {
   PanelLeft,
   PanelRight,
   Share2,
+  Eye,
+  ArrowDownToLine,
 } from "lucide-react";
 
 import {
@@ -120,4 +122,6 @@ export const Icons = {
   leaveClassroom: GoSignOut,
   shareClassroom: Share2,
   shareClassroomTaked: TiTick,
+  watchFile: Eye,
+  downloadFile: ArrowDownToLine,
 };

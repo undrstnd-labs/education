@@ -1,6 +1,7 @@
 // TODO: Generate metadata for this page
 
 import { ClassroomCard } from "@/components/display/ClassroomCard";
+import PostCard from "@/components/display/PostCard";
 import PostAddCard from "@/components/showcase/PostAddCard";
 import { redirect } from "@/lib/navigation";
 import { getCurrentUser, userAuthentificateVerification } from "@/lib/session";
@@ -50,6 +51,7 @@ export default async function ClassroomPage({
     return null;
   }
   const classroom = await getClassroom(classroomId);
+
   if (!classroom) {
     return notFound();
   }
@@ -59,6 +61,19 @@ export default async function ClassroomPage({
       {user.role === "TEACHER" && (
         <PostAddCard userId={user.id} classroom={classroom} />
       )}
+      <div className="flex flex-col gap-6">
+        {classroom.posts && classroom.posts.length > 0 ? (
+          classroom.posts.map((post) => (
+            <PostCard key={post.id} post={post} userId={user.id} />
+          ))
+        ) : (
+          <h1 className="font-bold md:text-xl">
+            {user?.role === "TEACHER"
+              ? "No posts. Create one now"
+              : "No posts to show. Wait for the teacher to post something."}
+          </h1>
+        )}
+      </div>
     </div>
   );
 }

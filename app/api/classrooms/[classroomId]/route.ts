@@ -51,6 +51,22 @@ export async function GET(
               user: true,
             },
           },
+          posts: {
+            include: {
+              teacher: {
+                include: {
+                  user: true,
+                },
+              },
+              files: true,
+              comments: {
+                include: {
+                  user: true,
+                },
+              },
+              reactions: true,
+            },
+          },
         },
       });
 
@@ -89,6 +105,22 @@ export async function GET(
           teacher: {
             include: {
               user: true,
+            },
+          },
+          posts: {
+            include: {
+              teacher: {
+                include: {
+                  user: true,
+                },
+              },
+              files: true,
+              comments: {
+                include: {
+                  user: true,
+                },
+              },
+              reactions: true,
             },
           },
         },

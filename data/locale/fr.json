@@ -22,6 +22,9 @@
       "home": "Acceuil"
     },
     "Classroom": {
+      "fileOptions": "Options de fichier",
+      "downloadFile": "Télécharger le fichier",
+      "fileCardSeeFile": "Consulter le fichier",
       "toastPostCreatedFailed": "Création de post échouée",
       "toastPostCreatedFailedDescription": "Quelque chose s'est mal passé lors de la création de votre post. Veuillez réessayer.",
       "toastPostCreatedSuccess": "Post créé avec succès",
@@ -166,7 +169,7 @@
         "leaveApiSuccess": "Quitter le classroom avec succès",
         "leaveApiSuccessDescription": "Vous avez quitté avec succès le classroom.",
         "alertDialogLeave": "Êtes-vous sûr de vouloir quitter ce classroom ?",
-        "alertDialogLeaveDescription": "Cette action peut être annulée. Cela vous retirera de la classe.",
+        "alertDialogLeaveDescription": "Cette action peut être annulée. Cela vous retirera du classroom.",
         "toastDescriptionDeleteClassroom": "Vous avez supprimer avec succès un classroom.",
         "toastTitleDeleteClassroom": "Classroom supprimé avec succès",
         "toastDescriptionArchiveClassroom": "Vous avez archiver avec succès un classroom.",

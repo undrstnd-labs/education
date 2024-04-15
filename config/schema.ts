@@ -64,7 +64,7 @@ export const editClassroomSchema = (t: (arg: string) => string) =>
 
 export const addPostSchema = (t: (arg: string) => string) =>
   z.object({
-    name: z.string().min(10, {
+    name: z.string().min(4, {
       message: t("formSchemaPostName"),
     }),
     content: z.string().min(10, {

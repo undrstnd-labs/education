@@ -1,31 +1,8 @@
 "use client";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/AlertDialog";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/Drawer";
-import { Button } from "@/components/ui/Button";
-import { Classroom } from "@prisma/client";
+
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "@/lib/navigation";
 import { useTranslations } from "next-intl";
-import { useMediaQuery } from "@/hooks/use-media-query";
 import { useEffect, useState } from "react";
 
 interface JoinClassroomProps {
@@ -37,7 +14,6 @@ export function JoinClassroom({ classCode, userId }: JoinClassroomProps) {
   const router = useRouter();
   const t = useTranslations("Pages.Classroom");
   const [open, setOpen] = useState(true);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const handleJoin = async () => {
     try {

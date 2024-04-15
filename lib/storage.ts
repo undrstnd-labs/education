@@ -83,3 +83,24 @@ export const deleteFiles = async (filesUrl: string[]) => {
     })
   );
 };
+
+export const downloadFileFromUrl = async (url: string) => {
+  try {
+    const { data, error } = await supabase.storage.from("files").download(url);
+
+    if (error) {
+      throw error;
+    }
+
+    // create a blob from the data
+    const blob = new Blob([data], { type: "application/octet-stream" });
+
+    // create a link to download the file
+    const downloadLink = document.createElement("a");
+    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.download = url.split("/").pop() ?? "";
+    downloadLink.click();
+  } catch (err) {
+    console.error("Erreur lors du téléchargement du fichier :", err);
+  }
+};

@@ -20,6 +20,9 @@
       "labelPolicy": "Privacy Policy."
     },
     "Classroom": {
+      "fileOptions": "File Options",
+      "downloadFile": "Download file",
+      "fileCardSeeFile": "See file",
       "toastPostCreatedFailed": "Post creation failed",
       "toastPostCreatedFailedDescription": "An error occurred while creating the post. Please try again.",
       "toastPostCreatedSuccess": "Post created successfully",
