@@ -118,7 +118,7 @@ export default function Pricing() {
                     </ul>
                   </div>
                   <Link href={tier.href} aria-describedby={tier.id}>
-                    <Button className="items-center mt-8 w-full bg-blue-600 hover:bg-blue-500 font-semibold">
+                    <Button className="mt-8 w-full items-center bg-blue-600 font-semibold hover:bg-blue-500">
                       Get started today
                     </Button>
                   </Link>
@@ -138,7 +138,7 @@ export default function Pricing() {
                 </div>
                 <Link href="/education">
                   <Button
-                    className="font-semibold leading-6 text-blue-600 hover:text-blue-700 ring-1 ring-inset ring-blue-200 hover:ring-blue-300"
+                    className="font-semibold leading-6 text-blue-600 ring-1 ring-inset ring-blue-200 hover:text-blue-700 hover:ring-blue-300"
                     variant={"outline"}
                   >
                     Apply now <span aria-hidden="true">&rarr;</span>

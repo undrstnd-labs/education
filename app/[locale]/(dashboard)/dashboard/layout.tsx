@@ -43,7 +43,7 @@ export default async function DashboardLayout({
               href="/"
               className={cn(
                 buttonVariants({ variant: "ghost" }),
-                "relative z-20 flex items-center text-lg font-semibold w-fit"
+                "relative z-20 flex w-fit items-center text-lg font-semibold"
               )}
             >
               <LogoPNG className="mr-2 h-6 w-6" />

@@ -1,16 +1,19 @@
 "use client";
-import { Icons } from "@/components/icons/Lucide";
-import { Card, CardContent } from "@/components/ui/Card";
+
 import { z } from "zod";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/lib/navigation";
+import { useRouter } from "@lib/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Icons } from "@/components/icons/Lucide";
+import { Card, CardContent } from "@/components/ui/Card";
 
 import { toast } from "@hook/use-toast";
 import { addPostSchema } from "@config/schema";
-import { useMediaQuery } from "@/hooks/use-media-query";
+import { useMediaQuery } from "@hook/use-media-query";
+import { deleteFiles, uploadFiles } from "@lib/storage";
 
 import {
   Form,
@@ -22,12 +25,11 @@ import {
 } from "@component/ui/Form";
 import { Input } from "@component/ui/Input";
 import { Button } from "@component/ui/Button";
-
 import { Textarea } from "@component/ui/Textarea";
 import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
 import { Dialog, DialogContent, DialogTrigger } from "@component/ui/Dialog";
+
 import { classroom } from "@/types/classroom";
-import { deleteFiles, uploadFiles } from "@/lib/storage";
 import { supabaseFile } from "@/types/supabase";
 
 interface PostAddCard {
@@ -35,17 +37,20 @@ interface PostAddCard {
   classroom: classroom;
 }
 
-const PostAddCard = ({ userId, classroom }: PostAddCard) => {
+export function PostAddCard({ userId, classroom }: PostAddCard) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const [isLoadingFiles, setIsLoadingFiles] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [files, setFiles] = useState<File[]>([]);
-  const [supabaseFilesPath, setSupabaseFilesPath] = useState<string[]>([]);
-  const [supabaseFiles, setSupabaseFiles] = useState<supabaseFile[]>([]);
-  const refFiles = useRef<HTMLInputElement>(null);
   const t = useTranslations("Pages.Classroom");
+
+  const [open, setOpen] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingFiles, setIsLoadingFiles] = useState(false);
+  const [supabaseFiles, setSupabaseFiles] = useState<supabaseFile[]>([]);
+  const [supabaseFilesPath, setSupabaseFilesPath] = useState<string[]>([]);
+
+  const refFiles = useRef<HTMLInputElement>(null);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+
   const formSchema = addPostSchema(t);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -124,12 +129,12 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Card className="hover:cursor-pointer group">
+          <Card className="group hover:cursor-pointer">
             <CardContent className="flex  items-center gap-4  px-6 py-3">
-              <div className="border rounded-full size-8 max-sm:size-5 flex justify-center items-center border-gray-500 hover:bg-accent">
+              <div className="flex size-8 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5">
                 <Icons.add className="size-6 text-gray-500 max-sm:size-4" />
               </div>
-              <div className="hover:underline hover:underline-offset-2 max-sm:text-sm group-hover:underline group-hover:underline-offset-2">
+              <div className="group-hover:underline group-hover:underline-offset-2 hover:underline hover:underline-offset-2 max-sm:text-sm">
                 {t("createPostTitle")}
               </div>
             </CardContent>
@@ -152,7 +157,7 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
         >
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="text-center font-bold text-primary text-2xl mb-8">
+              <div className="mb-8 text-center text-2xl font-bold text-primary">
                 {t("createPostTitle")}
               </div>
               <FormField
@@ -215,7 +220,7 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                             ref={refFiles}
                           />
                           <div
-                            className="border rounded-full -mt-1 size-6 max-sm:size-5 flex justify-center items-center border-gray-500 hover:bg-accent"
+                            className="-mt-1 flex size-6 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5"
                             onClick={openFilePicker}
                           >
                             <Icons.add className="size-5 text-gray-500 max-sm:size-4" />
@@ -224,12 +229,12 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                       </FormControl>
                     </div>
                     <FormMessage />
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2 ">
+                    <div className="grid grid-cols-2 gap-4 pt-2 sm:grid-cols-3 ">
                       {files.map((file, index) => (
                         <div key={index} className="relative">
-                          <div className=" p-5 rounded shadow-md flex items-center space-x-4 border ">
+                          <div className=" flex items-center space-x-4 rounded border p-5 shadow-md ">
                             <div className="flex-1 truncate">
-                              <div className="font-bold text-sm">
+                              <div className="text-sm font-bold">
                                 {file.name}
                               </div>
                               <div className="text-sm text-gray-500">
@@ -239,9 +244,9 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                             <button
                               type="button"
                               onClick={() => handleFileRemove(index)}
-                              className="absolute top-0 right-0 pr-2"
+                              className="absolute right-0 top-0 pr-2"
                             >
-                              <Icons.close className="h-4 w-4 text-red-500 mt-1.5 border rounded-full border-red-300" />
+                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -254,7 +259,7 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                 <Button
                   variant={"outline"}
                   type="submit"
-                  className="w-full mb-2"
+                  className="mb-2 w-full"
                   disabled={isLoadingFiles}
                   onClick={() => {
                     setIsLoadingFiles(true);
@@ -303,12 +308,12 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>
-          <Card className="hover:cursor-pointer group">
+          <Card className="group hover:cursor-pointer">
             <CardContent className="flex  items-center gap-4  px-6 py-3">
-              <div className="border rounded-full size-8 max-sm:size-5 flex justify-center items-center border-gray-500 hover:bg-accent">
+              <div className="flex size-8 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5">
                 <Icons.add className="size-6 text-gray-500 max-sm:size-4" />
               </div>
-              <div className="hover:underline hover:underline-offset-2 max-sm:text-sm group-hover:underline group-hover:underline-offset-2">
+              <div className="group-hover:underline group-hover:underline-offset-2 hover:underline hover:underline-offset-2 max-sm:text-sm">
                 {t("createPostTitle")}
               </div>
             </CardContent>
@@ -334,7 +339,7 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6 px-6 pb-6"
             >
-              <div className="text-center font-bold text-primary text-2xl mb-8">
+              <div className="mb-8 text-center text-2xl font-bold text-primary">
                 {t("createPostTitle")}
               </div>
               <FormField
@@ -397,7 +402,7 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                             ref={refFiles}
                           />
                           <div
-                            className="border rounded-full -mt-1 size-6 max-sm:size-5 flex justify-center items-center border-gray-500 hover:bg-accent"
+                            className="-mt-1 flex size-6 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5"
                             onClick={openFilePicker}
                           >
                             <Icons.add className="size-5 text-gray-500 max-sm:size-4" />
@@ -406,12 +411,12 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                       </FormControl>
                     </div>
                     <FormMessage />
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2 ">
+                    <div className="grid grid-cols-2 gap-4 pt-2 sm:grid-cols-3 ">
                       {files.map((file, index) => (
                         <div key={index} className="relative">
-                          <div className=" p-5 rounded shadow-md flex items-center space-x-4 border ">
+                          <div className=" flex items-center space-x-4 rounded border p-5 shadow-md ">
                             <div className="flex-1 truncate">
-                              <div className="font-bold text-sm">
+                              <div className="text-sm font-bold">
                                 {file.name}
                               </div>
                               <div className="text-sm text-gray-500">
@@ -421,9 +426,9 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                             <button
                               type="button"
                               onClick={() => handleFileRemove(index)}
-                              className="absolute top-0 right-0 pr-2"
+                              className="absolute right-0 top-0 pr-2"
                             >
-                              <Icons.close className="h-4 w-4 text-red-500 mt-1.5 border rounded-full border-red-300" />
+                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -436,7 +441,7 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
                 <Button
                   variant={"outline"}
                   type="submit"
-                  className="w-full mb-2"
+                  className="mb-2 w-full"
                   disabled={isLoadingFiles}
                   onClick={() => {
                     setIsLoadingFiles(true);
@@ -482,6 +487,4 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
       </Drawer>
     );
   }
-};
-
-export default PostAddCard;
+}

@@ -1,4 +1,13 @@
 "use client";
+
+import { useState } from "react";
+import { Classroom } from "@prisma/client";
+import { useTranslations } from "next-intl";
+
+import { toast } from "@hook/use-toast";
+import { useRouter } from "@lib/navigation";
+import { useMediaQuery } from "@hook/use-media-query";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,7 +18,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/AlertDialog";
+} from "@component/ui/AlertDialog";
 import {
   Drawer,
   DrawerClose,
@@ -19,15 +28,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/Drawer";
-import { Button } from "@/components/ui/Button";
-import { Classroom } from "@prisma/client";
-import { Icons } from "../icons/Lucide";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "@/lib/navigation";
-import { useTranslations } from "next-intl";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { useState } from "react";
+} from "@component/ui/Drawer";
+import { Button } from "@component/ui/Button";
+import { Icons } from "@component/icons/Lucide";
 
 interface LeaveClassroomProps {
   classroom: Classroom;
@@ -37,8 +40,10 @@ interface LeaveClassroomProps {
 export function LeaveClassroom({ classroom, userId }: LeaveClassroomProps) {
   const router = useRouter();
   const t = useTranslations("Components.Display.ClassroomCardOptions");
+
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+
   const handleLeave = async () => {
     const res = await fetch(`/api/classrooms/leave/${classroom.classCode}`, {
       method: "PATCH",
@@ -111,7 +116,7 @@ export function LeaveClassroom({ classroom, userId }: LeaveClassroomProps) {
               <DrawerClose asChild>
                 <Button
                   variant="outline"
-                  className="bg-red-700 hover:bg-red-500 text-white"
+                  className="bg-red-700 text-white hover:bg-red-500"
                   onClick={handleLeave}
                 >
                   {t("alertDialogAction")}

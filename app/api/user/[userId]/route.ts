@@ -2,7 +2,7 @@ import * as z from "zod";
 import { NextResponse } from "next/server";
 
 import { db } from "@lib/prisma";
-import { getCurrentUser, verifyCurrentUser } from "@lib/session";
+import { verifyCurrentUser } from "@lib/session";
 
 const routeContextSchema = z.object({
   params: z.object({
@@ -17,7 +17,7 @@ export async function PUT(
   const { params } = routeContextSchema.parse(context);
   const { name, email, bio, image, universitySlug, role } = await req.json();
 
-  if (!(await getCurrentUser())) {
+  if (!(await verifyCurrentUser(params.userId, true))) {
     return NextResponse.json(
       { message: "You are not authorized to update this user" },
       { status: 403 }
@@ -38,24 +38,28 @@ export async function PUT(
     },
   });
 
-  if (role === "TEACHER") {
-    const teacher = await db.teacher.create({
-      data: {
-        userId: params.userId,
-      },
-    });
+  try {
+    if (role === "TEACHER") {
+      const teacher = await db.teacher.create({
+        data: {
+          userId: user.id,
+        },
+      });
 
-    return NextResponse.json(teacher, { status: 200 });
-  }
+      return NextResponse.json(teacher, { status: 200 });
+    }
 
-  if (role === "STUDENT") {
-    const student = await db.student.create({
-      data: {
-        userId: params.userId,
-      },
-    });
+    if (role === "STUDENT") {
+      const student = await db.student.create({
+        data: {
+          userId: user.id,
+        },
+      });
 
-    return NextResponse.json(student, { status: 200 });
+      return NextResponse.json(student, { status: 200 });
+    }
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 

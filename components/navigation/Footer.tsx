@@ -17,7 +17,7 @@ export default function Footer() {
             <div key={item.title} className="pb-6">
               <Link
                 href={item.href}
-                className="text-sm leading-6 px-3 py-2 rounded-xl transition-colors delay-75 hover:delay-[150ms] text-gray-600 hover:text-gray-900 hover:bg-slate-300/40"
+                className="hover:delay-[150ms] rounded-xl px-3 py-2 text-sm leading-6 text-gray-600 transition-colors delay-75 hover:bg-slate-300/40 hover:text-gray-900"
               >
                 {item.title}
               </Link>

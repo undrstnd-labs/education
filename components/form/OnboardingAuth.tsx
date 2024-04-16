@@ -24,7 +24,6 @@ import {
 import { Input } from "@component/ui/Input";
 import { buttonVariants } from "@/components/ui/Button";
 import { Textarea } from "@component/ui/Textarea";
-import { Avatar, AvatarFallback, AvatarImage } from "@component/ui/Avatar";
 
 import { Icons } from "@component/icons/Lucide";
 import { UniversityCard } from "@component/display/UniversityCard";
@@ -43,7 +42,8 @@ const formSchema = z.object({
   role: z.union([z.literal("STUDENT"), z.literal("TEACHER")]),
 });
 
-//FIXME: Create a Student and Teacher entities
+//TODO: Work on the dark theme
+// TODO: Translate this page
 export function OnboardingAuthForm({ user }: { user: UserType }) {
   const { toast } = useToast();
   const router = useRouter();
@@ -94,7 +94,7 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
     }
 
     try {
-      await fetch(`/api/user/${user.id}`, {
+      const res = await fetch(`/api/user/${user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -105,20 +105,23 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
           universitySlug: user.email!.split("@")[1],
         }),
       });
-      toast({
-        title: "Profile updated",
-        description: "Your profile has been updated successfully.",
-      });
+
+      if (!res.ok) {
+        toast({
+          title: "Failed to update profile",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Profile updated",
+          description: "Your profile has been updated successfully.",
+        });
+      }
 
       router.push("/dashboard");
-      window.location.reload();
     } catch (error) {
       console.error(error);
-      toast({
-        title: "Failed to update profile",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
     } finally {
       setLoading(false);
     }
@@ -150,7 +153,7 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
                 onClick={() => fileInputRef.current?.click()}
                 width={48}
                 height={48}
-                className="rounded-full w-12 h-12 cursor-pointer"
+                className="h-12 w-12 cursor-pointer rounded-full"
               />
             ) : (
               <Icons.user

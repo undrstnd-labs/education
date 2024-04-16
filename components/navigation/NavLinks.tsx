@@ -13,7 +13,7 @@ export default function NavLinks() {
     <Link
       key={title}
       href={href}
-      className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-300 transition-colors delay-150 hover:text-gray-900 dark:hover:text-gray-100 hover:delay-[150ms]"
+      className="hover:delay-[150ms] relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-gray-700 transition-colors delay-150 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
       onMouseEnter={() => {
         setHoveredIndex(index);
       }}

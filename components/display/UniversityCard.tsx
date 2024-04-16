@@ -22,7 +22,7 @@ export function UniversityCard({
               {university.abbrev}
             </h3>
           </div>
-          <p className="mt-1 text-sm text-gray-500 break-before-auto">
+          <p className="mt-1 break-before-auto text-sm text-gray-500">
             {university.label}
           </p>
         </div>

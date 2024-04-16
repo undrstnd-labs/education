@@ -1,18 +1,21 @@
 // TODO: Generate metadata for this page
 
-import { ClassroomCard } from "@/components/display/ClassroomCard";
-import PostCard from "@/components/display/PostCard";
-import PostAddCard from "@/components/showcase/PostAddCard";
-import { redirect } from "@/lib/navigation";
-import { getCurrentUser, userAuthentificateVerification } from "@/lib/session";
-import { NextAuthUser } from "@/types/auth";
-import { classroom } from "@/types/classroom";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
+import { redirect } from "@lib/navigation";
+
+import { NextAuthUser } from "@/types/auth";
+import { classroom } from "@/types/classroom";
+import { getCurrentUser, userAuthentificateVerification } from "@/lib/session";
+
+import { PostCard } from "@component/display/PostCard";
+import { PostAddCard } from "@component/form/PostAddCard";
+import { ClassroomCard } from "@component/display/ClassroomCard";
 
 async function getCookie(name: string) {
   return cookies().get(name)?.value ?? "";
 }
+
 const getClassroom = async (classroomId: string) => {
   const session = await getCookie("next-auth.session-token");
   try {
@@ -44,17 +47,21 @@ export default async function ClassroomPage({
 }) {
   const user = await getCurrentUser();
   const toRedirect = await userAuthentificateVerification(user as NextAuthUser);
+
   if (toRedirect) {
     redirect(toRedirect);
   }
+
   if (!user) {
     return null;
   }
+
   const classroom = await getClassroom(classroomId);
 
   if (!classroom) {
     return notFound();
   }
+
   return (
     <div className="flex flex-col gap-4">
       <ClassroomCard authorId={user.id} classroom={classroom} />

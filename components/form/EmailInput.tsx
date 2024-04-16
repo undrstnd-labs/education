@@ -25,7 +25,7 @@ import { getTranslatedEmailOptions } from "@config/universities";
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
     <Input
-      className={cn("rounded-e-none rounded-s-lg border-r-0 z-20", className)}
+      className={cn("z-20 rounded-e-none rounded-s-lg border-r-0", className)}
       {...props}
       ref={ref}
     />
@@ -68,7 +68,7 @@ function EmailSelectResponsive({
           <Button
             type="button"
             variant={"outline"}
-            className={cn("flex gap-1 rounded-s-none rounded-e-lg pr-1 pl-3")}
+            className={cn("flex gap-1 rounded-e-lg rounded-s-none pl-3 pr-1")}
             disabled={disabled}
           >
             <AvatarComponent
@@ -82,7 +82,7 @@ function EmailSelectResponsive({
             />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="p-0 w-[500px]" align="start">
+        <PopoverContent className="w-[500px] p-0" align="start">
           <EmailOptionsList
             value={value}
             onSelect={onSelect}
@@ -99,7 +99,7 @@ function EmailSelectResponsive({
         <Button
           type="button"
           variant={"outline"}
-          className={cn("flex gap-1 rounded-s-none rounded-e-lg pr-1 pl-3")}
+          className={cn("flex gap-1 rounded-e-lg rounded-s-none pl-3 pr-1")}
           disabled={disabled}
         >
           <AvatarComponent
@@ -152,7 +152,7 @@ function EmailOptionsList({
                 onSelect={() => onSelect(option.value)}
               >
                 <AvatarComponent university={option} />
-                <span className="text-sm flex-1">{option.label}</span>
+                <span className="flex-1 text-sm">{option.label}</span>
                 {option.value && (
                   <span className="text-sm text-foreground/50">
                     {option.value}

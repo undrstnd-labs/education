@@ -10,15 +10,15 @@ export const metadata: Metadata = {
 export default function Welcome() {
   return (
     <main>
-      <div className="max-w-lg px-5 m-auto text-lg prose text-gray-400 mt-8 py-24">
+      <div className="prose m-auto mt-8 max-w-lg px-5 py-24 text-lg text-gray-400">
         <Image
           height={200}
           width={200}
-          className="h-36 w-auto m-auto"
+          className="m-auto h-36 w-auto"
           src="/images/logos/Rounded.png"
           alt="Logo propre d'Undrstnd."
         />
-        <h1 className="mb-0 md:text-6xl text-5xl font-black text-black text-neutral-90 py-8">
+        <h1 className="text-neutral-90 mb-0 py-8 text-5xl font-black text-black md:text-6xl">
           👋 Bienvenue sur Undrstnd !
         </h1>
         <p>
@@ -39,19 +39,19 @@ export default function Welcome() {
           Consultez notre dépôt sur{" "}
           <Link
             href="https://github.com/FindMalek/undrstnd"
-            className="text-sky-500 text-lg font-semibold underline"
+            className="text-lg font-semibold text-sky-500 underline"
           >
             GitHub
           </Link>
           , rejoignez-nous sur{" "}
           <Link
             href="https://discord.gg/j9WY4pfE4h"
-            className="text-sky-500 text-lg font-semibold underline"
+            className="text-lg font-semibold text-sky-500 underline"
           >
             Discord
           </Link>{" "}
           et suivez{" "}
-          <span className="text-sky-500 text-lg font-semibold">@Undrstnd</span>{" "}
+          <span className="text-lg font-semibold text-sky-500">@Undrstnd</span>{" "}
           pour vous impliquer !
         </p>
 
@@ -59,13 +59,13 @@ export default function Welcome() {
         <p>
           Ou bien, vous pouvez nous contacter via{" "}
           <Link
-            className="text-sky-500 text-lg font-semibold"
+            className="text-lg font-semibold text-sky-500"
             href="https://www.findmalek.com"
           >
             @FindMalek
           </Link>{" "}
           oui{" "}
-          <Link className="text-sky-500 text-lg font-semibold" href="#">
+          <Link className="text-lg font-semibold text-sky-500" href="#">
             @Jguirim
           </Link>{" "}
         </p>

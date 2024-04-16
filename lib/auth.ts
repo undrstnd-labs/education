@@ -71,6 +71,8 @@ export const authOptions: NextAuthOptions = {
         session.user.email = dbUser.email;
         session.user.image = dbUser.image;
         session.user.role = dbUser.role;
+        session.user.bio = dbUser.bio;
+        session.user.universitySlug = dbUser.universitySlug;
       }
 
       return session;
@@ -83,7 +85,7 @@ export const authOptions: NextAuthOptions = {
 
         const dbUser = await db.user.findFirst({
           where: {
-            email: user.email,
+            email: user.email as string,
           },
         });
 

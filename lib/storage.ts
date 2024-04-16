@@ -1,7 +1,8 @@
+import { v4 as uuidv4 } from "uuid";
+import { supabase } from "@lib/supabase";
+
 import { classroom } from "@/types/classroom";
 import { supabaseFile } from "@/types/supabase";
-import { supabase } from "@lib/supabase";
-import { v4 as uuidv4 } from "uuid";
 
 export async function uploadAvatar(file: File, userId: string) {
   return await supabase.storage

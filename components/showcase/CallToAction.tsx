@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 export default function CallToAction() {
   return (
     <div className="bg-gray-900 shadow-2xl">
-      <div className="mx-auto max-w-7xl relative isolate overflow-hidden px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+      <div className="relative isolate mx-auto max-w-7xl overflow-hidden px-6 pt-16 sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
         <svg
           viewBox="0 0 1024 1024"
           className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
@@ -37,7 +37,7 @@ export default function CallToAction() {
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
             <Link href="/register">
-              <Button className="bg-white hover:bg-gray-100 text-gray-900 shadow-sm font-semibold">
+              <Button className="bg-white font-semibold text-gray-900 shadow-sm hover:bg-gray-100">
                 Join Beta Now
               </Button>
             </Link>

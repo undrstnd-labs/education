@@ -1,9 +1,10 @@
 "use client";
 
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "@/lib/navigation";
-import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
+import { toast } from "@hook/use-toast";
+import { useRouter } from "@lib/navigation";
 
 interface JoinClassroomProps {
   classCode: string;
@@ -61,6 +62,7 @@ export function JoinClassroom({ classCode, userId }: JoinClassroomProps) {
       router.push("/dashboard/classroom");
     }
   };
+
   if (open) {
     useEffect(() => {
       handleJoin();

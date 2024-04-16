@@ -44,28 +44,28 @@ export function ChatPanel({
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false);
 
   return (
-    <div className="fixed inset-x-0 bottom-0 w-full animate-in duration-300 ease-in-out  peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
+    <div className="fixed inset-x-0 bottom-0 w-full duration-300 ease-in-out animate-in  peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
       <ButtonScrollToBottom
         isAtBottom={isAtBottom}
         scrollToBottom={scrollToBottom}
       />
 
       <div className="mx-auto sm:max-w-2xl sm:px-4">
-        <div className="flex items-center justify-center h-12">
+        <div className="flex h-12 items-center justify-center">
           {isLoading ? (
             <Button
               variant="outline"
               onClick={() => stop()}
               className="bg-background"
             >
-              <Icons.stop className="mr-2 stroke-[1.25] size-5" />
+              <Icons.stop className="mr-2 size-5 stroke-[1.25]" />
               {t("stop-generating")}
             </Button>
           ) : (
             messages?.length >= 2 && (
               <div className="flex space-x-2">
                 <Button variant="outline" onClick={() => reload()}>
-                  <Icons.refresh className="mr-2 stroke-[1.25] size-5" />
+                  <Icons.refresh className="mr-2 size-5 stroke-[1.25]" />
                   {t("regenerate")}
                 </Button>
                 {id && title ? (
@@ -74,7 +74,7 @@ export function ChatPanel({
                       variant="outline"
                       onClick={() => setShareDialogOpen(true)}
                     >
-                      <Icons.share className="mr-2 stroke-[1.25] size-5" />
+                      <Icons.share className="mr-2 size-5 stroke-[1.25]" />
                       {t("share")}
                     </Button>
                     <ChatShareDialog
@@ -94,7 +94,7 @@ export function ChatPanel({
             )
           )}
         </div>
-        <div className="px-4 py-2 space-y-4 border-t shadow-lg bg-background sm:rounded-t-xl sm:border md:py-4">
+        <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg sm:rounded-t-xl sm:border md:py-4">
           <Prompt
             onSubmit={async (value: string) => {
               await append({

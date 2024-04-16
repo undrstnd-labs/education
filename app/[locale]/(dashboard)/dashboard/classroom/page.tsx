@@ -40,7 +40,7 @@ export default async function ClassroomsPage() {
   const classrooms = await getClassroom();
 
   return (
-    <div className="p-4 w-full ">
+    <div className="w-full p-4 ">
       {user?.role === "TEACHER" && <AddClassroom userId={user.id} />}
       {user?.role === "STUDENT" && <JoinClassroom userId={user.id} />}
       <div className="flex flex-col gap-6">

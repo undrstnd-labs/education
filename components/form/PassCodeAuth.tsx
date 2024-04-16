@@ -113,7 +113,7 @@ export function PassCodeAuth({ email }: { email: string }) {
   const t = useTranslations("Components.Form.PassCodeAuth");
 
   return (
-    <div className="flex flex-col space-y-6 justify-center items-center text-center">
+    <div className="flex flex-col items-center justify-center space-y-6 text-center">
       <h1 className="text-2xl font-semibold tracking-tight">
         {t("verify-account")}
       </h1>

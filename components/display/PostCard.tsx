@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -5,23 +7,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
+import { FileCard } from "@component/showcase/FileCard";
 
 import { post } from "@/types/classroom";
-import Image from "next/image";
-import FileCard from "../showcase/FileCard";
 
 interface PostCardProps {
   post: post;
   userId: string;
 }
 
-const PostCard = ({ post, userId }: PostCardProps) => {
+export function PostCard({ post, userId }: PostCardProps) {
   return (
     <div>
       <Card>
         <CardHeader>
           <CardTitle>
-            <div className="flex gap-2 items-center">
+            <div className="flex items-center gap-2">
               <Image
                 src={post.teacher.user.image!}
                 alt={post.teacher.user.name!}
@@ -39,7 +40,7 @@ const PostCard = ({ post, userId }: PostCardProps) => {
           </CardTitle>
           <CardDescription>{post.content}</CardDescription>
           {post.files && post.files.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-0.5">
+            <div className="grid grid-cols-1 gap-4 pt-0.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {post.files.map((file) => (
                 <FileCard key={file.id} file={file} />
               ))}
@@ -51,6 +52,4 @@ const PostCard = ({ post, userId }: PostCardProps) => {
       <div>{/*TODO: Comment section */}</div>
     </div>
   );
-};
-
-export default PostCard;
+}
