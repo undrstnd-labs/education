@@ -20,6 +20,9 @@ async function getClassroom() {
       headers: {
         Cookie: `next-auth.session-tokend=${session}`,
       },
+      next: {
+        revalidate: 0,
+      },
     });
 
     if (res.ok) {
