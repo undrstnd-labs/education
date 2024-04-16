@@ -1,3 +1,5 @@
+"use client";
+
 import { File } from "@prisma/client";
 import { Link } from "@lib/navigation";
 import { useTranslations } from "next-intl";
@@ -22,6 +24,7 @@ interface FileCardProps {
 
 export function FileCard({ file }: FileCardProps) {
   const t = useTranslations("Pages.Classroom");
+
   return (
     <Card className="mt-2">
       <div className=" group flex flex-col gap-3 p-2">
