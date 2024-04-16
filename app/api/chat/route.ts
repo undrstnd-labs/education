@@ -3,7 +3,7 @@ import { OpenAIStream, StreamingTextResponse } from "ai";
 
 import { db } from "@lib/prisma";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 // TODO: add this
 /*   CONTEXT:
