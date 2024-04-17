@@ -14,7 +14,7 @@ import { Card } from "@component/ui/Card";
 import { Button } from "@component/ui/Button";
 import { Icons } from "@component/icons/Lucide";
 
-import { downloadFileFromUrl } from "@lib/storage";
+import DonloadFileButton from "./DonloadFileButton";
 
 interface FileCardProps {
   file: File;
@@ -80,12 +80,7 @@ export function FileCard({ file }: FileCardProps) {
                 </DropdownMenuItem>
               </Link>
 
-              <DropdownMenuItem
-                className="flex items-center gap-2 hover:cursor-pointer"
-                onClick={() => downloadFileFromUrl(file.url)}
-              >
-                <Icons.downloadFile className="h-4 w-4" /> {t("downloadFile")}
-              </DropdownMenuItem>
+              <DonloadFileButton file={file} />
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
