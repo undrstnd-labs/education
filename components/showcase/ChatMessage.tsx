@@ -1,10 +1,10 @@
 import { Message } from "ai";
 import Image from "next/image";
-import { User } from "next-auth";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
 import { cn } from "@lib/utils";
+import { Student, User } from "@prisma/client";
 
 import { Logo } from "@component/icons/Overall";
 
@@ -14,11 +14,10 @@ import { ChatMessageActions } from "@component/showcase/ChatMessageActions";
 
 interface ChatMessageProps {
   message: Message;
-  user: User;
+  student: Student & { user: User };
 }
 
-export function ChatMessage({ message, user, ...props }: ChatMessageProps) {
-  console.log(message);
+export function ChatMessage({ message, student, ...props }: ChatMessageProps) {
   return (
     <div
       className={cn("group relative mb-4 flex items-start md:-ml-12")}
@@ -34,8 +33,8 @@ export function ChatMessage({ message, user, ...props }: ChatMessageProps) {
       >
         {message.role === "user" ? (
           <Image
-            src={user.image!}
-            alt={user.email!}
+            src={student.user.image!}
+            alt={student.user.email!}
             width={32}
             height={32}
             className="rounded-full"
@@ -44,9 +43,9 @@ export function ChatMessage({ message, user, ...props }: ChatMessageProps) {
           <Logo />
         )}
       </div>
-      <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
+      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
         <MemoizedReactMarkdown
-          className="prose break-words dark:prose-invert prose-p:leading-relaxed prose-pre:p-0"
+          className="prose dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 break-words"
           remarkPlugins={[remarkGfm, remarkMath]}
           components={{
             p({ children }) {
@@ -59,7 +58,7 @@ export function ChatMessage({ message, user, ...props }: ChatMessageProps) {
 
                 if (firstChild === "▍") {
                   return (
-                    <span className="mt-1 cursor-default animate-pulse">▍</span>
+                    <span className="mt-1 animate-pulse cursor-default">▍</span>
                   );
                 }
 
@@ -72,7 +71,7 @@ export function ChatMessage({ message, user, ...props }: ChatMessageProps) {
                   return (
                     <code
                       className={cn(
-                        "font-mono text-xs bg-zinc-800/80 text-zinc-100 rounded-sm px-1 py-0.5",
+                        "rounded-sm  bg-black bg-zinc-800/80 px-1 py-0.5 font-mono text-xs text-zinc-100 ",
                         className
                       )}
                       {...props}
@@ -93,31 +92,31 @@ export function ChatMessage({ message, user, ...props }: ChatMessageProps) {
               }
             },
             h1({ children }) {
-              return <h1 className="text-3xl font-bold mb-4">{children}</h1>;
+              return <h1 className="my-4 text-3xl font-bold">{children}</h1>;
             },
             h2({ children }) {
-              return <h2 className="text-2xl font-bold mb-4">{children}</h2>;
+              return <h2 className="my-4 text-2xl font-bold">{children}</h2>;
             },
             h3({ children }) {
-              return <h3 className="text-xl font-bold mb-4">{children}</h3>;
+              return <h3 className="my-4 text-xl font-bold">{children}</h3>;
             },
             h4({ children }) {
-              return <h4 className="text-lg font-bold mb-4">{children}</h4>;
+              return <h4 className="my-4 text-lg font-bold">{children}</h4>;
             },
             h5({ children }) {
-              return <h5 className="text-base font-bold mb-4">{children}</h5>;
+              return <h5 className="my-4 text-base font-bold">{children}</h5>;
             },
             h6({ children }) {
-              return <h6 className="text-sm font-bold mb-4">{children}</h6>;
+              return <h6 className="my-4 text-sm font-bold">{children}</h6>;
             },
             ul({ children }) {
-              return <ul className="list-disc pl-6">{children}</ul>;
+              return <ul className="list-disc py-0.5 pl-6">{children}</ul>;
             },
             ol({ children }) {
-              return <ol className="list-decimal pl-6">{children}</ol>;
+              return <ol className="list-decimal py-0.5 pl-6">{children}</ol>;
             },
             li({ children }) {
-              return <li className="mb-2 last:mb-0">{children}</li>;
+              return <li className="my-2 last:mb-0">{children}</li>;
             },
             blockquote({ children }) {
               return (
@@ -145,6 +144,17 @@ export function ChatMessage({ message, user, ...props }: ChatMessageProps) {
             },
             img({ src, alt }) {
               return <img className="rounded-md" src={src} alt={alt} />;
+            },
+            table({ children }) {
+              return (
+                <table className="w-full border-collapse">{children}</table>
+              );
+            },
+            thead({ children }) {
+              return <thead className="border-b">{children}</thead>;
+            },
+            hr() {
+              return <hr className="my-4 border-t border-zinc-300" />;
             },
           }}
           {...props}

@@ -21,7 +21,7 @@ export default function Header() {
             <Link href="/" aria-label="Home">
               <div className="flex items-center gap-2">
                 <LogoPNG className="-mt-1 h-7 w-auto" />
-                <p className="text-zinc-700 dark:text-zinc-300 text-base font-bold ">
+                <p className="text-base font-bold text-zinc-700 dark:text-zinc-300 ">
                   Undrstnd
                 </p>
               </div>

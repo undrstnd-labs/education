@@ -1,6 +1,7 @@
 import { File } from "@prisma/client";
-import { Card } from "../ui/Card";
-import Link from "next/link";
+import { Link } from "@lib/navigation";
+import { useTranslations } from "next-intl";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,26 +9,27 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/DropdownMenu";
-import { Button } from "../ui/Button";
-import { Icons } from "../icons/Lucide";
-import DownloadFile from "./DownloadFile";
-import { useTranslations } from "next-intl";
+} from "@component/ui/DropdownMenu";
+import { Card } from "@component/ui/Card";
+import { Button } from "@component/ui/Button";
+import { Icons } from "@component/icons/Lucide";
+
+import { downloadFileFromUrl } from "@lib/storage";
 
 interface FileCardProps {
   file: File;
 }
 
-const FileCard = ({ file }: FileCardProps) => {
+export function FileCard({ file }: FileCardProps) {
   const t = useTranslations("Pages.Classroom");
   return (
     <Card className="mt-2">
-      <div className=" flex flex-col p-2 gap-3 group">
+      <div className=" group flex flex-col gap-3 p-2">
         <Link
-          href={`https://owevajnqzufpffslceev.supabase.co/storage/v1/object/public/files/${file.url}`}
+          href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${file.url}`}
         >
           <div
-            className="bg-cover bg-center bg-no-repeat w-full h-[120px] rounded-[20px]"
+            className="h-[120px] w-full rounded-[20px] bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url(${
                 file.type.startsWith("image/")
@@ -39,19 +41,19 @@ const FileCard = ({ file }: FileCardProps) => {
             }}
           />
         </Link>
-        <div className="flex  justify-between px-2 items-center">
-          <div className="flex flex-col gap-1 max-w-[80%]">
+        <div className="flex  items-center justify-between px-2">
+          <div className="flex max-w-[80%] flex-col gap-1">
             <Link
-              href={`https://owevajnqzufpffslceev.supabase.co/storage/v1/object/public/files/${file.url}`}
+              href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${file.url}`}
             >
               <div
-                className="text-xs xl:text-sm text-foreground font-semibold truncate
-               hover:underline hover:underline-offset-2 group-hover:underline group-hover:underline-offset-2"
+                className="truncate text-xs font-semibold text-foreground group-hover:underline
+               group-hover:underline-offset-2 hover:underline hover:underline-offset-2 xl:text-sm"
               >
                 {file.name}
               </div>
             </Link>
-            <div className="text-foreground text-xs font-medium">
+            <div className="text-xs font-medium text-foreground">
               {(file.size / (1024 * 1024)).toFixed(2)}{" "}
               <span className="text-lime-900">MB</span>
             </div>
@@ -71,19 +73,23 @@ const FileCard = ({ file }: FileCardProps) => {
               <DropdownMenuLabel>{t("fileOptions")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <Link
-                href={`https://owevajnqzufpffslceev.supabase.co/storage/v1/object/public/files/${file.url}`}
+                href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${file.url}`}
               >
-                <DropdownMenuItem className="flex gap-2 items-center hover:cursor-pointer">
+                <DropdownMenuItem className="flex items-center gap-2 hover:cursor-pointer">
                   <Icons.watchFile className="h-4 w-4" /> {t("fileCardSeeFile")}
                 </DropdownMenuItem>
               </Link>
-              <DownloadFile fileUrl={file.url} />
+
+              <DropdownMenuItem
+                className="flex items-center gap-2 hover:cursor-pointer"
+                onClick={() => downloadFileFromUrl(file.url)}
+              >
+                <Icons.downloadFile className="h-4 w-4" /> {t("downloadFile")}
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
       </div>
     </Card>
   );
-};
-
-export default FileCard;
+}

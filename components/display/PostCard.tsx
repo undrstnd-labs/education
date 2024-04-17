@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import {
   Card,
   CardContent,
@@ -5,13 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card";
+import { FileCard } from "@component/showcase/FileCard";
 
 import { post } from "@/types/classroom";
-import Image from "next/image";
-import FileCard from "../showcase/FileCard";
-import CommentAddCard from "../showcase/CommentAddCard";
-import CommentCard from "./CommentCard";
-import ReactionButton from "./ReactionButton";
+import CommentAddCard from "@component/showcase/CommentAddCard";
+import CommentCard from "@component/display/CommentCard";
+import ReactionButton from "@component/display/ReactionButton";
 import { icons } from "@/constants";
 
 interface PostCardProps {
@@ -36,7 +37,7 @@ const PostCard = ({ post, userId }: PostCardProps) => {
       <Card>
         <CardHeader>
           <CardTitle>
-            <div className="flex gap-2 items-center">
+            <div className="flex items-center gap-2">
               <Image
                 src={post.teacher.user.image!}
                 alt={post.teacher.user.name!}
@@ -54,7 +55,7 @@ const PostCard = ({ post, userId }: PostCardProps) => {
           </CardTitle>
           <CardDescription>{post.content}</CardDescription>
           {post.files && post.files.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-0.5">
+            <div className="grid grid-cols-1 gap-4 pt-0.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {post.files.map((file) => (
                 <FileCard key={file.id} file={file} />
               ))}
@@ -62,7 +63,7 @@ const PostCard = ({ post, userId }: PostCardProps) => {
           )}
         </CardHeader>
         <CardContent>
-          <div className="max-sm:grid max-sm:grid-cols-3 flex gap-2">
+          <div className="flex gap-2 max-sm:grid max-sm:grid-cols-3">
             {icons.map((icon, index) => {
               const count = reactionCounts[icon.value] || 0;
               return (

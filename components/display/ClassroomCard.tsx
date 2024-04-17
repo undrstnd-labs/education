@@ -26,7 +26,7 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
     <Card className="w-full" key={classroom.id}>
       <CardHeader>
         <CardTitle>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Link
               href={`/dashboard/classroom/${classroom.id}`}
               key={classroom.id}
@@ -57,11 +57,11 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
           </Link>
         </CardDescription>
       </CardHeader>
-      <CardContent className="w-full -mt-5">
+      <CardContent className="-mt-5 w-full">
         <Link href={`/dashboard/classroom/${classroom.id}`} key={classroom.id}>
-          <div className="flex gap-2 items-start">
+          <div className="flex items-start gap-2">
             <Image
-              className="w-7 h-7 rounded-full  mt-1 "
+              className="mt-1 h-7 w-7  rounded-full "
               src={classroom.teacher?.user.image!}
               width={16}
               height={16}
@@ -71,7 +71,7 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
               <div className="font-bold hover:underline">
                 {classroom.teacher?.user.name}
               </div>
-              <div className="text-muted-foreground hover:underline text-sm">
+              <div className="text-sm text-muted-foreground hover:underline">
                 {classroom.teacher?.user.email}
               </div>
             </div>

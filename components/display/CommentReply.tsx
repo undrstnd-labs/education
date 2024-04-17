@@ -6,10 +6,11 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/Card";
-import { comment } from "@/types/classroom";
+
 import Image from "next/image";
 import { icons } from "@/constants";
 import ReactionButton from "./ReactionButton";
+import { comment } from "@/types/classroom";
 
 interface CommentReplyProps {
   userId: string;
@@ -31,8 +32,8 @@ const CommentReply = ({ comment, userId }: CommentReplyProps) => {
     <Card>
       <CardHeader className="pt-2">
         <CardTitle>
-          <div className="flex justify-between items-center gap-4">
-            <div className="flex gap-2 items-center">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
               <Image
                 src={comment.user.image!}
                 alt={comment.user.name!}
@@ -52,7 +53,7 @@ const CommentReply = ({ comment, userId }: CommentReplyProps) => {
         <CardDescription className="text-start">{comment.text}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="max-md:grid max-md:grid-cols-3 flex gap-2">
+        <div className="flex gap-2 max-md:grid max-md:grid-cols-3">
           {icons.map((icon, index) => {
             const count = reactionCounts[icon.value] || 0;
             return (

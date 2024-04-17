@@ -45,8 +45,8 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
     <Card>
       <CardHeader className="pt-2">
         <CardTitle>
-          <div className="flex justify-between items-center">
-            <div className="flex gap-2 items-center">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
               <Image
                 src={comment.user.image!}
                 alt={comment.user.name!}
@@ -65,8 +65,8 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
               type="submit"
               size={"icon"}
               variant={"outline"}
-              className="border rounded-full w-7 h-7 max-sm:size-5 flex justify-center items-center
-                       border-gray-500 hover:bg-accent"
+              className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-500
+                       hover:bg-accent max-sm:size-5"
             >
               <Sheet>
                 <SheetTrigger asChild>
@@ -111,7 +111,7 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
         <CardDescription>{comment.text}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="max-sm:grid max-sm:grid-cols-3 flex gap-2">
+        <div className="flex gap-2 max-sm:grid max-sm:grid-cols-3">
           {icons.map((icon, index) => {
             const count = reactionCounts[icon.value] || 0;
             return (

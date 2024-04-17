@@ -9,6 +9,12 @@ import { type Chat } from "@/types/chat";
 import { ServerActionResult } from "@/types";
 
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  TooltipProvider,
+} from "@component/ui/Tooltip";
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -21,12 +27,6 @@ import {
 import { Button } from "@/components/ui/Button";
 import { ChatShareDialog } from "@component/showcase/ChatShareDialog";
 import { IconShare, IconSpinner, IconTrash } from "@component/icons/Overall";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from "@component/ui/Tooltip";
 
 interface SidebarActionsProps {
   chat: Chat;
@@ -34,13 +34,13 @@ interface SidebarActionsProps {
     id: string;
     path: string;
   }) => Promise<ServerActionResult<void>>;
-  shareChat: (id: string) => ServerActionResult<Chat>;
+  //shareChat: (id: string) => ServerActionResult<Chat>;
 }
 
 export function SidebarActions({
   chat,
   removeChat,
-  shareChat,
+  // shareChat,
 }: SidebarActionsProps) {
   const router = useRouter();
   const t = useTranslations("Components.Showcase.SidebarActions");
@@ -50,42 +50,53 @@ export function SidebarActions({
 
   return (
     <div>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              className="size-7 p-0 hover:bg-background"
-              onClick={() => setShareDialogOpen(true)}
-            >
-              <IconShare />
-              <span className="sr-only">Share</span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>{t("share-chat")}</TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              className="size-7 p-0 hover:bg-background"
-              disabled={isRemovePending}
-              onClick={() => setDeleteDialogOpen(true)}
-            >
-              <IconTrash />
-              <span className="sr-only">Delete</span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>{t("delete-chat")}</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-      <ChatShareDialog
+      <div className="flex items-center space-x-2 py-1">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                disabled
+                variant="ghost"
+                size={"small-icon"}
+                className="size-8 p-0 hover:bg-background"
+                onClick={() => setShareDialogOpen(true)}
+              >
+                <IconShare />
+                <span className="sr-only">Share</span>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{t("share-chat")}</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size={"small-icon"}
+                className="size-8 p-0 hover:bg-background"
+                disabled={isRemovePending}
+                onClick={() => setDeleteDialogOpen(true)}
+              >
+                {isRemovePending ? (
+                  <IconSpinner className="animate-spin" />
+                ) : (
+                  <IconTrash />
+                )}
+                <span className="sr-only">Delete</span>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{t("delete-chat")}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+
+      {/*       <ChatShareDialog
         chat={chat}
         shareChat={shareChat}
         open={shareDialogOpen}
         onOpenChange={setShareDialogOpen}
         onCopy={() => setShareDialogOpen(false)}
-      />
+      /> */}
+
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -119,7 +130,7 @@ export function SidebarActions({
 
                   setDeleteDialogOpen(false);
                   router.refresh();
-                  router.push("/");
+                  router.push("/chat");
                   toast({
                     title: t("delete-chat-success"),
                   });

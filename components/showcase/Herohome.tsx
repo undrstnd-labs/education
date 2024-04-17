@@ -31,11 +31,11 @@ export default function HerosectionHome() {
           fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)"
         />
       </svg>
-      <div className="mx-auto max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36 lg:py-18">
+      <div className="lg:py-18 mx-auto max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-          <h1 className="mt-10 text-4xl flex flex-col font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
+          <h1 className="mt-10 flex flex-col text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
             Libérez les insights des documents avec{" "}
-            <span className="text-sky-500 self-start">
+            <span className="self-start text-sky-500">
               <TypingEffect text="Undrstnd" />
             </span>
           </h1>

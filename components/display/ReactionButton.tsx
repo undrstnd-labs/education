@@ -48,15 +48,15 @@ const ReactionButton = async ({
       reactionId={reactionId}
     >
       <div
-        className="flex  justify-center items-center border gap-1 
-        border-gray-500 hover:bg-accent hover:cursor-pointer px-3 py-1 rounded-md"
+        className="flex  items-center justify-center gap-1 rounded-md 
+        border border-gray-500 px-3 py-1 hover:cursor-pointer hover:bg-accent"
         style={{ borderColor: reactionId ? icon.color : "gray" }}
       >
         <icon.Icon
           className={`size-4  max-sm:size-3 `}
           style={{ color: icon.color }}
         />
-        <span className="max-sm:text-[10px] text-xs ">{count}</span>
+        <span className="text-xs max-sm:text-[10px] ">{count}</span>
       </div>
     </ReactionProvider>
   );

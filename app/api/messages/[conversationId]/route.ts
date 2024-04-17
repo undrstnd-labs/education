@@ -65,7 +65,7 @@ export async function GET(
   }
 }
 
-export async function POST(
+/* export async function POST(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
@@ -127,3 +127,4 @@ export async function POST(
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+ */

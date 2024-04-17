@@ -1,7 +1,8 @@
+import { z } from "zod";
+import { NextResponse } from "next/server";
+
 import { db } from "@/lib/prisma";
 import { verifyCurrentStudent } from "@/lib/session";
-import { NextResponse } from "next/server";
-import { z } from "zod";
 
 const routeContextSchema = z.object({
   params: z.object({

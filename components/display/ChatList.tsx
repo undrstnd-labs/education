@@ -1,15 +1,15 @@
-import { User } from "next-auth";
 import { type Message } from "ai";
+import { Student, User } from "@prisma/client";
 
 import { Separator } from "@component/ui/Separator";
 import { ChatMessage } from "@component/showcase/ChatMessage";
 
 export interface ChatList {
   messages: Message[];
-  user: User;
+  student: Student & { user: User };
 }
 
-export function ChatList({ messages, user }: ChatList) {
+export function ChatList({ messages, student }: ChatList) {
   if (!messages.length) {
     return null;
   }
@@ -18,7 +18,7 @@ export function ChatList({ messages, user }: ChatList) {
     <div className="relative mx-auto max-w-2xl px-4">
       {messages.map((message, index) => (
         <div key={index}>
-          <ChatMessage message={message} user={user} />
+          <ChatMessage message={message} student={student} />
           {index < messages.length - 1 && (
             <Separator className="my-4 md:my-8" />
           )}

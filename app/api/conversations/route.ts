@@ -52,12 +52,17 @@ export async function POST(req: Request) {
       userId,
     },
   });
+
   if (!student) {
     return NextResponse.json({ message: "Student not found" }, { status: 404 });
   }
+
   try {
     const conversation = await db.conversation.create({
+      // FIXME: Update the title and the path
       data: {
+        title: "New Conversation",
+        path: "/chat/c/new",
         studentId: student.id,
         fileId: fileId || null,
       },

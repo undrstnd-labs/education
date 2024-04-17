@@ -97,7 +97,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
         <DialogContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="text-center font-bold text-primary text-2xl mb-8">
+              <div className="mb-8 text-center text-2xl font-bold text-primary">
                 {t("buttonCreate")}
               </div>
               <FormField
@@ -162,7 +162,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6 px-6 pb-6"
             >
-              <div className="text-center font-bold text-primary text-2xl mb-8">
+              <div className="mb-8 text-center text-2xl font-bold text-primary">
                 {t("buttonCreate")}
               </div>
               <FormField
