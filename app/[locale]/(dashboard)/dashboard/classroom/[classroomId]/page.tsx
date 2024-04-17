@@ -55,6 +55,7 @@ export default async function ClassroomPage({
   if (!classroom) {
     return notFound();
   }
+
   return (
     <div className="flex flex-col gap-4">
       <ClassroomCard authorId={user.id} classroom={classroom} />

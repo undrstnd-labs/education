@@ -72,3 +72,8 @@ export const addPostSchema = (t: (arg: string) => string) =>
     }),
     files: z.array(z.unknown()).optional(),
   });
+
+export const commentAddCardSchema = (t: (arg: string) => string) =>
+  z.object({
+    text: z.string().min(4, t("commentAddSchema")),
+  });

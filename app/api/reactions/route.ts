@@ -43,6 +43,7 @@ export async function POST(req: Request) {
           reactionType,
           commentId,
           userId,
+          postId: null,
         },
       });
       return NextResponse.json(reaction, { status: 201 });

@@ -62,6 +62,13 @@ export async function GET(
               comments: {
                 include: {
                   user: true,
+                  reactions: true,
+                  replies: {
+                    include: {
+                      user: true,
+                      reactions: true,
+                    },
+                  },
                 },
               },
               reactions: true,
@@ -118,6 +125,13 @@ export async function GET(
               comments: {
                 include: {
                   user: true,
+                  reactions: true,
+                  replies: {
+                    include: {
+                      user: true,
+                      reactions: true,
+                    },
+                  },
                 },
               },
               reactions: true,

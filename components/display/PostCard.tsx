@@ -9,6 +9,10 @@ import {
 import { post } from "@/types/classroom";
 import Image from "next/image";
 import FileCard from "../showcase/FileCard";
+import CommentAddCard from "../showcase/CommentAddCard";
+import CommentCard from "./CommentCard";
+import ReactionButton from "./ReactionButton";
+import { icons } from "@/constants";
 
 interface PostCardProps {
   post: post;
@@ -16,8 +20,19 @@ interface PostCardProps {
 }
 
 const PostCard = ({ post, userId }: PostCardProps) => {
+  const reactionCounts = post.reactions.reduce(
+    (acc, reaction) => {
+      const icon = icons.find((icon) => icon.value === reaction.reactionType);
+      if (icon) {
+        acc[icon.value] = (acc[icon.value] || 0) + 1;
+      }
+      return acc;
+    },
+    {} as { [key: string]: number }
+  );
+
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <Card>
         <CardHeader>
           <CardTitle>
@@ -46,9 +61,39 @@ const PostCard = ({ post, userId }: PostCardProps) => {
             </div>
           )}
         </CardHeader>
-        <CardContent>{/*TODO: Reaction section*/}</CardContent>
+        <CardContent>
+          <div className="max-sm:grid max-sm:grid-cols-3 flex gap-2">
+            {icons.map((icon, index) => {
+              const count = reactionCounts[icon.value] || 0;
+              return (
+                <ReactionButton
+                  key={index}
+                  userId={userId}
+                  icon={icon}
+                  postId={post.id}
+                  count={count}
+                  value={icon.value}
+                />
+              );
+            })}
+          </div>
+        </CardContent>
       </Card>
-      <div>{/*TODO: Comment section */}</div>
+      {post.comments &&
+        post.comments.length > 0 &&
+        post.comments.map((comment) => {
+          return !comment.parentId ? (
+            <CommentCard
+              key={comment.id}
+              comment={comment}
+              userId={userId}
+              postId={post.id}
+            />
+          ) : null;
+        })}
+      <div>
+        <CommentAddCard postId={post.id} userId={userId} />
+      </div>
     </div>
   );
 };

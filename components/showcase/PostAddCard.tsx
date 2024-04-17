@@ -126,7 +126,7 @@ const PostAddCard = ({ userId, classroom }: PostAddCard) => {
         <DialogTrigger asChild>
           <Card className="hover:cursor-pointer group">
             <CardContent className="flex  items-center gap-4  px-6 py-3">
-              <div className="border rounded-full size-8 max-sm:size-5 flex justify-center items-center border-gray-500 hover:bg-accent">
+              <div className="border rounded-full size-8 max-sm:size-5 flex justify-center items-center border-gray-500 hover:bg-accent group-hover:bg-accent">
                 <Icons.add className="size-6 text-gray-500 max-sm:size-4" />
               </div>
               <div className="hover:underline hover:underline-offset-2 max-sm:text-sm group-hover:underline group-hover:underline-offset-2">

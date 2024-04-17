@@ -22,6 +22,9 @@
       "home": "Acceuil"
     },
     "Classroom": {
+      "commentAddSchema": "Le commentaire doit comporter au moins 4 caractères.",
+      "repliesLabel": "Réponses au commentaire ci-dessus",
+      "addCommentPlaceholder": "Ajouter un commentaire",
       "fileOptions": "Options de fichier",
       "downloadFile": "Télécharger le fichier",
       "fileCardSeeFile": "Consulter le fichier",

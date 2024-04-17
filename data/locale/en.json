@@ -19,7 +19,13 @@
       "labelAnd": "and",
       "labelPolicy": "Privacy Policy."
     },
+    "Dashboard": {
+      "home": "Home"
+    },
     "Classroom": {
+      "commentAddSchema": "Comment content should be at least 4 characters.",
+      "repliesLabel": "Replies to the above comment",
+      "addCommentPlaceholder": "Add a comment",
       "fileOptions": "File Options",
       "downloadFile": "Download file",
       "fileCardSeeFile": "See file",
