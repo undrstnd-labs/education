@@ -11,25 +11,41 @@ import {
 } from "@component/ui/Card";
 import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions";
 
+import { LeaveClassroom } from "@/components/showcase/LeaveClassroom";
+import ShareClassroom from "@/components/showcase/ShareClassroom";
+
 interface classroomCardProps {
   classroom: Classroom & {
     teacher: { user: User; id: string; userId: string };
   };
+  authorId: string;
 }
 
-export function ClassroomCard({ classroom }: classroomCardProps) {
+export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
   return (
     <Card className="w-full" key={classroom.id}>
       <CardHeader>
-        <CardTitle className="hover:underline">
-          <div className="flex justify-between">
+        <CardTitle>
+          <div className="flex items-center justify-between">
             <Link
               href={`/dashboard/classroom/${classroom.id}`}
               key={classroom.id}
+              className=" flex items-center"
             >
-              {classroom.name}
+              <div className="hover:underline">{classroom.name}</div>
+              <span className="text-gray-600">/</span>
+              <div className="text-sm leading-8 text-gray-500">
+                {classroom.classCode}
+              </div>
             </Link>
-            <ClassroomCardOptions classroom={classroom as any} />
+            <div className="flex gap-2">
+              <ShareClassroom classroom={classroom} />
+              {authorId === classroom.teacher.user.id ? (
+                <ClassroomCardOptions classroom={classroom} />
+              ) : (
+                <LeaveClassroom classroom={classroom} userId={authorId} />
+              )}
+            </div>
           </div>
         </CardTitle>
         <CardDescription className="hover:underline">
@@ -41,11 +57,11 @@ export function ClassroomCard({ classroom }: classroomCardProps) {
           </Link>
         </CardDescription>
       </CardHeader>
-      <CardContent className="w-full -mt-5">
+      <CardContent className="-mt-5 w-full">
         <Link href={`/dashboard/classroom/${classroom.id}`} key={classroom.id}>
-          <div className="flex gap-2 items-start">
+          <div className="flex items-start gap-2">
             <Image
-              className="w-7 h-7 rounded-full  mt-1 "
+              className="mt-1 h-7 w-7  rounded-full "
               src={classroom.teacher?.user.image!}
               width={16}
               height={16}
@@ -55,7 +71,7 @@ export function ClassroomCard({ classroom }: classroomCardProps) {
               <div className="font-bold hover:underline">
                 {classroom.teacher?.user.name}
               </div>
-              <div className="text-muted-foreground hover:underline text-sm">
+              <div className="text-sm text-muted-foreground hover:underline">
                 {classroom.teacher?.user.email}
               </div>
             </div>
@@ -64,4 +80,4 @@ export function ClassroomCard({ classroom }: classroomCardProps) {
       </CardContent>
     </Card>
   );
-}
+};

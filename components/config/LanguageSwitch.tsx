@@ -24,9 +24,9 @@ export function LanguageSwitch() {
   }
 
   return (
-    <div className="flex items-center relative">
+    <div className="relative flex items-center">
       <Select defaultValue={local} onValueChange={onSelectChange}>
-        <SelectTrigger className="w-full pr-3 py-1.5 bg-transparent outline-none capitalize h-[32px] text-xs rounded-sm ">
+        <SelectTrigger className="h-[32px] w-full rounded-sm bg-transparent py-1.5 pr-3 text-xs capitalize outline-none ">
           <SelectValue placeholder="Select language" />
         </SelectTrigger>
         <SelectContent>

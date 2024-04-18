@@ -23,13 +23,13 @@ export default async function OnboardingPage() {
 
   return (
     <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
-      <div className="relative hidden h-full flex-col bg-muted p-10 lg:flex dark:border-r">
-        <div className="absolute inset-0 bg-white-900" />
+      <div className="relative hidden h-full flex-col bg-muted p-10 dark:border-r lg:flex">
+        <div className="bg-white-900 absolute inset-0" />
         <Link
           href="/"
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            "relative z-20 flex items-center text-lg font-semibold w-fit"
+            "relative z-20 flex w-fit items-center text-lg font-semibold"
           )}
         >
           <LogoPNG className="mr-2 h-6 w-6" />
@@ -48,7 +48,7 @@ export default async function OnboardingPage() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div
             className={cn(
-              "relative z-20 flex items-center text-lg font-semibold w-fit"
+              "relative z-20 flex w-fit items-center text-lg font-semibold"
             )}
           >
             <LogoPNG className="mr-2 h-6 w-6" />

@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@hook/use-toast";
 import { addClassroomSchema } from "@config/schema";
 import { useMediaQuery } from "@/hooks/use-media-query";
-
+import crypto from "crypto";
 import {
   Form,
   FormControl,
@@ -36,6 +36,10 @@ export function AddClassroom({ userId }: AddClassroomProps) {
   const t = useTranslations("Pages.Classroom");
   const [isLoading, setIsLoading] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const timeStamp = Date.now();
+  const code = timeStamp + userId;
+  const hash = crypto.createHash("md5").update(code).digest("hex");
+  const classCode = hash.slice(0, 8);
 
   const formSchema = addClassroomSchema(t);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -58,6 +62,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
           name: values.name,
           description: values.description,
           userId,
+          classCode,
         }),
       });
 
@@ -89,10 +94,10 @@ export function AddClassroom({ userId }: AddClassroomProps) {
         <DialogTrigger asChild>
           <Button className="mb-4">{t("buttonCreate")}</Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="text-center font-bold text-primary text-2xl mb-8">
+              <div className="mb-8 text-center text-2xl font-bold text-primary">
                 {t("buttonCreate")}
               </div>
               <FormField
@@ -151,13 +156,13 @@ export function AddClassroom({ userId }: AddClassroomProps) {
         <DrawerTrigger asChild>
           <Button className="mb-4">{t("buttonCreate")}</Button>
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6 px-6 pb-6"
             >
-              <div className="text-center font-bold text-primary text-2xl mb-8">
+              <div className="mb-8 text-center text-2xl font-bold text-primary">
                 {t("buttonCreate")}
               </div>
               <FormField

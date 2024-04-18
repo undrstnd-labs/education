@@ -27,7 +27,7 @@ export function UserMenu({ user }: { user: NextAuthUser }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[250px]">
         <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
-        <p className="text-sm text-muted-foreground px-2">{user.email}</p>
+        <p className="px-2 text-sm text-muted-foreground">{user.email}</p>
         <RoleBadge role={user.role as string} />
         <UserDropdown />
         <SignoutButton />

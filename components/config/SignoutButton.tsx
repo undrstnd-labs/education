@@ -10,7 +10,7 @@ export function SignoutButton() {
 
   return (
     <DropdownMenuItem
-      className="text-red-600 cursor-pointer"
+      className="cursor-pointer text-red-600"
       onClick={() => {
         signOut();
       }}

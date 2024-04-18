@@ -3,17 +3,22 @@ import { getServerSession } from "next-auth/next";
 import { db } from "@lib/prisma";
 import { authOptions } from "@lib/auth";
 import { NextAuthUser } from "@/types/auth";
+import { User } from "@prisma/client";
 
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
   return session?.user;
 }
 
-export async function verifyCurrentUser(userId: string) {
+export async function verifyCurrentUser(userId: string, notAssigned?: boolean) {
   const session = await getCurrentUser();
 
   if (!session) {
     return false;
+  }
+
+  if (notAssigned && session.role === "NOT_ASSIGNED") {
+    return true;
   }
 
   const teacherCount = await db.teacher.count({
@@ -80,4 +85,43 @@ export async function userAuthentificateVerification(
   }
 
   return null;
+}
+
+export async function getCurrentStudent(userId: string) {
+  const session = await getCurrentUser();
+
+  if (!session) {
+    return false;
+  }
+
+  return await db.student.findUnique({
+    where: {
+      userId,
+    },
+    include: {
+      user: true,
+    },
+  });
+}
+
+export async function getCurrentEntity(user: User) {
+  if (user.role === "TEACHER") {
+    return await db.teacher.findUnique({
+      where: {
+        userId: user.id,
+      },
+      include: {
+        user: true,
+      },
+    });
+  }
+
+  return await db.student.findUnique({
+    where: {
+      userId: user.id,
+    },
+    include: {
+      user: true,
+    },
+  });
 }

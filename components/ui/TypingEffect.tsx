@@ -22,7 +22,7 @@ export function TypingEffect({ text }: { text: string }) {
   }, [i]);
 
   return (
-    <h1 className="text-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]">
+    <h1 className="font-display text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]">
       {displayedText ? displayedText : ""}{" "}
       <span className="animate-pulse-fast">_</span>
     </h1>

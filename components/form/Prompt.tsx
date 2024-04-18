@@ -45,7 +45,7 @@ export function Prompt({ onSubmit, input, setInput, isLoading }: PromptProps) {
       }}
       ref={formRef}
     >
-      <div className="relative flex flex-col w-full px-8 overflow-hidden max-h-60 grow bg-background sm:rounded-md sm:border sm:px-12">
+      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background px-8 sm:rounded-md sm:border sm:px-12">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -57,7 +57,7 @@ export function Prompt({ onSubmit, input, setInput, isLoading }: PromptProps) {
                 }}
                 className={cn(
                   buttonVariants({ size: "icon", variant: "outline" }),
-                  "absolute size-4 left-0 top-3 rounded-full bg-background p-0 sm:left-4"
+                  "absolute left-0 top-3 size-4 rounded-full bg-background p-0 sm:left-4"
                 )}
               >
                 <Icons.add className="size-4 rounded-full" />
@@ -71,12 +71,13 @@ export function Prompt({ onSubmit, input, setInput, isLoading }: PromptProps) {
           ref={inputRef}
           tabIndex={0}
           onKeyDown={onKeyDown}
-          rows={2}
+          rows={1}
           value={input}
+          maxRows={8}
           onChange={(e) => setInput(e.target.value)}
           placeholder={t("send-message") + "..."}
           spellCheck={false}
-          className="min-h-[60px] w-full border-none resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
+          className="min-h-[60px] w-full resize-none border-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
         <div className="absolute right-0 top-3 sm:right-4">
           <TooltipProvider>

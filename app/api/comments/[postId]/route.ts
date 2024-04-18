@@ -86,7 +86,7 @@ export async function POST(
         parentId: parentId || null,
       },
     });
-    return NextResponse.json(comment, { status: 200 });
+    return NextResponse.json(comment, { status: 201 });
   } catch (error: any) {
     console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });

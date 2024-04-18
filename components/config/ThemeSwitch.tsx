@@ -33,12 +33,12 @@ export function ThemeSwitch() {
   const { theme, setTheme, themes } = useTheme();
 
   return (
-    <div className="flex items-center relative">
+    <div className="relative flex items-center">
       <Select
         defaultValue={theme}
         onValueChange={(value: Theme) => setTheme(value)}
       >
-        <SelectTrigger className="w-full pl-6 pr-3 py-1.5 bg-transparent outline-none capitalize h-[32px] text-xs rounded-sm">
+        <SelectTrigger className="h-[32px] w-full rounded-sm bg-transparent py-1.5 pl-6 pr-3 text-xs capitalize outline-none">
           <SelectValue placeholder="Select theme" />
         </SelectTrigger>
         <SelectContent>
@@ -52,7 +52,7 @@ export function ThemeSwitch() {
         </SelectContent>
       </Select>
 
-      <div className="absolute left-2 pointer-events-none">
+      <div className="pointer-events-none absolute left-2">
         <ThemeIcon currentTheme={theme as Theme} />
       </div>
     </div>

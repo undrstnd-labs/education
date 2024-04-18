@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Classroom, User } from "@prisma/client";
 
 import { toast } from "@hook/use-toast";
+import { useMediaQuery } from "@hook/use-media-query";
 
 import {
   DropdownMenu,
@@ -25,6 +26,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@component/ui/AlertDialog";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@component/ui/Drawer";
 import { Button } from "@component/ui/Button";
 import { Icons } from "@component/icons/Lucide";
 import { EditClassroom } from "@component/form/EditClassroom";
@@ -39,9 +49,10 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isModifyOpen, setIsModifyOpen] = useState(false);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+  const [isModifyOpen, setIsModifyOpen] = useState(false);
 
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const t = useTranslations("Components.Display.ClassroomCardOptions");
 
   const handleArchive = async () => {
@@ -104,7 +115,11 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
     <>
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="h-8 w-8">
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+          >
             <Icons.moreHorizontal className="h-4 w-4" />
             <span className="sr-only">Toggle options of classroom</span>
           </Button>
@@ -113,21 +128,21 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           <DropdownMenuLabel>{t("classroomOption")}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            className="flex gap-2 items-center hover:cursor-pointer"
+            className="flex items-center gap-2 hover:cursor-pointer"
             onClick={() => setIsModifyOpen(true)}
           >
             <Icons.editClassroom className="h-4 w-4 " />
             {t("editClassroom")}{" "}
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="flex gap-2 items-center hover:cursor-pointer"
+            className="flex items-center gap-2 hover:cursor-pointer"
             onClick={() => setIsArchiveOpen(true)}
           >
             <Icons.archiveClassroom className="h-4 w-4" />
             {t("archiveClassroom")}
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="flex gap-2 items-center hover:cursor-pointer text-red-600"
+            className="flex items-center gap-2 text-red-600 hover:cursor-pointer"
             onClick={() => setIsDeleteOpen(true)}
           >
             <Icons.deleteClassroom className="h-4 w-4 " />
@@ -135,8 +150,7 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
-      {isArchiveOpen && (
+      {isArchiveOpen && isDesktop ? (
         <AlertDialog open={isArchiveOpen} onOpenChange={setIsArchiveOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -155,9 +169,29 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+      ) : (
+        <Drawer open={isArchiveOpen} onOpenChange={setIsArchiveOpen}>
+          <DrawerContent className="pb-2">
+            <DrawerHeader className="text-left">
+              <DrawerTitle> {t("alertDialogTitleArchive")}</DrawerTitle>
+              <DrawerDescription>
+                {t("alertDialogDescriptionArchive")}
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button variant="default" onClick={handleArchive}>
+                  {t("alertDialogAction")}
+                </Button>
+              </DrawerClose>
+              <DrawerClose asChild>
+                <Button variant="outline">{t("alertDialogCancel")}</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       )}
-
-      {isDeleteOpen && (
+      {isDeleteOpen && isDesktop ? (
         <AlertDialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -167,9 +201,7 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel className="focus-visible:ring-red-700">
-                {t("alertDialogCancel")}
-              </AlertDialogCancel>
+              <AlertDialogCancel>{t("alertDialogCancel")}</AlertDialogCancel>
               <AlertDialogAction
                 className="bg-red-700 hover:bg-red-500"
                 onClick={handleDelete}
@@ -179,8 +211,32 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+      ) : (
+        <Drawer open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
+          <DrawerContent className="pb-2">
+            <DrawerHeader className="text-left">
+              <DrawerTitle>{t("alertDialogTitleDelete")}</DrawerTitle>
+              <DrawerDescription>
+                {t("alertDialogDescriptionDelete")}
+              </DrawerDescription>
+            </DrawerHeader>
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button
+                  variant="outline"
+                  className="bg-red-700 text-white hover:bg-red-500"
+                  onClick={handleDelete}
+                >
+                  {t("alertDialogAction")}
+                </Button>
+              </DrawerClose>
+              <DrawerClose asChild>
+                <Button variant="outline">{t("alertDialogCancel")}</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
       )}
-
       {isModifyOpen && (
         <EditClassroom
           classroom={classroom}

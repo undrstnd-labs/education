@@ -45,6 +45,13 @@ import {
   SlashIcon,
   PanelLeft,
   PanelRight,
+  Share2,
+  Eye,
+  ArrowDownToLine,
+  Reply,
+  Heart,
+  ThumbsUp,
+  ThumbsDown,
 } from "lucide-react";
 
 import {
@@ -55,6 +62,13 @@ import {
   AiFillBell,
   AiFillMobile,
 } from "react-icons/ai";
+
+import { GoSignOut } from "react-icons/go";
+
+import { TiTick } from "react-icons/ti";
+
+import { FaSurprise, FaRegLightbulb } from "react-icons/fa";
+import { FaHandsClapping } from "react-icons/fa6";
 
 export type Icon = LucideIcon;
 
@@ -112,4 +126,16 @@ export const Icons = {
   slash: SlashIcon,
   panelLeft: PanelLeft,
   panelRight: PanelRight,
+  leaveClassroom: GoSignOut,
+  shareClassroom: Share2,
+  shareClassroomTaked: TiTick,
+  watchFile: Eye,
+  downloadFile: ArrowDownToLine,
+  replyComment: Reply,
+  reactionLike: ThumbsUp,
+  reactionDislike: ThumbsDown,
+  reactionLove: Heart,
+  reactionApplause: FaHandsClapping,
+  reactionWow: FaSurprise,
+  reactionInsightul: FaRegLightbulb,
 };

@@ -36,13 +36,13 @@ export default function RegisterPage({
       >
         {t("buttonConnection")}
       </Link>
-      <div className="relative hidden h-full flex-col bg-muted p-10 lg:flex dark:border-r">
-        <div className="absolute inset-0 bg-white-900" />
+      <div className="relative hidden h-full flex-col bg-muted p-10 dark:border-r lg:flex">
+        <div className="bg-white-900 absolute inset-0" />
         <Link
           href="/"
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            "relative z-20 flex items-center text-lg font-semibold w-fit"
+            "relative z-20 flex w-fit items-center text-lg font-semibold"
           )}
         >
           <LogoPNG className="mr-2 h-6 w-6" />

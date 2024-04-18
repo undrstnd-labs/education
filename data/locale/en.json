@@ -19,9 +19,36 @@
       "labelAnd": "and",
       "labelPolicy": "Privacy Policy."
     },
+    "Dashboard": {
+      "home": "Home"
+    },
     "Classroom": {
+      "commentAddSchema": "Comment content should be at least 4 characters.",
+      "repliesLabel": "Replies to the above comment",
+      "addCommentPlaceholder": "Add a comment",
+      "fileOptions": "File Options",
+      "downloadFile": "Download file",
+      "fileCardSeeFile": "See file",
+      "toastPostCreatedFailed": "Post creation failed",
+      "toastPostCreatedFailedDescription": "An error occurred while creating the post. Please try again.",
+      "toastPostCreatedSuccess": "Post created successfully",
+      "toastPostCreatedSuccessDescription": "You have successfully created a post.",
+      "toastFilesFailed": "Error",
+      "toastFilesFailedDescription": "An error occurred while uploading files. Please try again.",
+      "toastFilesSuccess": "Files uploaded",
+      "toastFilesSuccessDescription": "You have successfully uploaded files. You can now post them.",
+      "uploadButtonLabel": "Upload Files",
+      "postFilesLabel": "Post Files",
+      "formLabelDescriptionAddPost": "Post Description",
+      "formPlaceholderDescriptionAddPost": "Enter your post description here",
+      "formLabelNameAddPost": "Post Name",
+      "formPlaceholderNameAddPost": "Enter your post name here",
+      "createPostTitle": "Create a new post",
       "buttonCreate": "Create classroom",
+      "formSchemaPostName": "Post Name must contain at least 4 characters.",
+      "formSchemaDescriptionMessage": "Post Description must contain at least 10 characters.",
       "formSchemaNameMessage": "Classroom name must be at least 4 characters.",
+      "formSchemaCodeMessage": "Classroom code must be exactly 8 characters.",
       "toastTitleAddClassroom": "Classroom created successfully",
       "toastDescriptionAddClassroom": "You have successfully created a classroom.",
       "toastTitleUpdateClassroom": "Classroom updated successfully",
@@ -30,9 +57,20 @@
       "formTitleUpdateClassroom": "Update Classroom",
       "formLabelClassroomName": "Classroom Name",
       "formLabelClassroomDescription": "Classroom Description",
+      "formLabelClassroomCode": "Classroom code",
       "formClassroomNamePlaceholder": "Enter your classroom name here",
-      "formClassroomDescriptionPlaceholder": "Enter your classroom name here",
+      "formClassroomDescriptionPlaceholder": "Enter your classroom description here",
+      "formClassroomCodePlaceholder": "Enter your classroom code here",
       "formClassroomButton": "Submit",
+      "formClassroomJoinButton": "Join",
+      "joinApiSuccess": "Classroom joined successfully",
+      "joinApiSuccessDescription": "You have successfully joined this classroom.",
+      "joinApiError": "Classroom not found",
+      "joinApiErrorDescription": "The classroom you are trying to join does not exist.",
+      "joinApiAlreadyError": "You are already in this classroom",
+      "joinApiAlreadyErrorDescription": "You are already a member of this classroom.",
+      "joinApiErrorArchived": "Classroom is archived",
+      "joinApiErrorArchivedDescription": "The classroom you are trying to join is archived.",
       "toast-title-create-error": "Failed to create classroom",
       "toast-description-create-error": "Something went wrong while creating the classroom",
       "toast-title-update-error": "Failed to update classroom",
@@ -83,7 +121,7 @@
         "photo": "Profile picture",
         "change-image": "Change image",
         "name": "Full name",
-        "placeholderName": "Dali meksi",
+        "placeholderName": "John Doe",
         "bio": "Bio",
         "placeholderBio": "I'm a student at ...",
         "phone": "Call",
@@ -131,14 +169,14 @@
         "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your classroom.",
         "alertDialogCancel": "Cancel",
         "alertDialogAction": "Confirm",
+        "leaveApiSuccess": "Classroom left successfully",
+        "leaveApiSuccessDescription": "You have successfully left this classroom.",
+        "alertDialogLeave": "Are you sure you want to leave this classroom?",
+        "alertDialogLeaveDescription": "This action can be undone. This will remove you from the classroom.",
         "toastDescriptionDeleteClassroom": "You have successfully deleted a classroom.",
         "toastTitleDeleteClassroom": "Classroom deleted",
         "toastDescriptionArchiveClassroom": "You have successfully archived a classroom.",
-        "toastTitleArchiveClassroom": "Classroom archived avec succès",
-        "error-toast-archive": "Failed to archive classroom",
-        "error-description-toast-archive": "Something went wrong while archiving the classroom",
-        "error-toast-delete": "Failed to delete classroom",
-        "error-description-toast-delete": "Something went wrong while deleting the classroom"
+        "toastTitleArchiveClassroom": "Classroom archived avec succès"
       },
       "Chat": {
         "placeholder": "Type a message",
@@ -196,7 +234,7 @@
     },
     "Config": {
       "LanguageSwitch": {
-        "locale": "{locale, select, en {English} fr {Frensh} other {Unknown}}"
+        "locale": "{locale, select, en {English} fr {French} other {Unknown}}"
       }
     }
   },
@@ -218,9 +256,6 @@
       },
       "Chat": {
         "title": "Chat"
-      },
-      "Onboarding": {
-        "title": "Onboarding"
       }
     }
   }

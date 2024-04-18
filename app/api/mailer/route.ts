@@ -4,22 +4,12 @@ import { selectMailOptions } from "@lib/email-template";
 export async function POST(req: Request) {
   const body = await req.json();
 
-  if (!process.env.EMAIL_SENDER || !process.env.EMAIL_SERVER_PASSWORD) {
-    return new Response(
-      JSON.stringify({ error: "Server configuration error" }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
-
   const mailTransporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT as unknown as number,
     auth: {
-      user: process.env.EMAIL_SENDER,
-      pass: process.env.EMAIL_SERVER_PASSWORD,
+      user: process.env.SMTP_EMAIL,
+      pass: process.env.SMTP_PASSWORD,
     },
   });
 

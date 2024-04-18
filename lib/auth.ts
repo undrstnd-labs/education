@@ -8,7 +8,7 @@ import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db as any),
+  adapter: PrismaAdapter(db),
   secret: process.env.NEXTAUTH_SECRET!,
   session: {
     strategy: "jwt",
@@ -22,7 +22,15 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
     EmailProvider({
-      from: process.env.EMAIL_SENDER,
+      from: process.env.SMTP_EMAIL,
+      server: {
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT),
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD,
+        },
+      },
       maxAge: 60 * 60 + 5 * 60,
       sendVerificationRequest: async ({
         identifier,
@@ -71,6 +79,8 @@ export const authOptions: NextAuthOptions = {
         session.user.email = dbUser.email;
         session.user.image = dbUser.image;
         session.user.role = dbUser.role;
+        session.user.bio = dbUser.bio;
+        session.user.universitySlug = dbUser.universitySlug;
       }
 
       return session;
@@ -83,7 +93,7 @@ export const authOptions: NextAuthOptions = {
 
         const dbUser = await db.user.findFirst({
           where: {
-            email: user.email,
+            email: user.email as string,
           },
         });
 

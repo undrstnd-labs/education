@@ -6,13 +6,6 @@ import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@component/ui/Card";
 import { Input } from "@component/ui/Input";
 import { UserMenu } from "@/components/display/UserMenu";
 import { buttonVariants, Button } from "@/components/ui/Button";
@@ -27,16 +20,13 @@ export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
   const user = await getCurrentUser();
-
   const toRedirect = await userAuthentificateVerification(user as NextAuthUser);
   if (toRedirect) {
     redirect(toRedirect);
   }
-
   if (!user) {
     return null;
   }
-
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -46,7 +36,7 @@ export default async function DashboardLayout({
               href="/"
               className={cn(
                 buttonVariants({ variant: "ghost" }),
-                "relative z-20 flex items-center text-lg font-semibold w-fit"
+                "relative z-20 flex w-fit items-center text-lg font-semibold"
               )}
             >
               <LogoPNG className="mr-2 h-6 w-6" />
@@ -60,25 +50,25 @@ export default async function DashboardLayout({
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               <Link
-                href="#"
+                href="/"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Icons.chat className="h-4 w-4" />
                 Dashboard
               </Link>
               <Link
-                href="#"
+                href="/chat"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Icons.chat className="h-4 w-4" />
-                Orders
+                Chat
               </Link>
               <Link
-                href="#"
+                href="/dashboard/classroom"
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
                 <Icons.chat className="h-4 w-4" />
-                Products{" "}
+                Classroom
               </Link>
             </nav>
           </div>
@@ -100,43 +90,27 @@ export default async function DashboardLayout({
             <SheetContent side="left" className="flex flex-col">
               <nav className="grid gap-2 text-lg font-medium">
                 <Link
-                  href="#"
+                  href="/"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
                   <Icons.chat className="h-4 w-4" />
                   Dashboard
                 </Link>
                 <Link
-                  href="#"
+                  href="/chat"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
                   <Icons.chat className="h-4 w-4" />
-                  Orders
+                  Chat
                 </Link>
                 <Link
-                  href="#"
+                  href="/dashboard/classroom"
                   className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
                 >
                   <Icons.chat className="h-4 w-4" />
-                  Products{" "}
+                  Classroom
                 </Link>
               </nav>
-              <div className="mt-auto">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Upgrade to Pro</CardTitle>
-                    <CardDescription>
-                      Unlock all features and get unlimited access to our
-                      support team.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button size="sm" className="w-full">
-                      Upgrade
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
@@ -145,7 +119,7 @@ export default async function DashboardLayout({
                 <Icons.search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="search"
-                  placeholder="Search products..."
+                  placeholder="Search classrooms..."
                   className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
                 />
               </div>

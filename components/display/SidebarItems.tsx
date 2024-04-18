@@ -31,7 +31,8 @@ export function SidebarItems({ chats }: SidebarItemsProps) {
                 <SidebarActions
                   chat={chat}
                   removeChat={removeChat as any}
-                  shareChat={shareChat as any}
+                  // TODO: Implement the share function just to duplicate the content
+                  //shareChat={shareChat as any}
                 />
               </SidebarItem>
             </motion.div>

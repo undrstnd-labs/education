@@ -1,11 +1,17 @@
+import { Student, User } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 
 import { redirect } from "@lib/navigation";
 import { NextAuthUser } from "@/types/auth";
 import { SidebarProvider } from "@hook/use-sidebar";
-import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
+import {
+  getCurrentUser,
+  userAuthentificateVerification,
+  getCurrentStudent,
+} from "@lib/session";
 
 import { Header } from "@component/navigation/ChatHeader";
+
 import { SidebarDesktop } from "@component/navigation/SidebarDesktop";
 
 export async function generateMetadata() {
@@ -33,12 +39,16 @@ export default async function ChatLayout({ children }: ChatLayoutProps) {
     return null;
   }
 
+  const student = (await getCurrentStudent(user.id)) as Student & {
+    user: User;
+  };
+
   return (
     <SidebarProvider>
       <div className="relative flex h-[calc(100vh_-_theme(spacing.16))] overflow-hidden">
         <Header />
-        <SidebarDesktop user={user} />
-        <div className="group w-full overflow-auto pl-0 animate-in duration-300 ease-in-out peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]">
+        <SidebarDesktop student={student} />
+        <div className="group w-full overflow-auto pl-0 duration-300 ease-in-out animate-in peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]">
           {children}
         </div>
       </div>

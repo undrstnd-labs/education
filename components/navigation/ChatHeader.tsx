@@ -1,7 +1,8 @@
 import * as React from "react";
 import { NextAuthUser } from "@/types/auth";
+import { Student, User } from "@prisma/client";
 
-import { getCurrentUser } from "@lib/session";
+import { getCurrentUser, getCurrentStudent } from "@lib/session";
 
 import { Icons } from "@component/icons/Lucide";
 import { UserMenu } from "@component/display/UserMenu";
@@ -13,12 +14,16 @@ import { SidebarMobile } from "@component/navigation/SidebarMobile";
 export async function Header() {
   const user = (await getCurrentUser()) as NextAuthUser;
 
+  const student = (await getCurrentStudent(user!.id)) as Student & {
+    user: User;
+  };
+
   return (
-    <header className="absolute top-0 z-50 flex items-center justify-between w-full h-16 px-4 border-b shrink-0 bg-gradient-to-b from-background/10 via-background/50 to-background/80 backdrop-blur-xl">
+    <header className="absolute top-0 z-50 flex h-16 w-full shrink-0 items-center justify-between border-b bg-gradient-to-b from-background/10 via-background/50 to-background/80 px-4 backdrop-blur-xl">
       <div className="flex items-center">
         <nav className="flex items-center">
           <SidebarMobile>
-            <ChatHistory user={user} />
+            <ChatHistory student={student} />
           </SidebarMobile>
           <SidebarToggle />
           <div className="flex items-center">

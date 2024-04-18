@@ -1,6 +1,8 @@
 "use server";
 
 import { z } from "zod";
+
+import { db } from "@lib/prisma";
 import { redirect } from "@lib/navigation";
 import { pinSchema } from "@config/schema";
 
@@ -14,7 +16,12 @@ export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
   });
 
   const fetchToken = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/auth/token/${data.email}`
+    `${process.env.NEXTAUTH_URL}/api/auth/token/${data.email}`,
+    {
+      next: {
+        revalidate: 0,
+      },
+    }
   ).then((res) => res.json());
 
   return {
@@ -23,19 +30,26 @@ export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
   };
 }
 
-export async function getChats(userId?: string | null) {
-  // TODO: Get chats for a specific user
-  return [];
+export async function getChats(studentId?: string) {
+  return db.conversation.findMany({
+    where: { studentId },
+    orderBy: { updatedAt: "desc" },
+  });
 }
 
-export async function getChat(id: string, userId: string) {
-  // TODO: Get a specific chat for a specific user
-  return [];
+export async function getChat(id: string, studentId: string) {
+  return db.conversation.findFirst({
+    where: { id, studentId },
+    include: {
+      messages: {
+        orderBy: { createdAt: "asc" },
+      },
+    },
+  });
 }
 
-export async function removeChat({ id, path }: { id: string; path: string }) {
-  // TODO: Remove a specific chat
-  return "";
+export async function removeChat({ id }: { id: string }) {
+  return db.conversation.delete({ where: { id } });
 }
 
 export async function clearChats() {
@@ -46,9 +60,7 @@ export async function getSharedChat(id: string) {
   // TODO: Get a shared chat
 }
 
-export async function shareChat(id: string) {
-  // TODO: Share a chat
-}
+export async function shareChat(id: string) {}
 
 export async function saveChat(chat: Chat) {
   // TODO: Save a chat

@@ -52,7 +52,7 @@ export async function StatusWidget() {
 
   return (
     <a
-      className="flex justify-between items-center w-full"
+      className="flex w-full items-center justify-between"
       href="https://undrstnd.openstatus.dev"
       target="_blank"
       rel="noreferrer"
@@ -64,13 +64,13 @@ export async function StatusWidget() {
       <span className="relative ml-auto flex h-2 w-2">
         <span
           className={cn(
-            "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75",
+            "absolute inline-flex h-full w-full animate-ping rounded-full opacity-75",
             level.color2
           )}
         />
         <span
           className={cn(
-            "relative inline-flex rounded-full h-2 w-2",
+            "relative inline-flex h-2 w-2 rounded-full",
             level.color
           )}
         />

@@ -1,19 +1,17 @@
-import { nanoid } from "@lib/utils";
-import { NextAuthUser } from "@/types/auth";
-import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
+import { Student, User } from "@prisma/client";
+
+import { getCurrentUser, getCurrentStudent } from "@lib/session";
+import { generateUuid } from "@lib/utils";
 
 import { Chat } from "@component/display/Chat";
 
 export default async function IndexPage() {
-  const id = nanoid();
+  const id = generateUuid();
   const user = await getCurrentUser();
 
-  if (
-    !user ||
-    !userAuthentificateVerification(user as NextAuthUser, "TEACHER")
-  ) {
-    return null;
-  }
+  const student = (await getCurrentStudent(user!.id)) as Student & {
+    user: User;
+  };
 
-  return <Chat id={id} user={user} />;
+  return <Chat id={id} student={student} />;
 }

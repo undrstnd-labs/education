@@ -1,52 +1,28 @@
-import { cookies } from "next/headers";
-import { getTranslations } from "next-intl/server";
-
-import { db } from "@lib/prisma";
-import { redirect } from "@lib/navigation";
-import { Classroom } from "@prisma/client";
-import { getCurrentUser } from "@lib/session";
+import { redirect } from "@/lib/navigation";
+import { getCurrentUser, getCurrentEntity } from "@/lib/session";
+import { User, Student, Teacher } from "@prisma/client";
 
 import { AddClassroom } from "@/components/form/AddClassroom";
+import JoinClassroom from "@/components/form/JoinClassroom";
 import { ClassroomCard } from "@/components/display/ClassroomCard";
+import { classroom } from "@/types/classroom";
 
-async function getCookie(name: string) {
-  return cookies().get(name)?.value ?? "";
-}
-
-async function getClassroom() {
-  const session = await getCookie("next-auth.session-token");
-  const getUser = async (teacherId: string) => {
-    const res = await db.teacher.findUnique({
-      where: {
-        id: teacherId,
-      },
-      include: {
-        user: true,
-      },
-    });
-    return res;
-  };
+async function getClassrooms(user: User) {
+  const entity = (await getCurrentEntity(user)) as Student | Teacher;
   try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/classrooms`, {
-      method: "GET",
-      headers: {
-        Cookie: `next-auth.session-tokend=${session}`,
-      },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/classrooms/${user.role.toLowerCase()}/${entity.id}`,
+      {
+        method: "GET",
+        next: {
+          revalidate: 0,
+        },
+      }
+    );
 
     if (res.ok) {
-      const data: Classroom[] = await res.json();
-
-      const teacherPromises = data.map((classroom) =>
-        getUser(classroom.teacherId)
-      );
-      const teachers = await Promise.all(teacherPromises);
-
-      const classroomsWithTeachers = data.map((classroom, index) => {
-        return { ...classroom, teacher: teachers[index] };
-      });
-
-      return classroomsWithTeachers;
+      const data: classroom[] = await res.json();
+      return data;
     }
     return null;
   } catch (error) {
@@ -56,23 +32,34 @@ async function getClassroom() {
 
 export default async function ClassroomsPage() {
   const user = await getCurrentUser();
+
   if (!user) {
     redirect("/login");
   }
-  const classrooms = await getClassroom();
-  const t = await getTranslations("Pages.Classroom");
+
+  const classrooms = await getClassrooms(user!);
+
   return (
-    <div className="p-4 w-full ">
+    <div className="w-full p-4 ">
       {user?.role === "TEACHER" && <AddClassroom userId={user.id} />}
+      {user?.role === "STUDENT" && <JoinClassroom userId={user.id} />}
       <div className="flex flex-col gap-6">
         {classrooms && classrooms.length > 0 ? (
           classrooms.map((classroom) => {
             return (
-              <ClassroomCard classroom={classroom as any} key={classroom.id} />
+              <ClassroomCard
+                classroom={classroom}
+                key={classroom.id}
+                authorId={user?.id!}
+              />
             );
           })
         ) : (
-          <h1>no classromm for students or teachers</h1>
+          <h1 className="font-bold md:text-xl">
+            {user?.role === "TEACHER"
+              ? "No classrooms. Create one now"
+              : "No classrooms to show. Join one now"}
+          </h1>
         )}
       </div>
     </div>

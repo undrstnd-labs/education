@@ -62,7 +62,7 @@ model Session {
 model User {
   id             String    @id @default(cuid())
   name           String?
-  email          String?   @unique
+  email          String   @unique
   bio            String?
   emailVerified  DateTime?
   image          String?
@@ -120,9 +120,9 @@ model Student {
 }
 
 model Classroom {
-  id          String  @id @default(cuid())
-  classCode   String  @unique
-  
+  id        String @id @default(cuid())
+  classCode String @unique
+
   name        String
   description String?
 
@@ -222,6 +222,9 @@ model Reaction {
 
 model Conversation {
   id        String  @id @default(cuid())
+  title String
+  path String 
+
   studentId String
   student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
@@ -230,18 +233,21 @@ model Conversation {
 
   messages Message[]
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   @@map(name: "conversations")
 }
 
 model Message {
   id   String @id @default(cuid())
-  text String
+  content String
 
   conversationId String
   conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
-  messageSource MessageProvider
+  role MessageProvider
 
   createdAt DateTime @default(now())
+
   @@map(name: "messages")
 }
