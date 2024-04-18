@@ -8,7 +8,7 @@ import { NextAuthUser } from "@/types/auth";
 import { classroom } from "@/types/classroom";
 import { getCurrentUser, userAuthentificateVerification } from "@/lib/session";
 
-import { PostCard } from "@component/display/PostCard";
+import PostCard from "@/components/display/PostCard";
 import { PostAddCard } from "@component/form/PostAddCard";
 import { ClassroomCard } from "@component/display/ClassroomCard";
 
