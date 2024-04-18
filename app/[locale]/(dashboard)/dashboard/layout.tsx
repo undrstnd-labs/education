@@ -6,13 +6,6 @@ import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
 import { Icons } from "@component/icons/Lucide";
 import { LogoPNG } from "@component/icons/Overall";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@component/ui/Card";
 import { Input } from "@component/ui/Input";
 import { UserMenu } from "@/components/display/UserMenu";
 import { buttonVariants, Button } from "@/components/ui/Button";

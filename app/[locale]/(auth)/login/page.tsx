@@ -26,7 +26,7 @@ export default function LoginPage({
   const email = searchParams.email as string;
 
   const isEmailValid = verifyEmail(email);
-  
+
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link

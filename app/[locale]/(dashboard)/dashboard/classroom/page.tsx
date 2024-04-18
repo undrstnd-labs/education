@@ -1,29 +1,24 @@
 import { redirect } from "@/lib/navigation";
-import { getCurrentUser } from "@/lib/session";
+import { getCurrentUser, getCurrentEntity } from "@/lib/session";
+import { User, Student, Teacher } from "@prisma/client";
 
-import { cookies } from "next/headers";
 import { AddClassroom } from "@/components/form/AddClassroom";
 import JoinClassroom from "@/components/form/JoinClassroom";
 import { ClassroomCard } from "@/components/display/ClassroomCard";
 import { classroom } from "@/types/classroom";
 
-async function getCookie(name: string) {
-  return cookies().get(name)?.value ?? "";
-}
-
-async function getClassroom() {
-  const session = await getCookie("next-auth.session-token");
-
+async function getClassrooms(user: User) {
+  const entity = (await getCurrentEntity(user)) as Student | Teacher;
   try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/classrooms`, {
-      method: "GET",
-      headers: {
-        Cookie: `next-auth.session-tokend=${session}`,
-      },
-      next: {
-        revalidate: 0,
-      },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/classrooms/${user.role.toLowerCase()}/${entity.id}`,
+      {
+        method: "GET",
+        next: {
+          revalidate: 0,
+        },
+      }
+    );
 
     if (res.ok) {
       const data: classroom[] = await res.json();
@@ -37,10 +32,12 @@ async function getClassroom() {
 
 export default async function ClassroomsPage() {
   const user = await getCurrentUser();
+
   if (!user) {
     redirect("/login");
   }
-  const classrooms = await getClassroom();
+
+  const classrooms = await getClassrooms(user!);
 
   return (
     <div className="w-full p-4 ">

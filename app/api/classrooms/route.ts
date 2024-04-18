@@ -5,6 +5,7 @@ import { getCurrentUser, verifyCurrentTeacher } from "@lib/session";
 
 export async function GET(req: Request) {
   const user = await getCurrentUser();
+
   if (!user) {
     return NextResponse.json({ message: "User not found" }, { status: 404 });
   }

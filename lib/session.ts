@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { db } from "@lib/prisma";
 import { authOptions } from "@lib/auth";
 import { NextAuthUser } from "@/types/auth";
+import { User } from "@prisma/client";
 
 export async function getCurrentUser() {
   const session = await getServerSession(authOptions);
@@ -96,6 +97,28 @@ export async function getCurrentStudent(userId: string) {
   return await db.student.findUnique({
     where: {
       userId,
+    },
+    include: {
+      user: true,
+    },
+  });
+}
+
+export async function getCurrentEntity(user: User) {
+  if (user.role === "TEACHER") {
+    return await db.teacher.findUnique({
+      where: {
+        userId: user.id,
+      },
+      include: {
+        user: true,
+      },
+    });
+  }
+
+  return await db.student.findUnique({
+    where: {
+      userId: user.id,
     },
     include: {
       user: true,

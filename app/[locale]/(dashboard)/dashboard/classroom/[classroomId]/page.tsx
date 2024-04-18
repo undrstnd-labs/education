@@ -1,35 +1,31 @@
 // TODO: Generate metadata for this page
 
-import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
 import { redirect } from "@lib/navigation";
+import { getCurrentUser, getCurrentEntity } from "@/lib/session";
+import { User, Student, Teacher } from "@prisma/client";
 
 import { NextAuthUser } from "@/types/auth";
 import { classroom } from "@/types/classroom";
-import { getCurrentUser, userAuthentificateVerification } from "@/lib/session";
+import { userAuthentificateVerification } from "@/lib/session";
 
 import PostCard from "@/components/display/PostCard";
 import { PostAddCard } from "@component/form/PostAddCard";
 import { ClassroomCard } from "@component/display/ClassroomCard";
 
-async function getCookie(name: string) {
-  return cookies().get(name)?.value ?? "";
-}
+async function getClassroom(user: User, classroomId: string) {
+  const entity = (await getCurrentEntity(user)) as Student | Teacher;
 
-const getClassroom = async (classroomId: string) => {
-  const session = await getCookie("next-auth.session-token");
   try {
     const res = await fetch(
-      `${process.env.NEXTAUTH_URL}/api/classrooms/${classroomId}`,
+      `${process.env.NEXT_PUBLIC_URL}/api/classrooms/${classroomId}/${user.role.toLowerCase()}/${entity.id}`,
       {
-        cache: "no-store",
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Cookie: `next-auth.session-tokend=${session}`,
+        next: {
+          revalidate: 0,
         },
       }
     );
+
     if (res.ok) {
       const data: classroom = await res.json();
       return data;
@@ -38,7 +34,7 @@ const getClassroom = async (classroomId: string) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 export default async function ClassroomPage({
   params: { classroomId },
@@ -56,10 +52,10 @@ export default async function ClassroomPage({
     return null;
   }
 
-  const classroom = await getClassroom(classroomId);
+  const classroom = await getClassroom(user, classroomId);
 
   if (!classroom) {
-    return notFound();
+    return redirect("/dashboard/classroom");
   }
 
   return (
