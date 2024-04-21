@@ -26,13 +26,13 @@ const ShareClassroom = ({ classroom }: ShareClassroomProps) => {
     <Button
       variant="outline"
       size={"icon"}
-      className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+      className="size-8 max-sm:size-6"
       onClick={copyLink}
     >
       {copied ? (
-        <Icons.shareClassroomTaked className="h-4 w-4" />
+        <Icons.shareClassroomTaked className="size-4" />
       ) : (
-        <Icons.shareClassroom className="h-4 w-4" />
+        <Icons.shareClassroom className="size-4" />
       )}
       <span className="sr-only">Share classroom</span>
     </Button>

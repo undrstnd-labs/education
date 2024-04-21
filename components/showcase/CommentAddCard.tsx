@@ -100,8 +100,8 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
                         type="submit"
                         size={"icon"}
                         variant={"outline"}
-                        className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full border border-gray-500
-                       hover:bg-accent max-sm:size-5"
+                        className="absolute bottom-2 right-2 flex size-6 items-center justify-center rounded-full border border-gray-500 hover:bg-accent
+                       max-sm:size-5"
                         disabled={loading}
                       >
                         <Icons.add className="size-5 text-gray-500 max-sm:size-4 " />

@@ -153,11 +153,11 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
                 onClick={() => fileInputRef.current?.click()}
                 width={48}
                 height={48}
-                className="h-12 w-12 cursor-pointer rounded-full"
+                className="size-12 cursor-pointer rounded-full"
               />
             ) : (
               <Icons.user
-                className="h-12 w-12 cursor-pointer text-gray-400"
+                className="size-12 cursor-pointer text-gray-400"
                 onClick={() => fileInputRef.current?.click()}
               />
             )}
@@ -241,9 +241,9 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
           className={cn(buttonVariants(), "w-full")}
           disabled={loading}
         >
-          {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+          {loading && <Icons.spinner className="mr-2 size-4 animate-spin" />}
           {translateOnboarding("submit")}{" "}
-          <Icons.chevronRight className="ml-2 h-4 w-4 stroke-[3px]" />
+          <Icons.chevronRight className="ml-2 size-4 stroke-[3px]" />
         </button>
       </form>
     </Form>

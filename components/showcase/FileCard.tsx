@@ -66,9 +66,9 @@ export function FileCard({ file }: FileCardProps) {
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+                className="size-8 max-sm:size-6"
               >
-                <Icons.moreHorizontal className="h-4 w-4" />
+                <Icons.moreHorizontal className="size-4" />
                 <span className="sr-only">Toggle options of File</span>
               </Button>
             </DropdownMenuTrigger>
@@ -79,7 +79,7 @@ export function FileCard({ file }: FileCardProps) {
                 href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${file.url}`}
               >
                 <DropdownMenuItem className="flex items-center gap-2 hover:cursor-pointer">
-                  <Icons.watchFile className="h-4 w-4" /> {t("fileCardSeeFile")}
+                  <Icons.watchFile className="size-4" /> {t("fileCardSeeFile")}
                 </DropdownMenuItem>
               </Link>
 

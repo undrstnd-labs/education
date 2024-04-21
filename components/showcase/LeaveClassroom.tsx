@@ -69,9 +69,9 @@ export function LeaveClassroom({ classroom, userId }: LeaveClassroomProps) {
             <Button
               variant="outline"
               size={"icon"}
-              className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+              className="size-8 max-sm:size-6"
             >
-              <Icons.leaveClassroom className="h-4 w-4 text-red-500 " />
+              <Icons.leaveClassroom className="size-4 text-red-500 " />
               <span className="sr-only">Leave classroom</span>
             </Button>
           </AlertDialogTrigger>
@@ -99,9 +99,9 @@ export function LeaveClassroom({ classroom, userId }: LeaveClassroomProps) {
             <Button
               variant="outline"
               size={"icon"}
-              className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+              className="size-8 max-sm:size-6"
             >
-              <Icons.leaveClassroom className="h-4 w-4 text-red-500 " />
+              <Icons.leaveClassroom className="size-4 text-red-500 " />
               <span className="sr-only">Leave classroom</span>
             </Button>
           </DrawerTrigger>

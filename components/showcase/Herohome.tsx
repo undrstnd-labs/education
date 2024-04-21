@@ -9,7 +9,7 @@ export default function HerosectionHome() {
   return (
     <div className="relative isolate overflow-hidden">
       <svg
-        className="absolute inset-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+        className="absolute inset-0 -z-10 size-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true"
       >
         <defs>
@@ -32,7 +32,7 @@ export default function HerosectionHome() {
         />
       </svg>
       <div className="lg:py-18 mx-auto max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pb-36">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:shrink-0 lg:pt-8">
           <h1 className="mt-10 flex flex-col text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-6xl">
             Libérez les insights des documents avec{" "}
             <span className="self-start text-sky-500">
@@ -54,7 +54,7 @@ export default function HerosectionHome() {
               href="https://www.youtube.com/shorts/-1UjTQhkvLU"
             >
               <Button variant="outline">
-                <PlayIcon className="h-6 w-6 flex-none" />
+                <PlayIcon className="size-6 flex-none" />
                 <span className="ml-2.5">
                   Regarder la vidéo de démonstration
                 </span>

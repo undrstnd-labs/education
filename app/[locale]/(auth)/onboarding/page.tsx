@@ -32,7 +32,7 @@ export default async function OnboardingPage() {
             "relative z-20 flex w-fit items-center text-lg font-semibold"
           )}
         >
-          <LogoPNG className="mr-2 h-6 w-6" />
+          <LogoPNG className="mr-2 size-6" />
           Undrstnd
         </Link>
         <div className="relative z-20 mt-auto">
@@ -51,7 +51,7 @@ export default async function OnboardingPage() {
               "relative z-20 flex w-fit items-center text-lg font-semibold"
             )}
           >
-            <LogoPNG className="mr-2 h-6 w-6" />
+            <LogoPNG className="mr-2 size-6" />
             Undrstnd
           </div>
           <OnboardingAuthForm user={user} />

@@ -27,7 +27,7 @@ export function UniversityCard({
           </p>
         </div>
         <Image
-          className="h-10 w-10 flex-shrink-0 rounded-md bg-gray-300"
+          className="size-10 shrink-0 rounded-md bg-gray-300"
           src={university.avatarUrl}
           alt={university.label}
           width={400}
@@ -41,10 +41,7 @@ export function UniversityCard({
               href={`mailto:${university.email}`}
               className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
             >
-              <Icons.mail
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
+              <Icons.mail className="size-5 text-gray-400" aria-hidden="true" />
               {t("email")}
             </a>
           </div>
@@ -54,7 +51,7 @@ export function UniversityCard({
               className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
             >
               <Icons.phone
-                className="h-5 w-5 text-gray-400"
+                className="size-5 text-gray-400"
                 aria-hidden="true"
               />
               {t("phone")}

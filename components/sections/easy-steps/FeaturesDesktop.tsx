@@ -48,7 +48,7 @@ export default function FeaturesDesktop() {
               />
             )}
             <div className="relative z-10 p-8">
-              <feature.icon className="h-8 w-8" />
+              <feature.icon className="size-8" />
               <h3 className="mt-6 text-lg font-semibold text-white">
                 <Tab className="text-left [&:not(:focus-visible)]:focus:outline-none">
                   <span className="absolute inset-0 rounded-2xl" />

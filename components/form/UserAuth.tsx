@@ -92,10 +92,10 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
           </div>
           <button className={cn(buttonVariants())} disabled={isLoading}>
             {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
             )}
             {t("buttonForm", { type: type })}{" "}
-            <Icons.chevronRight className="ml-2 h-4 w-4 stroke-[3px]" />
+            <Icons.chevronRight className="ml-2 size-4 stroke-[3px]" />
           </button>
         </div>
       </form>
@@ -120,9 +120,9 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
         /*        TODO:  disabled={isLoading || isGitHubLoading}*/
       >
         {isGitHubLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          <Icons.spinner className="mr-2 size-4 animate-spin" />
         ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
+          <Icons.gitHub className="mr-2 size-4" />
         )}{" "}
         Github
       </button>

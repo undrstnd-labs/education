@@ -118,9 +118,9 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           <Button
             variant="outline"
             size="icon"
-            className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+            className="size-8 max-sm:size-6"
           >
-            <Icons.moreHorizontal className="h-4 w-4" />
+            <Icons.moreHorizontal className="size-4" />
             <span className="sr-only">Toggle options of classroom</span>
           </Button>
         </DropdownMenuTrigger>
@@ -131,21 +131,21 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             className="flex items-center gap-2 hover:cursor-pointer"
             onClick={() => setIsModifyOpen(true)}
           >
-            <Icons.editClassroom className="h-4 w-4 " />
+            <Icons.editClassroom className="size-4 " />
             {t("editClassroom")}{" "}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center gap-2 hover:cursor-pointer"
             onClick={() => setIsArchiveOpen(true)}
           >
-            <Icons.archiveClassroom className="h-4 w-4" />
+            <Icons.archiveClassroom className="size-4" />
             {t("archiveClassroom")}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center gap-2 text-red-600 hover:cursor-pointer"
             onClick={() => setIsDeleteOpen(true)}
           >
-            <Icons.deleteClassroom className="h-4 w-4 " />
+            <Icons.deleteClassroom className="size-4 " />
             {t("deleteClassroom")}
           </DropdownMenuItem>
         </DropdownMenuContent>

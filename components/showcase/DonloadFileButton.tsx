@@ -19,7 +19,7 @@ const DonloadFileButton = ({ file }: FileCardProps) => {
       className="flex items-center gap-2 hover:cursor-pointer"
       onClick={() => downloadFileFromUrl(file.url)}
     >
-      <Icons.downloadFile className="h-4 w-4" /> {t("downloadFile")}
+      <Icons.downloadFile className="size-4" /> {t("downloadFile")}
     </DropdownMenuItem>
   )
 }

@@ -17,7 +17,7 @@ export function UserMenu({ user }: { user: NextAuthUser }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
-          <Avatar className="h-9 w-9">
+          <Avatar className="size-9">
             <AvatarImage src={user.image!} />
             <AvatarFallback>{user.name![0]}</AvatarFallback>
           </Avatar>

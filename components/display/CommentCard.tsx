@@ -1,4 +1,3 @@
-import { Key } from "react"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 
@@ -70,8 +69,7 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
               type="submit"
               size={"icon"}
               variant={"outline"}
-              className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-500
-                       hover:bg-accent max-sm:size-5"
+              className="flex size-7 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5"
             >
               <Sheet>
                 <SheetTrigger asChild>

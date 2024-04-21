@@ -42,9 +42,9 @@ export function AppScreen({
   return (
     <div className={clsx("flex flex-col", className)} {...props}>
       <div className="flex justify-between px-4 pt-4">
-        <MenuIcon className="h-6 w-6 flex-none" />
+        <MenuIcon className="size-6 flex-none" />
         <LogoText className="h-6 flex-none" />
-        <UserIcon className="h-6 w-6 flex-none" />
+        <UserIcon className="size-6 flex-none" />
       </div>
       {children}
     </div>
@@ -52,7 +52,7 @@ export function AppScreen({
 }
 
 AppScreen.Header = forwardRef<HTMLDivElement, { children: ReactNode }>(
-  function AppScreenHeader({ children }, ref) {
+  ({ children }, ref) => {
     return (
       <div ref={ref} className="mt-6 px-4 text-white">
         {children}
@@ -62,7 +62,7 @@ AppScreen.Header = forwardRef<HTMLDivElement, { children: ReactNode }>(
 )
 
 AppScreen.Title = forwardRef<HTMLDivElement, { children: ReactNode }>(
-  function AppScreenTitle({ children }, ref) {
+  ({ children }, ref) => {
     return (
       <div ref={ref} className="text-2xl text-white">
         {children}
@@ -72,7 +72,7 @@ AppScreen.Title = forwardRef<HTMLDivElement, { children: ReactNode }>(
 )
 
 AppScreen.Subtitle = forwardRef<HTMLDivElement, { children: ReactNode }>(
-  function AppScreenSubtitle({ children }, ref) {
+  ({ children }, ref) => {
     return (
       <div ref={ref} className="text-sm text-gray-500">
         {children}
@@ -84,7 +84,7 @@ AppScreen.Subtitle = forwardRef<HTMLDivElement, { children: ReactNode }>(
 AppScreen.Body = forwardRef<
   HTMLDivElement,
   { children: ReactNode; className?: string }
->(function AppScreenBody({ children, className }, ref) {
+>(({ children, className }, ref) => {
   return (
     <div
       ref={ref}

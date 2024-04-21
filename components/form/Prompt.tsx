@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/Tooltip"
 import { Icons } from "@/components/icons/Lucide"
 
+//import {}
+
 export interface PromptProps
   extends Pick<UseChatHelpers, "input" | "setInput"> {
   onSubmit: (value: string) => void
@@ -43,6 +45,8 @@ function ActionButton({ onClick, icon, label }: any) {
     </TooltipProvider>
   )
 }
+
+function UploadModel() {}
 
 export function Prompt({ onSubmit, input, setInput, isLoading }: PromptProps) {
   const router = useRouter()

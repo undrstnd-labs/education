@@ -40,11 +40,11 @@ export default async function DashboardLayout({
                 "relative z-20 flex w-fit items-center text-lg font-semibold"
               )}
             >
-              <LogoPNG className="mr-2 h-6 w-6" />
+              <LogoPNG className="mr-2 size-6" />
               Undrstnd
             </Link>
-            <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
-              <Icons.notifications className="h-4 w-4" />
+            <Button variant="outline" size="icon" className="ml-auto size-8">
+              <Icons.notifications className="size-4" />
               <span className="sr-only">Toggle notifications</span>
             </Button>
           </div>
@@ -54,21 +54,21 @@ export default async function DashboardLayout({
                 href="/"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <Icons.chat className="h-4 w-4" />
+                <Icons.chat className="size-4" />
                 Dashboard
               </Link>
               <Link
                 href="/chat"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <Icons.chat className="h-4 w-4" />
+                <Icons.chat className="size-4" />
                 Chat
               </Link>
               <Link
                 href="/dashboard/classroom"
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
-                <Icons.chat className="h-4 w-4" />
+                <Icons.chat className="size-4" />
                 Classroom
               </Link>
             </nav>
@@ -84,7 +84,7 @@ export default async function DashboardLayout({
                 size="icon"
                 className="shrink-0 md:hidden"
               >
-                <Icons.media className="h-5 w-5" />
+                <Icons.media className="size-5" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
@@ -94,21 +94,21 @@ export default async function DashboardLayout({
                   href="/"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
-                  <Icons.chat className="h-4 w-4" />
+                  <Icons.chat className="size-4" />
                   Dashboard
                 </Link>
                 <Link
                   href="/chat"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
-                  <Icons.chat className="h-4 w-4" />
+                  <Icons.chat className="size-4" />
                   Chat
                 </Link>
                 <Link
                   href="/dashboard/classroom"
                   className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
                 >
-                  <Icons.chat className="h-4 w-4" />
+                  <Icons.chat className="size-4" />
                   Classroom
                 </Link>
               </nav>
@@ -117,7 +117,7 @@ export default async function DashboardLayout({
           <div className="w-full flex-1">
             <form>
               <div className="relative">
-                <Icons.search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Icons.search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
                 <Input
                   type="search"
                   placeholder="Search classrooms..."

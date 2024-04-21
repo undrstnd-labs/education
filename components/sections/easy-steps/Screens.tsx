@@ -145,7 +145,7 @@ export function StocksScreen({
                 className="flex-none rounded-full"
                 style={{ backgroundColor: stock.color }}
               >
-                <stock.logo className="h-10 w-10" />
+                <stock.logo className="size-10" />
               </div>
               <div className="flex-auto text-sm text-gray-900">
                 {stock.name}
@@ -202,7 +202,7 @@ export function InvestScreen({
                 value: (
                   <div className="flex">
                     $34.28
-                    <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+                    <svg viewBox="0 0 24 24" fill="none" className="size-6">
                       <path
                         d="M17 15V7H9M17 7 7 17"
                         stroke="#06B6D4"

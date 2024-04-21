@@ -62,16 +62,16 @@ export async function StatusWidget() {
         <p className="text-sm">{level.label}</p>
       </div>
 
-      <span className="relative ml-auto flex h-2 w-2">
+      <span className="relative ml-auto flex size-2">
         <span
           className={cn(
-            "absolute inline-flex h-full w-full animate-ping rounded-full opacity-75",
+            "absolute inline-flex size-full animate-ping rounded-full opacity-75",
             level.color2
           )}
         />
         <span
           className={cn(
-            "relative inline-flex h-2 w-2 rounded-full",
+            "relative inline-flex size-2 rounded-full",
             level.color
           )}
         />

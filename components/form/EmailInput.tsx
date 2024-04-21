@@ -81,7 +81,7 @@ function EmailSelectResponsive({
             />
             <Icons.chevronsUpDown
               className={cn(
-                "h-4 w-4 opacity-50",
+                "size-4 opacity-50",
                 disabled ? "hidden" : "opacity-100"
               )}
             />
@@ -112,7 +112,7 @@ function EmailSelectResponsive({
           />
           <Icons.chevronsUpDown
             className={cn(
-              "h-4 w-4 opacity-50",
+              "size-4 opacity-50",
               disabled ? "hidden" : "opacity-100"
             )}
           />
@@ -165,7 +165,7 @@ function EmailOptionsList({
                 )}
                 <Icons.check
                   className={cn(
-                    "ml-auto h-4 w-4",
+                    "ml-auto size-4",
                     option === options.find((x) => x.value === value)
                       ? "opacity-100"
                       : "opacity-0"

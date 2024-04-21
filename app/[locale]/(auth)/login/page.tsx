@@ -35,12 +35,12 @@ export default function LoginPage({
           "absolute left-4 top-4 md:left-8 md:top-8"
         )}
       >
-        <Icons.chevronLeft className="mr-2 h-4 w-4" />
+        <Icons.chevronLeft className="mr-2 size-4" />
         {t("buttonBack")}
       </Link>
 
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        <LogoPNG className="mx-auto h-10 w-10" />
+        <LogoPNG className="mx-auto size-10" />
         {isEmailValid ? (
           <PassCodeAuth email={email} />
         ) : (

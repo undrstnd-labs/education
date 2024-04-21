@@ -10,7 +10,7 @@ export function FeatureList() {
           key={feature.name}
           className="flex flex-col rounded-lg border-2 border-solid border-gray-300/30 p-4 shadow-sm"
         >
-          <feature.icon className="h-5 w-5 text-blue-600" aria-hidden="true" />
+          <feature.icon className="size-5 text-blue-600" aria-hidden="true" />
           <dt className="pt-4 text-base font-semibold leading-7 text-gray-900">
             {feature.name}
           </dt>

@@ -27,7 +27,6 @@ module.exports = {
     "",
     "^[./]",
     "^[../]",
-    "@images/(.*)$",
   ],
   tailwindFunctions: ["clsx", "cn", "twmerge", "cva"],
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],

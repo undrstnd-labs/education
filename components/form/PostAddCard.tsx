@@ -245,7 +245,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                               onClick={() => handleFileRemove(index)}
                               className="absolute right-0 top-0 pr-2"
                             >
-                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
+                              <Icons.close className="mt-1.5 size-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -283,7 +283,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                   }}
                 >
                   {isLoadingFiles && (
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                    <Icons.spinner className="mr-2 size-4 animate-spin" />
                   )}
                   {t("uploadButtonLabel")}
                 </Button>
@@ -294,7 +294,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                 disabled={isLoading || isLoadingFiles}
               >
                 {isLoading && (
-                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 size-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>
@@ -427,7 +427,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                               onClick={() => handleFileRemove(index)}
                               className="absolute right-0 top-0 pr-2"
                             >
-                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
+                              <Icons.close className="mt-1.5 size-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -465,7 +465,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                   }}
                 >
                   {isLoadingFiles && (
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                    <Icons.spinner className="mr-2 size-4 animate-spin" />
                   )}
                   {t("uploadButtonLabel")}
                 </Button>
@@ -476,7 +476,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                 disabled={isLoading || isLoadingFiles}
               >
                 {isLoading && (
-                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 size-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>

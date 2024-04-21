@@ -60,7 +60,7 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
         <Link href={`/dashboard/classroom/${classroom.id}`} key={classroom.id}>
           <div className="flex items-start gap-2">
             <Image
-              className="mt-1 h-7 w-7  rounded-full "
+              className="mt-1 size-7 rounded-full "
               src={classroom.teacher?.user.image!}
               width={16}
               height={16}
