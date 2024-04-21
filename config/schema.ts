@@ -78,3 +78,17 @@ export const commentAddCardSchema = (t: (arg: string) => string) =>
   z.object({
     text: z.string().min(4, t("commentAddSchema")),
   })
+
+export const uploadFileSchema = (t: (arg: string) => string) =>
+  z.object({
+    files: z
+      .array(
+        z.instanceof(File).refine((file) => file.size < 25 * 1024 * 1024, {
+          message: t("file-size-error"),
+        })
+      )
+      .max(1, {
+        message: t("file-max-error"),
+      })
+      .nullable(),
+  })

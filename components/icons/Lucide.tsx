@@ -32,6 +32,7 @@ import {
   MoreVertical,
   PanelLeft,
   PanelRight,
+  Paperclip,
   PencilIcon,
   PhoneIcon,
   Pizza,
@@ -136,4 +137,5 @@ export const Icons = {
   reactionWow: FaSurprise,
   reactionInsightul: FaRegLightbulb,
   upload: Upload,
+  paperclip: Paperclip,
 }

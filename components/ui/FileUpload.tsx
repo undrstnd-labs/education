@@ -282,8 +282,8 @@ FileUploaderContent.displayName = "FileUploaderContent"
 
 export const FileUploaderItem = forwardRef<
   HTMLDivElement,
-  { index: number } & React.HTMLAttributes<HTMLDivElement>
->(({ className, index, children, ...props }, ref) => {
+  { index: number; uploading: boolean } & React.HTMLAttributes<HTMLDivElement>
+>(({ className, index, uploading, children, ...props }, ref) => {
   const { removeFileFromSet, activeIndex, direction } = useFileUpload()
   const isSelected = index === activeIndex
   return (
@@ -300,11 +300,14 @@ export const FileUploaderItem = forwardRef<
       <div className="flex size-full items-center gap-1.5 font-medium leading-none tracking-tight">
         {children}
       </div>
+
       <button
         type="button"
+        disabled={uploading}
         className={cn(
           "absolute",
-          direction === "rtl" ? "left-1 top-1" : "right-1 top-1"
+          direction === "rtl" ? "left-1 top-1" : "right-1 top-1",
+          uploading ? "cursor-not-allowed" : "cursor-pointer"
         )}
         onClick={() => removeFileFromSet(index)}
       >

@@ -137,7 +137,14 @@
       "Prompt": {
         "new-chat": "Nouveau chat",
         "send-message": "Envoyer un message",
-        "upload-file": "Télécharger un fichier"
+        "upload-file": "Télécharger un fichier",
+        "upload-file-description": "Pour télécharger un fichier, faites glisser un fichier ici ou cliquez pour parcourir.",
+        "file-size-error": "La taille du fichier doit être inférieure à 25 Mo",
+        "file-max-error": "Le nombre de fichiers téléchargés doit être egal à 1",
+        "upload": "Télécharger",
+        "click-to-select": "Cliquez pour télécharger",
+        "or-drag-drop": "ou faites glisser et déposez ici",
+        "pdf-only": "Seuls les fichiers PDF sont autorisés"
       },
       "ChatPanel": {
         "stop-generating": "Arrêter la génération",

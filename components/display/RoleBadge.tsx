@@ -16,7 +16,7 @@ export function RoleBadge({ role }: { role: string }) {
           <Icons.student
             className={cn(
               buttonVariants({ variant: "link", size: "icon" }),
-              "size-4 pr-1 text-muted-foreground"
+              "h-4 w-4 pr-1 text-muted-foreground"
             )}
           />
           {t("student")}
@@ -27,7 +27,7 @@ export function RoleBadge({ role }: { role: string }) {
           <Icons.teacher
             className={cn(
               buttonVariants({ variant: "link", size: "icon" }),
-              "size-4 pr-1 text-muted-foreground"
+              "h-4 w-4 pr-1 text-muted-foreground"
             )}
           />
           {t("teacher")}
