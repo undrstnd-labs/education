@@ -1,5 +1,6 @@
-import { MetadataRoute } from "next";
-import { siteConfig } from "@config/site";
+import { MetadataRoute } from "next"
+
+import { siteConfig } from "@/config/site"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -27,5 +28,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-  ];
+  ]
 }

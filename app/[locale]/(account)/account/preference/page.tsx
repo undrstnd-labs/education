@@ -1,3 +1,3 @@
 export default function PreferencePage() {
-  return <>Preference</>;
+  return <>Preference</>
 }

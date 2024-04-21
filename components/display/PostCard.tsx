@@ -1,4 +1,8 @@
-import Image from "next/image";
+import Image from "next/image"
+
+import { post } from "@/types/classroom"
+
+import { emojis } from "@/config/emojis"
 
 import {
   Card,
@@ -6,31 +10,28 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { FileCard } from "@component/showcase/FileCard";
-
-import { post } from "@/types/classroom";
-import CommentAddCard from "@component/showcase/CommentAddCard";
-import CommentCard from "@component/display/CommentCard";
-import ReactionButton from "@component/display/ReactionButton";
-import { icons } from "@/constants";
+} from "@/components/ui/Card"
+import CommentCard from "@/components/display/CommentCard"
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentAddCard from "@/components/showcase/CommentAddCard"
+import { FileCard } from "@/components/showcase/FileCard"
 
 interface PostCardProps {
-  post: post;
-  userId: string;
+  post: post
+  userId: string
 }
 
 const PostCard = ({ post, userId }: PostCardProps) => {
   const reactionCounts = post.reactions.reduce(
     (acc, reaction) => {
-      const icon = icons.find((icon) => icon.value === reaction.reactionType);
+      const icon = emojis.find((icon) => icon.value === reaction.reactionType)
       if (icon) {
-        acc[icon.value] = (acc[icon.value] || 0) + 1;
+        acc[icon.value] = (acc[icon.value] || 0) + 1
       }
-      return acc;
+      return acc
     },
     {} as { [key: string]: number }
-  );
+  )
 
   return (
     <div className="flex flex-col gap-2">
@@ -64,8 +65,8 @@ const PostCard = ({ post, userId }: PostCardProps) => {
         </CardHeader>
         <CardContent>
           <div className="flex gap-2 max-sm:grid max-sm:grid-cols-3">
-            {icons.map((icon, index) => {
-              const count = reactionCounts[icon.value] || 0;
+            {emojis.map((icon, index) => {
+              const count = reactionCounts[icon.value] || 0
               return (
                 <ReactionButton
                   key={index}
@@ -75,7 +76,7 @@ const PostCard = ({ post, userId }: PostCardProps) => {
                   count={count}
                   value={icon.value}
                 />
-              );
+              )
             })}
           </div>
         </CardContent>
@@ -90,13 +91,13 @@ const PostCard = ({ post, userId }: PostCardProps) => {
               userId={userId}
               postId={post.id}
             />
-          ) : null;
+          ) : null
         })}
       <div>
         <CommentAddCard postId={post.id} userId={userId} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PostCard;
+export default PostCard

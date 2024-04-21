@@ -1,9 +1,10 @@
-import { cn } from "@lib/utils";
-import { motion } from "framer-motion";
+import { customType } from "@/types"
+import { motion } from "framer-motion"
 
-import { customType } from "@/types";
-import { PrimaryFeaures } from "@/lib/consts";
+import { PrimaryFeaures } from "@/lib/consts"
+import { cn } from "@/lib/utils"
 
+import { AppScreen } from "@/components/icons/AppScreen"
 import {
   DiageoLogo,
   LaravelLogo,
@@ -13,18 +14,17 @@ import {
   StaticKitLogo,
   TransistorLogo,
   TupleLogo,
-} from "@/components/icons/StockLogos";
-import { AppScreen } from "@/components/icons/AppScreen";
+} from "@/components/icons/StockLogos"
 
-const MotionAppScreenHeader = motion(AppScreen.Header);
-const MotionAppScreenBody = motion(AppScreen.Body);
+const MotionAppScreenHeader = motion(AppScreen.Header)
+const MotionAppScreenBody = motion(AppScreen.Body)
 
 export function InviteScreen({
   custom,
   animated = false,
 }: {
-  custom: customType;
-  animated: boolean;
+  custom: customType
+  animated: boolean
 }) {
   return (
     <AppScreen className="w-full">
@@ -60,15 +60,15 @@ export function InviteScreen({
         </div>
       </MotionAppScreenBody>
     </AppScreen>
-  );
+  )
 }
 
 export function StocksScreen({
   custom,
   animated = false,
 }: {
-  custom: customType;
-  animated: boolean;
+  custom: customType
+  animated: boolean
 }) {
   return (
     <AppScreen className="w-full">
@@ -170,15 +170,15 @@ export function StocksScreen({
         </div>
       </MotionAppScreenBody>
     </AppScreen>
-  );
+  )
 }
 
 export function InvestScreen({
   custom,
   animated = false,
 }: {
-  custom: customType;
-  animated: boolean;
+  custom: customType
+  animated: boolean
 }) {
   return (
     <AppScreen className="w-full">
@@ -233,5 +233,5 @@ export function InvestScreen({
         </div>
       </MotionAppScreenBody>
     </AppScreen>
-  );
+  )
 }

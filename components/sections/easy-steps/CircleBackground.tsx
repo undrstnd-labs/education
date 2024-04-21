@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId } from "react"
 
 export function CircleBackground({
   color,
@@ -6,12 +6,12 @@ export function CircleBackground({
   height = 558,
   className,
 }: {
-  color: string;
-  width?: number;
-  height?: number;
-  className?: string;
+  color: string
+  width?: number
+  height?: number
+  className?: string
 }) {
-  const id = useId();
+  const id = useId()
 
   return (
     <svg
@@ -46,5 +46,5 @@ export function CircleBackground({
         strokeLinecap="round"
       />
     </svg>
-  );
+  )
 }

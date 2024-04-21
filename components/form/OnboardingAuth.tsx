@@ -1,11 +1,20 @@
-"use client";
+"use client"
 
-import { z } from "zod";
-import { useState, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useRef, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "@navigation"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
+import { UserType } from "@/types/auth"
+
+import { fetchUniversityData } from "@/config/universities"
+import { manageAvatar } from "@/lib/storage"
+import { cn } from "@/lib/utils"
+import { useToast } from "@/hooks/use-toast"
+
+import { buttonVariants } from "@/components/ui/Button"
 import {
   Form,
   FormControl,
@@ -13,84 +22,75 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@component/ui/Form";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@component/ui/Select";
-import { Input } from "@component/ui/Input";
-import { buttonVariants } from "@/components/ui/Button";
-import { Textarea } from "@component/ui/Textarea";
-
-import { Icons } from "@component/icons/Lucide";
-import { UniversityCard } from "@component/display/UniversityCard";
-
-import { cn } from "@lib/utils";
-import { UserType } from "@/types/auth";
-import { useToast } from "@hook/use-toast";
-import { manageAvatar } from "@lib/storage";
-import { useRouter } from "@lib/navigation";
-import { fetchUniversityData } from "@config/universities";
+} from "@/components/ui/Select"
+import { Textarea } from "@/components/ui/Textarea"
+import { UniversityCard } from "@/components/display/UniversityCard"
+import { Icons } from "@/components/icons/Lucide"
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   bio: z.string().max(200).optional(),
   image: z.string().url().optional(),
   role: z.union([z.literal("STUDENT"), z.literal("TEACHER")]),
-});
+})
 
 //TODO: Work on the dark theme
 // TODO: Translate this page
 export function OnboardingAuthForm({ user }: { user: UserType }) {
-  const { toast } = useToast();
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const { toast } = useToast()
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [imagePreviewUrl, setImagePreviewUrl] = useState("")
+  const [selectedImage, setSelectedImage] = useState<File | null>(null)
 
-  const translateEmailInput = useTranslations("Components.Form.EmailInput");
-  const translateOnboarding = useTranslations("Components.Form.OnboardingAuth");
+  const translateEmailInput = useTranslations("Components.Form.EmailInput")
+  const translateOnboarding = useTranslations("Components.Form.OnboardingAuth")
 
   const university = fetchUniversityData({
     email: user.email!.split("@")[1],
     t: translateEmailInput,
-  });
+  })
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-  });
+  })
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0]
 
     if (file && file.size < 3000000) {
-      setSelectedImage(file);
-      setImagePreviewUrl(URL.createObjectURL(file));
+      setSelectedImage(file)
+      setImagePreviewUrl(URL.createObjectURL(file))
     } else {
       toast({
         title: translateOnboarding("image-too-large"),
         description: translateOnboarding("image-description-error"),
         variant: "destructive",
-      });
+      })
 
-      e.target.value = "";
-      setSelectedImage(null);
+      e.target.value = ""
+      setSelectedImage(null)
     }
-  };
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true);
+    setLoading(true)
 
-    let imageUrl;
+    let imageUrl
     if (selectedImage) {
-      imageUrl = await manageAvatar(selectedImage, user.id);
-      setImagePreviewUrl(imageUrl);
+      imageUrl = await manageAvatar(selectedImage, user.id)
+      setImagePreviewUrl(imageUrl)
     } else {
-      imageUrl = `https://avatars.jakerunzer.com/${values.name}`;
+      imageUrl = `https://avatars.jakerunzer.com/${values.name}`
     }
 
     try {
@@ -104,26 +104,26 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
           image: imageUrl,
           universitySlug: user.email!.split("@")[1],
         }),
-      });
+      })
 
       if (!res.ok) {
         toast({
           title: "Failed to update profile",
           description: "Something went wrong. Please try again.",
           variant: "destructive",
-        });
+        })
       } else {
         toast({
           title: "Profile updated",
           description: "Your profile has been updated successfully.",
-        });
+        })
       }
 
-      router.push("/dashboard");
+      router.push("/dashboard")
     } catch (error) {
-      console.error(error);
+      console.error(error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }
 
@@ -247,5 +247,5 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
         </button>
       </form>
     </Form>
-  );
+  )
 }

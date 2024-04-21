@@ -1,12 +1,13 @@
-import { cn } from "@lib/utils";
-import { useTranslations } from "next-intl";
-import { getStatus } from "@openstatus/react";
+import { getStatus } from "@openstatus/react"
+import { useTranslations } from "next-intl"
+
+import { cn } from "@/lib/utils"
 
 export async function StatusWidget() {
-  const t = useTranslations("Components.Display.StatusWidget");
-  const res = await getStatus("undrstnd");
+  const t = useTranslations("Components.Display.StatusWidget")
+  const res = await getStatus("undrstnd")
 
-  const { status } = res;
+  const { status } = res
 
   const getStatusLevel = (level: string) => {
     return {
@@ -45,10 +46,10 @@ export async function StatusWidget() {
         color: "bg-gray-500",
         color2: "bg-gray-400",
       },
-    }[level];
-  };
+    }[level]
+  }
 
-  const level = getStatusLevel(status)!;
+  const level = getStatusLevel(status)!
 
   return (
     <a
@@ -76,5 +77,5 @@ export async function StatusWidget() {
         />
       </span>
     </a>
-  );
+  )
 }

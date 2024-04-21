@@ -1,6 +1,8 @@
-"use client";
-import { useRouter } from "@/lib/navigation";
-import React from "react";
+"use client"
+
+import React from "react"
+
+import { useRouter } from "@/lib/navigation"
 
 const ReactionProvider = ({
   children,
@@ -10,14 +12,14 @@ const ReactionProvider = ({
   value,
   reactionId,
 }: {
-  children: React.ReactNode;
-  userId: string;
-  commentId?: string;
-  postId?: string;
-  value: string;
-  reactionId: string | null;
+  children: React.ReactNode
+  userId: string
+  commentId?: string
+  postId?: string
+  value: string
+  reactionId: string | null
 }) => {
-  const router = useRouter();
+  const router = useRouter()
   const handleSubmit = async () => {
     try {
       const res = await fetch("/api/reactions", {
@@ -31,14 +33,14 @@ const ReactionProvider = ({
           commentId,
           reactionType: value,
         }),
-      });
+      })
       if (res.ok) {
-        router.refresh();
+        router.refresh()
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   const handleDelete = async () => {
     try {
       const res = await fetch(`/api/reactions/${reactionId}`, {
@@ -47,18 +49,18 @@ const ReactionProvider = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId }),
-      });
+      })
       if (res.ok) {
-        router.refresh();
+        router.refresh()
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <div onClick={reactionId ? handleDelete : handleSubmit}>{children}</div>
-  );
-};
+  )
+}
 
-export default ReactionProvider;
+export default ReactionProvider

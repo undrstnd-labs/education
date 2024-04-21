@@ -1,14 +1,14 @@
-import Image from "next/image";
+import Image from "next/image"
+import { TranslationFunction, University } from "@/types"
 
-import { Icons } from "@component/icons/Lucide";
-import { University, TranslationFunction } from "@/types";
+import { Icons } from "@/components/icons/Lucide"
 
 export function UniversityCard({
   university,
   t,
 }: {
-  university: University;
-  t: TranslationFunction;
+  university: University
+  t: TranslationFunction
 }) {
   return (
     <div
@@ -63,5 +63,5 @@ export function UniversityCard({
         </div>
       </div>
     </div>
-  );
+  )
 }

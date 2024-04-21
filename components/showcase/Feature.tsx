@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { featuresList } from "@config/features";
+import { featuresList } from "@/config/features"
 
 export function FeatureList() {
   return (
@@ -20,7 +20,7 @@ export function FeatureList() {
         </div>
       ))}
     </dl>
-  );
+  )
 }
 
 export default function Features() {
@@ -44,5 +44,5 @@ export default function Features() {
         </div>
       </div>
     </div>
-  );
+  )
 }

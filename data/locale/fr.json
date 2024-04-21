@@ -136,7 +136,8 @@
       },
       "Prompt": {
         "new-chat": "Nouveau chat",
-        "send-message": "Envoyer un message"
+        "send-message": "Envoyer un message",
+        "upload-file": "Télécharger un fichier"
       },
       "ChatPanel": {
         "stop-generating": "Arrêter la génération",

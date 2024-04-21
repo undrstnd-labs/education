@@ -1,20 +1,20 @@
-import * as React from "react";
-import { useTranslations } from "next-intl";
-import { Student, User } from "@prisma/client";
+import * as React from "react"
+import { Link } from "@navigation"
+import { Student, User } from "@prisma/client"
+import { useTranslations } from "next-intl"
 
-import { cn } from "@lib/utils";
-import { Link } from "@lib/navigation";
+import { cn } from "@/lib/utils"
 
-import { Icons } from "@component/icons/Lucide";
-import { buttonVariants } from "@/components/ui/Button";
-import { SidebarList } from "@component/display/SidebarList";
+import { buttonVariants } from "@/components/ui/Button"
+import { SidebarList } from "@/components/display/SidebarList"
+import { Icons } from "@/components/icons/Lucide"
 
 export async function ChatHistory({
   student,
 }: {
-  student: Student & { user: User };
+  student: Student & { user: User }
 }) {
-  const t = useTranslations("Components.Display.ChatHistory");
+  const t = useTranslations("Components.Display.ChatHistory")
 
   return (
     <div className="flex max-h-[750px] flex-col">
@@ -45,5 +45,5 @@ export async function ChatHistory({
         <SidebarList student={student} />
       </React.Suspense>
     </div>
-  );
+  )
 }

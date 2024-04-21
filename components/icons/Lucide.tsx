@@ -1,76 +1,73 @@
 import {
   AlertTriangle,
+  ArchiveRestore,
+  ArrowDown,
+  ArrowDownToLine,
   ArrowRight,
+  BookOpenText,
   Check,
   ChevronLeft,
   ChevronRight,
+  ChevronsUpDown,
   Command,
+  Copy,
+  CornerDownLeft,
   CreditCard,
+  Download,
+  EditIcon,
+  Eye,
   File,
   FileText,
+  Github,
+  Heart,
   HelpCircle,
   Image,
   Laptop,
   Loader2,
-  Moon,
-  PencilIcon,
-  MoreVertical,
-  Pizza,
-  Plus,
-  UserCogIcon,
-  Settings,
-  SunMedium,
-  Trash,
-  UserCircleIcon,
-  X,
-  Search,
-  PhoneIcon,
-  MailIcon,
-  BookOpenText,
-  Copy,
   LucideIcon,
+  MailIcon,
   Monitor,
-  Download,
-  Github,
-  ChevronsUpDown,
+  Moon,
   MoreHorizontal,
-  EditIcon,
-  ArchiveRestore,
-  TrashIcon,
-  ArrowDown,
-  RefreshCw,
-  Share,
-  XCircle,
-  CornerDownLeft,
-  SlashIcon,
+  MoreVertical,
   PanelLeft,
   PanelRight,
-  Share2,
-  Eye,
-  ArrowDownToLine,
+  PencilIcon,
+  PhoneIcon,
+  Pizza,
+  Plus,
+  RefreshCw,
   Reply,
-  Heart,
-  ThumbsUp,
+  Search,
+  Settings,
+  Share,
+  Share2,
+  SlashIcon,
+  SunMedium,
   ThumbsDown,
-} from "lucide-react";
-
+  ThumbsUp,
+  Trash,
+  TrashIcon,
+  Upload,
+  UserCircleIcon,
+  UserCogIcon,
+  X,
+  XCircle,
+} from "lucide-react"
 import {
-  AiFillFilePdf,
-  AiFillWechat,
-  AiFillDatabase,
-  AiFillQuestionCircle,
   AiFillBell,
+  AiFillDatabase,
+  AiFillFilePdf,
   AiFillMobile,
-} from "react-icons/ai";
+  AiFillQuestionCircle,
+  AiFillWechat,
+} from "react-icons/ai"
+import { FaRegLightbulb, FaSurprise } from "react-icons/fa"
+import { FaHandsClapping } from "react-icons/fa6"
+import { GoSignOut } from "react-icons/go"
+import { TiTick } from "react-icons/ti"
 
-import { GoSignOut } from "react-icons/go";
-
-import { TiTick } from "react-icons/ti";
-
-import { FaSurprise, FaRegLightbulb } from "react-icons/fa";
-import { FaHandsClapping } from "react-icons/fa6";
-
-export type Icon = LucideIcon;
+export type Icon = LucideIcon
 
 export const Icons = {
   logo: Command,
@@ -138,4 +135,5 @@ export const Icons = {
   reactionApplause: FaHandsClapping,
   reactionWow: FaSurprise,
   reactionInsightul: FaRegLightbulb,
-};
+  upload: Upload,
+}

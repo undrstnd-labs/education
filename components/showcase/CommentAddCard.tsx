@@ -1,13 +1,15 @@
-"use client";
-import { useTranslations } from "next-intl";
-import { Icons } from "../icons/Lucide";
-import { Card, CardContent } from "../ui/Card";
-import { Textarea } from "../ui/Textarea";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { addClassroomSchema, commentAddCardSchema } from "@/config/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+"use client"
+
+import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { addClassroomSchema, commentAddCardSchema } from "@/config/schema"
+import { useRouter } from "@/lib/navigation"
+import { toast } from "@/hooks/use-toast"
+
 import {
   Form,
   FormControl,
@@ -16,30 +18,33 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import { Button } from "../ui/Button";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "@/lib/navigation";
+} from "@/components/ui/Form"
+
+import { Icons } from "../icons/Lucide"
+import { Button } from "../ui/Button"
+import { Card, CardContent } from "../ui/Card"
+import { Textarea } from "../ui/Textarea"
+
 interface CommentAddCardProps {
-  postId: string;
-  userId: string;
-  parentid?: string;
+  postId: string
+  userId: string
+  parentid?: string
 }
 
 const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
-  const [loading, setLoading] = useState(false);
-  const t = useTranslations("Pages.Classroom");
-  const formSchema = commentAddCardSchema(t);
-  const router = useRouter();
+  const [loading, setLoading] = useState(false)
+  const t = useTranslations("Pages.Classroom")
+  const formSchema = commentAddCardSchema(t)
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       text: "",
     },
-  });
+  })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true);
+    setLoading(true)
     try {
       const res = await fetch(`/api/comments/${postId}`, {
         method: "POST",
@@ -51,27 +56,27 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
           userId,
           parentId: parentid,
         }),
-      });
+      })
       if (res.ok) {
-        form.reset();
+        form.reset()
         toast({
           title: "Comment added",
           description: "Your comment has been added successfully",
           variant: "default",
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: "Error",
           description: "An error occured while adding the comment",
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      form.reset();
-      setLoading(false);
+      form.reset()
+      setLoading(false)
     }
   }
   return (
@@ -112,7 +117,7 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
         </Form>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default CommentAddCard;
+export default CommentAddCard

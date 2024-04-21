@@ -1,11 +1,15 @@
-"use client";
+"use client"
 
-import { z } from "zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { pinSchema } from "@/config/schema"
+import { verifyPassCode } from "@/lib/actions"
+import { toast } from "@/hooks/use-toast"
 
 import {
   Form,
@@ -14,58 +18,54 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@component/ui/Form";
+} from "@/components/ui/Form"
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSlot,
   InputOTPSeparator,
-} from "@component/ui/InputOTP";
-
-import { toast } from "@hook/use-toast";
-import { pinSchema } from "@config/schema";
-import { verifyPassCode } from "@lib/actions";
+  InputOTPSlot,
+} from "@/components/ui/InputOTP"
 
 function OTPform({ email }: { email: string }) {
-  const router = useRouter();
-  const [otp, setOtp] = useState("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const t = useTranslations("Components.Form.PassCodeAuth");
+  const router = useRouter()
+  const [otp, setOtp] = useState("")
+  const [loading, setLoading] = useState<boolean>(false)
+  const t = useTranslations("Components.Form.PassCodeAuth")
   const form = useForm<z.infer<typeof pinSchema>>({
     resolver: zodResolver(pinSchema),
     defaultValues: {
       email,
     },
-  });
+  })
 
   async function onSubmit(data: z.infer<typeof pinSchema>) {
-    setLoading(true);
+    setLoading(true)
 
     try {
-      const magicObj = await verifyPassCode(data);
+      const magicObj = await verifyPassCode(data)
 
       if (magicObj.verification_token.passCode != data.pin) {
-        throw new Error("Invalid passCode");
+        throw new Error("Invalid passCode")
       }
 
-      router.push(magicObj.verification_token.verificationUrl);
+      router.push(magicObj.verification_token.verificationUrl)
     } catch (error: any) {
-      setLoading(false);
+      setLoading(false)
       toast({
         title: t("error"),
         description: t("try-again"),
         variant: "destructive",
-      });
+      })
     }
   }
 
   const handleOTPChange = (value: string) => {
-    setOtp(value);
+    setOtp(value)
     if (value.length === 6) {
-      form.setValue("pin", value);
-      form.handleSubmit(onSubmit)();
+      form.setValue("pin", value)
+      form.handleSubmit(onSubmit)()
     }
-  };
+  }
 
   return (
     <Form {...form}>
@@ -106,11 +106,11 @@ function OTPform({ email }: { email: string }) {
         />
       </form>
     </Form>
-  );
+  )
 }
 
 export function PassCodeAuth({ email }: { email: string }) {
-  const t = useTranslations("Components.Form.PassCodeAuth");
+  const t = useTranslations("Components.Form.PassCodeAuth")
 
   return (
     <div className="flex flex-col items-center justify-center space-y-6 text-center">
@@ -122,5 +122,5 @@ export function PassCodeAuth({ email }: { email: string }) {
       </p>
       <OTPform email={email} />
     </div>
-  );
+  )
 }

@@ -1,6 +1,7 @@
-import Image from "next/image";
-import { Link } from "@lib/navigation";
-import { Button } from "@/components/ui/Button";
+import Image from "next/image"
+import { Link } from "@navigation"
+
+import { Button } from "@/components/ui/Button"
 
 export default function CallToAction() {
   return (
@@ -60,5 +61,5 @@ export default function CallToAction() {
         </div>
       </div>
     </div>
-  );
+  )
 }

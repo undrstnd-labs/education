@@ -1,17 +1,16 @@
+import { NextAuthUser } from "@/types/auth"
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
+import { Button } from "@/components/ui/Button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@component/ui/DropdownMenu";
-import { Button } from "@/components/ui/Button";
-import { Avatar, AvatarFallback, AvatarImage } from "@component/ui/Avatar";
-
-import { RoleBadge } from "@component/display/RoleBadge";
-import { SignoutButton } from "@component/config/SignoutButton";
-import { UserDropdown } from "@component/showcase/UserDropdown";
-
-import { NextAuthUser } from "@/types/auth";
+} from "@/components/ui/DropdownMenu"
+import { SignoutButton } from "@/components/config/SignoutButton"
+import { RoleBadge } from "@/components/display/RoleBadge"
+import { UserDropdown } from "@/components/showcase/UserDropdown"
 
 export function UserMenu({ user }: { user: NextAuthUser }) {
   return (
@@ -33,5 +32,5 @@ export function UserMenu({ user }: { user: NextAuthUser }) {
         <SignoutButton />
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

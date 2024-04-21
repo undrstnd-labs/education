@@ -1,20 +1,24 @@
-"use client";
+"use client"
 
-import { z } from "zod";
-import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@lib/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useRef, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "@navigation"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Icons } from "@/components/icons/Lucide";
-import { Card, CardContent } from "@/components/ui/Card";
+import { classroom } from "@/types/classroom"
+import { supabaseFile } from "@/types/supabase"
 
-import { toast } from "@hook/use-toast";
-import { addPostSchema } from "@config/schema";
-import { useMediaQuery } from "@hook/use-media-query";
-import { deleteFiles, uploadFiles } from "@lib/storage";
+import { addPostSchema } from "@/config/schema"
+import { deleteFiles, uploadFiles } from "@/lib/storage"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
 
+import { Button } from "@/components/ui/Button"
+import { Card, CardContent } from "@/components/ui/Card"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
 import {
   Form,
   FormControl,
@@ -22,36 +26,31 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@component/ui/Form";
-import { Input } from "@component/ui/Input";
-import { Button } from "@component/ui/Button";
-import { Textarea } from "@component/ui/Textarea";
-import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
-import { Dialog, DialogContent, DialogTrigger } from "@component/ui/Dialog";
-
-import { classroom } from "@/types/classroom";
-import { supabaseFile } from "@/types/supabase";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
+import { Textarea } from "@/components/ui/Textarea"
+import { Icons } from "@/components/icons/Lucide"
 
 interface PostAddCard {
-  userId: string;
-  classroom: classroom;
+  userId: string
+  classroom: classroom
 }
 
 export function PostAddCard({ userId, classroom }: PostAddCard) {
-  const router = useRouter();
-  const t = useTranslations("Pages.Classroom");
+  const router = useRouter()
+  const t = useTranslations("Pages.Classroom")
 
-  const [open, setOpen] = useState(false);
-  const [files, setFiles] = useState<File[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingFiles, setIsLoadingFiles] = useState(false);
-  const [supabaseFiles, setSupabaseFiles] = useState<supabaseFile[]>([]);
-  const [supabaseFilesPath, setSupabaseFilesPath] = useState<string[]>([]);
+  const [open, setOpen] = useState(false)
+  const [files, setFiles] = useState<File[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingFiles, setIsLoadingFiles] = useState(false)
+  const [supabaseFiles, setSupabaseFiles] = useState<supabaseFile[]>([])
+  const [supabaseFilesPath, setSupabaseFilesPath] = useState<string[]>([])
 
-  const refFiles = useRef<HTMLInputElement>(null);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const refFiles = useRef<HTMLInputElement>(null)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
-  const formSchema = addPostSchema(t);
+  const formSchema = addPostSchema(t)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -59,23 +58,23 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
       content: "",
       files: [],
     },
-  });
+  })
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFiles([...files, ...Array.from(e.target.files)]);
+      setFiles([...files, ...Array.from(e.target.files)])
     }
-  };
+  }
   const handleFileRemove = (index: number) => {
-    setFiles(files.filter((_, i) => i !== index));
-  };
+    setFiles(files.filter((_, i) => i !== index))
+  }
 
   const openFilePicker = () => {
-    refFiles.current?.click();
-  };
+    refFiles.current?.click()
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
-    console.log(values.content, values.name);
+    setIsLoading(true)
+    console.log(values.content, values.name)
     try {
       const res = await fetch(`/api/posts/${classroom.id}`, {
         method: "POST",
@@ -92,36 +91,36 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
               size: file.size,
               type: file.type,
               url: file.url,
-            };
+            }
           }),
         }),
-      });
+      })
       if (res.ok) {
-        form.reset();
-        setFiles([]);
-        setSupabaseFilesPath([]);
-        router.refresh();
+        form.reset()
+        setFiles([])
+        setSupabaseFilesPath([])
+        router.refresh()
         toast({
           title: t("toastPostCreatedSuccess"),
           variant: "default",
           description: t("toastPostCreatedSuccessDescription"),
-        });
+        })
       } else {
         toast({
           title: t("toastPostCreatedFailed"),
           variant: "destructive",
           description: t("toastPostCreatedFailedDescription"),
-        });
+        })
       }
     } catch (error) {
       toast({
         title: t("toastPostCreatedFailed"),
         variant: "destructive",
         description: t("toastPostCreatedFailedDescription"),
-      });
+      })
     } finally {
-      setOpen(false);
-      setIsLoading(false);
+      setOpen(false)
+      setIsLoading(false)
     }
   }
 
@@ -142,16 +141,16 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
         </DialogTrigger>
         <DialogContent
           onCloseAutoFocus={() => {
-            form.reset();
+            form.reset()
             {
-              files.length > 0 && setFiles([]);
+              files.length > 0 && setFiles([])
             }
             {
-              (supabaseFilesPath.length > 0 || supabaseFiles.length > 0) &&
+              ;(supabaseFilesPath.length > 0 || supabaseFiles.length > 0) &&
                 deleteFiles(supabaseFilesPath).then(() => {
-                  setSupabaseFilesPath([]);
-                  setSupabaseFiles([]);
-                });
+                  setSupabaseFilesPath([])
+                  setSupabaseFiles([])
+                })
             }
           }}
         >
@@ -262,25 +261,25 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                   className="mb-2 w-full"
                   disabled={isLoadingFiles}
                   onClick={() => {
-                    setIsLoadingFiles(true);
+                    setIsLoadingFiles(true)
                     uploadFiles(files, classroom)
                       .then((res) => {
-                        setSupabaseFiles(res[0]);
-                        setSupabaseFilesPath(res[1]);
+                        setSupabaseFiles(res[0])
+                        setSupabaseFilesPath(res[1])
                         toast({
                           title: t("toastFilesSuccess"),
                           variant: "default",
                           description: t("toastFilesSuccessDescription"),
-                        });
+                        })
                       })
                       .catch(() => {
                         toast({
                           title: t("toastFilesFailed"),
                           variant: "destructive",
                           description: t("toastFilesFailedDescription"),
-                        });
+                        })
                       })
-                      .finally(() => setIsLoadingFiles(false));
+                      .finally(() => setIsLoadingFiles(false))
                   }}
                 >
                   {isLoadingFiles && (
@@ -303,7 +302,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
           </Form>
         </DialogContent>
       </Dialog>
-    );
+    )
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
@@ -321,16 +320,16 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
         </DrawerTrigger>
         <DrawerContent
           onCloseAutoFocus={() => {
-            form.reset();
+            form.reset()
             {
-              files.length > 0 && setFiles([]);
+              files.length > 0 && setFiles([])
             }
             {
-              (supabaseFilesPath.length > 0 || supabaseFiles.length > 0) &&
+              ;(supabaseFilesPath.length > 0 || supabaseFiles.length > 0) &&
                 deleteFiles(supabaseFilesPath).then(() => {
-                  setSupabaseFilesPath([]);
-                  setSupabaseFiles([]);
-                });
+                  setSupabaseFilesPath([])
+                  setSupabaseFiles([])
+                })
             }
           }}
         >
@@ -444,25 +443,25 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                   className="mb-2 w-full"
                   disabled={isLoadingFiles}
                   onClick={() => {
-                    setIsLoadingFiles(true);
+                    setIsLoadingFiles(true)
                     uploadFiles(files, classroom)
                       .then((res) => {
-                        setSupabaseFiles(res[0]);
-                        setSupabaseFilesPath(res[1]);
+                        setSupabaseFiles(res[0])
+                        setSupabaseFilesPath(res[1])
                         toast({
                           title: t("toastFilesSuccess"),
                           variant: "default",
                           description: t("toastFilesSuccessDescription"),
-                        });
+                        })
                       })
                       .catch(() => {
                         toast({
                           title: t("toastFilesFailed"),
                           variant: "destructive",
                           description: t("toastFilesFailedDescription"),
-                        });
+                        })
                       })
-                      .finally(() => setIsLoadingFiles(false));
+                      .finally(() => setIsLoadingFiles(false))
                   }}
                 >
                   {isLoadingFiles && (
@@ -485,6 +484,6 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
           </Form>
         </DrawerContent>
       </Drawer>
-    );
+    )
   }
 }

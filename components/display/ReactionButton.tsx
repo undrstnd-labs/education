@@ -1,19 +1,21 @@
-import { LucideIcon } from "lucide-react";
-import { IconType } from "react-icons/lib";
-import ReactionProvider from "./ReactionProvider";
-import { db } from "@/lib/prisma";
+import { LucideIcon } from "lucide-react"
+import { IconType } from "react-icons/lib"
+
+import { db } from "@/lib/prisma"
+
+import ReactionProvider from "./ReactionProvider"
 
 export type reactionIcon =
   | { Icon: LucideIcon; color: string }
-  | { Icon: IconType; color: string };
+  | { Icon: IconType; color: string }
 
 interface ReactionButtonProps {
-  icon: reactionIcon;
-  count: number;
-  postId?: string;
-  commentId?: string;
-  userId: string;
-  value: string;
+  icon: reactionIcon
+  count: number
+  postId?: string
+  commentId?: string
+  userId: string
+  value: string
 }
 
 const ReactionButton = async ({
@@ -32,13 +34,13 @@ const ReactionButton = async ({
         userId,
         reactionType: value as any,
       },
-    });
+    })
     if (reaction) {
-      return reaction.id;
+      return reaction.id
     }
-    return null;
-  };
-  const reactionId = await isReacted();
+    return null
+  }
+  const reactionId = await isReacted()
 
   return (
     <ReactionProvider
@@ -60,7 +62,7 @@ const ReactionButton = async ({
         <span className="text-xs max-sm:text-[10px] ">{count}</span>
       </div>
     </ReactionProvider>
-  );
-};
+  )
+}
 
-export default ReactionButton;
+export default ReactionButton

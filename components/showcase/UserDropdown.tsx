@@ -1,16 +1,17 @@
-import { Link } from "@lib/navigation";
-import { useTranslations } from "next-intl";
+import { Link } from "@navigation"
+import { useTranslations } from "next-intl"
 
 import {
   DropdownMenuItem,
   DropdownMenuSeparator,
-} from "@component/ui/DropdownMenu";
-import { ThemeSwitch } from "@component/config/ThemeSwitch";
-import { StatusWidget } from "@component/display/StatusWidget";
-import { LanguageSwitch } from "../config/LanguageSwitch";
+} from "@/components/ui/DropdownMenu"
+import { ThemeSwitch } from "@/components/config/ThemeSwitch"
+import { StatusWidget } from "@/components/display/StatusWidget"
+
+import { LanguageSwitch } from "../config/LanguageSwitch"
 
 export function UserDropdown() {
-  const t = useTranslations("Components.Showcase.UserDropdown");
+  const t = useTranslations("Components.Showcase.UserDropdown")
   return (
     <div>
       <DropdownMenuSeparator />
@@ -39,5 +40,5 @@ export function UserDropdown() {
       </DropdownMenuItem>
       <DropdownMenuSeparator />
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Classroom, User } from "@prisma/client";
+import Image from "next/image"
+import Link from "next/link"
+import { Classroom, User } from "@prisma/client"
 
 import {
   Card,
@@ -8,17 +8,16 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@component/ui/Card";
-import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions";
-
-import { LeaveClassroom } from "@/components/showcase/LeaveClassroom";
-import ShareClassroom from "@/components/showcase/ShareClassroom";
+} from "@/components/ui/Card"
+import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions"
+import { LeaveClassroom } from "@/components/showcase/LeaveClassroom"
+import ShareClassroom from "@/components/showcase/ShareClassroom"
 
 interface classroomCardProps {
   classroom: Classroom & {
-    teacher: { user: User; id: string; userId: string };
-  };
-  authorId: string;
+    teacher: { user: User; id: string; userId: string }
+  }
+  authorId: string
 }
 
 export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
@@ -79,5 +78,5 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
         </Link>
       </CardContent>
     </Card>
-  );
-};
+  )
+}

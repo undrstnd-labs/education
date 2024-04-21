@@ -1,7 +1,15 @@
-import * as React from "react";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
+import * as React from "react"
+import Image from "next/image"
+import { EmailOption } from "@/types"
+import { useTranslations } from "next-intl"
 
+import { EmailSelectProps } from "@/types/auth"
+
+import { getTranslatedEmailOptions } from "@/config/universities"
+import { cn } from "@/lib/utils"
+import { useMediaQuery } from "@/hooks/use-media-query"
+
+import { Button } from "@/components/ui/Button"
 import {
   Command,
   CommandEmpty,
@@ -9,18 +17,15 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@component/ui/Command";
-import { Button } from "@/components/ui/Button";
-import { Icons } from "@component/icons/Lucide";
-import { Input, InputProps } from "@component/ui/Input";
-import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
-import { Popover, PopoverContent, PopoverTrigger } from "@component/ui/Popover";
-
-import { cn } from "@lib/utils";
-import { EmailOption } from "@/types";
-import { EmailSelectProps } from "@/types/auth";
-import { useMediaQuery } from "@hook/use-media-query";
-import { getTranslatedEmailOptions } from "@config/universities";
+} from "@/components/ui/Command"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
+import { Input, InputProps } from "@/components/ui/Input"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/Popover"
+import { Icons } from "@/components/icons/Lucide"
 
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (
@@ -30,8 +35,8 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
       ref={ref}
     />
   )
-);
-InputComponent.displayName = "InputComponent";
+)
+InputComponent.displayName = "InputComponent"
 
 const AvatarComponent = ({ university }: { university: EmailOption }) => {
   return (
@@ -48,9 +53,9 @@ const AvatarComponent = ({ university }: { university: EmailOption }) => {
         </>
       )}
     </span>
-  );
-};
-AvatarComponent.displayName = "AvatarComponent";
+  )
+}
+AvatarComponent.displayName = "AvatarComponent"
 
 function EmailSelectResponsive({
   disabled,
@@ -58,8 +63,8 @@ function EmailSelectResponsive({
   onSelect,
   options,
 }: EmailSelectProps) {
-  const [open, setOpen] = React.useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [open, setOpen] = React.useState(false)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
   if (isDesktop) {
     return (
@@ -90,7 +95,7 @@ function EmailSelectResponsive({
           />
         </PopoverContent>
       </Popover>
-    );
+    )
   }
 
   return (
@@ -123,7 +128,7 @@ function EmailSelectResponsive({
         </div>
       </DrawerContent>
     </Drawer>
-  );
+  )
 }
 
 function EmailOptionsList({
@@ -131,11 +136,11 @@ function EmailOptionsList({
   onSelect,
   options,
 }: {
-  value: string;
-  onSelect: (option: string) => void;
-  options: EmailOption[];
+  value: string
+  onSelect: (option: string) => void
+  options: EmailOption[]
 }) {
-  const t = useTranslations("Components.Form.EmailInput");
+  const t = useTranslations("Components.Form.EmailInput")
 
   return (
     <Command>
@@ -171,7 +176,7 @@ function EmailOptionsList({
         </CommandGroup>
       </CommandList>
     </Command>
-  );
+  )
 }
 
 const EmailInput = ({
@@ -179,29 +184,29 @@ const EmailInput = ({
   register,
   ...props
 }: {
-  disabled: boolean;
-  register: any;
+  disabled: boolean
+  register: any
 } & InputProps) => {
-  const t = useTranslations("Components.Form.EmailInput");
-  const options = getTranslatedEmailOptions(t);
+  const t = useTranslations("Components.Form.EmailInput")
+  const options = getTranslatedEmailOptions(t)
 
-  const [email, setEmail] = React.useState("");
-  const [selectedUniversity, setSelectedUniversity] = React.useState("");
+  const [email, setEmail] = React.useState("")
+  const [selectedUniversity, setSelectedUniversity] = React.useState("")
 
   React.useEffect(() => {
     if (selectedUniversity) {
-      const emailParts = email.split("@");
+      const emailParts = email.split("@")
       if (emailParts.length > 1) {
-        setEmail(`${emailParts[0]}@${selectedUniversity}`);
+        setEmail(`${emailParts[0]}@${selectedUniversity}`)
       } else {
-        setEmail(`${email}@${selectedUniversity}`);
+        setEmail(`${email}@${selectedUniversity}`)
       }
     }
-  }, [selectedUniversity, email]);
+  }, [selectedUniversity, email])
 
   const handleSelect = (option: string) => {
-    setSelectedUniversity(option);
-  };
+    setSelectedUniversity(option)
+  }
 
   return (
     <div className="flex items-center">
@@ -220,7 +225,7 @@ const EmailInput = ({
         onSelect={handleSelect}
       />
     </div>
-  );
-};
+  )
+}
 
-export { InputComponent, EmailSelectResponsive, EmailInput };
+export { InputComponent, EmailSelectResponsive, EmailInput }

@@ -1,45 +1,50 @@
-import { comment } from "@/types/classroom";
+import { Key } from "react"
+import Image from "next/image"
+import { useTranslations } from "next-intl"
+
+import { comment } from "@/types/classroom"
+
+import { emojis } from "@/config/emojis"
+
+import { Icons } from "../icons/Lucide"
+import CommentAddCard from "../showcase/CommentAddCard"
+import { Button } from "../ui/Button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/Card";
-import Image from "next/image";
-import { Button } from "../ui/Button";
-import { Icons } from "../icons/Lucide";
-import ReactionButton from "./ReactionButton";
-import { icons } from "@/constants";
+} from "../ui/Card"
+import { Label } from "../ui/Label"
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from "../ui/Sheet";
-import { Label } from "../ui/Label";
-import CommentReply from "./CommentReply";
-import CommentAddCard from "../showcase/CommentAddCard";
-import { useTranslations } from "next-intl";
+} from "../ui/Sheet"
+import CommentReply from "./CommentReply"
+import ReactionButton from "./ReactionButton"
+
 interface CommentCardProps {
-  userId: string;
-  comment: comment;
-  postId: string;
+  userId: string
+  comment: comment
+  postId: string
 }
 
 const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
-  const t = useTranslations("Pages.Classroom");
+  const t = useTranslations("Pages.Classroom")
   const reactionCounts = comment.reactions.reduce(
-    (acc, reaction) => {
-      const icon = icons.find((icon) => icon.value === reaction.reactionType);
+    (acc: { [x: string]: any }, reaction: { reactionType: string }) => {
+      const icon = emojis.find((icon) => icon.value === reaction.reactionType)
       if (icon) {
-        acc[icon.value] = (acc[icon.value] || 0) + 1;
+        acc[icon.value] = (acc[icon.value] || 0) + 1
       }
-      return acc;
+      return acc
     },
     {} as { [key: string]: number }
-  );
+  )
 
   return (
     <Card>
@@ -80,15 +85,13 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
 
                   <div className=" flex flex-1 flex-col gap-2 overflow-y-auto  ">
                     {comment.replies && comment.replies.length > 0 ? (
-                      comment.replies.map((reply) => {
-                        return (
-                          <CommentReply
-                            key={reply.id}
-                            comment={reply}
-                            userId={userId}
-                          />
-                        );
-                      })
+                      comment.replies.map((reply: comment) => (
+                        <CommentReply
+                          key={reply.id}
+                          comment={reply}
+                          userId={userId}
+                        />
+                      ))
                     ) : (
                       <Label className="py-2 font-bold">No replies yet</Label>
                     )}
@@ -112,8 +115,8 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
       </CardHeader>
       <CardContent>
         <div className="flex gap-2 max-sm:grid max-sm:grid-cols-3">
-          {icons.map((icon, index) => {
-            const count = reactionCounts[icon.value] || 0;
+          {emojis.map((icon, index) => {
+            const count = reactionCounts[icon.value] || 0
             return (
               <ReactionButton
                 userId={userId}
@@ -123,12 +126,12 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                 commentId={comment.id}
                 value={icon.value}
               />
-            );
+            )
           })}
         </div>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default CommentCard;
+export default CommentCard

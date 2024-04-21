@@ -1,31 +1,30 @@
-"use client";
+"use client"
 
-import { Fragment, useState } from "react";
+import { Fragment, useState } from "react"
+import { Tab } from "@headlessui/react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useDebouncedCallback } from "use-debounce"
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useDebouncedCallback } from "use-debounce";
-import { Tab } from "@headlessui/react";
+import { PrimaryFeaures } from "@/lib/consts"
+import { usePrevious } from "@/hooks/use-previous"
 
-import { usePrevious } from "@hook/use-previous";
-import { PrimaryFeaures } from "@/lib/consts";
-
-import { CircleBackground } from "@/components/sections/easy-steps/CircleBackground";
-import { PhoneFrame } from "@/components/icons/Overall";
+import { PhoneFrame } from "@/components/icons/Overall"
+import { CircleBackground } from "@/components/sections/easy-steps/CircleBackground"
 
 export default function FeaturesDesktop() {
-  const [changeCount, setChangeCount] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const prevIndex = usePrevious(selectedIndex);
-  const isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex;
+  const [changeCount, setChangeCount] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const prevIndex = usePrevious(selectedIndex)
+  const isForwards = prevIndex === undefined ? true : selectedIndex > prevIndex
 
   const onChange = useDebouncedCallback(
     (selectedIndex) => {
-      setSelectedIndex(selectedIndex);
-      setChangeCount((changeCount) => changeCount + 1);
+      setSelectedIndex(selectedIndex)
+      setChangeCount((changeCount) => changeCount + 1)
     },
     100,
     { leading: true }
-  );
+  )
 
   return (
     <Tab.Group
@@ -92,5 +91,5 @@ export default function FeaturesDesktop() {
         </PhoneFrame>
       </div>
     </Tab.Group>
-  );
+  )
 }

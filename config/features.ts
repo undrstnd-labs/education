@@ -1,4 +1,4 @@
-import { Icons } from "@component/icons/Lucide";
+import { Icons } from "@/components/icons/Lucide"
 
 export const featuresList = [
   {
@@ -32,4 +32,4 @@ export const featuresList = [
     description: "Accédez aux documents n'importe où, n'importe quand.",
     icon: Icons.mobile,
   },
-];
+]

@@ -1,31 +1,30 @@
-import { Suspense } from "react";
-import { useTranslations } from "next-intl";
+import { Suspense } from "react"
+import { Link } from "@navigation"
+import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
-import { Link } from "@lib/navigation";
-import { cn, verifyEmail } from "@lib/utils";
+import { cn, verifyEmail } from "@/lib/utils"
 
-import { Icons } from "@component/icons/Lucide";
-import { LogoPNG } from "@component/icons/Overall";
-
-import { buttonVariants } from "@/components/ui/Button";
-import { PassCodeAuth } from "@component/form/PassCodeAuth";
-import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
-import { getTranslations } from "next-intl/server";
+import { buttonVariants } from "@/components/ui/Button"
+import { PassCodeAuth } from "@/components/form/PassCodeAuth"
+import { UserAuthForm, UserAuthSkeleton } from "@/components/form/UserAuth"
+import { Icons } from "@/components/icons/Lucide"
+import { LogoPNG } from "@/components/icons/Overall"
 
 export async function generateMetadata() {
-  const t = await getTranslations("Metadata.Pages.Login");
-  return { title: `${t("title")}` };
+  const t = await getTranslations("Metadata.Pages.Login")
+  return { title: `${t("title")}` }
 }
 
 export default function LoginPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const t = useTranslations("Pages.Login");
-  const email = searchParams.email as string;
+  const t = useTranslations("Pages.Login")
+  const email = searchParams.email as string
 
-  const isEmailValid = verifyEmail(email);
+  const isEmailValid = verifyEmail(email)
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
@@ -70,5 +69,5 @@ export default function LoginPage({
         </p>
       </div>
     </div>
-  );
+  )
 }

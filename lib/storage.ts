@@ -1,21 +1,22 @@
-import { v4 as uuidv4 } from "uuid";
-import { supabase } from "@lib/supabase";
+import { v4 as uuidv4 } from "uuid"
 
-import { classroom } from "@/types/classroom";
-import { supabaseFile } from "@/types/supabase";
+import { classroom } from "@/types/classroom"
+import { supabaseFile } from "@/types/supabase"
+
+import { supabase } from "@/lib/supabase"
 
 export async function uploadAvatar(file: File, userId: string) {
   return await supabase.storage
     .from("avatar")
-    .upload(userId + "/avatar.png", file);
+    .upload(userId + "/avatar.png", file)
 }
 
 export async function deleteAvatar(userId: string) {
-  return await supabase.storage.from("avatar").remove([userId + "/avatar.png"]);
+  return await supabase.storage.from("avatar").remove([userId + "/avatar.png"])
 }
 
 export async function getAvatarDownloadUrl(userId: string) {
-  return await supabase.storage.from("avatars").list(userId);
+  return await supabase.storage.from("avatars").list(userId)
 }
 
 export async function manageAvatar(file: File, userId: string) {
@@ -24,14 +25,14 @@ export async function manageAvatar(file: File, userId: string) {
       (res) => res.data && res.data.length > 0
     )
   ) {
-    deleteAvatar(userId);
+    deleteAvatar(userId)
   }
 
-  await uploadAvatar(file, userId);
+  await uploadAvatar(file, userId)
 
-  const { data, error } = await getAvatarDownloadUrl(userId);
+  const { data, error } = await getAvatarDownloadUrl(userId)
   if (error) {
-    throw error;
+    throw error
   }
 
   return (
@@ -39,15 +40,15 @@ export async function manageAvatar(file: File, userId: string) {
     "/storage/v1/object/public/avatar/" +
     userId +
     "/avatar.png"
-  );
+  )
 }
 
 export const uploadFiles = async (
   files: File[],
   classroom: classroom
 ): Promise<[supabaseFile[], string[]]> => {
-  const uploadedFiles: supabaseFile[] = [];
-  const urls: string[] = [];
+  const uploadedFiles: supabaseFile[] = []
+  const urls: string[] = []
 
   const uploadPromises = files.map(async (file) => {
     const { data, error } = await supabase.storage
@@ -55,10 +56,10 @@ export const uploadFiles = async (
       .upload(
         "/classrooms/" + classroom.name + "/" + uuidv4() + "/" + file.name,
         file
-      );
+      )
 
     if (error) {
-      throw error;
+      throw error
     }
 
     const uploadedFile: supabaseFile = {
@@ -66,42 +67,42 @@ export const uploadFiles = async (
       url: data.path,
       type: file.type,
       size: file.size,
-    };
+    }
 
-    uploadedFiles.push(uploadedFile);
-    urls.push(data.path);
-  });
+    uploadedFiles.push(uploadedFile)
+    urls.push(data.path)
+  })
 
-  await Promise.all(uploadPromises);
+  await Promise.all(uploadPromises)
 
-  return [uploadedFiles, urls];
-};
+  return [uploadedFiles, urls]
+}
 
 export const deleteFiles = async (filesUrl: string[]) => {
   await Promise.all(
     filesUrl.map(async (fileUrl) => {
-      await supabase.storage.from("files").remove([fileUrl]);
+      await supabase.storage.from("files").remove([fileUrl])
     })
-  );
-};
+  )
+}
 
 export const downloadFileFromUrl = async (url: string) => {
   try {
-    const { data, error } = await supabase.storage.from("files").download(url);
+    const { data, error } = await supabase.storage.from("files").download(url)
 
     if (error) {
-      throw error;
+      throw error
     }
 
     // create a blob from the data
-    const blob = new Blob([data], { type: "application/octet-stream" });
+    const blob = new Blob([data], { type: "application/octet-stream" })
 
     // create a link to download the file
-    const downloadLink = document.createElement("a");
-    downloadLink.href = window.URL.createObjectURL(blob);
-    downloadLink.download = url.split("/").pop() ?? "";
-    downloadLink.click();
+    const downloadLink = document.createElement("a")
+    downloadLink.href = window.URL.createObjectURL(blob)
+    downloadLink.download = url.split("/").pop() ?? ""
+    downloadLink.click()
   } catch (err) {
-    console.error("Erreur lors du téléchargement du fichier :", err);
+    console.error("Erreur lors du téléchargement du fichier :", err)
   }
-};
+}

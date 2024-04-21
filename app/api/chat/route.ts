@@ -1,7 +1,7 @@
-import OpenAI from "openai";
-import { OpenAIStream, StreamingTextResponse } from "ai";
+import { OpenAIStream, StreamingTextResponse } from "ai"
+import OpenAI from "openai"
 
-import { db } from "@lib/prisma";
+import { db } from "@/lib/prisma"
 
 // export const runtime = "edge";
 
@@ -12,11 +12,11 @@ import { db } from "@lib/prisma";
 const groq = new OpenAI({
   baseURL: "https://api.groq.com/openai/v1",
   apiKey: process.env.GROQ_API_KEY!,
-});
+})
 
 export async function POST(req: Request) {
-  const json = await req.json();
-  const { messages, id, studentId } = json;
+  const json = await req.json()
+  const { messages, id, studentId } = json
 
   const tunedMessages: OpenAI.ChatCompletionMessageParam[] = [
     {
@@ -34,15 +34,15 @@ export async function POST(req: Request) {
         ${messages
           ?.slice(0, -1)
           .map((message: any) => {
-            if (message.role === "user") return `User: ${message.content}\n`;
-            return `Undrstnd: ${message.content}\n`;
+            if (message.role === "user") return `User: ${message.content}\n`
+            return `Undrstnd: ${message.content}\n`
           })
           .join("")}
         -------
 
         Answer in markdown format, using the context provided and the user's question. If you don't know the answer, be honest and offer to help find more information.`,
     },
-  ];
+  ]
 
   const response = await groq.chat.completions.create({
     model: "mixtral-8x7b-32768",
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     top_p: 0.9,
     frequency_penalty: 0,
     presence_penalty: 0,
-  });
+  })
 
   const stream = OpenAIStream(response, {
     async onCompletion(completion) {
@@ -94,9 +94,9 @@ export async function POST(req: Request) {
             })),
           },
         },
-      });
+      })
     },
-  });
+  })
 
-  return new StreamingTextResponse(stream);
+  return new StreamingTextResponse(stream)
 }

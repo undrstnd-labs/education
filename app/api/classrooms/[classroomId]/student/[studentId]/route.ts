@@ -1,14 +1,14 @@
-import * as z from "zod";
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
+import * as z from "zod"
 
-import { db } from "@lib/prisma";
+import { db } from "@/lib/prisma"
 
 const routeContextSchema = z.object({
   params: z.object({
     classroomId: z.string(),
     studentId: z.string(),
   }),
-});
+})
 
 export async function GET(
   req: Request,
@@ -16,7 +16,7 @@ export async function GET(
 ) {
   const {
     params: { classroomId, studentId },
-  } = routeContextSchema.parse(context);
+  } = routeContextSchema.parse(context)
 
   try {
     const classroom = await db.classroom.findUnique({
@@ -59,10 +59,10 @@ export async function GET(
           },
         },
       },
-    });
+    })
 
-    return NextResponse.json(classroom, { status: 200 });
+    return NextResponse.json(classroom, { status: 200 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }

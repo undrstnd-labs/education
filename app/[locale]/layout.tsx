@@ -1,15 +1,16 @@
-import "@style/globals.css";
+import "@/styles/globals.css"
 
-import { siteConfig } from "@config/site";
-import { GeistSans } from "geist/font/sans";
-import type { Viewport, Metadata } from "next";
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import type { Metadata, Viewport } from "next"
+import { GeistSans } from "geist/font/sans"
+import { NextIntlClientProvider, useMessages } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
-import { Toaster } from "@component/ui/Toaster";
-import { Analytics } from "@component/config/Analytics";
-import { ThemeProvider } from "@component/config/ThemeProvider";
-import { TailwindIndicator } from "@component/config/TailwindIndicator";
-import { getTranslations } from "next-intl/server";
+import { siteConfig } from "@/config/site"
+
+import { Toaster } from "@/components/ui/Toaster"
+import { Analytics } from "@/components/config/Analytics"
+import { TailwindIndicator } from "@/components/config/TailwindIndicator"
+import { ThemeProvider } from "@/components/config/ThemeProvider"
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -23,10 +24,10 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-};
+}
 
 export async function generateMetadata() {
-  const t = await getTranslations("Metadata.Layout.PrincipalLayout");
+  const t = await getTranslations("Metadata.Layout.PrincipalLayout")
   return {
     title: {
       default: `${t("title")}`,
@@ -85,17 +86,17 @@ export async function generateMetadata() {
     },
     manifest: `${siteConfig.url}/site.webmanifest`,
     metadataBase: new URL(siteConfig.url),
-  };
+  }
 }
 
 export default function PrincipalLayout({
   children,
   params: { locale },
 }: {
-  children: React.ReactNode;
-  params: { locale: string };
+  children: React.ReactNode
+  params: { locale: string }
 }) {
-  const messages = useMessages();
+  const messages = useMessages()
   return (
     <html lang={locale}>
       <head />
@@ -115,5 +116,5 @@ export default function PrincipalLayout({
         </NextIntlClientProvider>
       </body>
     </html>
-  );
+  )
 }

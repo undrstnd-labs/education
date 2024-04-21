@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Classroom } from "@prisma/client";
-import { useTranslations } from "next-intl";
+import { useState } from "react"
+import { useRouter } from "@navigation"
+import { Classroom } from "@prisma/client"
+import { useTranslations } from "next-intl"
 
-import { toast } from "@hook/use-toast";
-import { useRouter } from "@lib/navigation";
-import { useMediaQuery } from "@hook/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
 
 import {
   AlertDialog,
@@ -18,7 +18,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@component/ui/AlertDialog";
+} from "@/components/ui/AlertDialog"
+import { Button } from "@/components/ui/Button"
 import {
   Drawer,
   DrawerClose,
@@ -28,21 +29,20 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@component/ui/Drawer";
-import { Button } from "@component/ui/Button";
-import { Icons } from "@component/icons/Lucide";
+} from "@/components/ui/Drawer"
+import { Icons } from "@/components/icons/Lucide"
 
 interface LeaveClassroomProps {
-  classroom: Classroom;
-  userId: string;
+  classroom: Classroom
+  userId: string
 }
 
 export function LeaveClassroom({ classroom, userId }: LeaveClassroomProps) {
-  const router = useRouter();
-  const t = useTranslations("Components.Display.ClassroomCardOptions");
+  const router = useRouter()
+  const t = useTranslations("Components.Display.ClassroomCardOptions")
 
-  const [open, setOpen] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [open, setOpen] = useState(false)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
   const handleLeave = async () => {
     const res = await fetch(`/api/classrooms/leave/${classroom.classCode}`, {
@@ -51,16 +51,16 @@ export function LeaveClassroom({ classroom, userId }: LeaveClassroomProps) {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
     if (res.ok) {
       toast({
         title: t("leaveApiSuccess"),
         variant: "default",
         description: t("leaveApiSuccessDescription"),
-      });
-      router.refresh();
+      })
+      router.refresh()
     }
-  };
+  }
   return (
     <>
       {isDesktop ? (
@@ -130,5 +130,5 @@ export function LeaveClassroom({ classroom, userId }: LeaveClassroomProps) {
         </Drawer>
       )}
     </>
-  );
+  )
 }

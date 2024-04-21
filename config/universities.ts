@@ -1,4 +1,4 @@
-import { TranslationFunction, EmailOption } from "@/types";
+import { EmailOption, TranslationFunction } from "@/types"
 
 // #TODO: Create an API & NPM package for list of universities
 export function getEmailOptions() {
@@ -16,7 +16,7 @@ export function getEmailOptions() {
     "issatso.rnu.tn",
     "esstt.rnu.tn",
     "enit.rnu.tn",
-  ];
+  ]
 }
 
 // TODO: Update the options to their correct informations
@@ -128,15 +128,15 @@ export function getTranslatedEmailOptions(
       email: "enit@mail.com",
       avatarUrl: "https://placehold.co/600x400?text=ENIT",
     },
-  ];
+  ]
 }
 
 export function fetchUniversityData({
   email,
   t,
 }: {
-  email: string;
-  t: TranslationFunction;
+  email: string
+  t: TranslationFunction
 }): EmailOption {
-  return getTranslatedEmailOptions(t).find((option) => option.value === email)!;
+  return getTranslatedEmailOptions(t).find((option) => option.value === email)!
 }

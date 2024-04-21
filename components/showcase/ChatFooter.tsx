@@ -1,11 +1,12 @@
-import React from "react";
-import { useTranslations } from "next-intl";
+import React from "react"
+import { useTranslations } from "next-intl"
 
-import { cn } from "@lib/utils";
-import { ExternalLink } from "@component/ui/ExternalLink";
+import { cn } from "@/lib/utils"
+
+import { ExternalLink } from "@/components/ui/ExternalLink"
 
 export function FooterText({ className, ...props }: React.ComponentProps<"p">) {
-  const t = useTranslations("Components.Showcase.ChatFooter");
+  const t = useTranslations("Components.Showcase.ChatFooter")
   return (
     <p
       className={cn(
@@ -21,5 +22,5 @@ export function FooterText({ className, ...props }: React.ComponentProps<"p">) {
       </ExternalLink>{" "}
       {t("footer-text-2")}
     </p>
-  );
+  )
 }

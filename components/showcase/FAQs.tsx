@@ -1,4 +1,4 @@
-import { Link } from "@lib/navigation";
+import { Link } from "@navigation"
 
 const faqs = [
   {
@@ -19,7 +19,7 @@ const faqs = [
     answer:
       "We offer a free pack, but with limited features. You can try out the app by signing up for the free pack and try it right now.",
   },
-];
+]
 
 export default function FAQs() {
   return (
@@ -55,5 +55,5 @@ export default function FAQs() {
         </dl>
       </div>
     </div>
-  );
+  )
 }

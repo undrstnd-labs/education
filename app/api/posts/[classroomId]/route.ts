@@ -1,16 +1,16 @@
-import * as z from "zod";
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
+import * as z from "zod"
 
-import { db } from "@lib/prisma";
-import { getCurrentUser } from "@lib/session";
-import { verifyCurrentTeacher } from "@lib/session";
-import { supabaseFile } from "@/types/supabase";
+import { supabaseFile } from "@/types/supabase"
+
+import { db } from "@/lib/prisma"
+import { getCurrentUser, verifyCurrentTeacher } from "@/lib/session"
 
 const routeContextSchema = z.object({
   params: z.object({
     classroomId: z.string(),
   }),
-});
+})
 
 export async function GET(
   req: Request,
@@ -19,25 +19,25 @@ export async function GET(
   try {
     const {
       params: { classroomId },
-    } = routeContextSchema.parse(context);
+    } = routeContextSchema.parse(context)
 
-    const user = await getCurrentUser();
+    const user = await getCurrentUser()
 
     if (!user) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
+      return NextResponse.json({ message: "User not found" }, { status: 404 })
     }
 
     const classroom = await db.classroom.findUnique({
       where: {
         id: classroomId,
       },
-    });
+    })
 
     if (!classroom) {
       return NextResponse.json(
         { message: "Classroom not found" },
         { status: 404 }
-      );
+      )
     }
 
     if (user.role === "TEACHER") {
@@ -45,20 +45,20 @@ export async function GET(
         where: {
           userId: user.id,
         },
-      });
+      })
 
       if (!teacher) {
         return NextResponse.json(
           { message: "Teacher not found" },
           { status: 404 }
-        );
+        )
       }
 
       if (teacher.id !== classroom.teacherId) {
         return NextResponse.json(
           { message: "Teacher is not in the classroom" },
           { status: 403 }
-        );
+        )
       }
     }
 
@@ -67,13 +67,13 @@ export async function GET(
         where: {
           userId: user.id,
         },
-      });
+      })
 
       if (!student) {
         return NextResponse.json(
           { message: "Student not found" },
           { status: 404 }
-        );
+        )
       }
 
       const classroomStudent = await db.classroom.findFirst({
@@ -85,13 +85,13 @@ export async function GET(
             },
           },
         },
-      });
+      })
 
       if (!classroomStudent) {
         return NextResponse.json(
           { message: "Student is not in the classroom" },
           { status: 403 }
-        );
+        )
       }
     }
 
@@ -104,11 +104,11 @@ export async function GET(
         comments: true,
         reactions: true,
       },
-    });
-    return NextResponse.json(posts, { status: 200 });
+    })
+    return NextResponse.json(posts, { status: 200 })
   } catch (error: any) {
-    console.log(error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.log(error)
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
 
@@ -116,10 +116,10 @@ export async function POST(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
-  const { userId, name, content, files } = await req.json();
+  const { userId, name, content, files } = await req.json()
   const {
     params: { classroomId },
-  } = routeContextSchema.parse(context);
+  } = routeContextSchema.parse(context)
 
   if (!name || !content) {
     return NextResponse.json(
@@ -129,24 +129,24 @@ export async function POST(
       {
         status: 400,
       }
-    );
+    )
   }
 
   if (!(await verifyCurrentTeacher(userId))) {
     return NextResponse.json(
       { message: "You are not authorized to update this classroom" },
       { status: 403 }
-    );
+    )
   }
 
   const teacher = await db.teacher.findUnique({
     where: {
       userId,
     },
-  });
+  })
 
   if (!teacher) {
-    return NextResponse.json({ message: "Teacher not found" }, { status: 404 });
+    return NextResponse.json({ message: "Teacher not found" }, { status: 404 })
   }
 
   const classroom = await db.classroom.findUnique({
@@ -154,13 +154,13 @@ export async function POST(
       id: classroomId,
       teacherId: teacher.id,
     },
-  });
+  })
 
   if (!classroom) {
     return NextResponse.json(
       { message: "Classroom not found" },
       { status: 404 }
-    );
+    )
   }
 
   try {
@@ -179,11 +179,11 @@ export async function POST(
           })),
         },
       },
-    });
+    })
 
-    return NextResponse.json(post, { status: 201 });
+    return NextResponse.json(post, { status: 201 })
   } catch (error: any) {
-    console.log(error);
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    console.log(error)
+    return NextResponse.json({ message: error.message }, { status: 500 })
   }
 }

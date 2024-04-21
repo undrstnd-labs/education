@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { Link } from "@lib/navigation";
-import { Popover } from "@headlessui/react";
-import { AnimatePresence, motion } from "framer-motion";
+import { Popover } from "@headlessui/react"
+import { Link } from "@navigation"
+import { AnimatePresence, motion } from "framer-motion"
 
-import { Button } from "@/components/ui/Button";
-import MobileNavLink from "@/components/navigation/MobileNavLink";
+import { Button } from "@/components/ui/Button"
+import MobileNavLink from "@/components/navigation/MobileNavLink"
 
 export default function MobileAnimatePresence({ open }: { open: boolean }) {
   return (
@@ -52,5 +52,5 @@ export default function MobileAnimatePresence({ open }: { open: boolean }) {
         </>
       )}
     </AnimatePresence>
-  );
+  )
 }

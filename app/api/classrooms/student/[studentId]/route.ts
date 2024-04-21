@@ -1,13 +1,13 @@
-import * as z from "zod";
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
+import * as z from "zod"
 
-import { db } from "@lib/prisma";
+import { db } from "@/lib/prisma"
 
 const routeContextSchema = z.object({
   params: z.object({
     studentId: z.string(),
   }),
-});
+})
 
 export async function GET(
   req: Request,
@@ -15,7 +15,7 @@ export async function GET(
 ) {
   const {
     params: { studentId },
-  } = routeContextSchema.parse(context);
+  } = routeContextSchema.parse(context)
 
   const classrooms = await db.classroom.findMany({
     where: {
@@ -33,7 +33,7 @@ export async function GET(
         },
       },
     },
-  });
+  })
 
-  return NextResponse.json(classrooms, { status: 200 });
+  return NextResponse.json(classrooms, { status: 200 })
 }

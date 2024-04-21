@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { useEffect, useRef, useState } from "react";
-import clsx from "clsx";
+import { useEffect, useRef, useState } from "react"
+import clsx from "clsx"
 
-import { CircleBackground } from "@/components/sections/easy-steps/CircleBackground";
-import { PhoneFrame } from "@/components/icons/Overall";
+import { PrimaryFeaures } from "@/lib/consts"
 
-import { PrimaryFeaures } from "@/lib/consts";
+import { PhoneFrame } from "@/components/icons/Overall"
+import { CircleBackground } from "@/components/sections/easy-steps/CircleBackground"
 
 export default function FeaturesMobile() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const slideContainerRef = useRef<HTMLDivElement | null>(null);
-  const slideRefs = useRef<HTMLElement[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0)
+  const slideContainerRef = useRef<HTMLDivElement | null>(null)
+  const slideRefs = useRef<HTMLElement[]>([])
 
   useEffect(() => {
     const observer = new window.IntersectionObserver(
@@ -20,8 +20,8 @@ export default function FeaturesMobile() {
           if (entry.isIntersecting) {
             setActiveIndex(
               slideRefs.current.indexOf(entry.target as HTMLElement)
-            );
-            break;
+            )
+            break
           }
         }
       },
@@ -29,18 +29,18 @@ export default function FeaturesMobile() {
         root: slideContainerRef.current,
         threshold: 0.6,
       }
-    );
+    )
 
     for (const slide of slideRefs.current) {
       if (slide) {
-        observer.observe(slide);
+        observer.observe(slide)
       }
     }
 
     return () => {
-      observer.disconnect();
-    };
-  }, [slideContainerRef, slideRefs]);
+      observer.disconnect()
+    }
+  }, [slideContainerRef, slideRefs])
 
   return (
     <>
@@ -53,7 +53,7 @@ export default function FeaturesMobile() {
             key={featureIndex}
             ref={(ref) => {
               if (ref !== null) {
-                slideRefs.current[featureIndex] = ref;
+                slideRefs.current[featureIndex] = ref
               }
             }}
             className="w-full flex-none snap-center px-4 sm:px-6"
@@ -98,7 +98,7 @@ export default function FeaturesMobile() {
               slideRefs.current[featureIndex].scrollIntoView({
                 block: "nearest",
                 inline: "nearest",
-              });
+              })
             }}
           >
             <span className="absolute -inset-x-1.5 -inset-y-3" />
@@ -106,5 +106,5 @@ export default function FeaturesMobile() {
         ))}
       </div>
     </>
-  );
+  )
 }

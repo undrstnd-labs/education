@@ -1,11 +1,11 @@
-import { db } from "@lib/prisma";
-import { verifyEmail } from "@lib/utils";
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { NextAuthOptions } from "next-auth"
+import { JWT } from "next-auth/jwt"
+import EmailProvider from "next-auth/providers/email"
+import GitHubProvider from "next-auth/providers/github"
 
-import { JWT } from "next-auth/jwt";
-import { NextAuthOptions } from "next-auth";
-import EmailProvider from "next-auth/providers/email";
-import GitHubProvider from "next-auth/providers/github";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { db } from "@/lib/prisma"
+import { verifyEmail } from "@/lib/utils"
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
               url,
             }),
           }
-        ).then((res) => res.json());
+        ).then((res) => res.json())
 
         await fetch(`${process.env.NEXTAUTH_URL}/api/mailer`, {
           method: "POST",
@@ -61,7 +61,7 @@ export const authOptions: NextAuthOptions = {
             otp_link: url,
             passCode: passCode,
           }),
-        }).then((res) => res.json());
+        }).then((res) => res.json())
       },
     }),
   ],
@@ -71,31 +71,31 @@ export const authOptions: NextAuthOptions = {
         where: {
           email: session.user.email,
         },
-      });
+      })
 
       if (token && dbUser) {
-        session.user.id = dbUser.id;
-        session.user.name = dbUser.name;
-        session.user.email = dbUser.email;
-        session.user.image = dbUser.image;
-        session.user.role = dbUser.role;
-        session.user.bio = dbUser.bio;
-        session.user.universitySlug = dbUser.universitySlug;
+        session.user.id = dbUser.id
+        session.user.name = dbUser.name
+        session.user.email = dbUser.email
+        session.user.image = dbUser.image
+        session.user.role = dbUser.role
+        session.user.bio = dbUser.bio
+        session.user.universitySlug = dbUser.universitySlug
       }
 
-      return session;
+      return session
     },
     async jwt({ token, user }): Promise<JWT> {
       if (user) {
         if (!verifyEmail(user.email as string)) {
-          throw new Error("Invalid email address");
+          throw new Error("Invalid email address")
         }
 
         const dbUser = await db.user.findFirst({
           where: {
             email: user.email as string,
           },
-        });
+        })
 
         if (dbUser) {
           return {
@@ -109,13 +109,13 @@ export const authOptions: NextAuthOptions = {
             emailVerified: dbUser.emailVerified,
             createdAt: dbUser.createdAt,
             updatedAt: dbUser.updatedAt,
-          };
+          }
         }
 
-        token.id = user?.id;
+        token.id = user?.id
       }
 
-      return token;
+      return token
     },
   },
-};
+}

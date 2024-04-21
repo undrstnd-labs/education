@@ -1,13 +1,14 @@
-import { getCurrentUser } from "@lib/session";
-import { getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server"
+
+import { getCurrentUser } from "@/lib/session"
 
 export async function generateMetadata() {
-  const t = await getTranslations("Metadata.Pages.Dashboard");
-  return { title: `${t("title")}` };
+  const t = await getTranslations("Metadata.Pages.Dashboard")
+  return { title: `${t("title")}` }
 }
 
 export default async function DashboardPage() {
-  const user = await getCurrentUser();
+  const user = await getCurrentUser()
 
   return (
     <div>
@@ -15,5 +16,5 @@ export default async function DashboardPage() {
         <code>{JSON.stringify(user, null, 2)}</code>
       </pre>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import { forwardRef, SVGProps, ReactNode } from "react";
-import clsx from "clsx";
+import { forwardRef, ReactNode, SVGProps } from "react"
+import clsx from "clsx"
 
-import { LogoText } from "@/components/icons/Overall";
+import { LogoText } from "@/components/icons/Overall"
 
 function MenuIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -14,7 +14,7 @@ function MenuIcon(props: SVGProps<SVGSVGElement>) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
 
 function UserIcon(props: SVGProps<SVGSVGElement>) {
@@ -28,7 +28,7 @@ function UserIcon(props: SVGProps<SVGSVGElement>) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
 
 export function AppScreen({
@@ -36,8 +36,8 @@ export function AppScreen({
   className,
   ...props
 }: {
-  children?: ReactNode;
-  className?: string;
+  children?: ReactNode
+  className?: string
 }) {
   return (
     <div className={clsx("flex flex-col", className)} {...props}>
@@ -48,7 +48,7 @@ export function AppScreen({
       </div>
       {children}
     </div>
-  );
+  )
 }
 
 AppScreen.Header = forwardRef<HTMLDivElement, { children: ReactNode }>(
@@ -57,9 +57,9 @@ AppScreen.Header = forwardRef<HTMLDivElement, { children: ReactNode }>(
       <div ref={ref} className="mt-6 px-4 text-white">
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
 AppScreen.Title = forwardRef<HTMLDivElement, { children: ReactNode }>(
   function AppScreenTitle({ children }, ref) {
@@ -67,9 +67,9 @@ AppScreen.Title = forwardRef<HTMLDivElement, { children: ReactNode }>(
       <div ref={ref} className="text-2xl text-white">
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
 AppScreen.Subtitle = forwardRef<HTMLDivElement, { children: ReactNode }>(
   function AppScreenSubtitle({ children }, ref) {
@@ -77,9 +77,9 @@ AppScreen.Subtitle = forwardRef<HTMLDivElement, { children: ReactNode }>(
       <div ref={ref} className="text-sm text-gray-500">
         {children}
       </div>
-    );
+    )
   }
-);
+)
 
 AppScreen.Body = forwardRef<
   HTMLDivElement,
@@ -92,5 +92,5 @@ AppScreen.Body = forwardRef<
     >
       {children}
     </div>
-  );
-});
+  )
+})

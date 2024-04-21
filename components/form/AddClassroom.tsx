@@ -1,16 +1,21 @@
-"use client";
+"use client"
 
-import { z } from "zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@/lib/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
+import crypto from "crypto"
 
-import { toast } from "@hook/use-toast";
-import { addClassroomSchema } from "@config/schema";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import crypto from "crypto";
+import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { addClassroomSchema } from "@/config/schema"
+import { useRouter } from "@/lib/navigation"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
+
+import { Button } from "@/components/ui/Button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
 import {
   Form,
   FormControl,
@@ -18,40 +23,37 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@component/ui/Form";
-import { Input } from "@component/ui/Input";
-import { Button } from "@component/ui/Button";
-import { Icons } from "@component/icons/Lucide";
-import { Textarea } from "@component/ui/Textarea";
-import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
-import { Dialog, DialogContent, DialogTrigger } from "@component/ui/Dialog";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
+import { Textarea } from "@/components/ui/Textarea"
+import { Icons } from "@/components/icons/Lucide"
 
 interface AddClassroomProps {
-  userId: string;
+  userId: string
 }
 
 export function AddClassroom({ userId }: AddClassroomProps) {
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const t = useTranslations("Pages.Classroom");
-  const [isLoading, setIsLoading] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const timeStamp = Date.now();
-  const code = timeStamp + userId;
-  const hash = crypto.createHash("md5").update(code).digest("hex");
-  const classCode = hash.slice(0, 8);
+  const router = useRouter()
+  const [open, setOpen] = useState(false)
+  const t = useTranslations("Pages.Classroom")
+  const [isLoading, setIsLoading] = useState(false)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const timeStamp = Date.now()
+  const code = timeStamp + userId
+  const hash = crypto.createHash("md5").update(code).digest("hex")
+  const classCode = hash.slice(0, 8)
 
-  const formSchema = addClassroomSchema(t);
+  const formSchema = addClassroomSchema(t)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       description: "",
     },
-  });
+  })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       const res = await fetch("/api/classrooms", {
         method: "POST",
@@ -64,28 +66,28 @@ export function AddClassroom({ userId }: AddClassroomProps) {
           userId,
           classCode,
         }),
-      });
+      })
 
       if (res.ok) {
         toast({
           title: t("toastTitleAddClassroom"),
           variant: "default",
           description: t("toastDescriptionAddClassroom"),
-        });
-        router.refresh();
-        form.reset();
+        })
+        router.refresh()
+        form.reset()
       } else {
         toast({
           title: t("toast-title-create-error"),
           description: t("toast-description-create-error"),
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsLoading(false);
-      setOpen(false);
+      setIsLoading(false)
+      setOpen(false)
     }
   }
   if (isDesktop) {
@@ -149,7 +151,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
           </Form>
         </DialogContent>
       </Dialog>
-    );
+    )
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
@@ -214,6 +216,6 @@ export function AddClassroom({ userId }: AddClassroomProps) {
           </Form>
         </DrawerContent>
       </Drawer>
-    );
+    )
   }
 }

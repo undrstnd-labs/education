@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { Link } from "@lib/navigation";
+import Image from "next/image"
+import { Link } from "@navigation"
 
-import { Button } from "@/components/ui/Button";
-import { PlayIcon } from "@component/icons/Overall";
-import { TypingEffect } from "@component/ui/TypingEffect";
+import { Button } from "@/components/ui/Button"
+import { TypingEffect } from "@/components/ui/TypingEffect"
+import { PlayIcon } from "@/components/icons/Overall"
 
 export default function HerosectionHome() {
   return (
@@ -80,5 +80,5 @@ export default function HerosectionHome() {
         </div>
       </div>
     </div>
-  );
+  )
 }

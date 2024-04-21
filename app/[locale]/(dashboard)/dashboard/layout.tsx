@@ -1,31 +1,32 @@
-import { cn } from "@lib/utils";
-import { NextAuthUser } from "@/types/auth";
-import { Link, redirect } from "@lib/navigation";
-import { getCurrentUser, userAuthentificateVerification } from "@lib/session";
+import { Link, redirect } from "@navigation"
 
-import { Icons } from "@component/icons/Lucide";
-import { LogoPNG } from "@component/icons/Overall";
+import { NextAuthUser } from "@/types/auth"
 
-import { Input } from "@component/ui/Input";
-import { UserMenu } from "@/components/display/UserMenu";
-import { buttonVariants, Button } from "@/components/ui/Button";
-import { Sheet, SheetContent, SheetTrigger } from "@component/ui/Sheet";
+import { getCurrentUser, userAuthentificateVerification } from "@/lib/session"
+import { cn } from "@/lib/utils"
+
+import { Button, buttonVariants } from "@/components/ui/Button"
+import { Input } from "@/components/ui/Input"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet"
+import { UserMenu } from "@/components/display/UserMenu"
+import { Icons } from "@/components/icons/Lucide"
+import { LogoPNG } from "@/components/icons/Overall"
 
 interface DashboardLayoutProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 //FIXME: Rename this to feed instead of Dashboard to make more sense
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const user = await getCurrentUser();
-  const toRedirect = await userAuthentificateVerification(user as NextAuthUser);
+  const user = await getCurrentUser()
+  const toRedirect = await userAuthentificateVerification(user as NextAuthUser)
   if (toRedirect) {
-    redirect(toRedirect);
+    redirect(toRedirect)
   }
   if (!user) {
-    return null;
+    return null
   }
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -132,5 +133,5 @@ export default async function DashboardLayout({
         </main>
       </div>
     </div>
-  );
+  )
 }

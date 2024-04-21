@@ -1,72 +1,92 @@
-import * as React from "react";
-import { UseChatHelpers } from "ai/react";
-import { useTranslations } from "next-intl";
+import * as React from "react"
+import { usePathname, useRouter } from "@navigation"
+import { UseChatHelpers } from "ai/react"
+import { useTranslations } from "next-intl"
 
-import { cn } from "@lib/utils";
-import { useRouter } from "@lib/navigation";
-import { useEnterSubmit } from "@hook/use-enter-submit";
+import { cn } from "@/lib/utils"
+import { useEnterSubmit } from "@/hooks/use-enter-submit"
 
+import { Button, buttonVariants } from "@/components/ui/Button"
+import { Textarea } from "@/components/ui/Textarea"
 import {
   Tooltip,
   TooltipContent,
-  TooltipTrigger,
   TooltipProvider,
-} from "@component/ui/Tooltip";
-import { Icons } from "@component/icons/Lucide";
-import { Textarea } from "@component/ui/Textarea";
-import { Button, buttonVariants } from "@/components/ui/Button";
+  TooltipTrigger,
+} from "@/components/ui/Tooltip"
+import { Icons } from "@/components/icons/Lucide"
 
 export interface PromptProps
   extends Pick<UseChatHelpers, "input" | "setInput"> {
-  onSubmit: (value: string) => void;
-  isLoading: boolean;
+  onSubmit: (value: string) => void
+  isLoading: boolean
+}
+
+function ActionButton({ onClick, icon, label }: any) {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            onClick={onClick}
+            className={cn(
+              buttonVariants({ size: "icon", variant: "outline" }),
+              "absolute left-0 top-3 size-4 rounded-full bg-background p-0 sm:left-4"
+            )}
+          >
+            {icon}
+            <span className="sr-only">{label}</span>
+          </button>
+        </TooltipTrigger>
+        <TooltipContent>{label}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
 }
 
 export function Prompt({ onSubmit, input, setInput, isLoading }: PromptProps) {
-  const { formRef, onKeyDown } = useEnterSubmit();
-  const t = useTranslations("Components.Form.Prompt");
-  const inputRef = React.useRef<HTMLTextAreaElement>(null);
-  const router = useRouter();
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const { formRef, onKeyDown } = useEnterSubmit()
+  const t = useTranslations("Components.Form.Prompt")
+  const inputRef = React.useRef<HTMLTextAreaElement>(null)
+
+  const isChatPath = pathname.includes("/chat/c/")
+
   React.useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current.focus()
     }
-  }, []);
+  }, [])
 
   return (
     <form
       onSubmit={async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (!input?.trim()) {
-          return;
+          return
         }
-        setInput("");
-        onSubmit(input);
+        setInput("")
+        onSubmit(input)
       }}
       ref={formRef}
     >
-      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden bg-background px-8 sm:rounded-md sm:border sm:px-12">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.refresh();
-                  router.push("/chat");
-                }}
-                className={cn(
-                  buttonVariants({ size: "icon", variant: "outline" }),
-                  "absolute left-0 top-3 size-4 rounded-full bg-background p-0 sm:left-4"
-                )}
-              >
-                <Icons.add className="size-4 rounded-full" />
-                <span className="sr-only">New Chat</span>
-              </button>
-            </TooltipTrigger>
-            <TooltipContent>{t("new-chat")}</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden border-white bg-background px-8 sm:rounded-md sm:border sm:px-12">
+        <ActionButton
+          onClick={() => {
+            router.push(isChatPath ? "/chat/new" : "/chat")
+          }}
+          icon={
+            isChatPath ? (
+              <Icons.add className="size-4 rounded-full" />
+            ) : (
+              <Icons.upload className="size-4 rounded-full" />
+            )
+          }
+          label={isChatPath ? t("new-chat") : t("upload-file")}
+        />
+
         <Textarea
           ref={inputRef}
           tabIndex={0}
@@ -98,5 +118,5 @@ export function Prompt({ onSubmit, input, setInput, isLoading }: PromptProps) {
         </div>
       </div>
     </form>
-  );
+  )
 }

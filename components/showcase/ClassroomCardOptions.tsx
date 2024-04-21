@@ -1,21 +1,13 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { Classroom, User } from "@prisma/client";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Classroom, User } from "@prisma/client"
+import { useTranslations } from "next-intl"
 
-import { toast } from "@hook/use-toast";
-import { useMediaQuery } from "@hook/use-media-query";
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@component/ui/DropdownMenu";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,7 +17,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@component/ui/AlertDialog";
+} from "@/components/ui/AlertDialog"
+import { Button } from "@/components/ui/Button"
 import {
   Drawer,
   DrawerClose,
@@ -34,26 +27,33 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "@component/ui/Drawer";
-import { Button } from "@component/ui/Button";
-import { Icons } from "@component/icons/Lucide";
-import { EditClassroom } from "@component/form/EditClassroom";
+} from "@/components/ui/Drawer"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu"
+import { EditClassroom } from "@/components/form/EditClassroom"
+import { Icons } from "@/components/icons/Lucide"
 
 interface ClassroomCardProps {
   classroom: Classroom & {
-    teacher: { user: User; id: string; userId: string };
-  };
+    teacher: { user: User; id: string; userId: string }
+  }
 }
 
 export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
-  const [isModifyOpen, setIsModifyOpen] = useState(false);
+  const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false)
+  const [isModifyOpen, setIsModifyOpen] = useState(false)
 
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const t = useTranslations("Components.Display.ClassroomCardOptions");
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const t = useTranslations("Components.Display.ClassroomCardOptions")
 
   const handleArchive = async () => {
     try {
@@ -66,22 +66,22 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           userId: classroom.teacher.user.id,
           isArchived: true,
         }),
-      });
+      })
       if (res.ok) {
         toast({
           title: t("toastTitleArchiveClassroom"),
           description: t("toastDescriptionArchiveClassroom"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       }
     } catch (error) {
       toast({
         title: t("error-toast-archive"),
         description: t("error-description-toast-archive"),
         variant: "destructive",
-      });
+      })
     }
-  };
+  }
 
   const handleDelete = async () => {
     try {
@@ -93,23 +93,23 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
         body: JSON.stringify({
           userId: classroom.teacher.user.id,
         }),
-      });
+      })
       if (res.ok) {
         toast({
           title: t("toastTitleDeleteClassroom"),
           variant: "default",
           description: t("toastDescriptionDeleteClassroom"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       }
     } catch (error) {
       toast({
         title: t("error-toast-delete"),
         description: t("error-description-toast-arcdeletehive"),
         variant: "destructive",
-      });
+      })
     }
-  };
+  }
 
   return (
     <>
@@ -245,5 +245,5 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
         />
       )}
     </>
-  );
+  )
 }

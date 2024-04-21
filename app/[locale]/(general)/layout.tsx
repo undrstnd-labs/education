@@ -1,14 +1,14 @@
-import Header from "@component/navigation/Header";
+import Header from "@/components/navigation/Header"
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <main>
       <Header />
       {children}
     </main>
-  );
+  )
 }

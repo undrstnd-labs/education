@@ -5,5 +5,5 @@ export default function ChatPage({ params }: { params: { chatId: string } }) {
     <div>
       <h1>Chat {params.chatId}</h1>
     </div>
-  );
+  )
 }

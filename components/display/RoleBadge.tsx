@@ -1,12 +1,13 @@
-import { cn } from "@lib/utils";
-import { useTranslations } from "next-intl";
+import { useTranslations } from "next-intl"
 
-import { Badge } from "@component/ui/Badge";
-import { Icons } from "@component/icons/Lucide";
-import { buttonVariants } from "@component/ui/Button";
+import { cn } from "@/lib/utils"
+
+import { Badge } from "@/components/ui/Badge"
+import { buttonVariants } from "@/components/ui/Button"
+import { Icons } from "@/components/icons/Lucide"
 
 export function RoleBadge({ role }: { role: string }) {
-  const t = useTranslations("Components.Display.RoleBadge");
+  const t = useTranslations("Components.Display.RoleBadge")
 
   return (
     <Badge variant="outline" className="absolute right-2 top-2 font-medium">
@@ -33,5 +34,5 @@ export function RoleBadge({ role }: { role: string }) {
         </div>
       )}
     </Badge>
-  );
+  )
 }

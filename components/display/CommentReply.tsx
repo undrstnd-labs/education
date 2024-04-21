@@ -1,33 +1,35 @@
-import React from "react";
+import React from "react"
+import Image from "next/image"
+
+import { comment } from "@/types/classroom"
+
+import { emojis } from "@/config/emojis"
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/Card";
-
-import Image from "next/image";
-import { icons } from "@/constants";
-import ReactionButton from "./ReactionButton";
-import { comment } from "@/types/classroom";
+} from "../ui/Card"
+import ReactionButton from "./ReactionButton"
 
 interface CommentReplyProps {
-  userId: string;
-  comment: comment;
+  userId: string
+  comment: comment
 }
 
 const CommentReply = ({ comment, userId }: CommentReplyProps) => {
   const reactionCounts = comment.reactions.reduce(
-    (acc, reaction) => {
-      const icon = icons.find((icon) => icon.value === reaction.reactionType);
+    (acc: { [x: string]: any }, reaction: { reactionType: string }) => {
+      const icon = emojis.find((icon) => icon.value === reaction.reactionType)
       if (icon) {
-        acc[icon.value] = (acc[icon.value] || 0) + 1;
+        acc[icon.value] = (acc[icon.value] || 0) + 1
       }
-      return acc;
+      return acc
     },
     {} as { [key: string]: number }
-  );
+  )
   return (
     <Card>
       <CardHeader className="pt-2">
@@ -54,8 +56,8 @@ const CommentReply = ({ comment, userId }: CommentReplyProps) => {
       </CardHeader>
       <CardContent>
         <div className="flex gap-2 max-md:grid max-md:grid-cols-3">
-          {icons.map((icon, index) => {
-            const count = reactionCounts[icon.value] || 0;
+          {emojis.map((icon, index) => {
+            const count = reactionCounts[icon.value] || 0
             return (
               <ReactionButton
                 userId={userId}
@@ -65,12 +67,12 @@ const CommentReply = ({ comment, userId }: CommentReplyProps) => {
                 commentId={comment.id}
                 value={icon.value}
               />
-            );
+            )
           })}
         </div>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default CommentReply;
+export default CommentReply
