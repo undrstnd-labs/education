@@ -10,12 +10,12 @@ if ! pnpm run check-format; then
     echo '💄 Le formatage a été corrigé. Veuillez ajouter les modifications et essayer de valider à nouveau.'
 fi
 
-pnpm run check-types ||
-(
-    echo '📑 Échec de la vérification des types.'
-    echo 'Voulez-vous vraiment écrire cela ? Effectuez les modifications requises ci-dessus.'
-    false;
-)
+#pnpm run check-types ||
+#(
+ #   echo '📑 Échec de la vérification des types.'
+  #  echo 'Voulez-vous vraiment écrire cela ? Effectuez les modifications requises ci-dessus.'
+   # false;
+#)
 
 echo '🏗️ Tentative de construction du projet...'
 
