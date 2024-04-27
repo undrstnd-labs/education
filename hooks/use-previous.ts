@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react"
 
 export function usePrevious(value: any) {
-  const ref = useRef();
+  const ref = useRef()
 
   useEffect(() => {
-    ref.current = value;
-  }, [value]);
+    ref.current = value
+  }, [value])
 
-  return ref.current;
+  return ref.current
 }

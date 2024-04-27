@@ -1,14 +1,14 @@
-import * as z from "zod";
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
+import * as z from "zod"
 
-import { db } from "@lib/prisma";
-import { getCurrentUser, verifyCurrentTeacher } from "@lib/session";
+import { db } from "@/lib/prisma"
+import { getCurrentUser, verifyCurrentTeacher } from "@/lib/session"
 
 const routeContextSchema = z.object({
   params: z.object({
     teacherId: z.string(),
   }),
-});
+})
 
 export async function GET(
   req: Request,
@@ -16,7 +16,7 @@ export async function GET(
 ) {
   const {
     params: { teacherId },
-  } = routeContextSchema.parse(context);
+  } = routeContextSchema.parse(context)
 
   const classrooms = await db.classroom.findMany({
     where: {
@@ -29,39 +29,39 @@ export async function GET(
         },
       },
     },
-  });
+  })
 
-  return NextResponse.json(classrooms, { status: 200 });
+  return NextResponse.json(classrooms, { status: 200 })
 }
 
 export async function POST(req: Request) {
-  const { userId, name, description, classCode } = await req.json();
+  const { userId, name, description, classCode } = await req.json()
 
   if (!(await verifyCurrentTeacher(userId))) {
     return NextResponse.json(
       { message: "You are not authorized to create a classroom" },
       { status: 403 }
-    );
+    )
   }
 
   const teacher = await db.teacher.findUnique({
     where: {
       userId,
     },
-  });
+  })
 
   if (!teacher) {
-    return NextResponse.json({ message: "Teacher not found" }, { status: 404 });
+    return NextResponse.json({ message: "Teacher not found" }, { status: 404 })
   }
 
   if (!name) {
-    return NextResponse.json({ message: "Name is required" }, { status: 400 });
+    return NextResponse.json({ message: "Name is required" }, { status: 400 })
   }
   if (!classCode) {
     return NextResponse.json(
       { message: "Class code is required" },
       { status: 400 }
-    );
+    )
   }
 
   try {
@@ -72,14 +72,14 @@ export async function POST(req: Request) {
         teacherId: teacher.id,
         classCode,
       },
-    });
+    })
 
-    return NextResponse.json(classroom, { status: 201 });
+    return NextResponse.json(classroom, { status: 201 })
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return NextResponse.json(
       { message: "Error creating classroom" },
       { status: 500 }
-    );
+    )
   }
 }

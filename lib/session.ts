@@ -1,71 +1,72 @@
-import { getServerSession } from "next-auth/next";
+import { User } from "@prisma/client"
+import { getServerSession } from "next-auth/next"
 
-import { db } from "@lib/prisma";
-import { authOptions } from "@lib/auth";
-import { NextAuthUser } from "@/types/auth";
-import { User } from "@prisma/client";
+import { NextAuthUser } from "@/types/auth"
+
+import { authOptions } from "@/lib/auth"
+import { db } from "@/lib/prisma"
 
 export async function getCurrentUser() {
-  const session = await getServerSession(authOptions);
-  return session?.user;
+  const session = await getServerSession(authOptions)
+  return session?.user
 }
 
 export async function verifyCurrentUser(userId: string, notAssigned?: boolean) {
-  const session = await getCurrentUser();
+  const session = await getCurrentUser()
 
   if (!session) {
-    return false;
+    return false
   }
 
   if (notAssigned && session.role === "NOT_ASSIGNED") {
-    return true;
+    return true
   }
 
   const teacherCount = await db.teacher.count({
     where: {
       userId,
     },
-  });
+  })
 
   const studentCount = await db.student.count({
     where: {
       userId,
     },
-  });
+  })
 
-  return teacherCount > 0 || studentCount > 0;
+  return teacherCount > 0 || studentCount > 0
 }
 
 export async function verifyCurrentTeacher(userId: string) {
-  const session = await getCurrentUser();
+  const session = await getCurrentUser()
 
   if (!session) {
-    return false;
+    return false
   }
 
   const teacherCount = await db.teacher.count({
     where: {
       userId,
     },
-  });
+  })
 
-  return teacherCount > 0;
+  return teacherCount > 0
 }
 
 export async function verifyCurrentStudent(userId: string) {
-  const session = await getCurrentUser();
+  const session = await getCurrentUser()
 
   if (!session) {
-    return false;
+    return false
   }
 
   const studentCount = await db.student.count({
     where: {
       userId,
     },
-  });
+  })
 
-  return studentCount > 0;
+  return studentCount > 0
 }
 
 export async function userAuthentificateVerification(
@@ -73,25 +74,25 @@ export async function userAuthentificateVerification(
   allowedRoles?: string
 ) {
   if (!user) {
-    return "/login";
+    return "/login"
   }
 
   if (user.role === "NOT_ASSIGNED") {
-    return "/onboarding";
+    return "/onboarding"
   }
 
   if (allowedRoles && user.role !== allowedRoles) {
-    return "/dashboard";
+    return "/dashboard"
   }
 
-  return null;
+  return null
 }
 
 export async function getCurrentStudent(userId: string) {
-  const session = await getCurrentUser();
+  const session = await getCurrentUser()
 
   if (!session) {
-    return false;
+    return false
   }
 
   return await db.student.findUnique({
@@ -101,7 +102,7 @@ export async function getCurrentStudent(userId: string) {
     include: {
       user: true,
     },
-  });
+  })
 }
 
 export async function getCurrentEntity(user: User) {
@@ -113,7 +114,7 @@ export async function getCurrentEntity(user: User) {
       include: {
         user: true,
       },
-    });
+    })
   }
 
   return await db.student.findUnique({
@@ -123,5 +124,5 @@ export async function getCurrentEntity(user: User) {
     include: {
       user: true,
     },
-  });
+  })
 }

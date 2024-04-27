@@ -1,17 +1,20 @@
-"use client";
+"use client"
 
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@/lib/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Classroom, User } from "@prisma/client"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { toast } from "@hook/use-toast";
-import { Classroom, User } from "@prisma/client";
-import { editClassroomSchema } from "@config/schema";
-import { useMediaQuery } from "@/hooks/use-media-query";
+import { editClassroomSchema } from "@/config/schema"
+import { useRouter } from "@/lib/navigation"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
 
+import { Button } from "@/components/ui/Button"
+import { Dialog, DialogContent } from "@/components/ui/Dialog"
+import { Drawer, DrawerContent } from "@/components/ui/Drawer"
 import {
   Form,
   FormControl,
@@ -19,20 +22,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@component/ui/Form";
-import { Icons } from "../icons/Lucide";
-import { Input } from "@component/ui/Input";
-import { Button } from "@component/ui/Button";
-import { Textarea } from "@component/ui/Textarea";
-import { Drawer, DrawerContent } from "@component/ui/Drawer";
-import { Dialog, DialogContent } from "@component/ui/Dialog";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
+import { Textarea } from "@/components/ui/Textarea"
+
+import { Icons } from "../icons/Lucide"
 
 interface EditClassroomProps {
   classroom: Classroom & {
-    teacher: { user: User; id: string; userId: string };
-  };
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+    teacher: { user: User; id: string; userId: string }
+  }
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export function EditClassroom({
@@ -40,22 +41,22 @@ export function EditClassroom({
   open,
   setOpen,
 }: EditClassroomProps) {
-  const router = useRouter();
-  const t = useTranslations("Pages.Classroom");
-  const [isLoading, setIsLoading] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const router = useRouter()
+  const t = useTranslations("Pages.Classroom")
+  const [isLoading, setIsLoading] = useState(false)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
-  const formSchema = editClassroomSchema(t);
+  const formSchema = editClassroomSchema(t)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: classroom.name || "",
       description: classroom.description || "",
     },
-  });
+  })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       const res = await fetch(`/api/classrooms/${classroom.id}`, {
         method: "PUT",
@@ -67,26 +68,26 @@ export function EditClassroom({
           description: values.description,
           userId: classroom.teacher.user.id,
         }),
-      });
+      })
       if (res.ok) {
         toast({
           title: t("toastTitleUpdateClassroom"),
           variant: "default",
           description: t("toastDescriptionUpdateClassroom"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("toast-title-update-error"),
           description: t("toast-description-update-error"),
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsLoading(false);
-      setOpen(false);
+      setIsLoading(false)
+      setOpen(false)
     }
   }
   if (isDesktop) {
@@ -139,7 +140,7 @@ export function EditClassroom({
               />
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading && (
-                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 size-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>
@@ -147,7 +148,7 @@ export function EditClassroom({
           </Form>
         </DialogContent>
       </Dialog>
-    );
+    )
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
@@ -201,7 +202,7 @@ export function EditClassroom({
               />
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading && (
-                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 size-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>
@@ -209,6 +210,6 @@ export function EditClassroom({
           </Form>
         </DrawerContent>
       </Drawer>
-    );
+    )
   }
 }

@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from "next/link"
 
-import { marketingConfig } from "@config/marketing";
-import { siteConfig } from "@config/site";
+import { marketingConfig } from "@/config/marketing"
+import { siteConfig } from "@/config/site"
 
-import { Icons } from "@component/icons/Lucide";
+import { Icons } from "@/components/icons/Lucide"
 
 export default function Footer() {
   return (
@@ -17,7 +17,7 @@ export default function Footer() {
             <div key={item.title} className="pb-6">
               <Link
                 href={item.href}
-                className="hover:delay-[150ms] rounded-xl px-3 py-2 text-sm leading-6 text-gray-600 transition-colors delay-75 hover:bg-slate-300/40 hover:text-gray-900"
+                className="rounded-xl px-3 py-2 text-sm leading-6 text-gray-600 transition-colors delay-75 hover:bg-slate-300/40 hover:text-gray-900 hover:delay-150"
               >
                 {item.title}
               </Link>
@@ -49,10 +49,10 @@ export default function Footer() {
             className="text-gray-400 hover:text-gray-500"
           >
             <span className="sr-only">Github</span>
-            <Icons.gitHub className="h-6 w-6" aria-hidden="true" />
+            <Icons.gitHub className="size-6" aria-hidden="true" />
           </Link>
         </div>
       </div>
     </footer>
-  );
+  )
 }

@@ -1,14 +1,14 @@
-import * as z from "zod";
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
+import * as z from "zod"
 
-import { db } from "@lib/prisma";
-import { getCurrentUser, verifyCurrentStudent } from "@lib/session";
+import { db } from "@/lib/prisma"
+import { getCurrentUser, verifyCurrentStudent } from "@/lib/session"
 
 const routeContextSchema = z.object({
   params: z.object({
     conversationId: z.string(),
   }),
-});
+})
 
 export async function GET(
   req: Request,
@@ -16,41 +16,41 @@ export async function GET(
 ) {
   const {
     params: { conversationId },
-  } = routeContextSchema.parse(context);
+  } = routeContextSchema.parse(context)
 
-  const user = await getCurrentUser();
+  const user = await getCurrentUser()
 
   if (!user) {
-    return NextResponse.json({ message: "User not found" }, { status: 404 });
+    return NextResponse.json({ message: "User not found" }, { status: 404 })
   }
 
   if (user.role !== "STUDENT") {
     return NextResponse.json(
       { message: "You are not authorized to view this user" },
       { status: 403 }
-    );
+    )
   }
   const student = await db.student.findUnique({
     where: {
       userId: user.id,
     },
-  });
+  })
 
   if (!student) {
-    return NextResponse.json({ message: "Student not found" }, { status: 404 });
+    return NextResponse.json({ message: "Student not found" }, { status: 404 })
   }
 
   const conversation = await db.conversation.findUnique({
     where: {
       id: conversationId,
     },
-  });
+  })
 
   if (!conversation) {
     return NextResponse.json(
       { message: "Conversation not found" },
       { status: 404 }
-    );
+    )
   }
 
   try {
@@ -58,10 +58,10 @@ export async function GET(
       where: {
         conversationId: conversationId,
       },
-    });
-    return NextResponse.json(messages, { status: 200 });
+    })
+    return NextResponse.json(messages, { status: 200 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
 

@@ -1,7 +1,22 @@
-"use client";
-import { classroom, post } from "@/types/classroom";
-import React, { Dispatch, SetStateAction, useRef, useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
+"use client"
+
+import React, { Dispatch, SetStateAction, useRef, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { classroom, post } from "@/types/classroom"
+
+import { editPostSchema } from "@/config/schema"
+import { useRouter } from "@/lib/navigation"
+import { deleteFiles, uploadFiles } from "@/lib/storage"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
+
+import { Button } from "@/components/ui/Button"
+import { Dialog, DialogContent } from "@/components/ui/Dialog"
+import { Drawer, DrawerContent } from "@/components/ui/Drawer"
 import {
   Form,
   FormControl,
@@ -9,28 +24,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@component/ui/Form";
-import { Input } from "@component/ui/Input";
-import { Button } from "@component/ui/Button";
-import { Textarea } from "@component/ui/Textarea";
-import { Drawer, DrawerContent } from "@component/ui/Drawer";
-import { Dialog, DialogContent } from "@component/ui/Dialog";
-import { useRouter } from "@/lib/navigation";
-import { useTranslations } from "next-intl";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { editPostSchema } from "@/config/schema";
-import { toast } from "@hook/use-toast";
-import { deleteFiles, uploadFiles } from "@lib/storage";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Icons } from "../icons/Lucide";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
+import { Textarea } from "@/components/ui/Textarea"
+
+import { Icons } from "../icons/Lucide"
 
 interface EditPostProps {
-  post: post;
-  userId: string;
-  classroom: classroom;
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  post: post
+  userId: string
+  classroom: classroom
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const EditPost = ({
@@ -40,14 +45,14 @@ const EditPost = ({
   setOpen,
   userId,
 }: EditPostProps) => {
-  const router = useRouter();
-  const t = useTranslations("Pages.Classroom");
-  const [files, setFiles] = useState<any[]>(post.files || []);
-  const [isLoading, setIsLoading] = useState(false);
-  const refFiles = useRef<HTMLInputElement>(null);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const formSchema = editPostSchema(t);
-  console.log(files);
+  const router = useRouter()
+  const t = useTranslations("Pages.Classroom")
+  const [files, setFiles] = useState<any[]>(post.files || [])
+  const [isLoading, setIsLoading] = useState(false)
+  const refFiles = useRef<HTMLInputElement>(null)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const formSchema = editPostSchema(t)
+  console.log(files)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,30 +60,30 @@ const EditPost = ({
       content: post.content || "",
       files: post.files || [],
     },
-  });
+  })
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFiles([...files, ...Array.from(e.target.files)]);
+      setFiles([...files, ...Array.from(e.target.files)])
     }
-  };
+  }
   const handleFileRemove = (index: number) => {
-    setFiles(files.filter((_, i) => i !== index));
-  };
+    setFiles(files.filter((_, i) => i !== index))
+  }
 
   const openFilePicker = () => {
-    refFiles.current?.click();
-  };
+    refFiles.current?.click()
+  }
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       deleteFiles(post.files.map((file) => file.url)).catch(() => {
         toast({
           title: t("toastFilesFailed"),
           variant: "destructive",
           description: t("toastFilesFailedDescription"),
-        });
-        return;
-      });
+        })
+        return
+      })
       uploadFiles(files, classroom, post)
         .then(async (res) => {
           const resUpdate = await fetch(
@@ -98,27 +103,27 @@ const EditPost = ({
                     size: file.size,
                     type: file.type,
                     url: file.url,
-                  };
+                  }
                 }),
               }),
             }
-          );
+          )
 
           if (resUpdate.ok) {
-            form.reset();
-            setFiles([]);
-            router.refresh();
+            form.reset()
+            setFiles([])
+            router.refresh()
             toast({
               title: t("toastPostModifiedSuccess"),
               variant: "default",
               description: t("toastPostModifiedSuccessDescription"),
-            });
+            })
           } else {
             toast({
               title: t("toastPostModifiedFailed"),
               variant: "destructive",
               description: t("toastPostModifiedFailedDescription"),
-            });
+            })
           }
         })
         .catch(() => {
@@ -126,18 +131,18 @@ const EditPost = ({
             title: t("toastFilesFailed"),
             variant: "destructive",
             description: t("toastFilesFailedDescription"),
-          });
+          })
         })
         .finally(() => {
-          setOpen(false);
-          setIsLoading(false);
-        });
+          setOpen(false)
+          setIsLoading(false)
+        })
     } catch (error) {
       toast({
         title: t("toastPostModifiedFailed"),
         variant: "destructive",
         description: t("toastFilesFailedDescription"),
-      });
+      })
     }
   }
   if (isDesktop) {
@@ -257,7 +262,7 @@ const EditPost = ({
           </Form>
         </DialogContent>
       </Dialog>
-    );
+    )
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
@@ -376,8 +381,8 @@ const EditPost = ({
           </Form>
         </DrawerContent>
       </Drawer>
-    );
+    )
   }
-};
+}
 
-export default EditPost;
+export default EditPost

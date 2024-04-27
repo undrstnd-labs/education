@@ -1,19 +1,14 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { toast } from "@hook/use-toast";
-import { useRouter } from "@lib/navigation";
-import { useTranslations } from "next-intl";
+import * as React from "react"
+import { ServerActionResult } from "@/types"
+import { useRouter } from "@navigation"
+import { useTranslations } from "next-intl"
 
-import { type Chat } from "@/types/chat";
-import { ServerActionResult } from "@/types";
+import { type Chat } from "@/types/chat"
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from "@component/ui/Tooltip";
+import { toast } from "@/hooks/use-toast"
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,17 +18,23 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@component/ui/AlertDialog";
-import { Button } from "@/components/ui/Button";
-import { ChatShareDialog } from "@component/showcase/ChatShareDialog";
-import { IconShare, IconSpinner, IconTrash } from "@component/icons/Overall";
+} from "@/components/ui/AlertDialog"
+import { Button } from "@/components/ui/Button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip"
+import { IconShare, IconSpinner, IconTrash } from "@/components/icons/Overall"
+import { ChatShareDialog } from "@/components/showcase/ChatShareDialog"
 
 interface SidebarActionsProps {
-  chat: Chat;
+  chat: Chat
   removeChat: (args: {
-    id: string;
-    path: string;
-  }) => Promise<ServerActionResult<void>>;
+    id: string
+    path: string
+  }) => Promise<ServerActionResult<void>>
   //shareChat: (id: string) => ServerActionResult<Chat>;
 }
 
@@ -42,11 +43,11 @@ export function SidebarActions({
   removeChat,
   // shareChat,
 }: SidebarActionsProps) {
-  const router = useRouter();
-  const t = useTranslations("Components.Showcase.SidebarActions");
-  const [shareDialogOpen, setShareDialogOpen] = React.useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-  const [isRemovePending, startRemoveTransition] = React.useTransition();
+  const router = useRouter()
+  const t = useTranslations("Components.Showcase.SidebarActions")
+  const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
+  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false)
+  const [isRemovePending, startRemoveTransition] = React.useTransition()
 
   return (
     <div>
@@ -112,29 +113,29 @@ export function SidebarActions({
             <AlertDialogAction
               disabled={isRemovePending}
               onClick={(event) => {
-                event.preventDefault();
+                event.preventDefault()
                 // @ts-ignore
                 startRemoveTransition(async () => {
                   const result = await removeChat({
                     id: chat.id,
                     path: chat.path,
-                  });
+                  })
 
                   if (result && "error" in result) {
                     toast({
                       title: t("delete-chat-error"),
                       description: result.error,
-                    });
-                    return;
+                    })
+                    return
                   }
 
-                  setDeleteDialogOpen(false);
-                  router.refresh();
-                  router.push("/chat");
+                  setDeleteDialogOpen(false)
+                  router.refresh()
+                  router.push("/chat")
                   toast({
                     title: t("delete-chat-success"),
-                  });
-                });
+                  })
+                })
               }}
             >
               {isRemovePending && <IconSpinner className="mr-2 animate-spin" />}
@@ -144,5 +145,5 @@ export function SidebarActions({
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  );
+  )
 }

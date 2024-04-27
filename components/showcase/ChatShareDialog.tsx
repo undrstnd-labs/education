@@ -1,13 +1,16 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { toast } from "@hook/use-toast";
-import { useTranslations } from "next-intl";
-import { type DialogProps } from "@radix-ui/react-dialog";
+import * as React from "react"
+import { ServerActionResult } from "@/types"
+import { type DialogProps } from "@radix-ui/react-dialog"
+import { useTranslations } from "next-intl"
 
-import { type Chat } from "@/types/chat";
-import { ServerActionResult } from "@/types";
+import { type Chat } from "@/types/chat"
 
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
+import { toast } from "@/hooks/use-toast"
+
+import { Button } from "@/components/ui/Button"
 import {
   Dialog,
   DialogContent,
@@ -15,16 +18,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@component/ui/Dialog";
-import { Button } from "@/components/ui/Button";
-import { IconSpinner } from "@component/icons/Overall";
-
-import { useCopyToClipboard } from "@hook/use-copy-to-clipboard";
+} from "@/components/ui/Dialog"
+import { IconSpinner } from "@/components/icons/Overall"
 
 interface ChatShareDialogProps extends DialogProps {
-  chat: Pick<Chat, "id" | "title" | "messages">;
-  shareChat: (id: string) => ServerActionResult<Chat>;
-  onCopy: () => void;
+  chat: Pick<Chat, "id" | "title" | "messages">
+  shareChat: (id: string) => ServerActionResult<Chat>
+  onCopy: () => void
 }
 
 export function ChatShareDialog({
@@ -33,9 +33,9 @@ export function ChatShareDialog({
   onCopy,
   ...props
 }: ChatShareDialogProps) {
-  const t = useTranslations("Components.Showcase.ChatShareDialog");
-  const { copyToClipboard } = useCopyToClipboard({ timeout: 1000 });
-  const [isSharePending, startShareTransition] = React.useTransition();
+  const t = useTranslations("Components.Showcase.ChatShareDialog")
+  const { copyToClipboard } = useCopyToClipboard({ timeout: 1000 })
+  const [isSharePending, startShareTransition] = React.useTransition()
 
   const copyShareLink = React.useCallback(
     async (chat: Chat) => {
@@ -43,22 +43,22 @@ export function ChatShareDialog({
         toast({
           title: t("toast-error-title"),
           variant: "destructive",
-        });
-        return;
+        })
+        return
       }
 
-      const url = new URL(window.location.href);
+      const url = new URL(window.location.href)
       if (chat.sharePath) {
-        url.pathname = chat.sharePath;
+        url.pathname = chat.sharePath
       }
-      copyToClipboard(url.toString());
-      onCopy();
+      copyToClipboard(url.toString())
+      onCopy()
       toast({
         title: t("toast-success-title"),
-      });
+      })
     },
     [copyToClipboard, onCopy]
-  );
+  )
 
   return (
     <Dialog {...props}>
@@ -78,18 +78,18 @@ export function ChatShareDialog({
             disabled={isSharePending}
             onClick={() => {
               startShareTransition(async () => {
-                const result = await shareChat(chat.id);
+                const result = await shareChat(chat.id)
 
                 if (result && "error" in result) {
                   toast({
                     title: t("toast-error-title"),
                     variant: "destructive",
-                  });
-                  return;
+                  })
+                  return
                 }
 
-                copyShareLink(result);
-              });
+                copyShareLink(result)
+              })
             }}
           >
             {isSharePending ? (
@@ -104,5 +104,5 @@ export function ChatShareDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

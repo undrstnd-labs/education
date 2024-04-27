@@ -1,46 +1,51 @@
-import { comment } from "@/types/classroom";
+import Image from "next/image"
+import { useTranslations } from "next-intl"
+
+import { comment } from "@/types/classroom"
+
+import { emojis } from "@/config/emojis"
+
+import { Button } from "@/components/ui/Button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/Card";
-import Image from "next/image";
-import { Button } from "../ui/Button";
-import { Icons } from "../icons/Lucide";
-import ReactionButton from "./ReactionButton";
-import { icons } from "@/constants";
+} from "@/components/ui/Card"
+import { Label } from "@/components/ui/Label"
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from "../ui/Sheet";
-import { Label } from "../ui/Label";
-import CommentReply from "./CommentReply";
-import CommentAddCard from "../form/CommentAddCard";
-import { useTranslations } from "next-intl";
-import CommentCardOptions from "../showcase/CommentCardOptions";
+} from "@/components/ui/Sheet"
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentAddCard from "@/components/form/CommentAddCard"
+import { Icons } from "@/components/icons/Lucide"
+import CommentCardOptions from "@/components/showcase/CommentCardOptions"
+
+import CommentReply from "./CommentReply"
+
 interface CommentCardProps {
-  userId: string;
-  comment: comment;
-  postId: string;
+  userId: string
+  comment: comment
+  postId: string
 }
 
 const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
-  const t = useTranslations("Pages.Classroom");
+  const t = useTranslations("Pages.Classroom")
   const reactionCounts = comment.reactions.reduce(
-    (acc, reaction) => {
-      const icon = icons.find((icon) => icon.value === reaction.reactionType);
+    (acc: { [x: string]: any }, reaction: { reactionType: string }) => {
+      const icon = emojis.find((icon) => icon.value === reaction.reactionType)
       if (icon) {
-        acc[icon.value] = (acc[icon.value] || 0) + 1;
+        acc[icon.value] = (acc[icon.value] || 0) + 1
       }
-      return acc;
+      return acc
     },
     {} as { [key: string]: number }
-  );
+  )
 
   return (
     <Card>
@@ -103,7 +108,7 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                               userId={userId}
                               postId={postId}
                             />
-                          );
+                          )
                         })
                       ) : (
                         <Label className="py-2 font-bold">No replies yet</Label>
@@ -129,8 +134,8 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
       </CardHeader>
       <CardContent>
         <div className="flex gap-2 max-sm:grid max-sm:grid-cols-3">
-          {icons.map((icon, index) => {
-            const count = reactionCounts[icon.value] || 0;
+          {emojis.map((icon, index) => {
+            const count = reactionCounts[icon.value] || 0
             return (
               <ReactionButton
                 userId={userId}
@@ -140,12 +145,12 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                 commentId={comment.id}
                 value={icon.value}
               />
-            );
+            )
           })}
         </div>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default CommentCard;
+export default CommentCard

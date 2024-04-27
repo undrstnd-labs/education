@@ -1,35 +1,34 @@
-"use client";
+"use client"
 
-import * as z from "zod";
-import * as React from "react";
-import { signIn } from "next-auth/react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import * as React from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { signIn } from "next-auth/react"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
 
-import { cn } from "@lib/utils";
-import { getUserAuthSchema } from "@config/schema";
+import { getUserAuthSchema } from "@/config/schema"
+import { cn } from "@/lib/utils"
+import { toast } from "@/hooks/use-toast"
 
-import { Label } from "@component/ui/Label";
-import { Icons } from "@component/icons/Lucide";
-import { Skeleton } from "@component/ui/Skeleton";
-import { buttonVariants } from "@component/ui/Button";
-import { EmailInput } from "@component/form/EmailInput";
-
-import { toast } from "@hook/use-toast";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { buttonVariants } from "@/components/ui/Button"
+import { Label } from "@/components/ui/Label"
+import { Skeleton } from "@/components/ui/Skeleton"
+import { EmailInput } from "@/components/form/EmailInput"
+import { Icons } from "@/components/icons/Lucide"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  type: "login" | "register";
+  type: "login" | "register"
 }
 
 export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
-  const t = useTranslations("Components.Form.UserAuth");
+  const t = useTranslations("Components.Form.UserAuth")
   const userAuthSchema = getUserAuthSchema(
     t("invalidEmail"),
     t("invalidUniversityEmail")
-  );
-  type FormData = z.infer<typeof userAuthSchema>;
+  )
+  type FormData = z.infer<typeof userAuthSchema>
 
   const {
     register,
@@ -37,35 +36,35 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
-  });
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false);
+  })
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
 
   async function onSubmit(data: FormData) {
-    setIsLoading(true);
+    setIsLoading(true)
 
     try {
       await signIn("email", {
         email: data.email.toLowerCase(),
         redirect: false,
         callbackUrl: searchParams?.get("from") || "/dashboard",
-      });
+      })
     } catch (error) {
       return toast({
         title: t("toastSignInFailedTitle"),
         description: t("toastSignInFailedDescription"),
         variant: "destructive",
-      });
+      })
     } finally {
-      setIsLoading(false);
-      router.push(pathname + "?email=" + data.email.toLowerCase());
+      setIsLoading(false)
+      router.push(pathname + "?email=" + data.email.toLowerCase())
       return toast({
         title: t("toastSignInSuccessTitle"),
         description: t("toastSignInSuccessDescription"),
-      });
+      })
     }
   }
 
@@ -93,10 +92,10 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
           </div>
           <button className={cn(buttonVariants())} disabled={isLoading}>
             {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
             )}
             {t("buttonForm", { type: type })}{" "}
-            <Icons.chevronRight className="ml-2 h-4 w-4 stroke-[3px]" />
+            <Icons.chevronRight className="ml-2 size-4 stroke-[3px]" />
           </button>
         </div>
       </form>
@@ -115,22 +114,22 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
         className={cn(buttonVariants({ variant: "outline" }))}
         disabled
         onClick={() => {
-          setIsGitHubLoading(true);
-          signIn("github", { callbackUrl: "/dashboard" });
+          setIsGitHubLoading(true)
+          signIn("github", { callbackUrl: "/dashboard" })
         }}
         /*        TODO:  disabled={isLoading || isGitHubLoading}*/
       >
         {isGitHubLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          <Icons.spinner className="mr-2 size-4 animate-spin" />
         ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
+          <Icons.gitHub className="mr-2 size-4" />
         )}{" "}
         Github
       </button>
     </div>
-  );
+  )
 }
 
 export function UserAuthSkeleton() {
-  return <Skeleton className="h-12 w-[200px]" />;
+  return <Skeleton className="h-12 w-[200px]" />
 }

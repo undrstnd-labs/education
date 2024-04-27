@@ -1,13 +1,18 @@
-"use client";
-import { useTranslations } from "next-intl";
-import { Icons } from "../icons/Lucide";
-import { Card, CardContent } from "../ui/Card";
-import { Textarea } from "../ui/Textarea";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { editCommentSchema } from "@/config/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Dispatch, SetStateAction, useState } from "react";
+"use client"
+
+import { Dispatch, SetStateAction, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { comment } from "@/types/classroom"
+
+import { editCommentSchema } from "@/config/schema"
+import { useRouter } from "@/lib/navigation"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
+
 import {
   Form,
   FormControl,
@@ -16,20 +21,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import { Button } from "../ui/Button";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "@/lib/navigation";
-import { comment } from "@/types/classroom";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { Dialog, DialogContent } from "../ui/Dialog";
-import { Drawer, DrawerContent } from "../ui/Drawer";
+} from "@/components/ui/Form"
+
+import { Icons } from "../icons/Lucide"
+import { Button } from "../ui/Button"
+import { Card, CardContent } from "../ui/Card"
+import { Dialog, DialogContent } from "../ui/Dialog"
+import { Drawer, DrawerContent } from "../ui/Drawer"
+import { Textarea } from "../ui/Textarea"
+
 interface EditCommentProps {
-  postId: string;
-  userId: string;
-  comment: comment;
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  postId: string
+  userId: string
+  comment: comment
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
 }
 
 const EditComment = ({
@@ -39,20 +45,20 @@ const EditComment = ({
   open,
   setOpen,
 }: EditCommentProps) => {
-  const [loading, setLoading] = useState(false);
-  const t = useTranslations("Pages.Classroom");
-  const formSchema = editCommentSchema(t);
-  const router = useRouter();
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [loading, setLoading] = useState(false)
+  const t = useTranslations("Pages.Classroom")
+  const formSchema = editCommentSchema(t)
+  const router = useRouter()
+  const isDesktop = useMediaQuery("(min-width: 768px)")
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       text: comment.text || "",
     },
-  });
+  })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true);
+    setLoading(true)
     try {
       const res = await fetch(`/api/comments/${postId}/${comment.id}`, {
         method: "PUT",
@@ -64,32 +70,32 @@ const EditComment = ({
           userId,
           parentId: comment.parentId,
         }),
-      });
+      })
       if (res.ok) {
-        form.reset();
+        form.reset()
         toast({
           title: t("upadtedCommentToastTitle"),
           description: t("upadtedCommentToastDescription"),
           variant: "default",
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("upadtedCommentToastTitleError"),
           description: t("upadtedCommentToastDescriptionError"),
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
       toast({
         title: t("upadtedCommentToastTitleError"),
         description: t("upadtedCommentToastDescriptionError"),
         variant: "destructive",
-      });
+      })
     } finally {
-      form.reset();
-      setLoading(false);
-      setOpen(false);
+      form.reset()
+      setLoading(false)
+      setOpen(false)
     }
   }
 
@@ -131,7 +137,7 @@ const EditComment = ({
           </Form>
         </DialogContent>
       </Dialog>
-    );
+    )
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
@@ -174,8 +180,8 @@ const EditComment = ({
           </Form>
         </DrawerContent>
       </Drawer>
-    );
+    )
   }
-};
+}
 
-export default EditComment;
+export default EditComment

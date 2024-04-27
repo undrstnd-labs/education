@@ -1,20 +1,20 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react"
+import { useRouter } from "@navigation"
+import { useTranslations } from "next-intl"
 
-import { toast } from "@hook/use-toast";
-import { useRouter } from "@lib/navigation";
+import { toast } from "@/hooks/use-toast"
 
 interface JoinClassroomProps {
-  classCode: string;
-  userId: string;
+  classCode: string
+  userId: string
 }
 
 export function JoinClassroom({ classCode, userId }: JoinClassroomProps) {
-  const router = useRouter();
-  const t = useTranslations("Pages.Classroom");
-  const [open, setOpen] = useState(true);
+  const router = useRouter()
+  const t = useTranslations("Pages.Classroom")
+  const [open, setOpen] = useState(true)
 
   const handleJoin = async () => {
     try {
@@ -24,49 +24,49 @@ export function JoinClassroom({ classCode, userId }: JoinClassroomProps) {
         headers: {
           "Content-Type": "application/json",
         },
-      });
+      })
       if (res.ok) {
         toast({
           title: t("joinApiSuccess"),
           variant: "default",
           description: t("joinApiSuccessDescription"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
-        const data = await res.json();
+        const data = await res.json()
         if (data.messageNotFound) {
           toast({
             title: t("joinApiError"),
             variant: "destructive",
             description: t("joinApiErrorDescription"),
-          });
+          })
         }
         if (data.messageArchived) {
           toast({
             title: t("joinApiErrorArchived"),
             variant: "destructive",
             description: t("joinApiErrorArchivedDescription"),
-          });
+          })
         }
         if (data.messageAlreadyJoin) {
           toast({
             title: t("joinApiAlreadyError"),
             variant: "destructive",
             description: t("joinApiAlreadyErrorDescription"),
-          });
+          })
         }
       }
     } catch (error) {
-      console.error(error);
+      console.error(error)
     } finally {
-      router.push("/dashboard/classroom");
+      router.push("/dashboard/classroom")
     }
-  };
+  }
 
   if (open) {
     useEffect(() => {
-      handleJoin();
-    }, []);
+      handleJoin()
+    }, [])
 
     return (
       <>
@@ -74,7 +74,7 @@ export function JoinClassroom({ classCode, userId }: JoinClassroomProps) {
           Doing this because hydration error make me fool
         </span>
       </>
-    );
+    )
   }
-  return <></>;
+  return <></>
 }

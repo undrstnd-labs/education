@@ -1,19 +1,19 @@
-"use server";
+"use server"
 
-import { z } from "zod";
+import { redirect } from "@navigation"
+import { z } from "zod"
 
-import { db } from "@lib/prisma";
-import { redirect } from "@lib/navigation";
-import { pinSchema } from "@config/schema";
+import { TokenType } from "@/types/auth"
+import { type Chat } from "@/types/chat"
 
-import { TokenType } from "@/types/auth";
-import { type Chat } from "@/types/chat";
+import { pinSchema } from "@/config/schema"
+import { db } from "@/lib/prisma"
 
 export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
   const data = pinSchema.parse({
     email: form.email,
     pin: form.pin,
-  });
+  })
 
   const fetchToken = await fetch(
     `${process.env.NEXTAUTH_URL}/api/auth/token/${data.email}`,
@@ -22,19 +22,19 @@ export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
         revalidate: 0,
       },
     }
-  ).then((res) => res.json());
+  ).then((res) => res.json())
 
   return {
     success: true,
     verification_token: fetchToken as TokenType,
-  };
+  }
 }
 
 export async function getChats(studentId?: string) {
   return db.conversation.findMany({
     where: { studentId },
     orderBy: { updatedAt: "desc" },
-  });
+  })
 }
 
 export async function getChat(id: string, studentId: string) {
@@ -45,11 +45,11 @@ export async function getChat(id: string, studentId: string) {
         orderBy: { createdAt: "asc" },
       },
     },
-  });
+  })
 }
 
 export async function removeChat({ id }: { id: string }) {
-  return db.conversation.delete({ where: { id } });
+  return db.conversation.delete({ where: { id } })
 }
 
 export async function clearChats() {
@@ -67,12 +67,12 @@ export async function saveChat(chat: Chat) {
 }
 
 export async function refreshHistory(path: string) {
-  redirect(path);
+  redirect(path)
 }
 
 export async function getMissingKeys() {
-  const keysRequired = ["GROQ_API_KEY"];
+  const keysRequired = ["GROQ_API_KEY"]
   return keysRequired
     .map((key) => (process.env[key] ? "" : key))
-    .filter((key) => key !== "");
+    .filter((key) => key !== "")
 }

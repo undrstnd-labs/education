@@ -1,20 +1,24 @@
-"use client";
+"use client"
 
-import { z } from "zod";
-import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@lib/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useRef, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "@navigation"
+import { Post } from "@prisma/client"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Icons } from "@/components/icons/Lucide";
-import { Card, CardContent } from "@/components/ui/Card";
+import { classroom } from "@/types/classroom"
 
-import { toast } from "@hook/use-toast";
-import { addPostSchema } from "@config/schema";
-import { useMediaQuery } from "@hook/use-media-query";
-import { uploadFiles } from "@lib/storage";
+import { addPostSchema } from "@/config/schema"
+import { uploadFiles } from "@/lib/storage"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
 
+import { Button } from "@/components/ui/Button"
+import { Card, CardContent } from "@/components/ui/Card"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
 import {
   Form,
   FormControl,
@@ -22,33 +26,28 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@component/ui/Form";
-import { Input } from "@component/ui/Input";
-import { Button } from "@component/ui/Button";
-import { Textarea } from "@component/ui/Textarea";
-import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
-import { Dialog, DialogContent, DialogTrigger } from "@component/ui/Dialog";
-
-import { classroom } from "@/types/classroom";
-import { Post } from "@prisma/client";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
+import { Textarea } from "@/components/ui/Textarea"
+import { Icons } from "@/components/icons/Lucide"
 
 interface PostAddCard {
-  userId: string;
-  classroom: classroom;
+  userId: string
+  classroom: classroom
 }
 
 export function PostAddCard({ userId, classroom }: PostAddCard) {
-  const router = useRouter();
-  const t = useTranslations("Pages.Classroom");
+  const router = useRouter()
+  const t = useTranslations("Pages.Classroom")
 
-  const [open, setOpen] = useState(false);
-  const [files, setFiles] = useState<File[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false)
+  const [files, setFiles] = useState<File[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
-  const refFiles = useRef<HTMLInputElement>(null);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const refFiles = useRef<HTMLInputElement>(null)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
-  const formSchema = addPostSchema(t);
+  const formSchema = addPostSchema(t)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,22 +55,22 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
       content: "",
       files: [],
     },
-  });
+  })
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setFiles([...files, ...Array.from(e.target.files)]);
+      setFiles([...files, ...Array.from(e.target.files)])
     }
-  };
+  }
   const handleFileRemove = (index: number) => {
-    setFiles(files.filter((_, i) => i !== index));
-  };
+    setFiles(files.filter((_, i) => i !== index))
+  }
 
   const openFilePicker = () => {
-    refFiles.current?.click();
-  };
+    refFiles.current?.click()
+  }
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       const postRes = await fetch(`/api/posts/${classroom.id}`, {
         method: "POST",
@@ -83,16 +82,16 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
           name: values.name,
           content: values.content,
         }),
-      });
+      })
 
       const post: Post = await postRes.json().catch(() => {
         toast({
           title: t("toastPostCreatedFailed"),
           variant: "destructive",
           description: t("toastPostCreatedFailedDescription"),
-        });
-        return;
-      });
+        })
+        return
+      })
 
       uploadFiles(files, classroom, post)
         .then(async (res) => {
@@ -111,27 +110,27 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                     size: file.size,
                     type: file.type,
                     url: file.url,
-                  };
+                  }
                 }),
               }),
             }
-          );
+          )
 
           if (resUpdate.ok) {
-            form.reset();
-            setFiles([]);
-            router.refresh();
+            form.reset()
+            setFiles([])
+            router.refresh()
             toast({
               title: t("toastPostCreatedSuccess"),
               variant: "default",
               description: t("toastPostCreatedSuccessDescription"),
-            });
+            })
           } else {
             toast({
               title: t("toastPostCreatedFailed"),
               variant: "destructive",
               description: t("toastPostCreatedFailedDescription"),
-            });
+            })
           }
         })
         .catch(() => {
@@ -139,18 +138,18 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
             title: t("toastFilesFailed"),
             variant: "destructive",
             description: t("toastFilesFailedDescription"),
-          });
+          })
         })
         .finally(() => {
-          setOpen(false);
-          setIsLoading(false);
-        });
+          setOpen(false)
+          setIsLoading(false)
+        })
     } catch (error) {
       toast({
         title: t("toastPostCreatedFailed"),
         variant: "destructive",
         description: t("toastPostCreatedFailedDescription"),
-      });
+      })
     }
   }
 
@@ -263,7 +262,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                               className="absolute right-0 top-0 pr-2"
                               disabled={isLoading}
                             >
-                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
+                              <Icons.close className="mt-1.5 size-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -275,7 +274,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
 
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading && (
-                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 size-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>
@@ -283,7 +282,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
           </Form>
         </DialogContent>
       </Dialog>
-    );
+    )
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
@@ -395,7 +394,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                               className="absolute right-0 top-0 pr-2"
                               disabled={isLoading}
                             >
-                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
+                              <Icons.close className="mt-1.5 size-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -406,7 +405,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
               />
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading && (
-                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 size-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>
@@ -414,6 +413,6 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
           </Form>
         </DrawerContent>
       </Drawer>
-    );
+    )
   }
 }

@@ -1,26 +1,29 @@
-import { LucideIcon } from "lucide-react";
-import { IconType } from "react-icons/lib";
-import ReactionProvider from "./ReactionProvider";
-import { db } from "@/lib/prisma";
+import { LucideIcon } from "lucide-react"
+import { getTranslations } from "next-intl/server"
+import { IconType } from "react-icons/lib"
+
+import { db } from "@/lib/prisma"
+
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip";
-import { getTranslations } from "next-intl/server";
+} from "@/components/ui/Tooltip"
+
+import ReactionProvider from "./ReactionProvider"
 
 export type reactionIcon =
   | { Icon: LucideIcon; color: string }
-  | { Icon: IconType; color: string };
+  | { Icon: IconType; color: string }
 
 interface ReactionButtonProps {
-  icon: reactionIcon;
-  count: number;
-  postId?: string;
-  commentId?: string;
-  userId: string;
-  value: string;
+  icon: reactionIcon
+  count: number
+  postId?: string
+  commentId?: string
+  userId: string
+  value: string
 }
 
 const ReactionButton = async ({
@@ -39,14 +42,14 @@ const ReactionButton = async ({
         userId,
         reactionType: value as any,
       },
-    });
+    })
     if (reaction) {
-      return reaction.id;
+      return reaction.id
     }
-    return null;
-  };
-  const reactionId = await isReacted();
-  const t = await getTranslations("Components.Config.ReactionSwitch");
+    return null
+  }
+  const reactionId = await isReacted()
+  const t = await getTranslations("Components.Config.ReactionSwitch")
 
   return (
     <ReactionProvider
@@ -77,7 +80,7 @@ const ReactionButton = async ({
         </Tooltip>
       </TooltipProvider>
     </ReactionProvider>
-  );
-};
+  )
+}
 
-export default ReactionButton;
+export default ReactionButton

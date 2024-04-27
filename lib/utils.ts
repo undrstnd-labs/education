@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
-import { twMerge } from "tailwind-merge";
-import { type ClassValue, clsx } from "clsx";
+import { type Message } from "ai/react"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+import { v4 as uuidv4 } from "uuid"
 
-import { getChat } from "@lib/actions";
-import { emailSchema } from "@config/schema";
-import { type Message } from "ai/react";
+import { emailSchema } from "@/config/schema"
+import { getChat } from "@/lib/actions"
 
 /**
  * Combines class names into a single string with deduplicated classes.
@@ -13,32 +13,32 @@ import { type Message } from "ai/react";
  * @return {string} The combined class string.
  */
 export function cn(...inputs: ClassValue[]): string {
-  return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 
 export function verifyEmail(email: string): boolean {
-  return emailSchema.safeParse({ email }).success;
+  return emailSchema.safeParse({ email }).success
 }
 
 export function generateUuid() {
-  return uuidv4();
+  return uuidv4()
 }
 
 export async function getFormattedChat(chatId: string, studentId: string) {
-  const chat = await getChat(chatId, studentId);
+  const chat = await getChat(chatId, studentId)
 
   const newChat = {
     ...chat,
-    messages: chat!.messages.map((message) => {
+    messages: chat!.messages.map((message: { role: string }) => {
       if (message.role === "USER") {
-        return { ...message, role: "user" as Message["role"] };
+        return { ...message, role: "user" as Message["role"] }
       } else if (message.role === "AI") {
-        return { ...message, role: "assistant" as Message["role"] };
+        return { ...message, role: "assistant" as Message["role"] }
       } else {
-        return { ...message, role: "assistant" as Message["role"] };
+        return { ...message, role: "assistant" as Message["role"] }
       }
     }),
-  };
+  }
 
-  return newChat;
+  return newChat
 }

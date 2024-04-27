@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { useTheme } from "next-themes";
+import { useTheme } from "next-themes"
 
 import {
   Select,
@@ -9,28 +9,28 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@component/ui/Select";
-import { Icons } from "@component/icons/Lucide";
+} from "@/components/ui/Select"
+import { Icons } from "@/components/icons/Lucide"
 
-type Theme = "dark" | "system" | "light";
+type Theme = "dark" | "system" | "light"
 
 type Props = {
-  currentTheme?: Theme;
-};
+  currentTheme?: Theme
+}
 
 const ThemeIcon = ({ currentTheme }: Props) => {
   switch (currentTheme) {
     case "dark":
-      return <Icons.moon size={12} />;
+      return <Icons.moon size={12} />
     case "system":
-      return <Icons.monitor size={12} />;
+      return <Icons.monitor size={12} />
     default:
-      return <Icons.sun size={12} />;
+      return <Icons.sun size={12} />
   }
-};
+}
 
 export function ThemeSwitch() {
-  const { theme, setTheme, themes } = useTheme();
+  const { theme, setTheme, themes } = useTheme()
 
   return (
     <div className="relative flex items-center">
@@ -56,5 +56,5 @@ export function ThemeSwitch() {
         <ThemeIcon currentTheme={theme as Theme} />
       </div>
     </div>
-  );
+  )
 }

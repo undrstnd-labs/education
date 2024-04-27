@@ -1,29 +1,29 @@
-import { Suspense } from "react";
-import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { Suspense } from "react"
+import { Link } from "@navigation"
+import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
-import { Link } from "@lib/navigation";
-import { cn, verifyEmail } from "@/lib/utils";
+import { cn, verifyEmail } from "@/lib/utils"
 
-import { LogoPNG } from "@component/icons/Overall";
-import { buttonVariants } from "@/components/ui/Button";
-import { PassCodeAuth } from "@component/form/PassCodeAuth";
-import { UserAuthForm, UserAuthSkeleton } from "@component/form/UserAuth";
+import { buttonVariants } from "@/components/ui/Button"
+import { PassCodeAuth } from "@/components/form/PassCodeAuth"
+import { UserAuthForm, UserAuthSkeleton } from "@/components/form/UserAuth"
+import { LogoPNG } from "@/components/icons/Overall"
 
 export async function generateMetadata() {
-  const t = await getTranslations("Metadata.Pages.Register");
-  return { title: `${t("title")}` };
+  const t = await getTranslations("Metadata.Pages.Register")
+  return { title: `${t("title")}` }
 }
 
 export default function RegisterPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const t = useTranslations("Pages.Register");
-  const email = searchParams.email as string;
+  const t = useTranslations("Pages.Register")
+  const email = searchParams.email as string
 
-  const isEmailValid = verifyEmail(email);
+  const isEmailValid = verifyEmail(email)
 
   return (
     <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -45,7 +45,7 @@ export default function RegisterPage({
             "relative z-20 flex w-fit items-center text-lg font-semibold"
           )}
         >
-          <LogoPNG className="mr-2 h-6 w-6" />
+          <LogoPNG className="mr-2 size-6" />
           Undrstnd
         </Link>
         <div className="relative z-20 mt-auto">
@@ -59,7 +59,7 @@ export default function RegisterPage({
       </div>
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          <LogoPNG className="mx-auto h-10 w-10" />
+          <LogoPNG className="mx-auto size-10" />
           {isEmailValid ? (
             <PassCodeAuth email={email} />
           ) : (
@@ -97,5 +97,5 @@ export default function RegisterPage({
         </div>
       </div>
     </div>
-  );
+  )
 }

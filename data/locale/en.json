@@ -167,7 +167,15 @@
       },
       "Prompt": {
         "new-chat": "New Chat",
-        "send-message": "Send message"
+        "send-message": "Send message",
+        "upload-file": "Upload file",
+        "upload": "Upload",
+        "upload-file-description": "For uploading files, you can only upload one file at a time. The file size must be less than 25MB.",
+        "file-size-error": "File size must be less than 25MB",
+        "file-max-error": "You can only upload 1 file",
+        "click-to-select": "Click to upload",
+        "or-drag-drop": "or drag and drop",
+        "pdf-only": "Only PDF files are allowed"
       },
       "ChatPanel": {
         "stop-generating": "Stop generating",

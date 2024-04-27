@@ -1,18 +1,19 @@
-import * as z from "zod";
-import { db } from "@lib/prisma";
+import * as z from "zod"
+
+import { db } from "@/lib/prisma"
 
 const routeContextSchema = z.object({
   params: z.object({
     email: z.string().email(),
   }),
-});
+})
 
 export async function GET(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
   try {
-    const { params } = routeContextSchema.parse(context);
+    const { params } = routeContextSchema.parse(context)
 
     const verificationTokens = await db.verificationToken.findMany({
       where: {
@@ -21,12 +22,12 @@ export async function GET(
       orderBy: {
         expires: "desc",
       },
-    });
+    })
 
-    const verificationToken = verificationTokens[0];
+    const verificationToken = verificationTokens[0]
 
     if (!verificationToken) {
-      return new Response(null, { status: 404 });
+      return new Response(null, { status: 404 })
     }
 
     return new Response(JSON.stringify(verificationToken), {
@@ -34,10 +35,10 @@ export async function GET(
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
   } catch (error: any) {
-    console.log(error);
-    return new Response(null, { status: 500 });
+    console.log(error)
+    return new Response(null, { status: 500 })
   }
 }
 
@@ -46,8 +47,8 @@ export async function PUT(
   context: z.infer<typeof routeContextSchema>
 ) {
   try {
-    const { params } = routeContextSchema.parse(context);
-    const { url } = await req.json();
+    const { params } = routeContextSchema.parse(context)
+    const { url } = await req.json()
 
     const verificationTokens = await db.verificationToken.findMany({
       where: {
@@ -56,15 +57,15 @@ export async function PUT(
       orderBy: {
         expires: "desc",
       },
-    });
+    })
 
-    const verificationToken = verificationTokens[0];
+    const verificationToken = verificationTokens[0]
 
     if (!verificationToken) {
-      return new Response(null, { status: 404 });
+      return new Response(null, { status: 404 })
     }
 
-    const passCode = Math.floor(100000 + Math.random() * 900000).toString();
+    const passCode = Math.floor(100000 + Math.random() * 900000).toString()
 
     await db.verificationToken.update({
       where: {
@@ -75,16 +76,16 @@ export async function PUT(
         passCode,
         verificationUrl: url,
       },
-    });
+    })
 
     return new Response(JSON.stringify(passCode), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    })
   } catch (error: any) {
-    console.log(error);
-    return new Response(null, { status: 500 });
+    console.log(error)
+    return new Response(null, { status: 500 })
   }
 }

@@ -1,21 +1,22 @@
-import { JoinClassroom } from "@/components/showcase/JoinClassroom";
-import { redirect } from "@/lib/navigation";
-import { getCurrentUser } from "@/lib/session";
+import { redirect } from "@/lib/navigation"
+import { getCurrentUser } from "@/lib/session"
+
+import { JoinClassroom } from "@/components/showcase/JoinClassroom"
 
 const JoinClassroomPage = async ({
   params: { classCode },
 }: {
-  params: { classCode: string };
+  params: { classCode: string }
 }) => {
-  const user = await getCurrentUser();
+  const user = await getCurrentUser()
   if (!user) {
-    redirect("/login");
+    redirect("/login")
   }
 
   if (user?.role !== "STUDENT" || classCode.length !== 8) {
-    redirect("/dashboard/classroom");
+    redirect("/dashboard/classroom")
   }
-  return <JoinClassroom userId={user?.id!} classCode={classCode} />;
-};
+  return <JoinClassroom userId={user?.id!} classCode={classCode} />
+}
 
-export default JoinClassroomPage;
+export default JoinClassroomPage

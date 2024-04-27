@@ -1,13 +1,13 @@
-import { Link } from "@lib/navigation";
-import { Popover } from "@headlessui/react";
+import { Popover } from "@headlessui/react"
+import { Link } from "@navigation"
 
 export default function MobileNavLink({
   children,
   ...props
 }: {
-  children: React.ReactNode;
-  href: string;
-  className?: string;
+  children: React.ReactNode
+  href: string
+  className?: string
 }) {
   return (
     <Popover.Button
@@ -17,5 +17,5 @@ export default function MobileNavLink({
     >
       {children}
     </Popover.Button>
-  );
+  )
 }

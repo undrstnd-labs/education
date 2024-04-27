@@ -1,28 +1,28 @@
-"use client";
+"use client"
 
-import { useChat, type Message } from "ai/react";
-import { usePathname, useRouter } from "@lib/navigation";
+import { usePathname, useRouter } from "@navigation"
+import { Student, User } from "@prisma/client"
+import { useChat, type Message } from "ai/react"
 
-import { cn } from "@lib/utils";
-import { toast } from "@hook/use-toast";
-import { Student, User } from "@prisma/client";
-import { useScrollAnchor } from "@hook/use-scroll-anchor";
+import { cn } from "@/lib/utils"
+import { useScrollAnchor } from "@/hooks/use-scroll-anchor"
+import { toast } from "@/hooks/use-toast"
 
-import { ChatPanel } from "@component/form/ChatPanel";
-import { ChatList } from "@component/display/ChatList";
-import { EmptyScreen } from "@component/showcase/ChatEmptyScreen";
+import { ChatList } from "@/components/display/ChatList"
+import { ChatPanel } from "@/components/form/ChatPanel"
+import { EmptyScreen } from "@/components/showcase/ChatEmptyScreen"
 
 export interface ChatProps extends React.ComponentProps<"div"> {
-  id?: string;
-  student: Student & { user: User };
-  initialMessages?: Message[];
+  id?: string
+  student: Student & { user: User }
+  initialMessages?: Message[]
 }
 
 export function Chat({ id, initialMessages, className, student }: ChatProps) {
-  const path = usePathname();
-  const router = useRouter();
+  const path = usePathname()
+  const router = useRouter()
   const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
-    useScrollAnchor();
+    useScrollAnchor()
   const { messages, append, reload, stop, isLoading, input, setInput } =
     useChat({
       initialMessages,
@@ -37,13 +37,13 @@ export function Chat({ id, initialMessages, className, student }: ChatProps) {
             title: "Unauthorized",
             description: "You are not authorized to view this chat.",
             variant: "destructive",
-          });
+          })
         }
       },
       onFinish() {
         if (path === "/chat") {
-          router.push(`/chat/c/${id}`);
-          router.refresh();
+          router.push(`/chat/c/${id}`)
+          router.refresh()
         }
       },
       onError(error) {
@@ -51,11 +51,11 @@ export function Chat({ id, initialMessages, className, student }: ChatProps) {
           title: error.message,
           description: error.stack,
           variant: "destructive",
-        });
+        })
 
-        router.refresh();
+        router.refresh()
       },
-    });
+    })
 
   return (
     <div
@@ -83,5 +83,5 @@ export function Chat({ id, initialMessages, className, student }: ChatProps) {
         scrollToBottom={scrollToBottom}
       />
     </div>
-  );
+  )
 }

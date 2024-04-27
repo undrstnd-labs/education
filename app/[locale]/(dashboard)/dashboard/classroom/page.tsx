@@ -1,14 +1,16 @@
-import { redirect } from "@/lib/navigation";
-import { getCurrentUser, getCurrentEntity } from "@/lib/session";
-import { User, Student, Teacher } from "@prisma/client";
+import { Student, Teacher, User } from "@prisma/client"
 
-import { AddClassroom } from "@/components/form/AddClassroom";
-import JoinClassroom from "@/components/form/JoinClassroom";
-import { ClassroomCard } from "@/components/display/ClassroomCard";
-import { classroom } from "@/types/classroom";
+import { classroom } from "@/types/classroom"
+
+import { redirect } from "@/lib/navigation"
+import { getCurrentEntity, getCurrentUser } from "@/lib/session"
+
+import { ClassroomCard } from "@/components/display/ClassroomCard"
+import { AddClassroom } from "@/components/form/AddClassroom"
+import JoinClassroom from "@/components/form/JoinClassroom"
 
 async function getClassrooms(user: User) {
-  const entity = (await getCurrentEntity(user)) as Student | Teacher;
+  const entity = (await getCurrentEntity(user)) as Student | Teacher
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/classrooms/${user.role.toLowerCase()}/${entity.id}`,
@@ -18,26 +20,26 @@ async function getClassrooms(user: User) {
           revalidate: 0,
         },
       }
-    );
+    )
 
     if (res.ok) {
-      const data: classroom[] = await res.json();
-      return data;
+      const data: classroom[] = await res.json()
+      return data
     }
-    return null;
+    return null
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
 export default async function ClassroomsPage() {
-  const user = await getCurrentUser();
+  const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login");
+    redirect("/login")
   }
 
-  const classrooms = await getClassrooms(user!);
+  const classrooms = await getClassrooms(user!)
 
   return (
     <div className="w-full p-4 ">
@@ -52,7 +54,7 @@ export default async function ClassroomsPage() {
                 key={classroom.id}
                 authorId={user?.id!}
               />
-            );
+            )
           })
         ) : (
           <h1 className="font-bold md:text-xl">
@@ -63,5 +65,5 @@ export default async function ClassroomsPage() {
         )}
       </div>
     </div>
-  );
+  )
 }

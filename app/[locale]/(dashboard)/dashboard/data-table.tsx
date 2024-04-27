@@ -1,18 +1,28 @@
-"use client";
+"use client"
 
+import { useState } from "react"
 import {
   ColumnDef,
+  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  SortingState,
-  VisibilityState,
-  getSortedRowModel,
-  ColumnFiltersState,
   getFilteredRowModel,
-} from "@tanstack/react-table";
+  getPaginationRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+  VisibilityState,
+} from "@tanstack/react-table"
+import { useTranslations } from "next-intl"
 
+import { Button } from "@/components/ui/Button"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu"
+import { Input } from "@/components/ui/Input"
 import {
   Table,
   TableBody,
@@ -20,32 +30,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/Table";
+} from "@/components/ui/Table"
 
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
 
-  const t = useTranslations("Pages.TeacherDashboard");
+  const t = useTranslations("Pages.TeacherDashboard")
   const table = useReactTable({
     data,
     columns,
@@ -62,7 +62,7 @@ export function DataTable<TData, TValue>({
       columnFilters,
       columnVisibility,
     },
-  });
+  })
 
   return (
     <div>
@@ -103,7 +103,7 @@ export function DataTable<TData, TValue>({
                           ? t("status")
                           : column.id}
                   </DropdownMenuCheckboxItem>
-                );
+                )
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -123,7 +123,7 @@ export function DataTable<TData, TValue>({
                             header.getContext()
                           )}
                     </TableHead>
-                  );
+                  )
                 })}
               </TableRow>
             ))}
@@ -181,5 +181,5 @@ export function DataTable<TData, TValue>({
         </Button>
       </div>
     </div>
-  );
+  )
 }

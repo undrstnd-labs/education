@@ -1,9 +1,11 @@
-"use client";
+"use client"
 
-import { File } from "@prisma/client";
-import { Link } from "@lib/navigation";
-import { useTranslations } from "next-intl";
+import { Link } from "@navigation"
+import { File } from "@prisma/client"
+import { useTranslations } from "next-intl"
 
+import { Button } from "@/components/ui/Button"
+import { Card } from "@/components/ui/Card"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,19 +13,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@component/ui/DropdownMenu";
-import { Card } from "@component/ui/Card";
-import { Button } from "@component/ui/Button";
-import { Icons } from "@component/icons/Lucide";
+} from "@/components/ui/DropdownMenu"
+import { Icons } from "@/components/icons/Lucide"
 
-import DonloadFileButton from "./DonloadFileButton";
+import DonloadFileButton from "./DonloadFileButton"
 
 interface FileCardProps {
-  file: File;
+  file: File
 }
 
 export function FileCard({ file }: FileCardProps) {
-  const t = useTranslations("Pages.Classroom");
+  const t = useTranslations("Pages.Classroom")
 
   return (
     <Card className="mt-2">
@@ -66,9 +66,9 @@ export function FileCard({ file }: FileCardProps) {
               <Button
                 variant="outline"
                 size="icon"
-                className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+                className="size-8 max-sm:size-6"
               >
-                <Icons.moreHorizontal className="h-4 w-4" />
+                <Icons.moreHorizontal className="size-4" />
                 <span className="sr-only">Toggle options of File</span>
               </Button>
             </DropdownMenuTrigger>
@@ -79,7 +79,7 @@ export function FileCard({ file }: FileCardProps) {
                 href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${file.url}`}
               >
                 <DropdownMenuItem className="flex items-center gap-2 hover:cursor-pointer">
-                  <Icons.watchFile className="h-4 w-4" /> {t("fileCardSeeFile")}
+                  <Icons.watchFile className="size-4" /> {t("fileCardSeeFile")}
                 </DropdownMenuItem>
               </Link>
 
@@ -89,5 +89,5 @@ export function FileCard({ file }: FileCardProps) {
         </div>
       </div>
     </Card>
-  );
+  )
 }

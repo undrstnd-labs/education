@@ -1,8 +1,8 @@
-import { UseChatHelpers } from "ai/react";
+import { UseChatHelpers } from "ai/react"
 
-import { Button } from "@/components/ui/Button";
-import { Icons } from "@component/icons/Lucide";
-import { ExternalLink } from "@component/ui/ExternalLink";
+import { Button } from "@/components/ui/Button"
+import { ExternalLink } from "@/components/ui/ExternalLink"
+import { Icons } from "@/components/icons/Lucide"
 
 const exampleMessages = [
   {
@@ -17,7 +17,7 @@ const exampleMessages = [
     heading: "Draft an email",
     message: `Draft an email to my boss about the following: \n`,
   },
-];
+]
 
 // TODO: Translate this page
 export function EmptyScreen({ setInput }: Pick<UseChatHelpers, "setInput">) {
@@ -53,5 +53,5 @@ export function EmptyScreen({ setInput }: Pick<UseChatHelpers, "setInput">) {
         </div>
       </div>
     </div>
-  );
+  )
 }

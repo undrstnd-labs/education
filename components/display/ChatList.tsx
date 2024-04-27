@@ -1,17 +1,17 @@
-import { type Message } from "ai";
-import { Student, User } from "@prisma/client";
+import { Student, User } from "@prisma/client"
+import { type Message } from "ai"
 
-import { Separator } from "@component/ui/Separator";
-import { ChatMessage } from "@component/showcase/ChatMessage";
+import { Separator } from "@/components/ui/Separator"
+import { ChatMessage } from "@/components/showcase/ChatMessage"
 
 export interface ChatList {
-  messages: Message[];
-  student: Student & { user: User };
+  messages: Message[]
+  student: Student & { user: User }
 }
 
 export function ChatList({ messages, student }: ChatList) {
   if (!messages.length) {
-    return null;
+    return null
   }
 
   return (
@@ -25,5 +25,5 @@ export function ChatList({ messages, student }: ChatList) {
         </div>
       ))}
     </div>
-  );
+  )
 }

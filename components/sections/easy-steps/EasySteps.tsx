@@ -1,7 +1,6 @@
-import Container from "@component/ui/Container";
-
-import FeaturesMobile from "@component/sections/easy-steps/FeaturesMobile";
-import FeaturesDesktop from "@component/sections/easy-steps/FeaturesDesktop";
+import Container from "@/components/ui/Container"
+import FeaturesDesktop from "@/components/sections/easy-steps/FeaturesDesktop"
+import FeaturesMobile from "@/components/sections/easy-steps/FeaturesMobile"
 
 export default function EasySteps() {
   return (
@@ -31,5 +30,5 @@ export default function EasySteps() {
         </div>
       </Container>
     </section>
-  );
+  )
 }

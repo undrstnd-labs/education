@@ -1,22 +1,22 @@
-import { cache } from "react";
-import { useTranslations } from "next-intl";
-import { Student, User } from "@prisma/client";
+import { cache } from "react"
+import { Student, User } from "@prisma/client"
+import { useTranslations } from "next-intl"
 
-import { SidebarItems } from "@component/display/SidebarItems";
+import { getChats } from "@/lib/actions"
 
-import { getChats } from "@lib/actions";
+import { SidebarItems } from "@/components/display/SidebarItems"
 
 const loadChats = cache(async (studentId?: string) => {
-  return await getChats(studentId);
-});
+  return await getChats(studentId)
+})
 
 export async function SidebarList({
   student,
 }: {
-  student: Student & { user: User };
+  student: Student & { user: User }
 }) {
-  const t = useTranslations("Components.Display.SidebarList");
-  const chats = await loadChats(student?.id);
+  const t = useTranslations("Components.Display.SidebarList")
+  const chats = await loadChats(student?.id)
 
   return (
     <div className="flex h-fit flex-1 flex-col overflow-hidden">
@@ -32,5 +32,5 @@ export async function SidebarList({
         )}
       </div>
     </div>
-  );
+  )
 }

@@ -1,21 +1,13 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { Classroom, User } from "@prisma/client";
+import { useState } from "react"
+import { Classroom, User } from "@prisma/client"
+import { useTranslations } from "next-intl"
 
-import { toast } from "@hook/use-toast";
-import { useMediaQuery } from "@hook/use-media-query";
+import { useRouter } from "@/lib/navigation"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@component/ui/DropdownMenu";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,7 +17,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@component/ui/AlertDialog";
+} from "@/components/ui/AlertDialog"
+import { Button } from "@/components/ui/Button"
 import {
   Drawer,
   DrawerClose,
@@ -34,26 +27,33 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "@component/ui/Drawer";
-import { Button } from "@component/ui/Button";
-import { Icons } from "@component/icons/Lucide";
-import { EditClassroom } from "@component/form/EditClassroom";
+} from "@/components/ui/Drawer"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu"
+import { EditClassroom } from "@/components/form/EditClassroom"
+import { Icons } from "@/components/icons/Lucide"
 
 interface ClassroomCardProps {
   classroom: Classroom & {
-    teacher: { user: User; id: string; userId: string };
-  };
+    teacher: { user: User; id: string; userId: string }
+  }
 }
 
 export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
-  const [isModifyOpen, setIsModifyOpen] = useState(false);
+  const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false)
+  const [isModifyOpen, setIsModifyOpen] = useState(false)
 
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const t = useTranslations("Components.Display.ClassroomCardOptions");
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const t = useTranslations("Components.Display.ClassroomCardOptions")
 
   const handleArchive = async () => {
     try {
@@ -66,28 +66,28 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           userId: classroom.teacher.user.id,
           isArchived: true,
         }),
-      });
+      })
       if (res.ok) {
         toast({
           title: t("toastTitleArchiveClassroom"),
           description: t("toastDescriptionArchiveClassroom"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("error-toast-archive"),
           description: t("error-description-toast-archive"),
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
       toast({
         title: t("error-toast-archive"),
         description: t("error-description-toast-archive"),
         variant: "destructive",
-      });
+      })
     }
-  };
+  }
   const handleUnarchive = async () => {
     try {
       const res = await fetch(`/api/classrooms/${classroom.id}/desarchive`, {
@@ -99,28 +99,28 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           userId: classroom.teacher.user.id,
           isArchived: false,
         }),
-      });
+      })
       if (res.ok) {
         toast({
           title: t("toastTitleunarchiveClassroom"),
           description: t("toastDescriptionunarchiveClassroom"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("error-toast-unarchive"),
           description: t("error-description-toast-unarchive"),
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
       toast({
         title: t("error-toast-unarchive"),
         description: t("error-description-toast-unarchive"),
         variant: "destructive",
-      });
+      })
     }
-  };
+  }
 
   const handleDelete = async () => {
     try {
@@ -132,29 +132,29 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
         body: JSON.stringify({
           userId: classroom.teacher.user.id,
         }),
-      });
+      })
       if (res.ok) {
         toast({
           title: t("toastTitleDeleteClassroom"),
           variant: "default",
           description: t("toastDescriptionDeleteClassroom"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("error-toast-delete"),
           description: t("error-description-toast-delete"),
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
       toast({
         title: t("error-toast-delete"),
         description: t("error-description-toast-delete"),
         variant: "destructive",
-      });
+      })
     }
-  };
+  }
 
   return (
     <>
@@ -163,9 +163,9 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           <Button
             variant="outline"
             size="icon"
-            className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+            className="size-8 max-sm:size-6"
           >
-            <Icons.moreHorizontal className="h-4 w-4" />
+            <Icons.moreHorizontal className="size-4" />
             <span className="sr-only">Toggle options of classroom</span>
           </Button>
         </DropdownMenuTrigger>
@@ -176,7 +176,7 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             className="flex items-center gap-2 hover:cursor-pointer"
             onClick={() => setIsModifyOpen(true)}
           >
-            <Icons.editClassroom className="h-4 w-4 " />
+            <Icons.editClassroom className="size-4 " />
             {t("editClassroom")}{" "}
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -192,7 +192,7 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             className="flex items-center gap-2 text-red-600 hover:cursor-pointer"
             onClick={() => setIsDeleteOpen(true)}
           >
-            <Icons.deleteClassroom className="h-4 w-4 " />
+            <Icons.deleteClassroom className="size-4 " />
             {t("deleteClassroom")}
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -310,5 +310,5 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
         />
       )}
     </>
-  );
+  )
 }

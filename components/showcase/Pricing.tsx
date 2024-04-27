@@ -1,6 +1,7 @@
-import { Link } from "@lib/navigation";
-import { Button } from "@/components/ui/Button";
-import { CheckIcon } from "@heroicons/react/20/solid";
+import { CheckIcon } from "@heroicons/react/20/solid"
+import { Link } from "@navigation"
+
+import { Button } from "@/components/ui/Button"
 
 const tiers = [
   {
@@ -34,7 +35,7 @@ const tiers = [
       "Priority support",
     ],
   },
-];
+]
 
 export default function Pricing() {
   return (
@@ -150,5 +151,5 @@ export default function Pricing() {
         </div>
       </div>
     </div>
-  );
+  )
 }

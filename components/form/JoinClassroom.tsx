@@ -1,11 +1,15 @@
-"use client";
-import { useRouter } from "@/lib/navigation";
-import { useTranslations } from "next-intl";
-import React, { useState } from "react";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/Button";
+"use client"
+
+import React, { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { useRouter } from "@/lib/navigation"
+import { toast } from "@/hooks/use-toast"
+
+import { Button } from "@/components/ui/Button"
 import {
   Form,
   FormControl,
@@ -13,12 +17,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form";
-import { Input } from "@/components/ui/Input";
-import { Icons } from "../icons/Lucide";
-import { toast } from "@/hooks/use-toast";
+} from "@/components/ui/Form"
+import { Input } from "@/components/ui/Input"
+
+import { Icons } from "../icons/Lucide"
+
 interface JoinClassroomProps {
-  userId: string;
+  userId: string
 }
 
 const baseFormSchema = (t: (arg: string) => string) =>
@@ -26,21 +31,21 @@ const baseFormSchema = (t: (arg: string) => string) =>
     code: z.string().min(8, {
       message: t("formSchemaCodeMessage"),
     }),
-  });
+  })
 
 const JoinClassroom = ({ userId }: JoinClassroomProps) => {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const t = useTranslations("Pages.Classroom");
-  const formSchema = baseFormSchema(t);
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+  const t = useTranslations("Pages.Classroom")
+  const formSchema = baseFormSchema(t)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       code: "",
     },
-  });
+  })
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
+    setIsLoading(true)
     try {
       const res = await fetch(`/api/classrooms/join/${values.code}`, {
         method: "PATCH",
@@ -48,43 +53,43 @@ const JoinClassroom = ({ userId }: JoinClassroomProps) => {
         headers: {
           "Content-Type": "application/json",
         },
-      });
+      })
       if (res.ok) {
         toast({
           title: t("joinApiSuccess"),
           variant: "default",
           description: t("joinApiSuccessDescription"),
-        });
-        router.refresh();
-        form.reset();
+        })
+        router.refresh()
+        form.reset()
       } else {
-        const data = await res.json();
+        const data = await res.json()
         if (data.messageNotFound) {
           toast({
             title: t("joinApiError"),
             variant: "destructive",
             description: t("joinApiErrorDescription"),
-          });
+          })
         }
         if (data.messageArchived) {
           toast({
             title: t("joinApiErrorArchived"),
             variant: "destructive",
             description: t("joinApiErrorArchivedDescription"),
-          });
+          })
         }
         if (data.messageAlreadyJoin) {
           toast({
             title: t("joinApiAlreadyError"),
             variant: "destructive",
             description: t("joinApiAlreadyErrorDescription"),
-          });
+          })
         }
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
   }
   return (
@@ -112,14 +117,14 @@ const JoinClassroom = ({ userId }: JoinClassroomProps) => {
           />
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              <Icons.spinner className="mr-2 size-4 animate-spin" />
             )}
             {t("formClassroomJoinButton")}
           </Button>
         </form>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default JoinClassroom;
+export default JoinClassroom

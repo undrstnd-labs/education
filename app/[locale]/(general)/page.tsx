@@ -1,10 +1,10 @@
-import FAQs from "@component/showcase/FAQs";
-import Pricing from "@component/showcase/Pricing";
-import Footer from "@component/navigation/Footer";
-import Features from "@component/showcase/Feature";
-import HerosectionHome from "@component/showcase/Herohome";
-import CallToAction from "@component/showcase/CallToAction";
-import EasySteps from "@component/sections/easy-steps/EasySteps";
+import Footer from "@/components/navigation/Footer"
+import EasySteps from "@/components/sections/easy-steps/EasySteps"
+import CallToAction from "@/components/showcase/CallToAction"
+import FAQs from "@/components/showcase/FAQs"
+import Features from "@/components/showcase/Feature"
+import HerosectionHome from "@/components/showcase/Herohome"
+import Pricing from "@/components/showcase/Pricing"
 
 export default function Home() {
   return (
@@ -17,5 +17,5 @@ export default function Home() {
       <FAQs />
       <Footer />
     </main>
-  );
+  )
 }

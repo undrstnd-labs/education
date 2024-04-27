@@ -1,44 +1,49 @@
-"use client";
-import { useTranslations } from "next-intl";
-import { Icons } from "../icons/Lucide";
-import { Card, CardContent } from "../ui/Card";
-import { Textarea } from "../ui/Textarea";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { commentAddCardSchema } from "@/config/schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { KeyboardEvent, useRef, useState } from "react";
+"use client"
+
+import { KeyboardEvent, useRef, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { commentAddCardSchema } from "@/config/schema"
+import { useRouter } from "@/lib/navigation"
+import { toast } from "@/hooks/use-toast"
+
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/Form";
-import { Button } from "../ui/Button";
-import { toast } from "@/hooks/use-toast";
-import { useRouter } from "@/lib/navigation";
+} from "@/components/ui/Form"
+
+import { Icons } from "../icons/Lucide"
+import { Button } from "../ui/Button"
+import { Card, CardContent } from "../ui/Card"
+import { Textarea } from "../ui/Textarea"
+
 interface CommentAddCardProps {
-  postId: string;
-  userId: string;
-  parentid?: string;
+  postId: string
+  userId: string
+  parentid?: string
 }
 
 const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
-  const [loading, setLoading] = useState(false);
-  const t = useTranslations("Pages.Classroom");
-  const formSchema = commentAddCardSchema(t);
-  const router = useRouter();
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [loading, setLoading] = useState(false)
+  const t = useTranslations("Pages.Classroom")
+  const formSchema = commentAddCardSchema(t)
+  const router = useRouter()
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       text: "",
     },
-  });
+  })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true);
+    setLoading(true)
     try {
       const res = await fetch(`/api/comments/${postId}`, {
         method: "POST",
@@ -50,39 +55,39 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
           userId,
           parentId: parentid,
         }),
-      });
+      })
       if (res.ok) {
-        form.reset();
+        form.reset()
         toast({
           title: t("commendAddedTitleToast"),
           description: t("commendAddedDescriptionToast"),
           variant: "default",
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("commentAddedTitleToastErreur"),
           description: t("commentAddedDescriptionToastErreur"),
           variant: "destructive",
-        });
+        })
       }
     } catch (error) {
       toast({
         title: t("commentAddedTitleToastErreur"),
         description: t("commentAddedDescriptionToastErreur"),
         variant: "destructive",
-      });
+      })
     } finally {
-      form.reset();
-      setLoading(false);
+      form.reset()
+      setLoading(false)
     }
   }
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
-      form.handleSubmit(onSubmit)();
+      event.preventDefault()
+      form.handleSubmit(onSubmit)()
     }
-  };
+  }
   return (
     <Card>
       <CardContent className="w-full  px-6 py-3">
@@ -124,7 +129,7 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
         </Form>
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default CommentAddCard;
+export default CommentAddCard

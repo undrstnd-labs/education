@@ -1,39 +1,39 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import * as React from "react"
+import { Link, usePathname } from "@navigation"
+import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
-import { cn } from "@lib/utils";
-import { type Chat } from "@/types/chat";
-import { Link, usePathname } from "@lib/navigation";
+import { type Chat } from "@/types/chat"
 
-import { useLocalStorage } from "@hook/use-local-storage";
+import { cn } from "@/lib/utils"
+import { useLocalStorage } from "@/hooks/use-local-storage"
 
+import { buttonVariants } from "@/components/ui/Button"
 import {
   Tooltip,
   TooltipContent,
-  TooltipTrigger,
   TooltipProvider,
-} from "@component/ui/Tooltip";
-import { buttonVariants } from "@/components/ui/Button";
-import { IconMessage, IconUsers } from "@component/icons/Overall";
+  TooltipTrigger,
+} from "@/components/ui/Tooltip"
+import { IconMessage, IconUsers } from "@/components/icons/Overall"
 
 interface SidebarItemProps {
-  index: number;
-  chat: Chat;
-  children: React.ReactNode;
+  index: number
+  chat: Chat
+  children: React.ReactNode
 }
 
 export function SidebarItem({ index, chat, children }: SidebarItemProps) {
-  const pathname = usePathname();
-  const t = useTranslations("Components.Display.SidebarItem");
+  const pathname = usePathname()
+  const t = useTranslations("Components.Display.SidebarItem")
 
-  const isActive = pathname === chat.path;
-  const [newChatId, setNewChatId] = useLocalStorage("newChatId", null);
-  const shouldAnimate = index === 0 && isActive && newChatId;
+  const isActive = pathname === chat.path
+  const [newChatId, setNewChatId] = useLocalStorage("newChatId", null)
+  const shouldAnimate = index === 0 && isActive && newChatId
 
-  if (!chat?.id) return null;
+  if (!chat?.id) return null
 
   return (
     <motion.div
@@ -109,7 +109,7 @@ export function SidebarItem({ index, chat, children }: SidebarItemProps) {
                   }}
                   onAnimationComplete={() => {
                     if (index === chat.title.length - 1) {
-                      setNewChatId(null);
+                      setNewChatId(null)
                     }
                   }}
                 >
@@ -124,5 +124,5 @@ export function SidebarItem({ index, chat, children }: SidebarItemProps) {
       </Link>
       {isActive && <div className="absolute right-2 top-1">{children}</div>}
     </motion.div>
-  );
+  )
 }

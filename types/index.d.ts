@@ -1,54 +1,54 @@
 export interface NavItem {
-  title: string;
-  href: string;
-  disabled?: boolean;
+  title: string
+  href: string
+  disabled?: boolean
 }
 
-export type MainNavItem = NavItem;
+export type MainNavItem = NavItem
 
 export interface SiteConfig {
-  name: string;
-  description: string;
-  url: string;
-  ogImage: string;
+  name: string
+  description: string
+  url: string
+  ogImage: string
   links: {
-    twitter: string;
-    github: string;
-  };
+    twitter: string
+    github: string
+  }
 }
 
 export interface MarketingConfig {
-  mainNav: MainNavItem[];
+  mainNav: MainNavItem[]
 }
 
-export type TranslationFunction = (key: string) => string;
+export type TranslationFunction = (key: string) => string
 
 export type EmailOption = {
-  label: string;
-  abbrev: string;
-  value: string;
-  email: string;
-  phone: string;
-  avatarUrl: string;
-};
+  label: string
+  abbrev: string
+  value: string
+  email: string
+  phone: string
+  avatarUrl: string
+}
 
 export type University = {
-  label: string;
-  abbrev: string;
-  value: string;
-  email: string;
-  phone: string;
-  avatarUrl: string;
-};
+  label: string
+  abbrev: string
+  value: string
+  email: string
+  phone: string
+  avatarUrl: string
+}
 
 export type ServerActionResult<Result> = Promise<
   | Result
   | {
-      error: string;
+      error: string
     }
->;
+>
 
 export type customType = {
-  changeCount: number;
-  isForwards: boolean;
-};
+  changeCount: number
+  isForwards: boolean
+}

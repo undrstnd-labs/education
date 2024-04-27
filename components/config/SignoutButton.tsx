@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import { signOut } from "next-auth/react";
-import { useTranslations } from "next-intl";
+import { signOut } from "next-auth/react"
+import { useTranslations } from "next-intl"
 
-import { DropdownMenuItem } from "@component/ui/DropdownMenu";
+import { DropdownMenuItem } from "@/components/ui/DropdownMenu"
 
 export function SignoutButton() {
-  const t = useTranslations("Components.Showcase.UserDropdown");
+  const t = useTranslations("Components.Showcase.UserDropdown")
 
   return (
     <DropdownMenuItem
       className="cursor-pointer text-red-600"
       onClick={() => {
-        signOut();
+        signOut()
       }}
     >
       {t("logout")}
     </DropdownMenuItem>
-  );
+  )
 }

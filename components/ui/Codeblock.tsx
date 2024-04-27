@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import { FC, memo } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { FC, memo } from "react"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism"
 
-import { Button } from "@/components/ui/Button";
-import { Icons } from "@component/icons/Lucide";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 
-import { useCopyToClipboard } from "@hook/use-copy-to-clipboard";
+import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/icons/Lucide"
 
 interface Props {
-  language: string;
-  value: string;
+  language: string
+  value: string
 }
 
 interface languageMap {
-  [key: string]: string | undefined;
+  [key: string]: string | undefined
 }
 
 export const programmingLanguages: languageMap = {
@@ -42,24 +42,24 @@ export const programmingLanguages: languageMap = {
   sql: ".sql",
   html: ".html",
   css: ".css",
-};
+}
 
 export const generateRandomString = (length: number, lowercase = false) => {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXY3456789";
-  let result = "";
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXY3456789"
+  let result = ""
   for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
+    result += chars.charAt(Math.floor(Math.random() * chars.length))
   }
-  return lowercase ? result.toLowerCase() : result;
-};
+  return lowercase ? result.toLowerCase() : result
+}
 
 const CodeBlock: FC<Props> = memo(({ language, value }) => {
-  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 });
+  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 })
 
   const onCopy = () => {
-    if (isCopied) return;
-    copyToClipboard(value);
-  };
+    if (isCopied) return
+    copyToClipboard(value)
+  }
 
   return (
     <div className="codeblock relative w-full bg-zinc-950 font-sans">
@@ -105,8 +105,8 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
         {value}
       </SyntaxHighlighter>
     </div>
-  );
-});
-CodeBlock.displayName = "CodeBlock";
+  )
+})
+CodeBlock.displayName = "CodeBlock"
 
-export { CodeBlock };
+export { CodeBlock }

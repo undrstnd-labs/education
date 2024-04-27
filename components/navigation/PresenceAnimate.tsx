@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
 export default function PresenceAnimate() {
   return (
@@ -14,5 +14,5 @@ export default function PresenceAnimate() {
         transition: { duration: 0.15, delay: 0.2 },
       }}
     />
-  );
+  )
 }

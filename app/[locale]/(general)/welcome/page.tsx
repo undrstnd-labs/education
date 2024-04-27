@@ -1,11 +1,10 @@
-import Image from "next/image";
-import { Link } from "@lib/navigation";
-
-import type { Metadata } from "next";
+import type { Metadata } from "next"
+import Image from "next/image"
+import { Link } from "@navigation"
 
 export const metadata: Metadata = {
   title: "Bienvenu",
-};
+}
 
 export default function Welcome() {
   return (
@@ -71,5 +70,5 @@ export default function Welcome() {
         </p>
       </div>
     </main>
-  );
+  )
 }

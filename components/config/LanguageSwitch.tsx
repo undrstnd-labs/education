@@ -1,6 +1,9 @@
-"use client";
+"use client"
 
-import { useLocale, useTranslations } from "next-intl";
+import { usePathname, useRouter } from "@navigation"
+import { useLocale, useTranslations } from "next-intl"
+
+import { locales } from "@/config/locale"
 
 import {
   Select,
@@ -9,18 +12,16 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@component/ui/Select";
-import { usePathname, useRouter } from "@lib/navigation";
-import { locales } from "@/config/locale";
+} from "@/components/ui/Select"
 
 export function LanguageSwitch() {
-  const local = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  const t = useTranslations("Components.Config.LanguageSwitch");
+  const local = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
+  const t = useTranslations("Components.Config.LanguageSwitch")
 
   function onSelectChange(nextLocale: string) {
-    router.push(pathname, { locale: nextLocale });
+    router.push(pathname, { locale: nextLocale })
   }
 
   return (
@@ -40,5 +41,5 @@ export function LanguageSwitch() {
         </SelectContent>
       </Select>
     </div>
-  );
+  )
 }

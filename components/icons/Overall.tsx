@@ -1,10 +1,9 @@
-import clsx from "clsx";
-import Image from "next/image";
+import { ReactNode, SVGProps, useId } from "react"
+import Image from "next/image"
+import frame from "@/public/images/phone-frame.svg"
+import clsx from "clsx"
 
-import frame from "@image/phone-frame.svg";
-import { SVGProps, useId, ReactNode } from "react";
-
-import { cn } from "@lib/utils";
+import { cn } from "@/lib/utils"
 
 export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
@@ -34,7 +33,7 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         fill="#fff"
       />
     </svg>
-  );
+  )
 }
 
 export function LogoPNG(
@@ -48,7 +47,7 @@ export function LogoPNG(
       height={798}
       className={className}
     />
-  );
+  )
 }
 
 export function LogoText(props: SVGProps<SVGSVGElement>) {
@@ -94,7 +93,7 @@ export function LogoText(props: SVGProps<SVGSVGElement>) {
         </text>
       </g>
     </svg>
-  );
+  )
 }
 
 function PlaceholderFrame(props: SVGProps<SVGSVGElement>) {
@@ -108,7 +107,7 @@ function PlaceholderFrame(props: SVGProps<SVGSVGElement>) {
       />
       <rect x="154" y="29" width="56" height="5" rx="2.5" fill="#D4D4D4" />
     </svg>
-  );
+  )
 }
 
 export function PhoneFrame({
@@ -117,26 +116,26 @@ export function PhoneFrame({
   priority = false,
   ...props
 }: {
-  className?: string;
-  children?: ReactNode;
-  priority?: boolean;
+  className?: string
+  children?: ReactNode
+  priority?: boolean
 }) {
   return (
     <div className={clsx("relative aspect-[366/729]", className)} {...props}>
       <div className="absolute inset-y-[calc(1/729*100%)] left-[calc(7/729*100%)] right-[calc(5/729*100%)] rounded-[calc(58/366*100%)/calc(58/729*100%)] shadow-2xl" />
-      <div className="absolute left-[calc(23/366*100%)] top-[calc(23/729*100%)] grid h-[calc(686/729*100%)] w-[calc(318/366*100%)] transform grid-cols-1 overflow-hidden bg-gray-900 pt-[calc(23/318*100%)]">
+      <div className="absolute left-[calc(23/366*100%)] top-[calc(23/729*100%)] grid h-[calc(686/729*100%)] w-[calc(318/366*100%)] grid-cols-1 overflow-hidden bg-gray-900 pt-[calc(23/318*100%)]">
         {children}
       </div>
-      <PlaceholderFrame className="pointer-events-none absolute inset-0 h-full w-full fill-gray-100" />
+      <PlaceholderFrame className="pointer-events-none absolute inset-0 size-full fill-gray-100" />
       <Image
         src={frame}
         alt=""
-        className="pointer-events-none absolute inset-0 h-full w-full"
+        className="pointer-events-none absolute inset-0 size-full"
         unoptimized
         priority={priority}
       />
     </div>
-  );
+  )
 }
 
 export function PlayIcon(props: SVGProps<SVGSVGElement>) {
@@ -149,7 +148,7 @@ export function PlayIcon(props: SVGProps<SVGSVGElement>) {
         stroke="#A3A3A3"
       />
     </svg>
-  );
+  )
 }
 
 export function DeviceUserIcon(props: SVGProps<SVGSVGElement>) {
@@ -169,7 +168,7 @@ export function DeviceUserIcon(props: SVGProps<SVGSVGElement>) {
         fill="#A3A3A3"
       />
     </svg>
-  );
+  )
 }
 
 export function DeviceNotificationIcon(props: SVGProps<SVGSVGElement>) {
@@ -187,11 +186,11 @@ export function DeviceNotificationIcon(props: SVGProps<SVGSVGElement>) {
         fill="#737373"
       />
     </svg>
-  );
+  )
 }
 
 export function DeviceTouchIcon(props: SVGProps<SVGSVGElement>) {
-  const id = useId();
+  const id = useId()
 
   return (
     <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" {...props}>
@@ -227,7 +226,7 @@ export function DeviceTouchIcon(props: SVGProps<SVGSVGElement>) {
         fill="#A3A3A3"
       />
     </svg>
-  );
+  )
 }
 
 export function FacebookIcon(props: SVGProps<SVGSVGElement>) {
@@ -239,17 +238,17 @@ export function FacebookIcon(props: SVGProps<SVGSVGElement>) {
         clipRule="evenodd"
       />
     </svg>
-  );
+  )
 }
 
 export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
-  <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+  ;<svg fill="currentColor" viewBox="0 0 24 24" {...props}>
     <path
       fillRule="evenodd"
       d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
       clipRule="evenodd"
     />
-  </svg>;
+  </svg>
 }
 
 export function GithubIcon(props: SVGProps<SVGSVGElement>) {
@@ -261,7 +260,7 @@ export function GithubIcon(props: SVGProps<SVGSVGElement>) {
         clipRule="evenodd"
       />
     </svg>
-  );
+  )
 }
 
 export function IconSpinner({
@@ -278,7 +277,7 @@ export function IconSpinner({
     >
       <path d="M232 128a104 104 0 0 1-208 0c0-41 23.81-78.36 60.66-95.27a8 8 0 0 1 6.68 14.54C60.15 61.59 40 93.27 40 128a88 88 0 0 0 176 0c0-34.73-20.15-66.41-51.34-80.73a8 8 0 0 1 6.68-14.54C208.19 49.64 232 87 232 128Z" />
     </svg>
-  );
+  )
 }
 
 export function IconUsers({
@@ -295,7 +294,7 @@ export function IconUsers({
     >
       <path d="M117.25 157.92a60 60 0 1 0-66.5 0 95.83 95.83 0 0 0-47.22 37.71 8 8 0 1 0 13.4 8.74 80 80 0 0 1 134.14 0 8 8 0 0 0 13.4-8.74 95.83 95.83 0 0 0-47.22-37.71ZM40 108a44 44 0 1 1 44 44 44.05 44.05 0 0 1-44-44Zm210.14 98.7a8 8 0 0 1-11.07-2.33A79.83 79.83 0 0 0 172 168a8 8 0 0 1 0-16 44 44 0 1 0-16.34-84.87 8 8 0 1 1-5.94-14.85 60 60 0 0 1 55.53 105.64 95.83 95.83 0 0 1 47.22 37.71 8 8 0 0 1-2.33 11.07Z" />
     </svg>
-  );
+  )
 }
 
 export function IconMessage({
@@ -312,7 +311,7 @@ export function IconMessage({
     >
       <path d="M216 48H40a16 16 0 0 0-16 16v160a15.84 15.84 0 0 0 9.25 14.5A16.05 16.05 0 0 0 40 240a15.89 15.89 0 0 0 10.25-3.78.69.69 0 0 0 .13-.11L82.5 208H216a16 16 0 0 0 16-16V64a16 16 0 0 0-16-16ZM40 224Zm176-32H82.5a16 16 0 0 0-10.3 3.75l-.12.11L40 224V64h176Z" />
     </svg>
-  );
+  )
 }
 
 export function IconTrash({
@@ -329,7 +328,7 @@ export function IconTrash({
     >
       <path d="M216 48h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16ZM96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128Zm-80-104v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Zm48 0v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Z" />
     </svg>
-  );
+  )
 }
 
 export function IconShare({
@@ -346,5 +345,5 @@ export function IconShare({
     >
       <path d="m237.66 106.35-80-80A8 8 0 0 0 144 32v40.35c-25.94 2.22-54.59 14.92-78.16 34.91-28.38 24.08-46.05 55.11-49.76 87.37a12 12 0 0 0 20.68 9.58c11-11.71 50.14-48.74 107.24-52V192a8 8 0 0 0 13.66 5.65l80-80a8 8 0 0 0 0-11.3ZM160 172.69V144a8 8 0 0 0-8-8c-28.08 0-55.43 7.33-81.29 21.8a196.17 196.17 0 0 0-36.57 26.52c5.8-23.84 20.42-46.51 42.05-64.86C99.41 99.77 127.75 88 152 88a8 8 0 0 0 8-8V51.32L220.69 112Z" />
     </svg>
-  );
+  )
 }

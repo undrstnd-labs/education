@@ -1,19 +1,14 @@
-"use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+"use client"
 
-import { toast } from "@hook/use-toast";
-import { useMediaQuery } from "@hook/use-media-query";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@component/ui/DropdownMenu";
+import { comment } from "@/types/classroom"
+
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,7 +18,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@component/ui/AlertDialog";
+} from "@/components/ui/AlertDialog"
+import { Button } from "@/components/ui/Button"
 import {
   Drawer,
   DrawerClose,
@@ -32,16 +28,23 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "@component/ui/Drawer";
-import { Button } from "@component/ui/Button";
-import { Icons } from "@component/icons/Lucide";
+} from "@/components/ui/Drawer"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu"
+import { Icons } from "@/components/icons/Lucide"
 
-import { comment } from "@/types/classroom";
-import EditComment from "../form/EditComment";
+import EditComment from "../form/EditComment"
+
 interface CommentCardOptionsProps {
-  postId: string;
-  userId: string;
-  comment: comment;
+  postId: string
+  userId: string
+  comment: comment
 }
 
 const CommentCardOptions = ({
@@ -49,12 +52,12 @@ const CommentCardOptions = ({
   postId,
   userId,
 }: CommentCardOptionsProps) => {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isModifyOpen, setIsModifyOpen] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const t = useTranslations("Components.Display.CommentCardOptions");
+  const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+  const [isModifyOpen, setIsModifyOpen] = useState(false)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const t = useTranslations("Components.Display.CommentCardOptions")
   const handleDelete = async () => {
     try {
       const res = await fetch(`/api/comments/${postId}/${comment.id}`, {
@@ -63,29 +66,29 @@ const CommentCardOptions = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId }),
-      });
+      })
       if (res.ok) {
         toast({
           title: t("toastTitleDeleteComment"),
           variant: "default",
           description: t("toastDescriptionDeleteComment"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("toastTitleDeleteCommentError"),
           variant: "destructive",
           description: t("toastDescriptionDeleteCommentError"),
-        });
+        })
       }
     } catch (error) {
       toast({
         title: "Error deleting comment",
         variant: "destructive",
         description: "An error occurred while deleting the comment",
-      });
+      })
     }
-  };
+  }
 
   return (
     <>
@@ -177,7 +180,7 @@ const CommentCardOptions = ({
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default CommentCardOptions;
+export default CommentCardOptions

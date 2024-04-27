@@ -1,16 +1,15 @@
-import { customType } from "@/types";
+import { customType } from "@/types"
 
 import {
   DeviceNotificationIcon,
   DeviceTouchIcon,
   DeviceUserIcon,
-} from "@/components/icons/Overall";
-
+} from "@/components/icons/Overall"
 import {
+  InvestScreen,
   InviteScreen,
   StocksScreen,
-  InvestScreen,
-} from "@/components/sections/easy-steps/Screens";
+} from "@/components/sections/easy-steps/Screens"
 
 export const PrimaryFeaures = {
   maxZIndex: 2147483647,
@@ -77,4 +76,4 @@ export const PrimaryFeaures = {
     filter: "blur(4px)",
     transition: { duration: 0.4 },
   },
-};
+}

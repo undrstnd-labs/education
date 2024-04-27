@@ -176,6 +176,10 @@ model File {
   type String
   url  String
 
+  content String?
+  metadata Json?
+  embedding Unsupported("vector")?
+
   @@map(name: "files")
 }
 

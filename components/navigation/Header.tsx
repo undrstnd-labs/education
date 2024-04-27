@@ -1,16 +1,14 @@
-"use client";
+"use client"
 
-import { Link } from "@lib/navigation";
-import { Popover } from "@headlessui/react";
+import { Popover } from "@headlessui/react"
+import { Link } from "@navigation"
 
-import { Button } from "@component/ui/Button";
-import Container from "@component/ui/Container";
-
-import { LogoPNG } from "@component/icons/Overall";
-import { MenuIcon, ChevronUpIcon } from "@component/icons/Navbar";
-
-import NavLinks from "@/components/navigation/NavLinks";
-import MobileAnimatePresence from "@/components/navigation/MobileAnimatePresence";
+import { Button } from "@/components/ui/Button"
+import Container from "@/components/ui/Container"
+import { ChevronUpIcon, MenuIcon } from "@/components/icons/Navbar"
+import { LogoPNG } from "@/components/icons/Overall"
+import MobileAnimatePresence from "@/components/navigation/MobileAnimatePresence"
+import NavLinks from "@/components/navigation/NavLinks"
 
 export default function Header() {
   return (
@@ -40,9 +38,9 @@ export default function Header() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="h-6 w-6" />
+                        <ChevronUpIcon className="size-6" />
                       ) : (
-                        <MenuIcon className="h-6 w-6" />
+                        <MenuIcon className="size-6" />
                       )
                     }
                   </Popover.Button>
@@ -62,5 +60,5 @@ export default function Header() {
         </Container>
       </nav>
     </header>
-  );
+  )
 }

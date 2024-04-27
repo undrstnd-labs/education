@@ -1,19 +1,15 @@
-"use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { classroom, post } from "@/types/classroom";
-import { toast } from "@hook/use-toast";
-import { useMediaQuery } from "@hook/use-media-query";
+"use client"
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@component/ui/DropdownMenu";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+
+import { classroom, post } from "@/types/classroom"
+
+import { deleteFiles } from "@/lib/storage"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { toast } from "@/hooks/use-toast"
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,7 +19,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@component/ui/AlertDialog";
+} from "@/components/ui/AlertDialog"
+import { Button } from "@/components/ui/Button"
 import {
   Drawer,
   DrawerClose,
@@ -32,24 +29,32 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "@component/ui/Drawer";
-import { Button } from "@component/ui/Button";
-import { Icons } from "@component/icons/Lucide";
-import { deleteFiles } from "@/lib/storage";
-import EditPost from "../form/EditPost";
+} from "@/components/ui/Drawer"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu"
+import { Icons } from "@/components/icons/Lucide"
+
+import EditPost from "../form/EditPost"
+
 interface PostCardOptionsProps {
-  post: post;
-  userId: string;
-  classroom: classroom;
+  post: post
+  userId: string
+  classroom: classroom
 }
 
 const PostCardOptions = ({ classroom, post, userId }: PostCardOptionsProps) => {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [isModifyOpen, setIsModifyOpen] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const t = useTranslations("Components.Display.PostCardOptions");
+  const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false)
+  const [isModifyOpen, setIsModifyOpen] = useState(false)
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const t = useTranslations("Components.Display.PostCardOptions")
   const handleDelete = async () => {
     try {
       const res = await fetch(`/api/posts/${classroom.id}/${post.id}`, {
@@ -58,34 +63,34 @@ const PostCardOptions = ({ classroom, post, userId }: PostCardOptionsProps) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId }),
-      });
+      })
 
       post.files &&
         post.files.length > 0 &&
-        (await deleteFiles(post.files.map((file) => file.url)));
+        (await deleteFiles(post.files.map((file) => file.url)))
 
       if (res.ok) {
         toast({
           title: t("toastTitleDeletePost"),
           variant: "default",
           description: t("toastDescriptionDeletePost"),
-        });
-        router.refresh();
+        })
+        router.refresh()
       } else {
         toast({
           title: t("toastTitleDeletePostError"),
           variant: "destructive",
           description: t("toastDescriptionDeletePostError"),
-        });
+        })
       }
     } catch (error) {
       toast({
         title: t("toastTitleDeletePostError"),
         variant: "destructive",
         description: t("toastDescriptionDeletePostError"),
-      });
+      })
     }
-  };
+  }
 
   return (
     <>
@@ -177,7 +182,7 @@ const PostCardOptions = ({ classroom, post, userId }: PostCardOptionsProps) => {
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default PostCardOptions;
+export default PostCardOptions
