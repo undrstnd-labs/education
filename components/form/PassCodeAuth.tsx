@@ -42,13 +42,13 @@ function OTPform({ email }: { email: string }) {
     setLoading(true)
 
     try {
-      const magicObj = await verifyPassCode(data)
+      const auth = await verifyPassCode(data)
 
-      if (magicObj.verification_token.passCode != data.pin) {
+      if (auth.status === false) {
         throw new Error("Invalid passCode")
       }
 
-      router.push(magicObj.verification_token.verificationUrl)
+      router.push(auth.url)
     } catch (error: any) {
       setLoading(false)
       toast({

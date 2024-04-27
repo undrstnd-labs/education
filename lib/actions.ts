@@ -3,7 +3,6 @@
 import { redirect } from "@navigation"
 import { z } from "zod"
 
-import { TokenType } from "@/types/auth"
 import { type Chat } from "@/types/chat"
 
 import { pinSchema } from "@/config/schema"
@@ -25,8 +24,8 @@ export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
   ).then((res) => res.json())
 
   return {
-    success: true,
-    verification_token: fetchToken as TokenType,
+    status: data.pin === fetchToken.passCode,
+    url: data.pin === fetchToken.passCode ? fetchToken.verificationUrl : "",
   }
 }
 

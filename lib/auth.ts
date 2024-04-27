@@ -61,7 +61,7 @@ export const authOptions: NextAuthOptions = {
             otp_link: url,
             passCode: passCode,
           }),
-        }).then((res) => res.json())
+        })
       },
     }),
   ],

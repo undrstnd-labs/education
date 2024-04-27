@@ -52,6 +52,12 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
         redirect: false,
         callbackUrl: searchParams?.get("from") || "/dashboard",
       })
+
+      router.push(pathname + "?email=" + data.email.toLowerCase())
+      return toast({
+        title: t("toastSignInSuccessTitle"),
+        description: t("toastSignInSuccessDescription"),
+      })
     } catch (error) {
       return toast({
         title: t("toastSignInFailedTitle"),
@@ -60,11 +66,6 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       })
     } finally {
       setIsLoading(false)
-      router.push(pathname + "?email=" + data.email.toLowerCase())
-      return toast({
-        title: t("toastSignInSuccessTitle"),
-        description: t("toastSignInSuccessDescription"),
-      })
     }
   }
 
