@@ -5,16 +5,14 @@ import { Card, CardContent } from "../ui/Card";
 import { Textarea } from "../ui/Textarea";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { addClassroomSchema, commentAddCardSchema } from "@/config/schema";
+import { commentAddCardSchema } from "@/config/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/Form";
 import { Button } from "../ui/Button";
@@ -31,6 +29,7 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
   const t = useTranslations("Pages.Classroom");
   const formSchema = commentAddCardSchema(t);
   const router = useRouter();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,25 +54,35 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
       if (res.ok) {
         form.reset();
         toast({
-          title: "Comment added",
-          description: "Your comment has been added successfully",
+          title: t("commendAddedTitleToast"),
+          description: t("commendAddedDescriptionToast"),
           variant: "default",
         });
         router.refresh();
       } else {
         toast({
-          title: "Error",
-          description: "An error occured while adding the comment",
+          title: t("commentAddedTitleToastErreur"),
+          description: t("commentAddedDescriptionToastErreur"),
           variant: "destructive",
         });
       }
     } catch (error) {
-      console.log(error);
+      toast({
+        title: t("commentAddedTitleToastErreur"),
+        description: t("commentAddedDescriptionToastErreur"),
+        variant: "destructive",
+      });
     } finally {
       form.reset();
       setLoading(false);
     }
   }
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      form.handleSubmit(onSubmit)();
+    }
+  };
   return (
     <Card>
       <CardContent className="w-full  px-6 py-3">
@@ -89,6 +98,9 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
                       <Textarea
                         placeholder={t("addCommentPlaceholder")}
                         {...field}
+                        disabled={loading}
+                        ref={textareaRef}
+                        onKeyDown={handleKeyDown}
                       />
 
                       <Button

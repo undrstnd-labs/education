@@ -52,6 +52,7 @@ import {
   Heart,
   ThumbsUp,
   ThumbsDown,
+  ArrowUpDown,
 } from "lucide-react";
 
 import {
@@ -119,6 +120,7 @@ export const Icons = {
   download: Download,
   copy: Copy,
   arrowDown: ArrowDown,
+  ArrowUpDown: ArrowUpDown,
   refresh: RefreshCw,
   share: Share,
   stop: XCircle,

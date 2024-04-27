@@ -67,7 +67,13 @@ export default async function ClassroomPage({
       <div className="flex flex-col gap-6">
         {classroom.posts && classroom.posts.length > 0 ? (
           classroom.posts.map((post) => (
-            <PostCard key={post.id} post={post} userId={user.id} />
+            <PostCard
+              key={post.id}
+              post={post}
+              userId={user.id}
+              classroom={classroom}
+              role={user.role}
+            />
           ))
         ) : (
           <h1 className="font-bold md:text-xl">

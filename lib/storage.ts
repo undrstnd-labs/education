@@ -3,6 +3,7 @@ import { supabase } from "@lib/supabase";
 
 import { classroom } from "@/types/classroom";
 import { supabaseFile } from "@/types/supabase";
+import { Post } from "@prisma/client";
 
 export async function uploadAvatar(file: File, userId: string) {
   return await supabase.storage
@@ -44,8 +45,9 @@ export async function manageAvatar(file: File, userId: string) {
 
 export const uploadFiles = async (
   files: File[],
-  classroom: classroom
-): Promise<[supabaseFile[], string[]]> => {
+  classroom: classroom,
+  post: Post
+): Promise<supabaseFile[]> => {
   const uploadedFiles: supabaseFile[] = [];
   const urls: string[] = [];
 
@@ -53,7 +55,7 @@ export const uploadFiles = async (
     const { data, error } = await supabase.storage
       .from("files")
       .upload(
-        "/classrooms/" + classroom.name + "/" + uuidv4() + "/" + file.name,
+        "/classrooms/" + classroom.id + "/" + post.id + "/" + uuidv4(),
         file
       );
 
@@ -69,12 +71,11 @@ export const uploadFiles = async (
     };
 
     uploadedFiles.push(uploadedFile);
-    urls.push(data.path);
   });
 
   await Promise.all(uploadPromises);
 
-  return [uploadedFiles, urls];
+  return uploadedFiles;
 };
 
 export const deleteFiles = async (filesUrl: string[]) => {

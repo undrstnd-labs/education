@@ -22,12 +22,26 @@
       "home": "Acceuil"
     },
     "Classroom": {
+      "updatedCommentTitleLabel": "Contenu du commentaire",
+      "updatedCommentTitle": "Modifier le commentaire",
+      "upadtedCommentToastTitleError": "Erreur",
+      "upadtedCommentToastDescriptionError": "Quelque chose s'est mal passé lors de la modification de votre commentaire. Veuillez réessayer.",
+      "upadtedCommentToastTitle": "Commentaire modifié avec succès",
+      "upadtedCommentToastDescription": "Vous avez modifié avec succès un commentaire.",
+      "commentAddedTitleToastErreur": "Erreur",
+      "commentAddedDescriptionToastErreur": "Quelque chose s'est mal passé lors de l'ajout de votre commentaire. Veuillez réessayer.",
+      "commendAddedTitleToast": "Commentaire ajouté avec succès",
+      "commendAddedDescriptionToast": "Vous avez ajouté avec succès un commentaire.",
       "commentAddSchema": "Le commentaire doit comporter au moins 4 caractères.",
       "repliesLabel": "Réponses au commentaire ci-dessus",
       "addCommentPlaceholder": "Ajouter un commentaire",
       "fileOptions": "Options de fichier",
       "downloadFile": "Télécharger le fichier",
       "fileCardSeeFile": "Consulter le fichier",
+      "toastPostModifiedSuccess": "Post modifié avec succès",
+      "toastPostModifiedSuccessDescription": "Vous avez modifié avec succès un post.",
+      "toastPostModifiedFailed": "Échec de la modification du post",
+      "toastPostModifiedFailedDescription": "Quelque chose s'est mal passé lors de la modification de votre post. Veuillez réessayer.",
       "toastPostCreatedFailed": "Création de post échouée",
       "toastPostCreatedFailedDescription": "Quelque chose s'est mal passé lors de la création de votre post. Veuillez réessayer.",
       "toastPostCreatedSuccess": "Post créé avec succès",
@@ -43,6 +57,7 @@
       "formLabelNameAddPost": "Nom du post",
       "formPlaceholderNameAddPost": "Entrez le nom de votre post ici",
       "createPostTitle": "Créer un nouveau post",
+      "updatePostTitle": "Modifier le post",
       "buttonCreate": "Créer classroom",
       "formSchemaPostName": "Le message doit comporter au moins 4 caractères.",
       "formSchemaDescriptionMessage": "La description doit comporter au moins 10 caractères.",
@@ -60,10 +75,10 @@
       "formClassroomNamePlaceholder": "Entrez le nom de votre classroom ici",
       "formClassroomDescriptionPlaceholder": "Entrez la description de votre classroom ici",
 
-      "toast-title-create-error": "Échec de la création de la salle de classe",
-      "toast-description-create-error": "Quelque chose s'est mal passé lors de la création de la salle de classe",
-      "toast-title-update-error": "Échec de la mise à jour de la salle de classe",
-      "toast-description-update-error": "Quelque chose s'est mal passé lors de la mise à jour de la salle de classe",
+      "toast-title-create-error": "Échec de la création du classroom",
+      "toast-description-create-error": "Quelque chose s'est mal passé lors de la création du classroom",
+      "toast-title-update-error": "Échec de la mise à jour du classroom",
+      "toast-description-update-error": "Quelque chose s'est mal passé lors de la mise à jour du classroom",
       "formClassroomCodePlaceholder": "Entrez le code de votre classroom ici",
       "formClassroomButton": "Soumettre",
       "formClassroomJoinButton": "Rejoindre",
@@ -75,6 +90,21 @@
       "joinApiAlreadyErrorDescription": "Vous êtes déjà membre de ce classroom.",
       "joinApiErrorArchived": "Classroom archivé",
       "joinApiErrorArchivedDescription": "Le classroom que vous essayez de rejoindre a été archivé."
+    },
+    "TeacherDashboard": {
+      "title": "Tableau de bord du professeur",
+      "name": "Nom",
+      "status": "Statut",
+      "classCode": "Code de la classe",
+      "archived": "Archivé",
+      "unarchived": "Désarchivé",
+      "inputFilterNames": "Filtrer par nom...",
+      "columnsLabel": "Colonnes",
+      "noResultsLablel": "Aucun résultat",
+      "previousLabel": "Précédent",
+      "nextLabel": "Suivant",
+      "row": "ligne",
+      "created": "créé"
     }
   },
   "Components": {
@@ -160,9 +190,11 @@
       },
       "ClassroomCardOptions": {
         "classroomOption": "Options de classroom",
+        "unarchiveClassroom": "Désarchiver",
         "editClassroom": "Modifier",
         "deleteClassroom": "Supprimer",
         "archiveClassroom": "Archiver",
+        "alertDialogTitleUnarchive": "Êtes-vous sûr de vouloir désarchiver?",
         "alertDialogTitleArchive": "Êtes-vous sûr de vouloir archiver?",
         "alertDialogDescriptionArchive": "Cette action peut être annulée. Cela archivera la classroom et la masquera de la liste des étudiants.",
         "alertDialogTitleDelete": "Êtes-vous sûr que vous voulez supprimer?",
@@ -170,6 +202,7 @@
         "alertDialogCancel": "Annuler",
         "alertDialogAction": "Confirmer",
         "leaveApiSuccess": "Quitter le classroom avec succès",
+        "alertDialogDescriptionUnarchive": "Cette action peut être annulée. Cela désarchivera la classroom.",
         "leaveApiSuccessDescription": "Vous avez quitté avec succès le classroom.",
         "alertDialogLeave": "Êtes-vous sûr de vouloir quitter ce classroom ?",
         "alertDialogLeaveDescription": "Cette action peut être annulée. Cela vous retirera du classroom.",
@@ -177,10 +210,42 @@
         "toastTitleDeleteClassroom": "Classroom supprimé avec succès",
         "toastDescriptionArchiveClassroom": "Vous avez archiver avec succès un classroom.",
         "toastTitleArchiveClassroom": "Classroom archivé avec succès",
-        "error-toast-archive": "Échec de l'archivage de la salle de classe",
-        "error-description-toast-archive": "Quelque chose s'est mal passé lors de l'archivage de la salle de classe",
-        "error-toast-delete": "Échec de la suppression de la salle de classe",
-        "error-description-toast-delete": "Quelque chose s'est mal passé lors de la suppression de la salle de classe"
+        "toastTitleunarchiveClassroom": "Classroom désarchivé avec succès",
+        "toastDescriptionunarchiveClassroom": "Vous avez désarchiver avec succès un classroom.",
+        "error-toast-unarchive": "Échec de la désarchivage du classroom",
+        "error-description-toast-unarchive": "Quelque chose s'est mal passé lors de la désarchivage du classroom",
+        "error-toast-archive": "Échec de l'archivage du classroom",
+        "error-description-toast-archive": "Quelque chose s'est mal passé lors de l'archivage du classroom",
+        "error-toast-delete": "Échec de la suppression du classroom",
+        "error-description-toast-delete": "Quelque chose s'est mal passé lors de la suppression du classroom"
+      },
+      "PostCardOptions": {
+        "toastTitleDeletePost": "Post supprimé avec succès",
+        "toastDescriptionDeletePost": "Vous avez supprimé avec succès un post.",
+        "error-toast-delete": "Échec de la suppression du post",
+        "error-description-toast-delete": "Quelque chose s'est mal passé lors de la suppression du post",
+        "postOption": "Options de post",
+        "editPost": "Modifier",
+        "deletePost": "Supprimer",
+        "alertDialogTitleDelete": "Êtes-vous sûr que vous voulez supprimer?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre post.",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer",
+        "toastTitleDeletePostError": "Échec de la suppression du post",
+        "toastDescriptionDeletePostError": "Quelque chose s'est mal passé lors de la suppression du post. Essayez de nouveau."
+      },
+      "CommentCardOptions": {
+        "commentOption": "Options de commentaire",
+        "editComment": "Modifier",
+        "deleteComment": "Supprimer",
+        "alertDialogTitleDelete": "Êtes-vous sûr que vous voulez supprimer?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre commentaire. ",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer",
+        "toastTitleDeleteComment": "Commentaire supprimé avec succès",
+        "toastDescriptionDeleteComment": "Vous avez supprimé avec succès un commentaire.",
+        "toastTitleDeleteCommentError": "Échec de la suppression du commentaire",
+        "toastDescriptionDeleteCommentError": "Quelque chose s'est mal passé lors de la suppression du commentaire. Essayez de nouveau."
       },
       "Chat": {
         "placeholder": "Écrivez un message...",
@@ -239,6 +304,14 @@
     "Config": {
       "LanguageSwitch": {
         "locale": "{locale, select, en {Anglais} fr {Français} other {Unknown}}"
+      },
+      "ReactionSwitch": {
+        "LIKE": "J'aime",
+        "DISLIKE": "Je n'aime pas",
+        "LOVE": "J'adore",
+        "APPLAUSE": "Applaudissements",
+        "WOW": "Wouah",
+        "INSIGHTFUL": "Instructif"
       }
     }
   },

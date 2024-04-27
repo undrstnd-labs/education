@@ -9,18 +9,22 @@ import {
 } from "@/components/ui/Card";
 import { FileCard } from "@component/showcase/FileCard";
 
-import { post } from "@/types/classroom";
-import CommentAddCard from "@component/showcase/CommentAddCard";
+import { classroom, post } from "@/types/classroom";
+import CommentAddCard from "@/components/form/CommentAddCard";
 import CommentCard from "@component/display/CommentCard";
 import ReactionButton from "@component/display/ReactionButton";
 import { icons } from "@/constants";
+import PostCardOptions from "../showcase/PostCardOptions";
+import { Role } from "@prisma/client";
 
 interface PostCardProps {
   post: post;
   userId: string;
+  classroom: classroom;
+  role: Role;
 }
 
-const PostCard = ({ post, userId }: PostCardProps) => {
+const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
   const reactionCounts = post.reactions.reduce(
     (acc, reaction) => {
       const icon = icons.find((icon) => icon.value === reaction.reactionType);
@@ -36,7 +40,7 @@ const PostCard = ({ post, userId }: PostCardProps) => {
     <div className="flex flex-col gap-2">
       <Card>
         <CardHeader>
-          <CardTitle>
+          <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Image
                 src={post.teacher.user.image!}
@@ -52,7 +56,15 @@ const PostCard = ({ post, userId }: PostCardProps) => {
                 </div>
               </div>
             </div>
+            {role === "TEACHER" && (
+              <PostCardOptions
+                classroom={classroom}
+                post={post}
+                userId={userId}
+              />
+            )}
           </CardTitle>
+          <h2 className="font-bold">{post.name}</h2>
           <CardDescription>{post.content}</CardDescription>
           {post.files && post.files.length > 0 && (
             <div className="grid grid-cols-1 gap-4 pt-0.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

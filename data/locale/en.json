@@ -23,12 +23,26 @@
       "home": "Home"
     },
     "Classroom": {
+      "updatedCommentTitleLabel": "Comment content",
+      "updatedCommentTitle": "Update comment",
+      "upadtedCommentToastTitleError": "Error",
+      "upadtedCommentToastDescriptionError": "An error occurred while updating the comment. Please try again.",
+      "upadtedCommentToastTitle": "Comment updated successfully",
+      "upadtedCommentToastDescription": "You have successfully updated a comment.",
+      "commentAddedTitleToastErreur": "Error",
+      "commentAddedDescriptionToastErreur": "An error occurred while adding a comment. Please try again.",
+      "commendAddedTitleToast": "Comment added successfully",
+      "commendAddedDescriptionToast": "You have successfully added a comment.",
       "commentAddSchema": "Comment content should be at least 4 characters.",
       "repliesLabel": "Replies to the above comment",
       "addCommentPlaceholder": "Add a comment",
       "fileOptions": "File Options",
       "downloadFile": "Download file",
       "fileCardSeeFile": "See file",
+      "toastPostModifiedSuccess": "Post modified successfully",
+      "toastPostModifiedSuccessDescription": "You have successfully modified a post.",
+      "toastPostModifiedFailed": "Post modification failed",
+      "toastPostModifiedFailedDescription": "An error occurred while modifying the post. Please try again.",
       "toastPostCreatedFailed": "Post creation failed",
       "toastPostCreatedFailedDescription": "An error occurred while creating the post. Please try again.",
       "toastPostCreatedSuccess": "Post created successfully",
@@ -44,6 +58,7 @@
       "formLabelNameAddPost": "Post Name",
       "formPlaceholderNameAddPost": "Enter your post name here",
       "createPostTitle": "Create a new post",
+      "updatePostTitle": "Update post",
       "buttonCreate": "Create classroom",
       "formSchemaPostName": "Post Name must contain at least 4 characters.",
       "formSchemaDescriptionMessage": "Post Description must contain at least 10 characters.",
@@ -75,8 +90,24 @@
       "toast-description-create-error": "Something went wrong while creating the classroom",
       "toast-title-update-error": "Failed to update classroom",
       "toast-description-update-error": "Something went wrong while updating the classroom"
+    },
+    "TeacherDashboard": {
+      "title": "Teacher Dashboard",
+      "name": "Name",
+      "status": "Status",
+      "classCode": "Class Code",
+      "archived": "Archived",
+      "unarchived": "Unarchived",
+      "inputFilterNames": "Filter Names...",
+      "columnsLabel": "Columns",
+      "noResultsLablel": "No results.",
+      "previousLabel": "Previous",
+      "nextLabel": "Next",
+      "row": "row",
+      "created": "created"
     }
   },
+
   "Components": {
     "Form": {
       "UserAuth": {
@@ -160,23 +191,62 @@
       },
       "ClassroomCardOptions": {
         "classroomOption": "Classroom Options",
+        "unarchiveClassroom": "Unarchive",
         "editClassroom": "Edit ",
         "deleteClassroom": "Delete",
         "archiveClassroom": "Archive",
+        "alertDialogTitleUnarchive": "Are you sure you want to unarchive?",
         "alertDialogTitleArchive": "Are you sure you want to archive?",
-        "alertDialogDescriptionArchive": "This action can be undone. This will archive the classroom and hide it from the list of the students.",
+        "alertDialogDescriptionArchive": "This action can be undone. This will archive the classroom ",
         "alertDialogTitleDelete": " Are you sure you want to delete?",
         "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your classroom.",
         "alertDialogCancel": "Cancel",
         "alertDialogAction": "Confirm",
         "leaveApiSuccess": "Classroom left successfully",
+        "alertDialogDescriptionUnarchive": "This action can be undone. This will unarchive the classroom.",
         "leaveApiSuccessDescription": "You have successfully left this classroom.",
         "alertDialogLeave": "Are you sure you want to leave this classroom?",
         "alertDialogLeaveDescription": "This action can be undone. This will remove you from the classroom.",
         "toastDescriptionDeleteClassroom": "You have successfully deleted a classroom.",
         "toastTitleDeleteClassroom": "Classroom deleted",
         "toastDescriptionArchiveClassroom": "You have successfully archived a classroom.",
-        "toastTitleArchiveClassroom": "Classroom archived avec succès"
+        "toastTitleArchiveClassroom": "Classroom archived avec succès",
+        "toastTitleunarchiveClassroom": "Classroom unarchived successfully",
+        "toastDescriptionunarchiveClassroom": "You have successfully unarchived a classroom.",
+        "error-toast-unarchive": "Failed to unarchive classroom",
+        "error-description-toast-unarchive": "Something went wrong while unarchiving the classroom",
+        "error-toast-archive": "Failed to archive classroom",
+        "error-description-toast-archive": "Something went wrong while archiving the classroom",
+        "error-toast-delete": "Failed to delete classroom",
+        "error-description-toast-delete": "Something went wrong while deleting the classroom"
+      },
+      "PostCardOptions": {
+        "toastTitleDeletePost": "Post deleted successfully",
+        "toastDescriptionDeletePost": "You have successfully deleted a post.",
+        "error-toast-delete": "Failed to delete post",
+        "error-description-toast-delete": "Something went wrong while deleting the post",
+        "postOption": "Post Options",
+        "editPost": "Edit",
+        "deletePost": "Delete",
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your post.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm",
+        "toastTitleDeletePostError": "Failed to delete post",
+        "toastDescriptionDeletePostError": "An error occurred while deleting the post. Please try again."
+      },
+      "CommentCardOptions": {
+        "commentOption": "Comment Options",
+        "editComment": "Edit",
+        "deleteComment": "Delete",
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your comment.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm",
+        "toastTitleDeleteComment": "Comment deleted successfully",
+        "toastDescriptionDeleteComment": "You have successfully deleted a comment.",
+        "toastTitleDeleteCommentError": "Failed to delete comment",
+        "toastDescriptionDeleteCommentError": "An error occurred while deleting the comment. Please try again."
       },
       "Chat": {
         "placeholder": "Type a message",
@@ -235,6 +305,14 @@
     "Config": {
       "LanguageSwitch": {
         "locale": "{locale, select, en {English} fr {French} other {Unknown}}"
+      },
+      "ReactionSwitch": {
+        "LIKE": "Like",
+        "DISLIKE": "Dislike",
+        "LOVE": "Love",
+        "APPLAUSE": "Applause",
+        "WOW": "Wow",
+        "INSIGHTFUL": "Insightful"
       }
     }
   },

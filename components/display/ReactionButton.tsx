@@ -2,6 +2,13 @@ import { LucideIcon } from "lucide-react";
 import { IconType } from "react-icons/lib";
 import ReactionProvider from "./ReactionProvider";
 import { db } from "@/lib/prisma";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip";
+import { getTranslations } from "next-intl/server";
 
 export type reactionIcon =
   | { Icon: LucideIcon; color: string }
@@ -39,6 +46,7 @@ const ReactionButton = async ({
     return null;
   };
   const reactionId = await isReacted();
+  const t = await getTranslations("Components.Config.ReactionSwitch");
 
   return (
     <ReactionProvider
@@ -48,17 +56,26 @@ const ReactionButton = async ({
       value={value}
       reactionId={reactionId}
     >
-      <div
-        className="flex  items-center justify-center gap-1 rounded-md 
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div
+              className="flex  items-center justify-center gap-1 rounded-md 
         border border-gray-500 px-3 py-1 hover:cursor-pointer hover:bg-accent"
-        style={{ borderColor: reactionId ? icon.color : "gray" }}
-      >
-        <icon.Icon
-          className={`size-4  max-sm:size-3 `}
-          style={{ color: icon.color }}
-        />
-        <span className="text-xs max-sm:text-[10px] ">{count}</span>
-      </div>
+              style={{ borderColor: reactionId ? icon.color : "gray" }}
+            >
+              <icon.Icon
+                className={`size-4  max-sm:size-3 `}
+                style={{ color: icon.color }}
+              />
+              <span className="text-xs max-sm:text-[10px] ">{count}</span>
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p style={{ color: icon.color }}>{t(`${value}`)}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </ReactionProvider>
   );
 };

@@ -1,20 +1,7 @@
 "use client";
-
-import { z } from "zod";
-import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { useRouter } from "@lib/navigation";
+import { classroom, post } from "@/types/classroom";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { Icons } from "@/components/icons/Lucide";
-import { Card, CardContent } from "@/components/ui/Card";
-
-import { toast } from "@hook/use-toast";
-import { addPostSchema } from "@config/schema";
-import { useMediaQuery } from "@hook/use-media-query";
-import { uploadFiles } from "@lib/storage";
-
 import {
   Form,
   FormControl,
@@ -26,35 +13,47 @@ import {
 import { Input } from "@component/ui/Input";
 import { Button } from "@component/ui/Button";
 import { Textarea } from "@component/ui/Textarea";
-import { Drawer, DrawerContent, DrawerTrigger } from "@component/ui/Drawer";
-import { Dialog, DialogContent, DialogTrigger } from "@component/ui/Dialog";
+import { Drawer, DrawerContent } from "@component/ui/Drawer";
+import { Dialog, DialogContent } from "@component/ui/Dialog";
+import { useRouter } from "@/lib/navigation";
+import { useTranslations } from "next-intl";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { editPostSchema } from "@/config/schema";
+import { toast } from "@hook/use-toast";
+import { deleteFiles, uploadFiles } from "@lib/storage";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Icons } from "../icons/Lucide";
 
-import { classroom } from "@/types/classroom";
-import { Post } from "@prisma/client";
-
-interface PostAddCard {
+interface EditPostProps {
+  post: post;
   userId: string;
   classroom: classroom;
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export function PostAddCard({ userId, classroom }: PostAddCard) {
+const EditPost = ({
+  classroom,
+  open,
+  post,
+  setOpen,
+  userId,
+}: EditPostProps) => {
   const router = useRouter();
   const t = useTranslations("Pages.Classroom");
-
-  const [open, setOpen] = useState(false);
-  const [files, setFiles] = useState<File[]>([]);
+  const [files, setFiles] = useState<any[]>(post.files || []);
   const [isLoading, setIsLoading] = useState(false);
-
   const refFiles = useRef<HTMLInputElement>(null);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-
-  const formSchema = addPostSchema(t);
+  const formSchema = editPostSchema(t);
+  console.log(files);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      content: "",
-      files: [],
+      name: post.name || "",
+      content: post.content || "",
+      files: post.files || [],
     },
   });
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,41 +68,29 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
   const openFilePicker = () => {
     refFiles.current?.click();
   };
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      const postRes = await fetch(`/api/posts/${classroom.id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId,
-          name: values.name,
-          content: values.content,
-        }),
-      });
-
-      const post: Post = await postRes.json().catch(() => {
+      deleteFiles(post.files.map((file) => file.url)).catch(() => {
         toast({
-          title: t("toastPostCreatedFailed"),
+          title: t("toastFilesFailed"),
           variant: "destructive",
-          description: t("toastPostCreatedFailedDescription"),
+          description: t("toastFilesFailedDescription"),
         });
         return;
       });
-
       uploadFiles(files, classroom, post)
         .then(async (res) => {
           const resUpdate = await fetch(
             `/api/posts/${classroom.id}/${post.id}`,
             {
-              method: "PATCH",
+              method: "PUT",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
+                name: values.name,
+                content: values.content,
                 userId,
                 files: res.map((file) => {
                   return {
@@ -122,15 +109,15 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
             setFiles([]);
             router.refresh();
             toast({
-              title: t("toastPostCreatedSuccess"),
+              title: t("toastPostModifiedSuccess"),
               variant: "default",
-              description: t("toastPostCreatedSuccessDescription"),
+              description: t("toastPostModifiedSuccessDescription"),
             });
           } else {
             toast({
-              title: t("toastPostCreatedFailed"),
+              title: t("toastPostModifiedFailed"),
               variant: "destructive",
-              description: t("toastPostCreatedFailedDescription"),
+              description: t("toastPostModifiedFailedDescription"),
             });
           }
         })
@@ -147,33 +134,20 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
         });
     } catch (error) {
       toast({
-        title: t("toastPostCreatedFailed"),
+        title: t("toastPostModifiedFailed"),
         variant: "destructive",
-        description: t("toastPostCreatedFailedDescription"),
+        description: t("toastFilesFailedDescription"),
       });
     }
   }
-
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Card className="group transition-all hover:cursor-pointer hover:bg-accent">
-            <CardContent className="flex  items-center gap-4  px-6 py-3 ">
-              <div className="flex size-8 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5">
-                <Icons.add className="size-6 text-gray-500 max-sm:size-4" />
-              </div>
-              <div className="group-hover:underline group-hover:underline-offset-2 hover:underline hover:underline-offset-2 max-sm:text-sm ">
-                {t("createPostTitle")}
-              </div>
-            </CardContent>
-          </Card>
-        </DialogTrigger>
         <DialogContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="mb-8 text-center text-2xl font-bold text-primary">
-                {t("createPostTitle")}
+                {t("updatePostTitle")}
               </div>
               <FormField
                 control={form.control}
@@ -287,18 +261,6 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger asChild>
-          <Card className="group transition-all hover:cursor-pointer hover:bg-accent">
-            <CardContent className="flex  items-center gap-4  px-6 py-3">
-              <div className="flex size-8 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5">
-                <Icons.add className="size-6 text-gray-500 max-sm:size-4" />
-              </div>
-              <div className="group-hover:underline group-hover:underline-offset-2 hover:underline hover:underline-offset-2 max-sm:text-sm">
-                {t("createPostTitle")}
-              </div>
-            </CardContent>
-          </Card>
-        </DrawerTrigger>
         <DrawerContent>
           <Form {...form}>
             <form
@@ -306,7 +268,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
               className="space-y-6 px-6 pb-6"
             >
               <div className="mb-8 text-center text-2xl font-bold text-primary">
-                {t("createPostTitle")}
+                {t("updatePostTitle")}
               </div>
               <FormField
                 control={form.control}
@@ -416,4 +378,6 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
       </Drawer>
     );
   }
-}
+};
+
+export default EditPost;
