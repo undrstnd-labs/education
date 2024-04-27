@@ -5,26 +5,28 @@ import { comment } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
 
-import { Icons } from "../icons/Lucide"
-import CommentAddCard from "../showcase/CommentAddCard"
-import { Button } from "../ui/Button"
+import { Button } from "@/components/ui/Button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/Card"
-import { Label } from "../ui/Label"
+} from "@/components/ui/Card"
+import { Label } from "@/components/ui/Label"
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from "../ui/Sheet"
+} from "@/components/ui/Sheet"
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentAddCard from "@/components/form/CommentAddCard"
+import { Icons } from "@/components/icons/Lucide"
+import CommentCardOptions from "@/components/showcase/CommentCardOptions"
+
 import CommentReply from "./CommentReply"
-import ReactionButton from "./ReactionButton"
 
 interface CommentCardProps {
   userId: string
@@ -65,48 +67,67 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                 </div>
               </div>
             </div>
-            <Button
-              type="submit"
-              size={"icon"}
-              variant={"outline"}
-              className="flex size-7 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5"
-            >
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Icons.replyComment className="size-5 text-gray-500 max-sm:size-4 " />
-                </SheetTrigger>
-                <SheetContent className="flex flex-col gap-4  md:min-w-[500px] lg:min-w-[800px]">
-                  <SheetHeader className="pt-6">
-                    <CommentReply comment={comment} userId={userId} />
-                  </SheetHeader>
-                  <Label className="py-2 font-bold">{t("repliesLabel")}</Label>
-
-                  <div className=" flex flex-1 flex-col gap-2 overflow-y-auto  ">
-                    {comment.replies && comment.replies.length > 0 ? (
-                      comment.replies.map((reply: comment) => (
-                        <CommentReply
-                          key={reply.id}
-                          comment={reply}
-                          userId={userId}
-                        />
-                      ))
-                    ) : (
-                      <Label className="py-2 font-bold">No replies yet</Label>
-                    )}
-                  </div>
-
-                  <SheetFooter className="mt-2">
-                    <div className="w-full">
-                      <CommentAddCard
-                        postId={postId}
+            <div className="flex items-center gap-2">
+              {userId === comment.user.id && (
+                <CommentCardOptions
+                  comment={comment}
+                  postId={postId}
+                  userId={userId}
+                />
+              )}
+              <Button
+                type="submit"
+                size={"icon"}
+                variant={"outline"}
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-500
+                       hover:bg-accent max-sm:size-5"
+              >
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Icons.replyComment className="size-5 text-gray-500 max-sm:size-4 " />
+                  </SheetTrigger>
+                  <SheetContent className="flex flex-col gap-4  md:min-w-[500px] lg:min-w-[800px]">
+                    <SheetHeader className="pt-6">
+                      <CommentReply
+                        comment={comment}
                         userId={userId}
-                        parentid={comment.id}
+                        postId={postId}
                       />
+                    </SheetHeader>
+                    <Label className="py-2 font-bold">
+                      {t("repliesLabel")}
+                    </Label>
+
+                    <div className=" flex flex-1 flex-col gap-2 overflow-y-auto  ">
+                      {comment.replies && comment.replies.length > 0 ? (
+                        comment.replies.map((reply) => {
+                          return (
+                            <CommentReply
+                              key={reply.id}
+                              comment={reply}
+                              userId={userId}
+                              postId={postId}
+                            />
+                          )
+                        })
+                      ) : (
+                        <Label className="py-2 font-bold">No replies yet</Label>
+                      )}
                     </div>
-                  </SheetFooter>
-                </SheetContent>
-              </Sheet>
-            </Button>
+
+                    <SheetFooter className="mt-2">
+                      <div className="w-full">
+                        <CommentAddCard
+                          postId={postId}
+                          userId={userId}
+                          parentid={comment.id}
+                        />
+                      </div>
+                    </SheetFooter>
+                  </SheetContent>
+                </Sheet>
+              </Button>
+            </div>
           </div>
         </CardTitle>
         <CardDescription>{comment.text}</CardDescription>

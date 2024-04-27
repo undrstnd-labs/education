@@ -1,3 +1,4 @@
+import { Post } from "@prisma/client"
 import { v4 as uuidv4 } from "uuid"
 
 import { classroom } from "@/types/classroom"
@@ -45,16 +46,16 @@ export async function manageAvatar(file: File, userId: string) {
 
 export const uploadFiles = async (
   files: File[],
-  classroom: classroom
-): Promise<[supabaseFile[], string[]]> => {
+  classroom: classroom,
+  post: Post
+): Promise<supabaseFile[]> => {
   const uploadedFiles: supabaseFile[] = []
-  const urls: string[] = []
 
   const uploadPromises = files.map(async (file) => {
     const { data, error } = await supabase.storage
       .from("files")
       .upload(
-        "/classrooms/" + classroom.name + "/" + uuidv4() + "/" + file.name,
+        "/classrooms/" + classroom.id + "/" + post.id + "/" + uuidv4(),
         file
       )
 
@@ -70,12 +71,11 @@ export const uploadFiles = async (
     }
 
     uploadedFiles.push(uploadedFile)
-    urls.push(data.path)
   })
 
   await Promise.all(uploadPromises)
 
-  return [uploadedFiles, urls]
+  return uploadedFiles
 }
 
 export const deleteFiles = async (filesUrl: string[]) => {

@@ -22,14 +22,14 @@ interface classroomCardProps {
 
 export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
   return (
-    <Card className="w-full" key={classroom.id}>
+    <Card className="w-full transition-all hover:bg-accent" key={classroom.id}>
       <CardHeader>
         <CardTitle>
           <div className="flex items-center justify-between">
             <Link
               href={`/dashboard/classroom/${classroom.id}`}
               key={classroom.id}
-              className=" flex items-center"
+              className=" flex flex-1 items-center"
             >
               <div className="hover:underline">{classroom.name}</div>
               <span className="text-gray-600">/</span>
@@ -47,14 +47,11 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
             </div>
           </div>
         </CardTitle>
-        <CardDescription className="hover:underline">
-          <Link
-            href={`/dashboard/classroom/${classroom.id}`}
-            key={classroom.id}
-          >
+        <Link href={`/dashboard/classroom/${classroom.id}`} key={classroom.id}>
+          <CardDescription className="hover:underline">
             {classroom.description}
-          </Link>
-        </CardDescription>
+          </CardDescription>
+        </Link>
       </CardHeader>
       <CardContent className="-mt-5 w-full">
         <Link href={`/dashboard/classroom/${classroom.id}`} key={classroom.id}>

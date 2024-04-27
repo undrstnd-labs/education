@@ -51,7 +51,7 @@ export async function PUT(
   const {
     params: { postId, commentId },
   } = routeContextSchema.parse(context)
-  const { userId, text } = await req.json()
+  const { userId, text, parentId } = await req.json()
   if (!(await verifyCurrentUser(userId))) {
     return NextResponse.json(
       { message: "You are not authorized to view this user" },
@@ -77,6 +77,7 @@ export async function PUT(
       },
       data: {
         text,
+        parentId,
       },
     })
 

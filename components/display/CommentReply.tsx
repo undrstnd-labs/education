@@ -11,15 +11,17 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/Card"
-import ReactionButton from "./ReactionButton"
+} from "@/components/ui/Card"
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentCardOptions from "@/components/showcase/CommentCardOptions"
 
 interface CommentReplyProps {
   userId: string
   comment: comment
+  postId: string
 }
 
-const CommentReply = ({ comment, userId }: CommentReplyProps) => {
+const CommentReply = ({ comment, userId, postId }: CommentReplyProps) => {
   const reactionCounts = comment.reactions.reduce(
     (acc: { [x: string]: any }, reaction: { reactionType: string }) => {
       const icon = emojis.find((icon) => icon.value === reaction.reactionType)
@@ -34,7 +36,7 @@ const CommentReply = ({ comment, userId }: CommentReplyProps) => {
     <Card>
       <CardHeader className="pt-2">
         <CardTitle>
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between ">
             <div className="flex items-center gap-2">
               <Image
                 src={comment.user.image!}
@@ -50,6 +52,13 @@ const CommentReply = ({ comment, userId }: CommentReplyProps) => {
                 </div>
               </div>
             </div>
+            {userId === comment.user.id && (
+              <CommentCardOptions
+                comment={comment}
+                postId={postId}
+                userId={userId}
+              />
+            )}
           </div>
         </CardTitle>
         <CardDescription className="text-start">{comment.text}</CardDescription>

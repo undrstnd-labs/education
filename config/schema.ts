@@ -73,8 +73,23 @@ export const addPostSchema = (t: (arg: string) => string) =>
     }),
     files: z.array(z.unknown()).optional(),
   })
+export const editPostSchema = (t: (arg: string) => string) =>
+  z.object({
+    name: z.string().min(4, {
+      message: t("formSchemaPostName"),
+    }),
+    content: z.string().min(10, {
+      message: t("formSchemaDescriptionMessage"),
+    }),
+    files: z.array(z.unknown()).optional(),
+  })
 
 export const commentAddCardSchema = (t: (arg: string) => string) =>
+  z.object({
+    text: z.string().min(4, t("commentAddSchema")),
+  })
+
+export const editCommentSchema = (t: (arg: string) => string) =>
   z.object({
     text: z.string().min(4, t("commentAddSchema")),
   })

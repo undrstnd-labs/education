@@ -1,24 +1,22 @@
 "use client"
 
-import { useRef, useState } from "react"
+import React, { Dispatch, SetStateAction, useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "@navigation"
-import { Post } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { classroom } from "@/types/classroom"
+import { classroom, post } from "@/types/classroom"
 
-import { addPostSchema } from "@/config/schema"
-import { uploadFiles } from "@/lib/storage"
+import { editPostSchema } from "@/config/schema"
+import { useRouter } from "@/lib/navigation"
+import { deleteFiles, uploadFiles } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
 import { Button } from "@/components/ui/Button"
-import { Card, CardContent } from "@/components/ui/Card"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
+import { Dialog, DialogContent } from "@/components/ui/Dialog"
+import { Drawer, DrawerContent } from "@/components/ui/Drawer"
 import {
   Form,
   FormControl,
@@ -29,31 +27,38 @@ import {
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
 import { Textarea } from "@/components/ui/Textarea"
-import { Icons } from "@/components/icons/Lucide"
 
-interface PostAddCard {
+import { Icons } from "../icons/Lucide"
+
+interface EditPostProps {
+  post: post
   userId: string
   classroom: classroom
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export function PostAddCard({ userId, classroom }: PostAddCard) {
+const EditPost = ({
+  classroom,
+  open,
+  post,
+  setOpen,
+  userId,
+}: EditPostProps) => {
   const router = useRouter()
   const t = useTranslations("Pages.Classroom")
-
-  const [open, setOpen] = useState(false)
-  const [files, setFiles] = useState<File[]>([])
+  const [files, setFiles] = useState<any[]>(post.files || [])
   const [isLoading, setIsLoading] = useState(false)
-
   const refFiles = useRef<HTMLInputElement>(null)
   const isDesktop = useMediaQuery("(min-width: 768px)")
-
-  const formSchema = addPostSchema(t)
+  const formSchema = editPostSchema(t)
+  console.log(files)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      content: "",
-      files: [],
+      name: post.name || "",
+      content: post.content || "",
+      files: post.files || [],
     },
   })
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,41 +73,29 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
   const openFilePicker = () => {
     refFiles.current?.click()
   }
-
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
     try {
-      const postRes = await fetch(`/api/posts/${classroom.id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId,
-          name: values.name,
-          content: values.content,
-        }),
-      })
-
-      const post: Post = await postRes.json().catch(() => {
+      deleteFiles(post.files.map((file) => file.url)).catch(() => {
         toast({
-          title: t("toastPostCreatedFailed"),
+          title: t("toastFilesFailed"),
           variant: "destructive",
-          description: t("toastPostCreatedFailedDescription"),
+          description: t("toastFilesFailedDescription"),
         })
         return
       })
-
       uploadFiles(files, classroom, post)
         .then(async (res) => {
           const resUpdate = await fetch(
             `/api/posts/${classroom.id}/${post.id}`,
             {
-              method: "PATCH",
+              method: "PUT",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
+                name: values.name,
+                content: values.content,
                 userId,
                 files: res.map((file) => {
                   return {
@@ -121,15 +114,15 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
             setFiles([])
             router.refresh()
             toast({
-              title: t("toastPostCreatedSuccess"),
+              title: t("toastPostModifiedSuccess"),
               variant: "default",
-              description: t("toastPostCreatedSuccessDescription"),
+              description: t("toastPostModifiedSuccessDescription"),
             })
           } else {
             toast({
-              title: t("toastPostCreatedFailed"),
+              title: t("toastPostModifiedFailed"),
               variant: "destructive",
-              description: t("toastPostCreatedFailedDescription"),
+              description: t("toastPostModifiedFailedDescription"),
             })
           }
         })
@@ -146,33 +139,20 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
         })
     } catch (error) {
       toast({
-        title: t("toastPostCreatedFailed"),
+        title: t("toastPostModifiedFailed"),
         variant: "destructive",
-        description: t("toastPostCreatedFailedDescription"),
+        description: t("toastFilesFailedDescription"),
       })
     }
   }
-
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Card className="group transition-all hover:cursor-pointer hover:bg-accent">
-            <CardContent className="flex  items-center gap-4  px-6 py-3 ">
-              <div className="flex size-8 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5">
-                <Icons.add className="size-6 text-gray-500 max-sm:size-4" />
-              </div>
-              <div className="group-hover:underline group-hover:underline-offset-2 hover:underline hover:underline-offset-2 max-sm:text-sm ">
-                {t("createPostTitle")}
-              </div>
-            </CardContent>
-          </Card>
-        </DialogTrigger>
         <DialogContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="mb-8 text-center text-2xl font-bold text-primary">
-                {t("createPostTitle")}
+                {t("updatePostTitle")}
               </div>
               <FormField
                 control={form.control}
@@ -262,7 +242,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                               className="absolute right-0 top-0 pr-2"
                               disabled={isLoading}
                             >
-                              <Icons.close className="mt-1.5 size-4 rounded-full border border-red-300 text-red-500" />
+                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -274,7 +254,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
 
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading && (
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>
@@ -286,18 +266,6 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
   } else {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger asChild>
-          <Card className="group transition-all hover:cursor-pointer hover:bg-accent">
-            <CardContent className="flex  items-center gap-4  px-6 py-3">
-              <div className="flex size-8 items-center justify-center rounded-full border border-gray-500 hover:bg-accent max-sm:size-5">
-                <Icons.add className="size-6 text-gray-500 max-sm:size-4" />
-              </div>
-              <div className="group-hover:underline group-hover:underline-offset-2 hover:underline hover:underline-offset-2 max-sm:text-sm">
-                {t("createPostTitle")}
-              </div>
-            </CardContent>
-          </Card>
-        </DrawerTrigger>
         <DrawerContent>
           <Form {...form}>
             <form
@@ -305,7 +273,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
               className="space-y-6 px-6 pb-6"
             >
               <div className="mb-8 text-center text-2xl font-bold text-primary">
-                {t("createPostTitle")}
+                {t("updatePostTitle")}
               </div>
               <FormField
                 control={form.control}
@@ -394,7 +362,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                               className="absolute right-0 top-0 pr-2"
                               disabled={isLoading}
                             >
-                              <Icons.close className="mt-1.5 size-4 rounded-full border border-red-300 text-red-500" />
+                              <Icons.close className="mt-1.5 h-4 w-4 rounded-full border border-red-300 text-red-500" />
                             </button>
                           </div>
                         </div>
@@ -405,7 +373,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
               />
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading && (
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 {t("formClassroomButton")}
               </Button>
@@ -416,3 +384,5 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
     )
   }
 }
+
+export default EditPost

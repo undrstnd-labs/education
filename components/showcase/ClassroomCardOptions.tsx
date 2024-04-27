@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { Classroom, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
+import { useRouter } from "@/lib/navigation"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
@@ -57,7 +57,7 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
 
   const handleArchive = async () => {
     try {
-      const res = await fetch(`/api/classrooms/${classroom.id}`, {
+      const res = await fetch(`/api/classrooms/${classroom.id}/archive`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -73,11 +73,50 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           description: t("toastDescriptionArchiveClassroom"),
         })
         router.refresh()
+      } else {
+        toast({
+          title: t("error-toast-archive"),
+          description: t("error-description-toast-archive"),
+          variant: "destructive",
+        })
       }
     } catch (error) {
       toast({
         title: t("error-toast-archive"),
         description: t("error-description-toast-archive"),
+        variant: "destructive",
+      })
+    }
+  }
+  const handleUnarchive = async () => {
+    try {
+      const res = await fetch(`/api/classrooms/${classroom.id}/desarchive`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: classroom.teacher.user.id,
+          isArchived: false,
+        }),
+      })
+      if (res.ok) {
+        toast({
+          title: t("toastTitleunarchiveClassroom"),
+          description: t("toastDescriptionunarchiveClassroom"),
+        })
+        router.refresh()
+      } else {
+        toast({
+          title: t("error-toast-unarchive"),
+          description: t("error-description-toast-unarchive"),
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      toast({
+        title: t("error-toast-unarchive"),
+        description: t("error-description-toast-unarchive"),
         variant: "destructive",
       })
     }
@@ -101,11 +140,17 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           description: t("toastDescriptionDeleteClassroom"),
         })
         router.refresh()
+      } else {
+        toast({
+          title: t("error-toast-delete"),
+          description: t("error-description-toast-delete"),
+          variant: "destructive",
+        })
       }
     } catch (error) {
       toast({
         title: t("error-toast-delete"),
-        description: t("error-description-toast-arcdeletehive"),
+        description: t("error-description-toast-delete"),
         variant: "destructive",
       })
     }
@@ -138,8 +183,10 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
             className="flex items-center gap-2 hover:cursor-pointer"
             onClick={() => setIsArchiveOpen(true)}
           >
-            <Icons.archiveClassroom className="size-4" />
-            {t("archiveClassroom")}
+            <Icons.archiveClassroom className="h-4 w-4" />
+            {classroom.isArchived
+              ? t("unarchiveClassroom")
+              : t("archiveClassroom")}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center gap-2 text-red-600 hover:cursor-pointer"
@@ -155,15 +202,21 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>
-                {t("alertDialogTitleArchive")}
+                {classroom.isArchived
+                  ? t("alertDialogTitleUnarchive")
+                  : t("alertDialogTitleArchive")}
               </AlertDialogTitle>
               <AlertDialogDescription>
-                {t("alertDialogDescriptionArchive")}
+                {classroom.isArchived
+                  ? t("alertDialogDescriptionUnarchive")
+                  : t("alertDialogDescriptionArchive")}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>{t("alertDialogCancel")}</AlertDialogCancel>
-              <AlertDialogAction onClick={handleArchive}>
+              <AlertDialogAction
+                onClick={classroom.isArchived ? handleUnarchive : handleArchive}
+              >
                 {t("alertDialogAction")}
               </AlertDialogAction>
             </AlertDialogFooter>
@@ -173,14 +226,26 @@ export function ClassroomCardOptions({ classroom }: ClassroomCardProps) {
         <Drawer open={isArchiveOpen} onOpenChange={setIsArchiveOpen}>
           <DrawerContent className="pb-2">
             <DrawerHeader className="text-left">
-              <DrawerTitle> {t("alertDialogTitleArchive")}</DrawerTitle>
+              <DrawerTitle>
+                {" "}
+                {classroom.isArchived
+                  ? t("alertDialogTitleUnarchive")
+                  : t("alertDialogTitleArchive")}
+              </DrawerTitle>
               <DrawerDescription>
-                {t("alertDialogDescriptionArchive")}
+                {classroom.isArchived
+                  ? t("alertDialogDescriptionUnarchive")
+                  : t("alertDialogDescriptionArchive")}
               </DrawerDescription>
             </DrawerHeader>
             <DrawerFooter className="pt-2">
               <DrawerClose asChild>
-                <Button variant="default" onClick={handleArchive}>
+                <Button
+                  variant="default"
+                  onClick={
+                    classroom.isArchived ? handleUnarchive : handleArchive
+                  }
+                >
                   {t("alertDialogAction")}
                 </Button>
               </DrawerClose>

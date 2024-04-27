@@ -1,22 +1,20 @@
 "use client"
 
-import { useState } from "react"
+import { KeyboardEvent, useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { addClassroomSchema, commentAddCardSchema } from "@/config/schema"
+import { commentAddCardSchema } from "@/config/schema"
 import { useRouter } from "@/lib/navigation"
 import { toast } from "@/hooks/use-toast"
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/Form"
 
@@ -36,6 +34,7 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
   const t = useTranslations("Pages.Classroom")
   const formSchema = commentAddCardSchema(t)
   const router = useRouter()
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -60,23 +59,33 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
       if (res.ok) {
         form.reset()
         toast({
-          title: "Comment added",
-          description: "Your comment has been added successfully",
+          title: t("commendAddedTitleToast"),
+          description: t("commendAddedDescriptionToast"),
           variant: "default",
         })
         router.refresh()
       } else {
         toast({
-          title: "Error",
-          description: "An error occured while adding the comment",
+          title: t("commentAddedTitleToastErreur"),
+          description: t("commentAddedDescriptionToastErreur"),
           variant: "destructive",
         })
       }
     } catch (error) {
-      console.log(error)
+      toast({
+        title: t("commentAddedTitleToastErreur"),
+        description: t("commentAddedDescriptionToastErreur"),
+        variant: "destructive",
+      })
     } finally {
       form.reset()
       setLoading(false)
+    }
+  }
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault()
+      form.handleSubmit(onSubmit)()
     }
   }
   return (
@@ -94,14 +103,17 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
                       <Textarea
                         placeholder={t("addCommentPlaceholder")}
                         {...field}
+                        disabled={loading}
+                        ref={textareaRef}
+                        onKeyDown={handleKeyDown}
                       />
 
                       <Button
                         type="submit"
                         size={"icon"}
                         variant={"outline"}
-                        className="absolute bottom-2 right-2 flex size-6 items-center justify-center rounded-full border border-gray-500 hover:bg-accent
-                       max-sm:size-5"
+                        className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full border border-gray-500
+                       hover:bg-accent max-sm:size-5"
                         disabled={loading}
                       >
                         <Icons.add className="size-5 text-gray-500 max-sm:size-4 " />

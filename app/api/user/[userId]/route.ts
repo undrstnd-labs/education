@@ -79,7 +79,32 @@ export async function DELETE(
         id: userId,
       },
     })
+    if (user.role === "STUDENT") {
+      const classrooms = await db.classroom.findMany({
+        where: {
+          students: {
+            some: {
+              userId: userId,
+            },
+          },
+        },
+      })
 
+      for (const classroom of classrooms) {
+        await db.classroom.update({
+          where: {
+            id: classroom.id,
+          },
+          data: {
+            students: {
+              disconnect: {
+                userId: userId,
+              },
+            },
+          },
+        })
+      }
+    }
     //FIXME: MAYBE delete from the students this classroom
 
     return NextResponse.json(user, { status: 200 })

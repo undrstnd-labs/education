@@ -20,6 +20,10 @@ export default async function OnboardingPage() {
     redirect("/login")
     return null
   }
+  if (user) {
+    redirect("/dashboard")
+    return null
+  }
 
   return (
     <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">

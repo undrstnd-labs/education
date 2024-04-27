@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import * as z from "zod"
 
+import { supabaseFile } from "@/types/supabase"
+
 import { db } from "@/lib/prisma"
 import { getCurrentUser, verifyCurrentTeacher } from "@/lib/session"
 
@@ -115,7 +117,113 @@ export async function PUT(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
-  const { userId, name, content } = await req.json()
+  const { userId, name, content, files } = await req.json()
+  const {
+    params: { classroomId, postId },
+  } = routeContextSchema.parse(context)
+
+  if (!(await verifyCurrentTeacher(userId))) {
+    return NextResponse.json(
+      { message: "You are not authorized to update this classroom" },
+      { status: 403 }
+    )
+  }
+
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  })
+
+  if (!user) {
+    return NextResponse.json({ message: "User not found" }, { status: 404 })
+  }
+
+  const teacher = await db.teacher.findUnique({
+    where: {
+      userId: user.id,
+    },
+  })
+
+  if (!teacher) {
+    return NextResponse.json({ message: "Teacher not found" }, { status: 404 })
+  }
+
+  const classroom = await db.classroom.findUnique({
+    where: {
+      id: classroomId,
+    },
+  })
+
+  if (!classroom) {
+    return NextResponse.json(
+      { message: "Classroom not found" },
+      { status: 404 }
+    )
+  }
+
+  if (teacher.id !== classroom.teacherId) {
+    return NextResponse.json(
+      { message: "Teacher is not in the classroom" },
+      { status: 403 }
+    )
+  }
+  if (!name || !content) {
+    return NextResponse.json(
+      {
+        message: "All fileds are required",
+      },
+      {
+        status: 400,
+      }
+    )
+  }
+  try {
+    const post = await db.post.findFirst({
+      where: {
+        id: postId,
+        classroomId,
+      },
+    })
+    await db.file.deleteMany({
+      where: {
+        postId: post!.id,
+      },
+    })
+
+    const updatedpost = await db.post.update({
+      where: {
+        id: postId,
+        classroomId,
+      },
+      data: {
+        name,
+        content,
+        files:
+          files.length === 0
+            ? undefined
+            : {
+                create: files.map((file: supabaseFile) => ({
+                  size: file.size,
+                  name: file.name,
+                  type: file.type,
+                  url: file.url,
+                })),
+              },
+      },
+    })
+
+    return NextResponse.json(updatedpost, { status: 200 })
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+}
+
+export async function PATCH(
+  req: Request,
+  context: z.infer<typeof routeContextSchema>
+) {
+  const { userId, files } = await req.json()
   const {
     params: { classroomId, postId },
   } = routeContextSchema.parse(context)
@@ -174,8 +282,14 @@ export async function PUT(
         classroomId,
       },
       data: {
-        name,
-        content,
+        files: {
+          create: files.map((file: supabaseFile) => ({
+            size: file.size,
+            name: file.name,
+            type: file.type,
+            url: file.url,
+          })),
+        },
       },
     })
 
