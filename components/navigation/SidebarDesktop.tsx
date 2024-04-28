@@ -3,7 +3,7 @@ import { Student, User } from "@prisma/client"
 import { ChatHistory } from "@/components/display/ChatHistory"
 import { Sidebar } from "@/components/navigation/Sidebar"
 
-export async function SidebarDesktop({
+export function SidebarDesktop({
   student,
 }: {
   student: Student & { user: User }

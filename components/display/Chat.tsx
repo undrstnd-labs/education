@@ -12,15 +12,16 @@ import { ChatList } from "@/components/display/ChatList"
 import { ChatPanel } from "@/components/form/ChatPanel"
 import { EmptyScreen } from "@/components/showcase/ChatEmptyScreen"
 
-export interface ChatProps extends React.ComponentProps<"div"> {
+export interface ChatProps {
   id?: string
   student: Student & { user: User }
   initialMessages?: Message[]
 }
 
-export function Chat({ id, initialMessages, className, student }: ChatProps) {
+export function Chat({ id, initialMessages, student }: ChatProps) {
   const path = usePathname()
   const router = useRouter()
+
   const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
     useScrollAnchor()
   const { messages, append, reload, stop, isLoading, input, setInput } =
@@ -62,7 +63,7 @@ export function Chat({ id, initialMessages, className, student }: ChatProps) {
       className="group w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
       ref={scrollRef}
     >
-      <div className={cn("pb-[200px] pt-20", className)} ref={messagesRef}>
+      <div className={cn("pb-[200px] pt-20")} ref={messagesRef}>
         {messages.length ? (
           <ChatList messages={messages} student={student} />
         ) : (

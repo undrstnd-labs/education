@@ -26,8 +26,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip"
-import { IconShare, IconSpinner, IconTrash } from "@/components/icons/Overall"
-import { ChatShareDialog } from "@/components/showcase/ChatShareDialog"
+import { IconSpinner, IconTrash } from "@/components/icons/Overall"
 
 interface SidebarActionsProps {
   chat: Chat
@@ -35,14 +34,9 @@ interface SidebarActionsProps {
     id: string
     path: string
   }) => Promise<ServerActionResult<void>>
-  //shareChat: (id: string) => ServerActionResult<Chat>;
 }
 
-export function SidebarActions({
-  chat,
-  removeChat,
-  // shareChat,
-}: SidebarActionsProps) {
+export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
   const router = useRouter()
   const t = useTranslations("Components.Showcase.SidebarActions")
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
@@ -53,21 +47,6 @@ export function SidebarActions({
     <div>
       <div className="flex items-center space-x-2 py-1">
         <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                disabled
-                variant="ghost"
-                size={"small-icon"}
-                className="size-8 p-0 hover:bg-background"
-                onClick={() => setShareDialogOpen(true)}
-              >
-                <IconShare />
-                <span className="sr-only">Share</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>{t("share-chat")}</TooltipContent>
-          </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -89,14 +68,6 @@ export function SidebarActions({
           </Tooltip>
         </TooltipProvider>
       </div>
-
-      {/*       <ChatShareDialog
-        chat={chat}
-        shareChat={shareChat}
-        open={shareDialogOpen}
-        onOpenChange={setShareDialogOpen}
-        onCopy={() => setShareDialogOpen(false)}
-      /> */}
 
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>

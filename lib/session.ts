@@ -88,21 +88,23 @@ export async function userAuthentificateVerification(
   return null
 }
 
-export async function getCurrentStudent(userId: string) {
+export async function getCurrentStudent(userId?: string) {
   const session = await getCurrentUser()
 
   if (!session) {
     return false
   }
 
-  return await db.student.findUnique({
-    where: {
-      userId,
-    },
-    include: {
-      user: true,
-    },
-  })
+  return await db.student
+    .findUnique({
+      where: {
+        userId: userId || session.id,
+      },
+      include: {
+        user: true,
+      },
+    })
+    .catch(() => null)
 }
 
 export async function getCurrentEntity(user: User) {

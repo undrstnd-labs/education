@@ -19,16 +19,14 @@ export function useSidebar() {
   if (!context) {
     throw new Error("useSidebarContext must be used within a SidebarProvider")
   }
-
   return context
 }
 
 interface SidebarProviderProps {
   children: React.ReactNode
-  className?: string
 }
 
-export function SidebarProvider({ children, className }: SidebarProviderProps) {
+export function SidebarProvider({ children }: SidebarProviderProps) {
   const [isSidebarOpen, setSidebarOpen] = React.useState(true)
   const [isLoading, setLoading] = React.useState(true)
 

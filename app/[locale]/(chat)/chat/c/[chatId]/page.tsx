@@ -51,7 +51,9 @@ export default async function ChatPage({
   }
 
   return (
-    // @ts-ignore: chat is not null
-    <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+    <>
+      {/*      @ts-ignore: chat is not null*/}
+      <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+    </>
   )
 }

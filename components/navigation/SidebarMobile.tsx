@@ -1,14 +1,6 @@
-"use client"
-
 import { Button } from "@/components/ui/Button"
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/Sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet"
 import { Icons } from "@/components/icons/Lucide"
-import { Sidebar } from "@/components/navigation/Sidebar"
 
 interface SidebarMobileProps {
   children: React.ReactNode
@@ -27,7 +19,7 @@ export function SidebarMobile({ children }: SidebarMobileProps) {
         side="left"
         className="inset-y-0 flex h-auto w-[300px] flex-col p-0"
       >
-        <Sidebar className="flex">{children}</Sidebar>
+        {children}
       </SheetContent>
     </Sheet>
   )

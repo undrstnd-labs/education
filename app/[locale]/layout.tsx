@@ -2,15 +2,14 @@ import "@/styles/globals.css"
 
 import type { Metadata, Viewport } from "next"
 import { GeistSans } from "geist/font/sans"
-import { NextIntlClientProvider, useMessages } from "next-intl"
 import { getTranslations } from "next-intl/server"
 
 import { siteConfig } from "@/config/site"
 
 import { Toaster } from "@/components/ui/Toaster"
 import { Analytics } from "@/components/config/Analytics"
+import { Providers } from "@/components/config/Providers"
 import { TailwindIndicator } from "@/components/config/TailwindIndicator"
-import { ThemeProvider } from "@/components/config/ThemeProvider"
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -96,24 +95,16 @@ export default function PrincipalLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
-  const messages = useMessages()
   return (
     <html lang={locale}>
       <head />
       <body className={GeistSans.className}>
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-            <Analytics />
-            <TailwindIndicator />
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <Providers locale={locale}>
+          {children}
+          <Toaster />
+          <Analytics />
+          <TailwindIndicator />
+        </Providers>
       </body>
     </html>
   )

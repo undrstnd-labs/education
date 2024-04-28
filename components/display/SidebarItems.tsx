@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import { Chat } from "@/types/chat"
 
-import { removeChat, shareChat } from "@/lib/actions"
+import { removeChat } from "@/lib/actions"
 
 import { SidebarItem } from "@/components/display/SidebarItem"
 import { SidebarActions } from "@/components/showcase/SidebarActions"
@@ -29,12 +29,7 @@ export function SidebarItems({ chats }: SidebarItemsProps) {
               }}
             >
               <SidebarItem index={index} chat={chat}>
-                <SidebarActions
-                  chat={chat}
-                  removeChat={removeChat as any}
-                  // TODO: Implement the share function just to duplicate the content
-                  //shareChat={shareChat as any}
-                />
+                <SidebarActions chat={chat} removeChat={removeChat as any} />
               </SidebarItem>
             </motion.div>
           )
