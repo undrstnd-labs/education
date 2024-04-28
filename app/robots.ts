@@ -4,8 +4,8 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: "/private/",
+      allow: ["/", "/login", "/register", "/about", "/support", "/welcome"],
+      disallow: ["/dashboard", "/classroom", "/chat"],
     },
     sitemap: "https://undrstnd.vercel.app/sitemap.xml",
   }
