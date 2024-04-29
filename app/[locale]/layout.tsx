@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 
 import type { Metadata, Viewport } from "next"
 import { GeistSans } from "geist/font/sans"
+import { NextIntlClientProvider, useMessages } from "next-intl"
 import { getTranslations } from "next-intl/server"
 
 import { siteConfig } from "@/config/site"
@@ -95,16 +96,19 @@ export default function PrincipalLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
+  const messages = useMessages()
   return (
     <html lang={locale}>
       <head />
       <body className={GeistSans.className}>
-        <Providers locale={locale}>
-          {children}
-          <Toaster />
-          <Analytics />
-          <TailwindIndicator />
-        </Providers>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <Providers>
+            {children}
+            <Toaster />
+            <Analytics />
+            <TailwindIndicator />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

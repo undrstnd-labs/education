@@ -9,7 +9,7 @@ import { buttonVariants } from "@/components/ui/Button"
 import { SidebarList } from "@/components/display/SidebarList"
 import { Icons } from "@/components/icons/Lucide"
 
-export async function ChatHistory({
+export function ChatHistory({
   student,
 }: {
   student: Student & { user: User }

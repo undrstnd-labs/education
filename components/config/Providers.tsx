@@ -11,18 +11,14 @@ import { TooltipProvider } from "@/components/ui/Tooltip"
 
 export function Providers({
   children,
-  locale,
-  ...props
-}: ThemeProviderProps & { locale: string }) {
-  const messages = useMessages()
 
+  ...props
+}: ThemeProviderProps) {
   return (
     <NextThemesProvider {...props}>
-      <NextIntlClientProvider messages={messages} locale={locale}>
-        <SidebarProvider>
-          <TooltipProvider>{children}</TooltipProvider>
-        </SidebarProvider>
-      </NextIntlClientProvider>
+      <SidebarProvider>
+        <TooltipProvider>{children}</TooltipProvider>
+      </SidebarProvider>
     </NextThemesProvider>
   )
 }
