@@ -21,7 +21,8 @@ export interface ChatPanelProps
     | "input"
     | "setInput"
   > {
-  id?: string
+  id: string
+  studentId: string
   title?: string
   isAtBottom: boolean
   scrollToBottom: () => void
@@ -29,6 +30,7 @@ export interface ChatPanelProps
 
 export function ChatPanel({
   id,
+  studentId,
   title,
   isLoading,
   stop,
@@ -103,6 +105,8 @@ export function ChatPanel({
                 role: "user",
               })
             }}
+            id={id}
+            studentId={studentId}
             input={input}
             setInput={setInput}
             isLoading={isLoading}

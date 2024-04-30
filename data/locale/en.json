@@ -175,7 +175,9 @@
         "file-max-error": "You can only upload 1 file",
         "click-to-select": "Click to upload",
         "or-drag-drop": "or drag and drop",
-        "pdf-only": "Only PDF files are allowed"
+        "pdf-only": "Only PDF files are allowed",
+        "upload-success": "File uploaded successfully",
+        "upload-failed": "Failed to upload file"
       },
       "ChatPanel": {
         "stop-generating": "Stop generating",
@@ -342,6 +344,9 @@
       },
       "Chat": {
         "title": "Chat"
+      },
+      "Onboarding": {
+        "title": "Onboarding"
       }
     }
   }

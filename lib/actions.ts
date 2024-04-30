@@ -3,10 +3,11 @@
 import { redirect } from "@navigation"
 import { z } from "zod"
 
-import { type Chat } from "@/types/chat"
+import { type FileUpload } from "@/types/file"
 
 import { pinSchema } from "@/config/schema"
 import { db } from "@/lib/prisma"
+import { deleteFile } from "@/lib/storage"
 
 export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
   const data = pinSchema.parse({
@@ -48,7 +49,44 @@ export async function getChat(id: string, studentId: string) {
 }
 
 export async function removeChat({ id }: { id: string }) {
-  return db.conversation.delete({ where: { id } })
+  const conversation = await db.conversation.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      fileId: true,
+    },
+  })
+
+  // now let's delete the file from storage
+
+  if (conversation?.fileId) {
+    const file = await db.file.findUnique({
+      where: {
+        id: conversation?.fileId,
+      },
+    })
+
+    if (file) {
+      await deleteFile(file.url)
+    }
+
+    await db.file.deleteMany({
+      where: {
+        id: conversation.fileId,
+      },
+    })
+  }
+
+  try {
+    return db.conversation.delete({
+      where: {
+        id,
+      },
+    })
+  } finally {
+    return { message: "Chat not found" }
+  }
 }
 
 export async function clearChats() {
@@ -61,8 +99,35 @@ export async function getSharedChat(id: string) {
 
 export async function shareChat(id: string) {}
 
-export async function saveChat(chat: Chat) {
-  // TODO: Save a chat
+export async function saveChat(
+  chatId: string,
+  studentId: string,
+  file: FileUpload,
+  path: string
+) {
+  const createdFile = await saveFile(file, studentId)
+
+  return db.conversation.create({
+    data: {
+      id: chatId,
+      title: file.name,
+      path,
+      studentId,
+      fileId: createdFile.id,
+    },
+  })
+}
+
+export async function saveFile(file: FileUpload, studentId: string) {
+  return db.file.create({
+    data: {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+      url: file.url,
+      studentId,
+    },
+  })
 }
 
 export async function refreshHistory(path: string) {

@@ -10,7 +10,7 @@ import { classroom, post } from "@/types/classroom"
 
 import { editPostSchema } from "@/config/schema"
 import { useRouter } from "@/lib/navigation"
-import { deleteFiles, uploadFiles } from "@/lib/storage"
+import { deleteFiles, uploadFilesClassroom } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
@@ -84,7 +84,7 @@ const EditPost = ({
         })
         return
       })
-      uploadFiles(files, classroom, post)
+      uploadFilesClassroom(files, classroom, post)
         .then(async (res) => {
           const resUpdate = await fetch(
             `/api/posts/${classroom.id}/${post.id}`,

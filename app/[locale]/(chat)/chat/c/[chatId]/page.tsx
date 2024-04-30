@@ -42,18 +42,16 @@ export default async function ChatPage({
 
   const chat = await getFormattedChat(params.chatId, student.id)
 
-  if (!chat) {
+  if (!chat || !chat.id) {
     redirect("/chat")
+    return null
   }
 
   if (chat?.studentId && chat.studentId !== student.id) {
     redirect("/chat")
+    return null
   }
 
-  return (
-    <>
-      {/*      @ts-ignore: chat is not null*/}
-      <Chat id={chat.id} student={student} initialMessages={chat.messages} />
-    </>
-  )
+  // @ts-ignore: initialMessages is not null
+  return <Chat id={chat.id} student={student} initialMessages={chat.messages} />
 }

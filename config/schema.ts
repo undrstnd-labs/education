@@ -73,6 +73,7 @@ export const addPostSchema = (t: (arg: string) => string) =>
     }),
     files: z.array(z.unknown()).optional(),
   })
+
 export const editPostSchema = (t: (arg: string) => string) =>
   z.object({
     name: z.string().min(4, {
@@ -104,6 +105,12 @@ export const uploadFileSchema = (t: (arg: string) => string) =>
       )
       .max(1, {
         message: t("file-max-error"),
-      })
-      .nullable(),
+      }),
   })
+
+export const onboaringSchema = z.object({
+  name: z.string().min(2).max(50),
+  bio: z.string().max(200).optional(),
+  image: z.string().url().optional(),
+  role: z.union([z.literal("STUDENT"), z.literal("TEACHER")]),
+})

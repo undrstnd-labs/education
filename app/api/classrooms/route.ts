@@ -71,6 +71,9 @@ export async function GET(req: Request) {
             },
           },
         },
+        orderBy: {
+          createdAt: "desc",
+        },
       })
 
       return NextResponse.json(classrooms, { status: 200 })

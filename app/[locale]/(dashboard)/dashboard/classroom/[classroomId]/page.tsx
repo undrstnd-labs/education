@@ -28,13 +28,9 @@ async function getClassroom(user: User, classroomId: string) {
           revalidate: 0,
         },
       }
-    )
+    ).then((res) => res.json())
 
-    if (res.ok) {
-      const data: classroom = await res.json()
-      return data
-    }
-    return null
+    return res as classroom
   } catch (error) {
     console.log(error)
   }
@@ -70,16 +66,23 @@ export default async function ClassroomPage({
       )}
       <div className="flex flex-col gap-6">
         {classroom.posts && classroom.posts.length > 0 ? (
-          classroom.posts.map((post) => (
-            <PostCard
-              key={post.id}
-              post={post}
-              userId={user.id}
-              classroom={classroom}
-              role={user.role}
-            />
-          ))
+          classroom.posts
+            .sort(
+              (a, b) =>
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+            )
+            .map((post) => (
+              <PostCard
+                key={post.id}
+                post={post}
+                userId={user.id}
+                classroom={classroom}
+                role={user.role}
+              />
+            ))
         ) : (
+          // TODO: Adda a dotted line to the center of the page with a message
           <h1 className="font-bold md:text-xl">
             {user?.role === "TEACHER"
               ? "No posts. Create one now"

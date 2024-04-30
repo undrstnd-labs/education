@@ -11,7 +11,7 @@ import { z } from "zod"
 import { classroom } from "@/types/classroom"
 
 import { addPostSchema } from "@/config/schema"
-import { uploadFiles } from "@/lib/storage"
+import { uploadFilesClassroom } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
@@ -93,7 +93,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
         return
       })
 
-      uploadFiles(files, classroom, post)
+      uploadFilesClassroom(files, classroom, post)
         .then(async (res) => {
           const resUpdate = await fetch(
             `/api/posts/${classroom.id}/${post.id}`,

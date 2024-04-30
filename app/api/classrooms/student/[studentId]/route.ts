@@ -30,8 +30,16 @@ export async function GET(
       teacher: {
         include: {
           user: true,
+          posts: {
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
         },
       },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   })
 

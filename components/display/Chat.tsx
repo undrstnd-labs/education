@@ -13,7 +13,7 @@ import { ChatPanel } from "@/components/form/ChatPanel"
 import { EmptyScreen } from "@/components/showcase/ChatEmptyScreen"
 
 export interface ChatProps {
-  id?: string
+  id: string
   student: Student & { user: User }
   initialMessages?: Message[]
 }
@@ -73,6 +73,7 @@ export function Chat({ id, initialMessages, student }: ChatProps) {
       </div>
       <ChatPanel
         id={id}
+        studentId={student.id}
         isLoading={isLoading}
         stop={stop}
         append={append}
