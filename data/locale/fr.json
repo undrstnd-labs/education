@@ -196,6 +196,12 @@
         "incident": "Incident",
         "under-maintenance": "En maintenance"
       },
+      "Profile": {
+        "alertDialogTitleDelete": "Êtes-vous sûr que vous voulez supprimer?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre compte.",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer"
+      },
       "ClassroomCardOptions": {
         "classroomOption": "Options de classroom",
         "unarchiveClassroom": "Désarchiver",

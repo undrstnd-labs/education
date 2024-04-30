@@ -17,7 +17,7 @@ export async function deleteAvatar(userId: string) {
 }
 
 export async function getAvatarDownloadUrl(userId: string) {
-  return await supabase.storage.from("avatars").list(userId)
+  return await supabase.storage.from("avatar").list(userId)
 }
 
 export async function manageAvatar(file: File, userId: string) {

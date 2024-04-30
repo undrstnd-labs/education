@@ -100,7 +100,7 @@ export default function PrincipalLayout({
   return (
     <html lang={locale}>
       <head />
-      <body className={GeistSans.className}      >
+      <body className={GeistSans.className}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Providers>
             {children}

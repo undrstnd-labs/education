@@ -23,6 +23,11 @@ const nextConfig = {
         hostname: "avatars.jakerunzer.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "owevajnqzufpffslceev.supabase.co",
+        port: "",
+      },
     ],
   },
 }

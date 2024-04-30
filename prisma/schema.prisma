@@ -62,7 +62,7 @@ model Session {
 model User {
   id             String    @id @default(cuid())
   name           String?
-  email          String   @unique
+  email          String    @unique
   bio            String?
   emailVerified  DateTime?
   image          String?
@@ -176,10 +176,6 @@ model File {
   type String
   url  String
 
-  content String?
-  metadata Json?
-  embedding Unsupported("vector")?
-
   @@map(name: "files")
 }
 
@@ -225,9 +221,9 @@ model Reaction {
 }
 
 model Conversation {
-  id        String  @id @default(cuid())
+  id    String @id @default(cuid())
   title String
-  path String 
+  path  String
 
   studentId String
   student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
@@ -239,11 +235,12 @@ model Conversation {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
   @@map(name: "conversations")
 }
 
 model Message {
-  id   String @id @default(cuid())
+  id      String @id @default(cuid())
   content String
 
   conversationId String
