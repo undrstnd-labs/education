@@ -7,9 +7,11 @@ import {
   ArrowUpDown,
   BookOpenText,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronsUpDown,
+  ChevronUp,
   Command,
   Copy,
   CornerDownLeft,
@@ -140,4 +142,6 @@ export const Icons = {
   reactionInsightul: FaRegLightbulb,
   upload: Upload,
   paperclip: Paperclip,
+  down: ChevronDown,
+  up: ChevronUp,
 }

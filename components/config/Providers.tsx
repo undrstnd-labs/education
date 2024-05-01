@@ -1,19 +1,23 @@
 "use client"
 
 import * as React from "react"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
-import { ThemeProviderProps } from "next-themes/dist/types"
 
 import { SidebarProvider } from "@/hooks/use-sidebar"
 
 import { TooltipProvider } from "@/components/ui/Tooltip"
+import { ThemeProvider } from "@/components/config/ThemeProvider"
 
-export function Providers({ children, ...props }: ThemeProviderProps) {
+export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <NextThemesProvider {...props}>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       <SidebarProvider>
         <TooltipProvider>{children}</TooltipProvider>
       </SidebarProvider>
-    </NextThemesProvider>
+    </ThemeProvider>
   )
 }

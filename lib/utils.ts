@@ -42,3 +42,26 @@ export async function getFormattedChat(chatId: string, studentId: string) {
 
   return newChat
 }
+
+export function formatDate(date: Date): string {
+  const currentDate = new Date()
+  const diffInSeconds = Math.floor(
+    (currentDate.getTime() - date.getTime()) / 1000
+  )
+
+  if (diffInSeconds < 60) {
+    return "Just now"
+  } else if (diffInSeconds < 3600) {
+    return `${Math.floor(diffInSeconds / 60)} minutes ago`
+  } else if (diffInSeconds < 86400) {
+    return `${Math.floor(diffInSeconds / 3600)} hours ago`
+  } else if (diffInSeconds < 604800) {
+    return `${Math.floor(diffInSeconds / 86400)} days ago`
+  } else {
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  }
+}

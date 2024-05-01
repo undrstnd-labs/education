@@ -44,6 +44,7 @@ export async function getChat(id: string, studentId: string) {
       messages: {
         orderBy: { createdAt: "asc" },
       },
+      file: true,
     },
   })
 }
@@ -57,8 +58,6 @@ export async function removeChat({ id }: { id: string }) {
       fileId: true,
     },
   })
-
-  // now let's delete the file from storage
 
   if (conversation?.fileId) {
     const file = await db.file.findUnique({
