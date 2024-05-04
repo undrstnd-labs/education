@@ -9,6 +9,8 @@ import { getCurrentStudent } from "@/lib/session"
 import { Header } from "@/components/navigation/ChatHeader"
 import { SidebarDesktop } from "@/components/navigation/SidebarDesktop"
 
+import "simplebar-react/dist/simplebar.min.css"
+
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Chat")
   return { title: `${t("title")}` }

@@ -43,6 +43,7 @@ export async function getFormattedChat(chatId: string, studentId: string) {
   return newChat
 }
 
+// TODO: Translate the returns
 export function formatDate(date: Date): string {
   const currentDate = new Date()
   const diffInSeconds = Math.floor(
