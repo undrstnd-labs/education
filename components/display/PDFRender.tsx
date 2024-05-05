@@ -8,7 +8,7 @@ import { Document, Page, pdfjs } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
 import SimpleBar from "simplebar-react"
 
-import { formatDate } from "@/lib/utils"
+import { cn, formatDate } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
 import { Button } from "@/components/ui/Button"
@@ -77,6 +77,9 @@ export function PDFRender({
   const [rotation, setRotation] = React.useState<number>(0)
   const [currPage, setCurrpage] = React.useState<number>(1)
   const [pageNumber, setPageNumber] = React.useState<number>(1)
+  const [renderedScale, setRenderedScale] = React.useState<number | null>(null)
+
+  const isLoading = renderedScale !== scale
 
   return (
     <div className="mt-20 flex w-full flex-col items-center justify-center rounded-md border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-black/80">
@@ -270,11 +273,25 @@ export function PDFRender({
                 })
               }}
             >
+              {isLoading && renderedScale ? (
+                <Page
+                  key={`@${renderedScale}-${rotation}-${currPage}`}
+                  width={width ? width : 1}
+                  pageNumber={currPage}
+                  scale={scale}
+                  rotate={rotation}
+                />
+              ) : null}
+
               <Page
+                key={`@${scale}-${rotation}-${currPage}`}
+                className={cn(isLoading ? "hidden" : "")}
                 width={width ? width : 1}
                 pageNumber={currPage}
                 scale={scale}
                 rotate={rotation}
+                loading={<PDFLoader />}
+                onRenderSuccess={() => setRenderedScale(scale)}
               />
             </Document>
           </div>

@@ -5,6 +5,8 @@ import { Document, Page, pdfjs } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
 import SimpleBar from "simplebar-react"
 
+import { downloadFileFromUrl } from "@/lib/storage"
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { useToast } from "@/hooks/use-toast"
 
 import { Button } from "@/components/ui/Button"
@@ -14,6 +16,11 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/Dialog"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/Tooltip"
 import { Icons } from "@/components/icons/Lucide"
 
 import "react-pdf/dist/Page/TextLayer.css"
@@ -47,13 +54,14 @@ function PDFLoader() {
     </motion.div>
   )
 }
+
+// TODO: Translate this component
 export function PDFFullScreen({ file }: { file: File }) {
   const { toast } = useToast()
   const { width, ref } = useResizeDetector()
 
-  const [scale, setScale] = React.useState<number>(1)
-  const [rotation, setRotation] = React.useState<number>(0)
   const [pageNumber, setPageNumber] = React.useState<number>(1)
+  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 })
 
   return (
     <Dialog>
@@ -69,32 +77,79 @@ export function PDFFullScreen({ file }: { file: File }) {
       </DialogTrigger>
       <DialogContent className="w-full max-w-7xl">
         <DialogHeader>
-          <SimpleBar
-            autoHide={false}
-            className="mt-6 max-h-[calc(100vh-10rem)]"
-          >
-            <div ref={ref} className="z-0">
-              <Document
-                file={file.url}
-                className="pointer-events-none max-w-full"
-                loading={<PDFLoader />}
-                onLoadSuccess={({ numPages }) => setPageNumber(numPages)}
-                onLoadError={(error) => {
-                  toast({
-                    title: "Error loading PDF",
-                    variant: "destructive",
-                  })
-                }}
-              >
-                <Page
-                  width={width ? width : 1}
-                  scale={scale}
-                  rotate={rotation}
-                />
-              </Document>
+          <div className="flex items-center justify-between px-4">
+            <h2 className="text-lg font-semibold">{file.name}</h2>
+            <div className="ml-auto flex flex-shrink-0 space-x-1 self-center px-6">
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    size={"icon"}
+                    variant={"outline"}
+                    className="hover:dark:bg-gray-600"
+                    onClick={() => {
+                      downloadFileFromUrl(
+                        file.url.split(
+                          `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/`
+                        )[1]
+                      )
+                    }}
+                  >
+                    <Icons.download className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>Download</span>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    size={"icon"}
+                    className="hover:dark:bg-gray-600"
+                    variant={"outline"}
+                    onClick={() => {
+                      copyToClipboard(file.url)
+                    }}
+                  >
+                    {isCopied ? (
+                      <Icons.check className="h-4 w-4" />
+                    ) : (
+                      <Icons.share className="h-4 w-4" />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>Copy link of the file</span>
+                </TooltipContent>
+              </Tooltip>
             </div>
-          </SimpleBar>
+          </div>
         </DialogHeader>
+
+        <SimpleBar autoHide={false} className="mt-6 max-h-[calc(100vh-10rem)]">
+          <div ref={ref} className="z-0">
+            <Document
+              file={file.url}
+              className="pointer-events-none max-w-full"
+              loading={<PDFLoader />}
+              onLoadSuccess={({ numPages }) => setPageNumber(numPages)}
+              onLoadError={(error) => {
+                toast({
+                  title: "Error loading PDF",
+                  variant: "destructive",
+                })
+              }}
+            >
+              {new Array(pageNumber).fill(0).map((_, index) => (
+                <Page
+                  key={index}
+                  pageNumber={index + 1}
+                  width={width ? width : 1}
+                />
+              ))}
+            </Document>
+          </div>
+        </SimpleBar>
       </DialogContent>
     </Dialog>
   )
