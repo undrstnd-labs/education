@@ -4,6 +4,7 @@ import React from "react"
 import Image from "next/image"
 import { Conversation, File, Student, User } from "@prisma/client"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 import { Document, Page, pdfjs } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
 import SimpleBar from "simplebar-react"
@@ -60,7 +61,6 @@ function PDFLoader() {
   )
 }
 
-// TODO: Add translations
 export function PDFRender({
   file,
   student,
@@ -72,6 +72,8 @@ export function PDFRender({
 }) {
   const { toast } = useToast()
   const { width, ref } = useResizeDetector()
+
+  const t = useTranslations("Components.Display.PDFRender")
 
   const [scale, setScale] = React.useState<number>(1)
   const [rotation, setRotation] = React.useState<number>(0)
@@ -98,7 +100,7 @@ export function PDFRender({
             {student.user.name}
           </p>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            {formatDate(chat.createdAt)}
+            {formatDate(chat.createdAt, t)}
           </p>
         </div>
         <div className="flex flex-shrink-0 space-x-1 self-center">
@@ -153,18 +155,20 @@ export function PDFRender({
             <PopoverContent>
               <div className="grid gap-4">
                 <div className="space-y-2">
-                  <h4 className="font-medium leading-none">View options</h4>
+                  <h4 className="font-medium leading-none">
+                    {t("customize-view")}
+                  </h4>
                   <p className="text-sm text-muted-foreground">
-                    Customize the view of the PDF
+                    {t("customize-view-description")}
                   </p>
                 </div>
                 <div className="l grid gap-2">
                   <div className="-ml-1 grid w-full grid-cols-2 items-center gap-3 space-x-3">
-                    <Label htmlFor="rotation">New window</Label>
+                    <Label htmlFor="rotation">{t("new-window")}</Label>
                     <PDFFullScreen file={file} />
                   </div>
                   <div className="grid grid-cols-2 items-center gap-4">
-                    <Label htmlFor="zoom">Zoom</Label>
+                    <Label htmlFor="zoom">{t("zoom")}</Label>
 
                     <DropdownMenu>
                       <DropdownMenuTrigger>
@@ -233,7 +237,7 @@ export function PDFRender({
                     </DropdownMenu>
                   </div>
                   <div className="grid grid-cols-2 items-center gap-3 space-x-2">
-                    <Label htmlFor="rotation">Rotation</Label>
+                    <Label htmlFor="rotation">{t("rotation")}</Label>
                     <div className="space-x-2">
                       <Button
                         aria-label="rotate 90 degrees"
@@ -268,7 +272,7 @@ export function PDFRender({
               onLoadSuccess={({ numPages }) => setPageNumber(numPages)}
               onLoadError={(error) => {
                 toast({
-                  title: "Error loading PDF",
+                  title: t("error"),
                   variant: "destructive",
                 })
               }}

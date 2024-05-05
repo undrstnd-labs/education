@@ -1,45 +1,36 @@
 import { UseChatHelpers } from "ai/react"
+import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/Button"
-import { ExternalLink } from "@/components/ui/ExternalLink"
 import { Icons } from "@/components/icons/Lucide"
 
-const exampleMessages = [
+const exampleMessages = (t: (arg: string) => string) => [
   {
-    heading: "Explain technical concepts",
-    message: `What is a "serverless function"?`,
+    heading: t("heading-1"),
+    message: t("message-1"),
   },
   {
-    heading: "Summarize an article",
-    message: "Summarize the following article for a 2nd grader: \n",
+    heading: t("heading-2"),
+    message: t("message-2"),
   },
   {
-    heading: "Draft an email",
-    message: `Draft an email to my boss about the following: \n`,
+    heading: t("heading-3"),
+    message: t("message-3"),
   },
 ]
 
-// TODO: Translate this page
 export function EmptyScreen({ setInput }: Pick<UseChatHelpers, "setInput">) {
+  const t = useTranslations("Components.Showcase.ChatEmptyScreen")
+
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
-        <h1 className="mb-2 text-lg font-semibold">
-          Welcome to Next.js AI Chatbot!
-        </h1>
-        <p className="mb-2 leading-normal text-muted-foreground">
-          This is an open source AI chatbot app template built with{" "}
-          <ExternalLink href="https://nextjs.org">Next.js</ExternalLink> and{" "}
-          <ExternalLink href="https://vercel.com/storage/kv">
-            Vercel KV
-          </ExternalLink>
-          .
-        </p>
+        <h1 className="mb-2 text-lg font-semibold">{t("welcome")}</h1>
         <p className="leading-normal text-muted-foreground">
-          You can start a conversation here or try the following examples:
+          {t("description")}
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
-          {exampleMessages.map((message, index) => (
+          {exampleMessages(t).map((message, index) => (
             <Button
               key={index}
               variant="link"

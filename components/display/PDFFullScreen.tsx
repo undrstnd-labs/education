@@ -1,6 +1,7 @@
 import React from "react"
 import { File } from "@prisma/client"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 import { Document, Page, pdfjs } from "react-pdf"
 import { useResizeDetector } from "react-resize-detector"
 import SimpleBar from "simplebar-react"
@@ -55,13 +56,14 @@ function PDFLoader() {
   )
 }
 
-// TODO: Translate this component
 export function PDFFullScreen({ file }: { file: File }) {
   const { toast } = useToast()
   const { width, ref } = useResizeDetector()
 
   const [pageNumber, setPageNumber] = React.useState<number>(1)
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 })
+
+  const t = useTranslations("Components.Display.PDFFullScreen")
 
   return (
     <Dialog>
@@ -72,7 +74,7 @@ export function PDFFullScreen({ file }: { file: File }) {
           className="w-full"
         >
           <Icons.external className="h-4 w-4" />
-          <span className="whitespace-nowrap px-1">Open</span>
+          <span className="whitespace-nowrap px-1">{t("open")}</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-7xl">
@@ -98,7 +100,7 @@ export function PDFFullScreen({ file }: { file: File }) {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <span>Download</span>
+                  <span>{t("download")}</span>
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -119,7 +121,7 @@ export function PDFFullScreen({ file }: { file: File }) {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <span>Copy link of the file</span>
+                  <span>{t("copy")}</span>
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -135,7 +137,7 @@ export function PDFFullScreen({ file }: { file: File }) {
               onLoadSuccess={({ numPages }) => setPageNumber(numPages)}
               onLoadError={(error) => {
                 toast({
-                  title: "Error loading PDF",
+                  title: t("error"),
                   variant: "destructive",
                 })
               }}

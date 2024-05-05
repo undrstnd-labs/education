@@ -43,21 +43,20 @@ export async function getFormattedChat(chatId: string, studentId: string) {
   return newChat
 }
 
-// TODO: Translate the returns
-export function formatDate(date: Date): string {
+export function formatDate(date: Date, t: (arg: string) => string): string {
   const currentDate = new Date()
   const diffInSeconds = Math.floor(
     (currentDate.getTime() - date.getTime()) / 1000
   )
 
   if (diffInSeconds < 60) {
-    return "Just now"
+    return t("just-now")
   } else if (diffInSeconds < 3600) {
-    return `${Math.floor(diffInSeconds / 60)} minutes ago`
+    return `${Math.floor(diffInSeconds / 60)} ${t("minutes-ago")}`
   } else if (diffInSeconds < 86400) {
-    return `${Math.floor(diffInSeconds / 3600)} hours ago`
+    return `${Math.floor(diffInSeconds / 3600)} ${t("hours-ago")}`
   } else if (diffInSeconds < 604800) {
-    return `${Math.floor(diffInSeconds / 86400)} days ago`
+    return `${Math.floor(diffInSeconds / 86400)} ${t("days-ago")}`
   } else {
     return date.toLocaleDateString("en-US", {
       year: "numeric",

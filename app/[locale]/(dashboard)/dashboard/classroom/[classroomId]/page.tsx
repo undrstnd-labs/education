@@ -1,5 +1,4 @@
-// TODO: Generate metadata for this page
-
+import { type Metadata } from "next"
 import { redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
 
@@ -15,6 +14,28 @@ import {
 import { ClassroomCard } from "@/components/display/ClassroomCard"
 import PostCard from "@/components/display/PostCard"
 import { PostAddCard } from "@/components/form/PostAddCard"
+
+export interface ClassroomProps {
+  params: {
+    classroomId: string
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: ClassroomProps): Promise<Metadata> {
+  const user = await getCurrentUser()
+
+  if (!user) {
+    return {}
+  }
+  const classroom = await getClassroom(user, params.classroomId)
+
+  return {
+    title:
+      `${classroom?.name.toString().slice(0, 50)} | Undrstnd` ?? "Classroom",
+  }
+}
 
 async function getClassroom(user: User, classroomId: string) {
   const entity = (await getCurrentEntity(user)) as Student | Teacher

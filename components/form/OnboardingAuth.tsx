@@ -37,7 +37,6 @@ import { UniversityCard } from "@/components/display/UniversityCard"
 import { Icons } from "@/components/icons/Lucide"
 
 //TODO: Work on the dark theme
-// TODO: Translate the error messages
 export function OnboardingAuthForm({ user }: { user: UserType }) {
   const router = useRouter()
   const { toast } = useToast()
@@ -104,15 +103,14 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
 
       if (!res.ok) {
         toast({
-          title: "Failed to update profile",
-          description: "Something went wrong. Please try again.",
+          title: translateOnboarding("error-toast-title"),
           variant: "destructive",
         })
       } else {
         router.push("/dashboard")
         toast({
-          title: "Profile updated",
-          description: "Your profile has been updated successfully.",
+          title: translateOnboarding("success-toast-title"),
+          description: translateOnboarding("success-toast-description"),
         })
       }
     } catch (error) {

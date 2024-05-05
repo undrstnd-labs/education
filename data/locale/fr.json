@@ -160,7 +160,10 @@
         "student": "Étudiant",
         "teacher": "Professeur",
         "image-too-large": "L'image est trop grande",
-        "image-description-error": "Le taille de l'image doit être inférieure à 3 Mo"
+        "image-description-error": "Le taille de l'image doit être inférieure à 3 Mo",
+        "error-toast-title": "Échec de la mise à jour du profil",
+        "success-toast-title": "Profil mis à jour",
+        "success-toast-description": "Votre profil a été mis à jour avec succès."
       },
       "Prompt": {
         "new-chat": "Nouveau chat",
@@ -268,6 +271,25 @@
       },
       "SidebarItem": {
         "shared-chat": "This is a shared chat."
+      },
+
+      "PDFFullScreen": {
+        "open": "Ouvrir",
+        "download": "Télécharger le fichier",
+        "copy": "Copier le lien du fichier",
+        "error": "Erreur lors du chargement du PDF"
+      },
+      "PDFRender": {
+        "error": "Erreur lors du chargement du PDF",
+        "customize-view": "Options d'affichage",
+        "customize-view-description": "Personnaliser l'affichage du PDF",
+        "new-window": "Nouvelle fenêtre",
+        "zoom": "Zoom",
+        "rotation": "Rotation",
+        "just-now": "À l'instant",
+        "minutes-ago": "minutes",
+        "hours-ago": "heures",
+        "days-ago": "jours"
       }
     },
     "Showcase": {
@@ -307,6 +329,16 @@
       "ChatFooter": {
         "footer-text-1": "peut commettre des erreurs. Considérez la lecture du",
         "footer-text-2": "pour comprendre son fonctionnement."
+      },
+      "ChatEmptyScreen": {
+        "welcome": "Comment puis-je vous aider aujourd'hui ?",
+        "description": "Vous pouvez commencer une conversation ici ou essayer les exemples suivants :",
+        "heading-1": "Aide aux devoirs",
+        "message-1": "Pouvez-vous m'aider à résoudre ce problème de maths ? \n",
+        "heading-2": "Préparation d'un test",
+        "message-2": "J'ai un test de Python demain. Pouvez-vous me donner des questions pour m'entraîner ? \n",
+        "heading-3": "Amélioration des compétences rédactionnelles",
+        "message-3": "Pouvez-vous vérifier mon essai pour les erreurs de grammaire et d'orthographe ? \n"
       }
     },
     "Config": {

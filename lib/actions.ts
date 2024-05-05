@@ -88,16 +88,6 @@ export async function removeChat({ id }: { id: string }) {
   }
 }
 
-export async function clearChats() {
-  // TODO: Clear all chats
-}
-
-export async function getSharedChat(id: string) {
-  // TODO: Get a shared chat
-}
-
-export async function shareChat(id: string) {}
-
 export async function saveChat(
   chatId: string,
   studentId: string,
