@@ -63,7 +63,7 @@ export function Chat({ id, initialMessages, student }: ChatProps) {
       className="group w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
       ref={scrollRef}
     >
-      <div className={cn("pb-[200px] pt-20")} ref={messagesRef}>
+      <div className={cn("pt-20")} ref={messagesRef}>
         {messages.length ? (
           <ChatList messages={messages} student={student} />
         ) : (

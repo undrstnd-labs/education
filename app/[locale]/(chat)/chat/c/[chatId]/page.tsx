@@ -72,7 +72,11 @@ export default async function ChatPage({
         <PDFRender file={chat.file} student={student} chat={chat} />
       </ResizablePanel>
       <ResizableHandle withHandle />
-      <ResizablePanel defaultSize={82} minSize={40}>
+      <ResizablePanel
+        defaultSize={82}
+        minSize={40}
+        style={{ height: "80vh", overflowY: "auto" }}
+      >
         {/* @ts-ignore: initialMessages is not null */}
         <Chat id={chat.id} student={student} initialMessages={chat.messages} />
       </ResizablePanel>
