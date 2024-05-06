@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { uploadFileSchema } from "@/config/schema"
-import { saveChat } from "@/lib/actions"
+import { saveChat, vectorizedDocument } from "@/lib/actions"
 import { uploadFilesStudent } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useToast } from "@/hooks/use-toast"
@@ -106,11 +106,11 @@ export function UploadFile({
 
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 95) {
+        if (prev >= 92) {
           clearInterval(interval)
           return prev
         }
-        return prev + 5
+        return prev + 2
       })
     }, 500)
 
@@ -124,15 +124,18 @@ export function UploadFile({
 
     try {
       const uploadedFile = await uploadFilesStudent(file, studentId, id)
-      toast({
-        title: t("upload-success"),
-      })
+      await Promise.all([
+        vectorizedDocument(id, uploadedFile),
+        saveChat(id, studentId, uploadedFile, `/chat/c/${id}`),
+      ])
 
-      const chat = await saveChat(id, studentId, uploadedFile, `/chat/c/${id}`)
-      router.push(`/chat/c/${chat.id}`)
+      router.push(`/chat/c/${id}`)
       router.refresh()
 
       setProgress(100)
+      toast({
+        title: t("upload-success"),
+      })
       await new Promise((resolve) => setTimeout(resolve, 500))
 
       setOpen(false)

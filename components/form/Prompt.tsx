@@ -88,8 +88,9 @@ export function Prompt({
           onClick={() => {
             if (isChatPath) {
               router.push("/chat/")
+            } else {
+              setOpen(true)
             }
-            setOpen(true)
           }}
           icon={
             isChatPath ? (

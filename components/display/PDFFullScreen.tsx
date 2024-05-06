@@ -132,7 +132,7 @@ export function PDFFullScreen({ file }: { file: File }) {
           <div ref={ref} className="z-0">
             <Document
               file={file.url}
-              className="pointer-events-none max-w-full"
+              className="max-w-full"
               loading={<PDFLoader />}
               onLoadSuccess={({ numPages }) => setPageNumber(numPages)}
               onLoadError={(error) => {

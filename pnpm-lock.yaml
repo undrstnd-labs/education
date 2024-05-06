@@ -22,16 +22,25 @@ dependencies:
     version: 4.2.1(prettier@3.2.5)
   "@langchain/community":
     specifier: ^0.0.50
-    version: 0.0.50(@supabase/supabase-js@2.42.4)
+    version: 0.0.50(@pinecone-database/pinecone@2.2.0)(@supabase/supabase-js@2.42.4)
+  "@langchain/groq":
+    specifier: ^0.0.9
+    version: 0.0.9
   "@langchain/openai":
     specifier: ^0.0.28
     version: 0.0.28
+  "@langchain/pinecone":
+    specifier: ^0.0.4
+    version: 0.0.4
   "@next-auth/prisma-adapter":
     specifier: ^1.0.7
     version: 1.0.7(@prisma/client@5.12.1)(next-auth@4.24.7)
   "@openstatus/react":
     specifier: ^0.0.3
     version: 0.0.3(react@18.2.0)
+  "@pinecone-database/pinecone":
+    specifier: ^2.2.0
+    version: 2.2.0
   "@prisma/client":
     specifier: ^5.12.1
     version: 5.12.1(prisma@5.12.1)
@@ -122,6 +131,9 @@ dependencies:
   input-otp:
     specifier: ^1.2.2
     version: 1.2.4(react-dom@18.2.0)(react@18.2.0)
+  langchain:
+    specifier: ^0.0.92
+    version: 0.0.92(@pinecone-database/pinecone@2.2.0)(@supabase/supabase-js@2.42.4)(pdf-parse@1.1.1)
   lucide-react:
     specifier: ^0.288.0
     version: 0.288.0(react@18.2.0)
@@ -149,6 +161,9 @@ dependencies:
   openai:
     specifier: ^4.30.0
     version: 4.36.0
+  pdf-parse:
+    specifier: ^1.1.1
+    version: 1.1.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -346,6 +361,18 @@ packages:
     dependencies:
       "@jridgewell/gen-mapping": 0.3.5
       "@jridgewell/trace-mapping": 0.3.25
+
+  /@anthropic-ai/sdk@0.4.4:
+    resolution:
+      {
+        integrity: sha512-Z/39nQi1sSUCeLII3lsAbL1u+0JF6cR2XmUEX9sLH0VtxmIjY6cjOUYjCkYh4oapTxOkhAFnVSAFJ6cxml2qXg==,
+      }
+    dependencies:
+      "@fortaine/fetch-event-source": 3.0.6
+      cross-fetch: 3.1.8(encoding@0.1.13)
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /@auth/core@0.29.0(nodemailer@6.9.13):
     resolution:
@@ -1091,6 +1118,14 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@fortaine/fetch-event-source@3.0.6:
+    resolution:
+      {
+        integrity: sha512-621GAuLMvKtyZQ3IA6nlDWhV1V/7PGOTNIGLUifxt0KzM+dZIweJ6F3XvQF3QnqeNfS1N7WQ0Kil1Di/lhChEw==,
+      }
+    engines: { node: ">=16.15" }
+    dev: false
+
   /@headlessui/react@1.7.19(react-dom@18.2.0)(react@18.2.0):
     resolution:
       {
@@ -1241,7 +1276,7 @@ packages:
       "@jridgewell/resolve-uri": 3.1.2
       "@jridgewell/sourcemap-codec": 1.4.15
 
-  /@langchain/community@0.0.50(@supabase/supabase-js@2.42.4):
+  /@langchain/community@0.0.50(@pinecone-database/pinecone@2.2.0)(@supabase/supabase-js@2.42.4):
     resolution:
       {
         integrity: sha512-ZxS0qmvEKlRYPtIPnzSa+un82mqi+DpxEsME6aLJSxEmQpk4vwoArcL/KzHEtM8vsi3ZKB15f7BNS6Qp00rizg==,
@@ -1525,6 +1560,7 @@ packages:
     dependencies:
       "@langchain/core": 0.1.58
       "@langchain/openai": 0.0.28
+      "@pinecone-database/pinecone": 2.2.0
       "@supabase/supabase-js": 2.42.4
       expr-eval: 2.0.2
       flat: 5.0.2
@@ -1557,6 +1593,43 @@ packages:
       zod-to-json-schema: 3.22.5(zod@3.22.4)
     dev: false
 
+  /@langchain/core@0.1.61:
+    resolution:
+      {
+        integrity: sha512-C8OkAly+ugvXsL8TACCmFv9WTTcT4gvQaG6NbrXCOzibBCywfxxcTqEMOyg3zIKpxHEmR0DHqh0OiJRHocnsCg==,
+      }
+    engines: { node: ">=18" }
+    dependencies:
+      ansi-styles: 5.2.0
+      camelcase: 6.3.0
+      decamelize: 1.2.0
+      js-tiktoken: 1.0.11
+      langsmith: 0.1.18
+      ml-distance: 4.0.1
+      mustache: 4.2.0
+      p-queue: 6.6.2
+      p-retry: 4.6.2
+      uuid: 9.0.1
+      zod: 3.22.4
+      zod-to-json-schema: 3.22.5(zod@3.22.4)
+    dev: false
+
+  /@langchain/groq@0.0.9:
+    resolution:
+      {
+        integrity: sha512-/QGGgazYdxlN8FCmPfEVDO9Hg55POvQdnoou+b3lsugmwP1TYPRtqLW6JY7Atb36X4vjEJwiMCnntDXdT7vgaw==,
+      }
+    engines: { node: ">=18" }
+    dependencies:
+      "@langchain/core": 0.1.61
+      "@langchain/openai": 0.0.28
+      groq-sdk: 0.3.2
+      zod: 3.22.4
+      zod-to-json-schema: 3.22.5(zod@3.22.4)
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@langchain/openai@0.0.28:
     resolution:
       {
@@ -1573,6 +1646,19 @@ packages:
       - encoding
     dev: false
 
+  /@langchain/pinecone@0.0.4:
+    resolution:
+      {
+        integrity: sha512-9Rme771vHbRKXHy0IxOFFUyYtJfL+I1LgleF1cSkb2ZxgtOwN7uvh0Cp23WrCzEh8DHVEaRYPSbBC4W3YfqwfA==,
+      }
+    engines: { node: ">=18" }
+    dependencies:
+      "@langchain/core": 0.1.61
+      "@pinecone-database/pinecone": 2.2.0
+      flat: 5.0.2
+      uuid: 9.0.1
+    dev: false
+
   /@mapbox/node-pre-gyp@1.0.11:
     resolution:
       {
@@ -1584,7 +1670,7 @@ packages:
       detect-libc: 2.0.3
       https-proxy-agent: 5.0.1
       make-dir: 3.1.0
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
@@ -1898,6 +1984,19 @@ packages:
       {
         integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==,
       }
+    dev: false
+
+  /@pinecone-database/pinecone@2.2.0:
+    resolution:
+      {
+        integrity: sha512-qfVs9n5YyTmerIV1GE1u89xF1W3oFSF53STW68Oqyxey0dGq4775cCw8G5pnwoy872uqfh+tMRDME9bcWfinUw==,
+      }
+    engines: { node: ">=14.0.0" }
+    dependencies:
+      "@sinclair/typebox": 0.29.6
+      ajv: 8.13.0
+      cross-fetch: 3.1.8(encoding@0.1.13)
+      encoding: 0.1.13
     dev: false
 
   /@pkgjs/parseargs@0.11.0:
@@ -3519,6 +3618,13 @@ packages:
       selderee: 0.11.0
     dev: false
 
+  /@sinclair/typebox@0.29.6:
+    resolution:
+      {
+        integrity: sha512-aX5IFYWlMa7tQ8xZr3b2gtVReCvg7f3LEhjir/JAjX2bJCMVJA5tIPv30wTD4KDfcwMd7DDYY3hFDeGmOgtrZQ==,
+      }
+    dev: false
+
   /@socket.io/component-emitter@3.1.1:
     resolution:
       {
@@ -4813,6 +4919,18 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
 
+  /ajv@8.13.0:
+    resolution:
+      {
+        integrity: sha512-PRA911Blj99jR5RMeTunVbNXMF6Lp4vZXnk5GQjcnUWUTsrXtekg/pnmFFI2u/I36Y/2bITGS30GZCXei6uNkA==,
+      }
+    dependencies:
+      fast-deep-equal: 3.1.3
+      json-schema-traverse: 1.0.0
+      require-from-string: 2.0.2
+      uri-js: 4.4.1
+    dev: false
+
   /ansi-regex@2.1.1:
     resolution:
       {
@@ -5172,6 +5290,17 @@ packages:
       }
     engines: { node: ">=4" }
     dev: true
+
+  /axios@0.26.1:
+    resolution:
+      {
+        integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==,
+      }
+    dependencies:
+      follow-redirects: 1.15.6
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /axobject-query@3.2.1:
     resolution:
@@ -6006,6 +6135,17 @@ packages:
       sha.js: 2.4.11
     dev: false
 
+  /cross-fetch@3.1.8(encoding@0.1.13):
+    resolution:
+      {
+        integrity: sha512-cvA+JwZoU0Xq+h6WkMvAUqPEYy92Obet6UdKLfW60qn99ftItKjB5T+BkyWOFWe2pUyfQ+IJHmpOTznqk1M6Kg==,
+      }
+    dependencies:
+      node-fetch: 2.7.0(encoding@0.1.13)
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /cross-spawn@7.0.3:
     resolution:
       {
@@ -6139,7 +6279,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.3
-    dev: true
 
   /debug@4.3.4:
     resolution:
@@ -6471,6 +6610,15 @@ packages:
       {
         integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==,
       }
+
+  /encoding@0.1.13:
+    resolution:
+      {
+        integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==,
+      }
+    dependencies:
+      iconv-lite: 0.6.3
+    dev: false
 
   /engine.io-client@6.5.3:
     resolution:
@@ -7468,6 +7616,19 @@ packages:
         integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==,
       }
 
+  /follow-redirects@1.15.6:
+    resolution:
+      {
+        integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==,
+      }
+    engines: { node: ">=4.0" }
+    peerDependencies:
+      debug: "*"
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /for-each@0.3.3:
     resolution:
       {
@@ -7865,7 +8026,7 @@ packages:
       digest-fetch: 1.3.0
       form-data-encoder: 1.7.2
       formdata-node: 4.4.1
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
       web-streams-polyfill: 3.3.3
     transitivePeerDependencies:
       - encoding
@@ -8140,6 +8301,16 @@ packages:
     engines: { node: ">=14" }
     hasBin: true
     dev: true
+
+  /iconv-lite@0.6.3:
+    resolution:
+      {
+        integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==,
+      }
+    engines: { node: ">=0.10.0" }
+    dependencies:
+      safer-buffer: 2.1.2
+    dev: false
 
   /ieee754@1.2.1:
     resolution:
@@ -8804,6 +8975,13 @@ packages:
         integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==,
       }
 
+  /json-schema-traverse@1.0.0:
+    resolution:
+      {
+        integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==,
+      }
+    dev: false
+
   /json-schema@0.4.0:
     resolution:
       {
@@ -8848,6 +9026,14 @@ packages:
       diff-match-patch: 1.0.5
     dev: false
 
+  /jsonpointer@5.0.1:
+    resolution:
+      {
+        integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==,
+      }
+    engines: { node: ">=0.10.0" }
+    dev: false
+
   /jsx-ast-utils@3.3.5:
     resolution:
       {
@@ -8885,6 +9071,177 @@ packages:
         integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==,
       }
     engines: { node: ">=0.10.0" }
+    dev: false
+
+  /langchain@0.0.92(@pinecone-database/pinecone@2.2.0)(@supabase/supabase-js@2.42.4)(pdf-parse@1.1.1):
+    resolution:
+      {
+        integrity: sha512-77528kXJu9C391qV1a5jDzZLEjIblq/VtpH7xd4BwavgvhRmeSXR9WkrHHmih/Phpae4Ss3dtb7pcyd78rp/YA==,
+      }
+    engines: { node: ">=18" }
+    peerDependencies:
+      "@aws-sdk/client-dynamodb": ^3.310.0
+      "@aws-sdk/client-lambda": ^3.310.0
+      "@aws-sdk/client-s3": ^3.310.0
+      "@aws-sdk/client-sagemaker-runtime": ^3.310.0
+      "@clickhouse/client": ^0.0.14
+      "@getmetal/metal-sdk": "*"
+      "@getzep/zep-js": ^0.3.1
+      "@gomomento/sdk": ^1.23.0
+      "@huggingface/inference": ^1.5.1
+      "@opensearch-project/opensearch": "*"
+      "@pinecone-database/pinecone": "*"
+      "@qdrant/js-client-rest": ^1.2.0
+      "@supabase/postgrest-js": ^1.1.1
+      "@supabase/supabase-js": ^2.10.0
+      "@tensorflow-models/universal-sentence-encoder": "*"
+      "@tensorflow/tfjs-converter": "*"
+      "@tensorflow/tfjs-core": "*"
+      "@tigrisdata/vector": ^1.1.0
+      "@upstash/redis": ^1.20.6
+      "@zilliz/milvus2-sdk-node": ">=2.2.7"
+      apify-client: ^2.7.1
+      axios: "*"
+      cheerio: ^1.0.0-rc.12
+      chromadb: ^1.5.2
+      cohere-ai: ^5.0.2
+      d3-dsv: ^2.0.0
+      epub2: ^3.0.1
+      faiss-node: ^0.2.1
+      google-auth-library: ^8.8.0
+      hnswlib-node: ^1.4.2
+      html-to-text: ^9.0.5
+      ignore: ^5.2.0
+      mammoth: "*"
+      mongodb: ^5.2.0
+      mysql2: ^3.3.3
+      pdf-parse: 1.1.1
+      peggy: ^3.0.2
+      pg: ^8.11.0
+      pickleparser: ^0.1.0
+      playwright: ^1.32.1
+      puppeteer: ^19.7.2
+      redis: ^4.6.4
+      replicate: ^0.9.0
+      srt-parser-2: ^1.2.2
+      typeorm: ^0.3.12
+      weaviate-ts-client: ^1.0.0
+    peerDependenciesMeta:
+      "@aws-sdk/client-dynamodb":
+        optional: true
+      "@aws-sdk/client-lambda":
+        optional: true
+      "@aws-sdk/client-s3":
+        optional: true
+      "@aws-sdk/client-sagemaker-runtime":
+        optional: true
+      "@clickhouse/client":
+        optional: true
+      "@getmetal/metal-sdk":
+        optional: true
+      "@getzep/zep-js":
+        optional: true
+      "@gomomento/sdk":
+        optional: true
+      "@huggingface/inference":
+        optional: true
+      "@opensearch-project/opensearch":
+        optional: true
+      "@pinecone-database/pinecone":
+        optional: true
+      "@qdrant/js-client-rest":
+        optional: true
+      "@supabase/postgrest-js":
+        optional: true
+      "@supabase/supabase-js":
+        optional: true
+      "@tensorflow-models/universal-sentence-encoder":
+        optional: true
+      "@tensorflow/tfjs-converter":
+        optional: true
+      "@tensorflow/tfjs-core":
+        optional: true
+      "@tigrisdata/vector":
+        optional: true
+      "@upstash/redis":
+        optional: true
+      "@zilliz/milvus2-sdk-node":
+        optional: true
+      apify-client:
+        optional: true
+      axios:
+        optional: true
+      cheerio:
+        optional: true
+      chromadb:
+        optional: true
+      cohere-ai:
+        optional: true
+      d3-dsv:
+        optional: true
+      epub2:
+        optional: true
+      faiss-node:
+        optional: true
+      google-auth-library:
+        optional: true
+      hnswlib-node:
+        optional: true
+      html-to-text:
+        optional: true
+      ignore:
+        optional: true
+      mammoth:
+        optional: true
+      mongodb:
+        optional: true
+      mysql2:
+        optional: true
+      pdf-parse:
+        optional: true
+      peggy:
+        optional: true
+      pg:
+        optional: true
+      pickleparser:
+        optional: true
+      playwright:
+        optional: true
+      puppeteer:
+        optional: true
+      redis:
+        optional: true
+      replicate:
+        optional: true
+      srt-parser-2:
+        optional: true
+      typeorm:
+        optional: true
+      weaviate-ts-client:
+        optional: true
+    dependencies:
+      "@anthropic-ai/sdk": 0.4.4
+      "@pinecone-database/pinecone": 2.2.0
+      "@supabase/supabase-js": 2.42.4
+      ansi-styles: 5.2.0
+      binary-extensions: 2.3.0
+      expr-eval: 2.0.2
+      flat: 5.0.2
+      js-tiktoken: 1.0.11
+      jsonpointer: 5.0.1
+      ml-distance: 4.0.1
+      object-hash: 3.0.0
+      openai: 3.3.0
+      p-queue: 6.6.2
+      p-retry: 4.6.2
+      pdf-parse: 1.1.1
+      uuid: 9.0.1
+      yaml: 2.4.1
+      zod: 3.22.4
+      zod-to-json-schema: 3.22.5(zod@3.22.4)
+    transitivePeerDependencies:
+      - debug
+      - encoding
     dev: false
 
   /langsmith@0.1.18:
@@ -10350,7 +10707,14 @@ packages:
     engines: { node: ">=10.5.0" }
     dev: false
 
-  /node-fetch@2.7.0:
+  /node-ensure@0.0.0:
+    resolution:
+      {
+        integrity: sha512-DRI60hzo2oKN1ma0ckc6nQWlHU69RH6xN0sjQTjMpChPfTYvKZdcQFfdYK2RWbJcKyUizSIy/l8OTGxMAM1QDw==,
+      }
+    dev: false
+
+  /node-fetch@2.7.0(encoding@0.1.13):
     resolution:
       {
         integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==,
@@ -10362,6 +10726,7 @@ packages:
       encoding:
         optional: true
     dependencies:
+      encoding: 0.1.13
       whatwg-url: 5.0.0
     dev: false
 
@@ -10602,6 +10967,18 @@ packages:
       mimic-fn: 2.1.0
     dev: false
 
+  /openai@3.3.0:
+    resolution:
+      {
+        integrity: sha512-uqxI/Au+aPRnsaQRe8CojU0eCR7I0mBiKjD3sNMzY6DaC1ZVrc85u98mtJW6voDug8fgGN+DIZmTDxTthxb7dQ==,
+      }
+    dependencies:
+      axios: 0.26.1
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /openai@4.36.0:
     resolution:
       {
@@ -10615,7 +10992,7 @@ packages:
       agentkeepalive: 4.5.0
       form-data-encoder: 1.7.2
       formdata-node: 4.4.1
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
       web-streams-polyfill: 3.3.3
     transitivePeerDependencies:
       - encoding
@@ -10895,6 +11272,19 @@ packages:
       ripemd160: 2.0.2
       safe-buffer: 5.2.1
       sha.js: 2.4.11
+    dev: false
+
+  /pdf-parse@1.1.1:
+    resolution:
+      {
+        integrity: sha512-v6ZJ/efsBpGrGGknjtq9J/oC8tZWq0KWL5vQrk2GlzLEQPUDB1ex+13Rmidl1neNN358Jn9EHZw5y07FFtaC7A==,
+      }
+    engines: { node: ">=6.8.1" }
+    dependencies:
+      debug: 3.2.7
+      node-ensure: 0.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /pdfjs-dist@3.11.174:
@@ -11870,6 +12260,14 @@ packages:
       unified: 11.0.4
     dev: false
 
+  /require-from-string@2.0.2:
+    resolution:
+      {
+        integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==,
+      }
+    engines: { node: ">=0.10.0" }
+    dev: false
+
   /resolve-from@4.0.0:
     resolution:
       {
@@ -11998,6 +12396,13 @@ packages:
       es-errors: 1.3.0
       is-regex: 1.1.4
     dev: true
+
+  /safer-buffer@2.1.2:
+    resolution:
+      {
+        integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==,
+      }
+    dev: false
 
   /scheduler@0.23.0:
     resolution:

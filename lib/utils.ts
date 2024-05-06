@@ -6,12 +6,6 @@ import { v4 as uuidv4 } from "uuid"
 import { emailSchema } from "@/config/schema"
 import { getChat } from "@/lib/actions"
 
-/**
- * Combines class names into a single string with deduplicated classes.
- * Uses `clsx` for generating a combined class string and `twMerge` to merge Tailwind CSS classes.
- * @param {...ClassValue[]} inputs - Class names to combine.
- * @return {string} The combined class string.
- */
 export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs))
 }

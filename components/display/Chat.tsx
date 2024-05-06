@@ -32,15 +32,6 @@ export function Chat({ id, initialMessages, student }: ChatProps) {
         id,
         studentId: student.id,
       },
-      onResponse(response) {
-        if (response.status === 401) {
-          toast({
-            title: "Unauthorized",
-            description: "You are not authorized to view this chat.",
-            variant: "destructive",
-          })
-        }
-      },
       onFinish() {
         if (path === "/chat") {
           router.push(`/chat/c/${id}`)
@@ -48,6 +39,7 @@ export function Chat({ id, initialMessages, student }: ChatProps) {
         }
       },
       onError(error) {
+        console.log(error)
         toast({
           title: error.message,
           description: error.stack,
@@ -63,7 +55,7 @@ export function Chat({ id, initialMessages, student }: ChatProps) {
       className="group w-full overflow-auto pl-0 peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]"
       ref={scrollRef}
     >
-      <div className={cn("pt-20")} ref={messagesRef}>
+      <div className={cn("overflow-x-hidden pb-20 pt-20")} ref={messagesRef}>
         {messages.length ? (
           <ChatList messages={messages} student={student} />
         ) : (
