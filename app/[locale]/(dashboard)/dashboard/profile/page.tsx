@@ -9,14 +9,9 @@ const ProfilePage = async () => {
   if (!userSession) {
     redirect("/login")
   }
-  const user = await db.user.findUnique({
-    where: {
-      id: userSession?.id,
-    },
-  })
-  console.log(userSession)
+
   return (
-    <div className="flex h-full items-center justify-center sm:items-start sm:pt-10">
+    <div className="flex h-full items-center justify-center sm:items-start sm:pt-[120px]">
       <Profile
         name={userSession?.name!}
         bio={userSession?.bio!}
