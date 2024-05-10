@@ -2,13 +2,10 @@ import * as React from "react"
 import { type UseChatHelpers } from "ai/react"
 import { useTranslations } from "next-intl"
 
-import { shareChat } from "@/lib/actions"
-
 import { Button, ButtonScrollToBottom } from "@/components/ui/Button"
 import { Prompt } from "@/components/form/Prompt"
 import { Icons } from "@/components/icons/Lucide"
 import { FooterText } from "@/components/showcase/ChatFooter"
-import { ChatShareDialog } from "@/components/showcase/ChatShareDialog"
 
 export interface ChatPanelProps
   extends Pick<
@@ -21,7 +18,8 @@ export interface ChatPanelProps
     | "input"
     | "setInput"
   > {
-  id?: string
+  id: string
+  studentId: string
   title?: string
   isAtBottom: boolean
   scrollToBottom: () => void
@@ -29,6 +27,7 @@ export interface ChatPanelProps
 
 export function ChatPanel({
   id,
+  studentId,
   title,
   isLoading,
   stop,
@@ -41,7 +40,6 @@ export function ChatPanel({
   scrollToBottom,
 }: ChatPanelProps) {
   const t = useTranslations("Components.Form.ChatPanel")
-  const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
 
   return (
     <div className="fixed inset-x-0 bottom-0 w-full duration-300 ease-in-out animate-in  peer-[[data-state=open]]:group-[]:lg:pl-[250px] peer-[[data-state=open]]:group-[]:xl:pl-[300px]">
@@ -68,28 +66,6 @@ export function ChatPanel({
                   <Icons.refresh className="mr-2 size-5 stroke-[1.25]" />
                   {t("regenerate")}
                 </Button>
-                {id && title ? (
-                  <>
-                    <Button
-                      variant="outline"
-                      onClick={() => setShareDialogOpen(true)}
-                    >
-                      <Icons.share className="mr-2 size-5 stroke-[1.25]" />
-                      {t("share")}
-                    </Button>
-                    <ChatShareDialog
-                      open={shareDialogOpen}
-                      onOpenChange={setShareDialogOpen}
-                      onCopy={() => setShareDialogOpen(false)}
-                      shareChat={shareChat as any}
-                      chat={{
-                        id,
-                        title,
-                        messages,
-                      }}
-                    />
-                  </>
-                ) : null}
               </div>
             )
           )}
@@ -103,6 +79,8 @@ export function ChatPanel({
                 role: "user",
               })
             }}
+            id={id}
+            studentId={studentId}
             input={input}
             setInput={setInput}
             isLoading={isLoading}

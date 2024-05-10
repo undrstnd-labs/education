@@ -87,6 +87,8 @@ export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
                 event.preventDefault()
                 // @ts-ignore
                 startRemoveTransition(async () => {
+                  router.push("/chat")
+
                   const result = await removeChat({
                     id: chat.id,
                     path: chat.path,
@@ -102,7 +104,6 @@ export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
 
                   setDeleteDialogOpen(false)
                   router.refresh()
-                  router.push("/chat")
                   toast({
                     title: t("delete-chat-success"),
                   })

@@ -11,6 +11,46 @@
   background-image: url("/images/background/hello.png");
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+scrollbar-track {
+  background-color: transparent;
+}
+
 @layer base {
   :root {
     --background: 198.6 16% 100%;

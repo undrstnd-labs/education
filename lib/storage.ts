@@ -44,18 +44,17 @@ export async function manageAvatar(file: File, userId: string) {
   )
 }
 
-export const uploadFiles = async (
+export async function uploadFilesClassroom(
   files: File[],
   classroom: classroom,
   post: Post
-): Promise<supabaseFile[]> => {
+): Promise<supabaseFile[]> {
   const uploadedFiles: supabaseFile[] = []
-
   const uploadPromises = files.map(async (file) => {
     const { data, error } = await supabase.storage
       .from("files")
       .upload(
-        "/classrooms/" + classroom.id + "/" + post.id + "/" + uuidv4(),
+        `/classrooms/${classroom.id}/${post.id}/${uuidv4()}.${file.name.split(".")[1]}`,
         file
       )
 
@@ -78,12 +77,46 @@ export const uploadFiles = async (
   return uploadedFiles
 }
 
-export const deleteFiles = async (filesUrl: string[]) => {
+export async function uploadFilesStudent(
+  file: File,
+  studentId: string,
+  conversationId: string
+) {
+  const { data, error } = await supabase.storage
+    .from("files")
+    .upload(
+      `/students/${studentId}/${conversationId}/${uuidv4()}.${file.name.split(".")[1]}`,
+      file
+    )
+
+  if (error) {
+    throw error
+  }
+
+  return {
+    name: file.name,
+    url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/${data.path}`,
+    type: file.type,
+    size: file.size,
+  }
+}
+
+export async function deleteFiles(filesUrl: string[]) {
   await Promise.all(
     filesUrl.map(async (fileUrl) => {
       await supabase.storage.from("files").remove([fileUrl])
     })
   )
+}
+
+export async function deleteFile(fileUrl: string) {
+  await supabase.storage
+    .from("files")
+    .remove([
+      fileUrl.split(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/`
+      )[1],
+    ])
 }
 
 export const downloadFileFromUrl = async (url: string) => {
@@ -94,10 +127,8 @@ export const downloadFileFromUrl = async (url: string) => {
       throw error
     }
 
-    // create a blob from the data
     const blob = new Blob([data], { type: "application/octet-stream" })
 
-    // create a link to download the file
     const downloadLink = document.createElement("a")
     downloadLink.href = window.URL.createObjectURL(blob)
     downloadLink.download = url.split("/").pop() ?? ""

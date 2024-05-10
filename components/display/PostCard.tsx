@@ -16,8 +16,7 @@ import CommentCard from "@/components/display/CommentCard"
 import ReactionButton from "@/components/display/ReactionButton"
 import CommentAddCard from "@/components/form/CommentAddCard"
 import { FileCard } from "@/components/showcase/FileCard"
-
-import PostCardOptions from "../showcase/PostCardOptions"
+import PostCardOptions from "@/components/showcase/PostCardOptions"
 
 interface PostCardProps {
   post: post

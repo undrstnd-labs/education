@@ -20,7 +20,8 @@ export default async function OnboardingPage() {
     redirect("/login")
     return null
   }
-  if (user) {
+
+  if (user && user.role !== "NOT_ASSIGNED") {
     redirect("/dashboard")
     return null
   }

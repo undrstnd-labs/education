@@ -9,6 +9,7 @@ import { z } from "zod"
 
 import { UserType } from "@/types/auth"
 
+import { onboaringSchema } from "@/config/schema"
 import { fetchUniversityData } from "@/config/universities"
 import { manageAvatar } from "@/lib/storage"
 import { cn } from "@/lib/utils"
@@ -35,20 +36,14 @@ import { Textarea } from "@/components/ui/Textarea"
 import { UniversityCard } from "@/components/display/UniversityCard"
 import { Icons } from "@/components/icons/Lucide"
 
-const formSchema = z.object({
-  name: z.string().min(2).max(50),
-  bio: z.string().max(200).optional(),
-  image: z.string().url().optional(),
-  role: z.union([z.literal("STUDENT"), z.literal("TEACHER")]),
-})
-
 //TODO: Work on the dark theme
-// TODO: Translate this page
 export function OnboardingAuthForm({ user }: { user: UserType }) {
-  const { toast } = useToast()
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
+  const { toast } = useToast()
+
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const [loading, setLoading] = useState(false)
   const [imagePreviewUrl, setImagePreviewUrl] = useState("")
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
 
@@ -60,8 +55,8 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
     t: translateEmailInput,
   })
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof onboaringSchema>>({
+    resolver: zodResolver(onboaringSchema),
   })
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,7 +77,7 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
     }
   }
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof onboaringSchema>) {
     setLoading(true)
 
     let imageUrl
@@ -108,22 +103,21 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
 
       if (!res.ok) {
         toast({
-          title: "Failed to update profile",
-          description: "Something went wrong. Please try again.",
+          title: translateOnboarding("error-toast-title"),
           variant: "destructive",
         })
       } else {
+        router.push("/dashboard")
         toast({
-          title: "Profile updated",
-          description: "Your profile has been updated successfully.",
+          title: translateOnboarding("success-toast-title"),
+          description: translateOnboarding("success-toast-description"),
         })
       }
-
-      router.push("/dashboard")
     } catch (error) {
       console.error(error)
     } finally {
       setLoading(false)
+      router.refresh()
     }
   }
 

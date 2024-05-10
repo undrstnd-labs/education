@@ -39,9 +39,11 @@ async function getClassrooms(user: User) {
 
 export default async function DashboardPage() {
   const user = await getCurrentUser()
+
   if (!user) {
     redirect("/login")
   }
+
   const classrooms = await getClassrooms(user!)
 
   if (user?.role === "TEACHER") {

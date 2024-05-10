@@ -6,7 +6,13 @@ import { getChat } from "@/lib/actions"
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
 import { getFormattedChat } from "@/lib/utils"
 
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/Resizable"
 import { Chat } from "@/components/display/Chat"
+import { PDFRender } from "@/components/display/PDFRender"
 
 export interface ChatPageProps {
   params: {
@@ -42,18 +48,38 @@ export default async function ChatPage({
 
   const chat = await getFormattedChat(params.chatId, student.id)
 
-  if (!chat) {
+  if (!chat || !chat.id) {
     redirect("/chat")
+    return null
   }
 
   if (chat?.studentId && chat.studentId !== student.id) {
     redirect("/chat")
+    return null
+  }
+
+  if (!chat.file) {
+    return (
+      // @ts-ignore: initialMessages is not null
+      <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+    )
   }
 
   return (
-    <>
-      {/*      @ts-ignore: chat is not null*/}
-      <Chat id={chat.id} student={student} initialMessages={chat.messages} />
-    </>
+    <ResizablePanelGroup direction="horizontal">
+      <ResizablePanel defaultSize={18} minSize={38} className="px-2">
+        {/* @ts-ignore: chat is not null */}
+        <PDFRender file={chat.file} student={student} chat={chat} />
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel
+        defaultSize={82}
+        minSize={40}
+        style={{ height: "80vh", overflowY: "auto" }}
+      >
+        {/* @ts-ignore: initialMessages is not null */}
+        <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+      </ResizablePanel>
+    </ResizablePanelGroup>
   )
 }

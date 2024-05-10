@@ -1,6 +1,6 @@
 import { redirect } from "@navigation"
 
-import { getCurrentUser } from "@/lib/session"
+import { getCurrentUser, verifyCurrentUser } from "@/lib/session"
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -9,7 +9,7 @@ interface AuthLayoutProps {
 export default async function AuthLayout({ children }: AuthLayoutProps) {
   const user = await getCurrentUser()
 
-  if (user && user.role !== "NOT_ASSIGNED") {
+  if (await verifyCurrentUser(user?.id as string)) {
     redirect("/dashboard")
   }
 

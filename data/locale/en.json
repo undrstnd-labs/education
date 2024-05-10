@@ -163,7 +163,10 @@
         "student": "Student",
         "teacher": "Teacher",
         "image-too-large": "Image is too large",
-        "image-description-error": "Please upload an image less than 3MB"
+        "image-description-error": "Please upload an image less than 3MB",
+        "error-toast-title": "Failed to update profile",
+        "success-toast-title": "Profile updated",
+        "success-toast-description": "Your profile has been updated successfully."
       },
       "Prompt": {
         "new-chat": "New Chat",
@@ -175,7 +178,9 @@
         "file-max-error": "You can only upload 1 file",
         "click-to-select": "Click to upload",
         "or-drag-drop": "or drag and drop",
-        "pdf-only": "Only PDF files are allowed"
+        "pdf-only": "Only PDF files are allowed",
+        "upload-success": "File uploaded successfully",
+        "upload-failed": "Failed to upload file"
       },
       "ChatPanel": {
         "stop-generating": "Stop generating",
@@ -275,6 +280,24 @@
       },
       "SidebarItem": {
         "shared-chat": "This is a shared chat."
+      },
+      "PDFFullScreen": {
+        "open": "Open",
+        "download": "Download the file",
+        "copy": "Copy link of the file",
+        "error": "Error loading PDF"
+      },
+      "PDFRender": {
+        "error": "Error loading PDF",
+        "customize-view": "View options",
+        "customize-view-description": "Customize the view of the PDF",
+        "new-window": "New window",
+        "zoom": "Zoom",
+        "rotation": "Rotation",
+        "just-now": "Just now",
+        "minutes-ago": "minutes ago",
+        "hours-ago": "hours ago",
+        "days-ago": "days ago"
       }
     },
     "Showcase": {
@@ -314,6 +337,16 @@
       "ChatFooter": {
         "footer-text-1": "can make mistakes. Consider reading the",
         "footer-text-2": "to understand how it works."
+      },
+      "ChatEmptyScreen": {
+        "welcome": "How can I help you today?",
+        "description": "You can start a conversation here or try the following examples:",
+        "heading-1": "Help with homework",
+        "message-1": "Can you help me solve this math problem? \n",
+        "heading-2": "Prepare for a test",
+        "message-2": "I have a Python test tomorrow. Can you give me some questions to practice? \n",
+        "heading-3": "Improve writing skills",
+        "message-3": "Can you check my essay for grammar and spelling errors? \n"
       }
     },
     "Config": {
@@ -348,6 +381,9 @@
       },
       "Chat": {
         "title": "Chat"
+      },
+      "Onboarding": {
+        "title": "Onboarding"
       }
     }
   }
