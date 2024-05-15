@@ -248,6 +248,12 @@
         "toastTitleDeletePostError": "Failed to delete post",
         "toastDescriptionDeletePostError": "An error occurred while deleting the post. Please try again."
       },
+      "Profile": {
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your account.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm"
+      },
       "CommentCardOptions": {
         "commentOption": "Comment Options",
         "editComment": "Edit",
