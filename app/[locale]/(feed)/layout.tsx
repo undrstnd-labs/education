@@ -67,7 +67,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
       <div className="lg:hidden">
         <Sheet>
           <div className="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8">
-            <div className="flex h-16 items-center gap-x-4 border-b border-secondary bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
+            <div className="flex h-16 items-center gap-x-4 border-b border-secondary px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
               <SheetTrigger>
                 <Button variant={"ghost"} size={"icon"}>
                   <Icons.menu className="h-6 w-6" aria-hidden="true" />
@@ -95,8 +95,8 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
         </Sheet>
       </div>
 
-      <div className="hidden px-2 lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72  lg:flex-col">
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
+      <div className="hidden border-r border-secondary-foreground/10 bg-secondary/35 px-2 lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">
             <div
               className={
@@ -105,7 +105,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
             >
               <LogoPNG className="mr-2 size-8" />
               Undrstnd
-            </div>{" "}
+            </div>
           </div>
 
           <FeedNavigationList classrooms={classrooms} />

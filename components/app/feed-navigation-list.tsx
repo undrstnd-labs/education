@@ -62,9 +62,9 @@ export function FeedNavigationList({
                   href={item.href}
                   className={cn(
                     path === item.href
-                      ? "bg-secondary/50 font-semibold text-primary"
-                      : "text-gray-700 hover:bg-gray-50 hover:text-primary",
-                    "group flex gap-x-3 rounded-xl p-2 text-sm font-semibold leading-6"
+                      ? "bg-secondary/80 text-primary"
+                      : "text-secondary-foreground/45 hover:bg-secondary hover:text-secondary-foreground",
+                    "group flex gap-x-3 rounded-xl p-2 text-sm font-semibold leading-6 transition-all duration-300 hover:bg-secondary-foreground/10"
                   )}
                 >
                   {typeof item.icon === "string" ? (
@@ -72,7 +72,7 @@ export function FeedNavigationList({
                       className={cn(
                         path === item.href
                           ? "text-primary"
-                          : "text-gray-400 group-hover:text-primary",
+                          : "text-secondary-foreground/45",
                         "flex h-6 w-6 shrink-0 items-center justify-center"
                       )}
                       aria-hidden="true"
@@ -89,7 +89,7 @@ export function FeedNavigationList({
                       className={cn(
                         path === item.href
                           ? "text-primary"
-                          : "text-gray-400 group-hover:text-primary",
+                          : "text-secondary-foreground/45",
                         "h-6 w-6 shrink-0"
                       )}
                       aria-hidden="true"
@@ -102,8 +102,8 @@ export function FeedNavigationList({
           </ul>
         </li>
         <li>
-          <div className="text-xs font-semibold leading-6 text-gray-400">
-            {t("your-classrooms")}{" "}
+          <div className="text-xs font-semibold leading-6 text-secondary-foreground/50">
+            {t("your-classrooms")}
           </div>
           <ul role="list" className="-mx-2 mt-2 space-y-1">
             <ScrollArea className="h-96">
@@ -114,9 +114,9 @@ export function FeedNavigationList({
                       href={`/classroom/${classroom.id}`}
                       className={cn(
                         path === `/classroom/${classroom.id}`
-                          ? "bg-gray-50 text-primary"
-                          : "text-gray-700 hover:bg-gray-50 hover:text-primary",
-                        "group flex gap-x-3 rounded-xl p-2 text-sm font-semibold leading-6"
+                          ? "bg-secondary/90 text-primary"
+                          : "text-secondary-foreground/60 hover:bg-secondary hover:text-secondary-foreground",
+                        "group flex gap-x-3 rounded-xl p-2 text-sm font-semibold leading-6 transition-all duration-300 hover:bg-secondary-foreground/10"
                       )}
                     >
                       {classroom.teacher.user.image &&
@@ -126,12 +126,12 @@ export function FeedNavigationList({
                         <span
                           className={cn(
                             path === `/classroom/${classroom.id}`
-                              ? "border-primarytext-primary"
-                              : "border-gray-200 text-gray-400 group-hover:border-primary group-hover:text-primary",
-                            "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium"
+                              ? "border-primary text-primary"
+                              : "group-hover:border-secondary-foreground group-hover:text-secondary-foreground",
+                            "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium uppercase"
                           )}
                         >
-                          {classroom.name[0]}
+                          {classroom.name.slice(0, 2)}
                         </span>
                       ) : (
                         classroom.teacher.user.image && (

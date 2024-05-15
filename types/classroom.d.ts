@@ -1,4 +1,11 @@
-import { Classroom, Comment, File, Post as PostPrisma, Reaction, User } from "@prisma/client"
+import {
+  Classroom,
+  Comment,
+  File,
+  Post as PostPrisma,
+  Reaction,
+  User,
+} from "@prisma/client"
 
 export type Post = PostPrisma & {
   teacher: { user: User; id: string; userId: string }
