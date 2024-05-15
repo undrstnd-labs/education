@@ -9,13 +9,15 @@ const JoinClassroomPage = async ({
   params: { classCode: string }
 }) => {
   const user = await getCurrentUser()
+
   if (!user) {
-    redirect("/login")
+    return redirect("/login")
   }
 
-  if (user?.role !== "STUDENT" || classCode.length !== 8) {
-    redirect("/dashboard/classroom")
+  if (user.role !== "STUDENT" || classCode.length !== 8) {
+    redirect("/classroom")
   }
+
   return <JoinClassroom userId={user?.id!} classCode={classCode} />
 }
 

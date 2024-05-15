@@ -59,7 +59,8 @@ export function JoinClassroom({ classCode, userId }: JoinClassroomProps) {
     } catch (error) {
       console.error(error)
     } finally {
-      router.push("/dashboard/classroom")
+      router.push("/classroom")
+      router.refresh()
     }
   }
 

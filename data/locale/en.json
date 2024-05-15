@@ -384,6 +384,17 @@
   },
 
   "app": {
+    "pages": {
+      "feed": {
+        "just-now": "Just now",
+        "minutes-ago": "minutes ago",
+        "hours-ago": "hours ago",
+        "days-ago": "days ago",
+        "feed": "Your Feed",
+        "posted": "Posted",
+        "commented": "Commented"
+      }
+    },
     "components": {
       "app": {
         "feed-navigation-list": {

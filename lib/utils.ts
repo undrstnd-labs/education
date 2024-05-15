@@ -1,3 +1,5 @@
+import { Activity, Classroom } from "@/types"
+import { Comment, Post, Student, Teacher, User } from "@prisma/client"
 import { type Message } from "ai/react"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -58,4 +60,61 @@ export function formatDate(date: Date, t: (arg: string) => string): string {
       day: "numeric",
     })
   }
+}
+
+export function processActivities(
+  data: Classroom[],
+  t: (arg: string) => string
+): Activity[][] {
+  const groupedActivities: Activity[][] = []
+
+  data.forEach((classroom: Classroom) => {
+    const activities: Activity[] = []
+    const posts = classroom.teacher.posts
+
+    posts.forEach((post: Post) => {
+      const postActivity: Activity = {
+        id: post.id,
+        type: "post",
+        user: {
+          name: `${classroom.teacher.user.name}`,
+          image: classroom.teacher.user.image,
+        },
+        imageUrl: classroom.teacher.user.image,
+        comment: post.content,
+        date: formatDate(new Date(post.createdAt), t),
+        classroom: { id: classroom.id, name: classroom.name },
+      }
+
+      activities.push(postActivity)
+
+      // @ts-ignore: Object is possibly 'null'.
+      post.comments.forEach(
+        (
+          comment: Comment & {
+            user: User
+          }
+        ) => {
+          const commentActivity: Activity = {
+            id: comment.id,
+            type: "comment",
+            user: {
+              name: `${comment.user.name}`,
+              image: comment.user.image!,
+            },
+            imageUrl: comment.user.image!,
+            date: formatDate(new Date(comment.createdAt), t),
+            classroom: { id: classroom.id, name: classroom.name },
+            post: { id: post.id, name: post.name },
+          }
+
+          activities.push(commentActivity)
+        }
+      )
+    })
+
+    groupedActivities.push(activities)
+  })
+
+  return groupedActivities
 }

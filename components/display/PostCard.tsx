@@ -38,7 +38,7 @@ const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
   )
 
   return (
-    <div className="flex flex-col gap-2">
+    <section id={post.id} className="flex flex-col gap-2">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
@@ -108,7 +108,7 @@ const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
       <div>
         <CommentAddCard postId={post.id} userId={userId} />
       </div>
-    </div>
+    </section>
   )
 }
 

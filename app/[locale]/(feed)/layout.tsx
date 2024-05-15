@@ -63,7 +63,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
   const classrooms = await getClassrooms(user)
 
   return (
-    <main>
+    <>
       <div className="lg:hidden">
         <Sheet>
           <div className="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8">
@@ -128,13 +128,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
         </div>
       </div>
 
-      <div className="lg:pl-72">
-        <main className="py-10">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {children}
-          </div>
-        </main>
-      </div>
-    </main>
+      <div className="lg:pl-72">{children}</div>
+    </>
   )
 }

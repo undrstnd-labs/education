@@ -76,7 +76,7 @@ export default async function ClassroomPage({
   const classroom = await getClassroom(user, classroomId)
 
   if (!classroom) {
-    return redirect("/dashboard/classroom")
+    return redirect("/classroom")
   }
 
   return (
