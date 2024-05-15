@@ -38,8 +38,8 @@ export async function GET(
               comments: {
                 include: {
                   user: true,
-                }
-              }
+                },
+              },
             },
           },
         },

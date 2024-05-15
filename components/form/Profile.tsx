@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useToast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -43,7 +44,6 @@ import {
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
 import { Textarea } from "@/components/ui/Textarea"
-import { Icons } from "@/components/icons/Lucide"
 
 interface ProfileFormProps {
   id: string
