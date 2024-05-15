@@ -1,9 +1,9 @@
 import Image from "next/image"
 import { Link } from "@navigation"
 
+import { PlayIcon } from "@/components/icons/Overall"
 import { Button } from "@/components/ui/Button"
 import { TypingEffect } from "@/components/ui/TypingEffect"
-import { PlayIcon } from "@/components/icons/Overall"
 
 export default function HerosectionHome() {
   return (

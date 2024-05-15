@@ -9,6 +9,7 @@ import { type Chat } from "@/types/chat"
 
 import { toast } from "@/hooks/use-toast"
 
+import { IconSpinner, IconTrash } from "@/components/icons/Overall"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,7 +27,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip"
-import { IconSpinner, IconTrash } from "@/components/icons/Overall"
 
 interface SidebarActionsProps {
   chat: Chat

@@ -12,11 +12,11 @@ import { getUserAuthSchema } from "@/config/schema"
 import { cn } from "@/lib/utils"
 import { toast } from "@/hooks/use-toast"
 
+import { EmailInput } from "@/components/form/EmailInput"
+import { Icons } from "@/components/icons/Lucide"
 import { buttonVariants } from "@/components/ui/Button"
 import { Label } from "@/components/ui/Label"
 import { Skeleton } from "@/components/ui/Skeleton"
-import { EmailInput } from "@/components/form/EmailInput"
-import { Icons } from "@/components/icons/Lucide"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: "login" | "register"
@@ -50,7 +50,7 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       await signIn("email", {
         email: data.email.toLowerCase(),
         redirect: false,
-        callbackUrl: searchParams?.get("from") || "/dashboard",
+        callbackUrl: searchParams?.get("from") || "/feed",
       })
 
       router.push(pathname + "?email=" + data.email.toLowerCase())

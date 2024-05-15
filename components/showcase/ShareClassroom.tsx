@@ -10,12 +10,12 @@ interface ShareClassroomProps {
   classroom: Classroom
 }
 
-const ShareClassroom = ({ classroom }: ShareClassroomProps) => {
+export function ShareClassroom({ classroom }: ShareClassroomProps) {
   const [copied, setCopied] = useState(false)
   const copyLink = () => {
     if (typeof window !== "undefined") {
       navigator.clipboard.writeText(
-        `${window.location.origin}/dashboard/classroom/join/${classroom.classCode}`
+        `${window.location.origin}/classroom/join/${classroom.classCode}`
       )
 
       setCopied(true)
@@ -38,5 +38,3 @@ const ShareClassroom = ({ classroom }: ShareClassroomProps) => {
     </Button>
   )
 }
-
-export default ShareClassroom

@@ -5,6 +5,8 @@ import { comment } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
 
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentCardOptions from "@/components/showcase/CommentCardOptions"
 import {
   Card,
   CardContent,
@@ -12,8 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card"
-import ReactionButton from "@/components/display/ReactionButton"
-import CommentCardOptions from "@/components/showcase/CommentCardOptions"
 
 interface CommentReplyProps {
   userId: string

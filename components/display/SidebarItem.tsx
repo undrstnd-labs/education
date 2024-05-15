@@ -10,6 +10,7 @@ import { type Chat } from "@/types/chat"
 import { cn } from "@/lib/utils"
 import { useLocalStorage } from "@/hooks/use-local-storage"
 
+import { IconMessage, IconUsers } from "@/components/icons/Overall"
 import { buttonVariants } from "@/components/ui/Button"
 import {
   Tooltip,
@@ -17,7 +18,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip"
-import { IconMessage, IconUsers } from "@/components/icons/Overall"
 
 interface SidebarItemProps {
   index: number

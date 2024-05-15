@@ -1,6 +1,6 @@
+import { Icons } from "@/components/icons/Lucide"
 import { Button } from "@/components/ui/Button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet"
-import { Icons } from "@/components/icons/Lucide"
 
 interface SidebarMobileProps {
   children: React.ReactNode

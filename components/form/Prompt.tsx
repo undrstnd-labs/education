@@ -6,6 +6,8 @@ import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import { useEnterSubmit } from "@/hooks/use-enter-submit"
 
+import { UploadFile } from "@/components/form/UploadFile"
+import { Icons } from "@/components/icons/Lucide"
 import { Button, buttonVariants } from "@/components/ui/Button"
 import { Textarea } from "@/components/ui/Textarea"
 import {
@@ -14,8 +16,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip"
-import { UploadFile } from "@/components/form/UploadFile"
-import { Icons } from "@/components/icons/Lucide"
 
 export interface PromptProps
   extends Pick<UseChatHelpers, "input" | "setInput"> {

@@ -12,6 +12,7 @@ import { uploadFilesStudent } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useToast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import { Button } from "@/components/ui/Button"
 import {
   Dialog,
@@ -35,7 +36,6 @@ import {
 } from "@/components/ui/FileUpload"
 import { Form, FormField, FormItem } from "@/components/ui/Form"
 import { Progress } from "@/components/ui/Progress"
-import { Icons } from "@/components/icons/Lucide"
 
 type uploadFileType = z.infer<ReturnType<typeof uploadFileSchema>>
 

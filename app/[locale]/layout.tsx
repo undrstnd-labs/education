@@ -7,10 +7,10 @@ import { getTranslations } from "next-intl/server"
 
 import { siteConfig } from "@/config/site"
 
-import { Toaster } from "@/components/ui/Toaster"
 import { Analytics } from "@/components/config/Analytics"
 import { Providers } from "@/components/config/Providers"
 import { TailwindIndicator } from "@/components/config/TailwindIndicator"
+import { Toaster } from "@/components/ui/Toaster"
 
 export const viewport: Viewport = {
   width: "device-width",

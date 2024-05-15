@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { classroom, post } from "@/types/classroom"
+import { Classroom, Post } from "@/types/classroom"
 
 import { editPostSchema } from "@/config/schema"
 import { useRouter } from "@/lib/navigation"
@@ -31,9 +31,9 @@ import { Textarea } from "@/components/ui/Textarea"
 import { Icons } from "../icons/Lucide"
 
 interface EditPostProps {
-  post: post
+  post: Post
   userId: string
-  classroom: classroom
+  classroom: Classroom
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
 }

@@ -4,9 +4,9 @@ import { getTranslations } from "next-intl/server"
 import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 
-import { buttonVariants } from "@/components/ui/Button"
 import { OnboardingAuthForm } from "@/components/form/OnboardingAuth"
 import { LogoPNG } from "@/components/icons/Overall"
+import { buttonVariants } from "@/components/ui/Button"
 
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Onboarding")

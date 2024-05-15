@@ -357,6 +357,7 @@
       }
     }
   },
+
   "Metadata": {
     "Layout": {
       "PrincipalLayout": {
@@ -378,6 +379,20 @@
       },
       "Onboarding": {
         "title": "Onboarding"
+      }
+    }
+  },
+
+  "app": {
+    "components": {
+      "app": {
+        "feed-navigation-list": {
+          "feed": "Feed",
+          "classroom": "Classrooms",
+          "dashboard": "Dashboard",
+          "chat": "Conversations",
+          "your-classrooms": "Your Classrooms"
+        }
       }
     }
   }

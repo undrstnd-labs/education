@@ -3,12 +3,12 @@
 import { Popover } from "@headlessui/react"
 import { Link } from "@navigation"
 
-import { Button } from "@/components/ui/Button"
-import Container from "@/components/ui/Container"
 import { ChevronUpIcon, MenuIcon } from "@/components/icons/Navbar"
 import { LogoPNG } from "@/components/icons/Overall"
 import MobileAnimatePresence from "@/components/navigation/MobileAnimatePresence"
 import NavLinks from "@/components/navigation/NavLinks"
+import { Button } from "@/components/ui/Button"
+import Container from "@/components/ui/Container"
 
 export default function Header() {
   return (

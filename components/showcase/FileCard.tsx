@@ -4,6 +4,7 @@ import { Link } from "@navigation"
 import { File } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
+import { Icons } from "@/components/icons/Lucide"
 import { Button } from "@/components/ui/Button"
 import { Card } from "@/components/ui/Card"
 import {
@@ -14,7 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
-import { Icons } from "@/components/icons/Lucide"
 
 import DonloadFileButton from "./DonloadFileButton"
 

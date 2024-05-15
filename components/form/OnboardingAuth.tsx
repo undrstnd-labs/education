@@ -15,6 +15,8 @@ import { manageAvatar } from "@/lib/storage"
 import { cn } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
+import { UniversityCard } from "@/components/display/UniversityCard"
+import { Icons } from "@/components/icons/Lucide"
 import { buttonVariants } from "@/components/ui/Button"
 import {
   Form,
@@ -33,8 +35,6 @@ import {
   SelectValue,
 } from "@/components/ui/Select"
 import { Textarea } from "@/components/ui/Textarea"
-import { UniversityCard } from "@/components/display/UniversityCard"
-import { Icons } from "@/components/icons/Lucide"
 
 //TODO: Work on the dark theme
 export function OnboardingAuthForm({ user }: { user: UserType }) {

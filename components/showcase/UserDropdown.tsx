@@ -1,17 +1,18 @@
 import { Link } from "@navigation"
 import { useTranslations } from "next-intl"
 
+import { ThemeSwitch } from "@/components/config/ThemeSwitch"
+import { StatusWidget } from "@/components/display/StatusWidget"
 import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/DropdownMenu"
-import { ThemeSwitch } from "@/components/config/ThemeSwitch"
-import { StatusWidget } from "@/components/display/StatusWidget"
 
 import { LanguageSwitch } from "../config/LanguageSwitch"
 
 export function UserDropdown() {
   const t = useTranslations("Components.Showcase.UserDropdown")
+
   return (
     <div>
       <DropdownMenuSeparator />

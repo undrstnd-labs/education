@@ -6,10 +6,10 @@ import remarkMath from "remark-math"
 
 import { cn } from "@/lib/utils"
 
-import { CodeBlock } from "@/components/ui/Codeblock"
 import { MemoizedReactMarkdown } from "@/components/config/Markdown"
 import { Logo } from "@/components/icons/Overall"
 import { ChatMessageActions } from "@/components/showcase/ChatMessageActions"
+import { CodeBlock } from "@/components/ui/Codeblock"
 
 interface ChatMessageProps {
   message: Message

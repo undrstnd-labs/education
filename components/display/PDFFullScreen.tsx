@@ -10,6 +10,7 @@ import { downloadFileFromUrl } from "@/lib/storage"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { useToast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import { Button } from "@/components/ui/Button"
 import {
   Dialog,
@@ -22,7 +23,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/Tooltip"
-import { Icons } from "@/components/icons/Lucide"
 
 import "react-pdf/dist/Page/TextLayer.css"
 import "react-pdf/dist/Page/AnnotationLayer.css"

@@ -5,10 +5,10 @@ import { getTranslations } from "next-intl/server"
 
 import { cn, verifyEmail } from "@/lib/utils"
 
-import { buttonVariants } from "@/components/ui/Button"
 import { PassCodeAuth } from "@/components/form/PassCodeAuth"
 import { UserAuthForm, UserAuthSkeleton } from "@/components/form/UserAuth"
 import { LogoPNG } from "@/components/icons/Overall"
+import { buttonVariants } from "@/components/ui/Button"
 
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Register")

@@ -6,13 +6,13 @@ import { getChat } from "@/lib/actions"
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
 import { getFormattedChat } from "@/lib/utils"
 
+import { Chat } from "@/components/display/Chat"
+import { PDFRender } from "@/components/display/PDFRender"
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/Resizable"
-import { Chat } from "@/components/display/Chat"
-import { PDFRender } from "@/components/display/PDFRender"
 
 export interface ChatPageProps {
   params: {

@@ -8,6 +8,8 @@ import { useRouter } from "@/lib/navigation"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
+import { EditClassroom } from "@/components/form/EditClassroom"
+import { Icons } from "@/components/icons/Lucide"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -36,8 +38,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
-import { EditClassroom } from "@/components/form/EditClassroom"
-import { Icons } from "@/components/icons/Lucide"
 
 interface ClassroomCardProps {
   classroom: Classroom & {

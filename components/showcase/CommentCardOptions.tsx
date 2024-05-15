@@ -9,6 +9,7 @@ import { comment } from "@/types/classroom"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -37,7 +38,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
-import { Icons } from "@/components/icons/Lucide"
 
 import EditComment from "../form/EditComment"
 

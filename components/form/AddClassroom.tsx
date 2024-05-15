@@ -13,6 +13,7 @@ import { useRouter } from "@/lib/navigation"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import { Button } from "@/components/ui/Button"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
@@ -26,7 +27,6 @@ import {
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
 import { Textarea } from "@/components/ui/Textarea"
-import { Icons } from "@/components/icons/Lucide"
 
 interface AddClassroomProps {
   userId: string

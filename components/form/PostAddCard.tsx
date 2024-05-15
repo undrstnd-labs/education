@@ -8,13 +8,14 @@ import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { classroom } from "@/types/classroom"
+import { Classroom } from "@/types/classroom"
 
 import { addPostSchema } from "@/config/schema"
 import { uploadFilesClassroom } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import { Button } from "@/components/ui/Button"
 import { Card, CardContent } from "@/components/ui/Card"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
@@ -29,11 +30,10 @@ import {
 } from "@/components/ui/Form"
 import { Input } from "@/components/ui/Input"
 import { Textarea } from "@/components/ui/Textarea"
-import { Icons } from "@/components/icons/Lucide"
 
 interface PostAddCard {
   userId: string
-  classroom: classroom
+  classroom: Classroom
 }
 
 export function PostAddCard({ userId, classroom }: PostAddCard) {

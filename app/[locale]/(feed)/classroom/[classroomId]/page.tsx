@@ -3,7 +3,7 @@ import { redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
 
 import { NextAuthUser } from "@/types/auth"
-import { classroom } from "@/types/classroom"
+import { Classroom } from "@/types/classroom"
 
 import {
   getCurrentEntity,
@@ -51,7 +51,7 @@ async function getClassroom(user: User, classroomId: string) {
       }
     ).then((res) => res.json())
 
-    return res as classroom
+    return res as Classroom
   } catch (error) {
     console.log(error)
   }

@@ -1,6 +1,6 @@
 import { Student, Teacher, User } from "@prisma/client"
 
-import { classroom } from "@/types/classroom"
+import { Classroom } from "@/types/classroom"
 
 import { redirect } from "@/lib/navigation"
 import { getCurrentEntity, getCurrentUser } from "@/lib/session"
@@ -23,7 +23,7 @@ async function getClassrooms(user: User) {
     )
 
     if (res.ok) {
-      const data: classroom[] = await res.json()
+      const data: Classroom[] = await res.json()
       return data
     }
     return null

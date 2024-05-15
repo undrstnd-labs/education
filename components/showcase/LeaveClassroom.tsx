@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,7 +31,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/Drawer"
-import { Icons } from "@/components/icons/Lucide"
 
 interface LeaveClassroomProps {
   classroom: Classroom

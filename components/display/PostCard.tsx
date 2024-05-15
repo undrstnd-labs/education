@@ -1,10 +1,15 @@
 import Image from "next/image"
 import { Role } from "@prisma/client"
 
-import { classroom, post } from "@/types/classroom"
+import { Classroom, Post } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
 
+import CommentCard from "@/components/display/CommentCard"
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentAddCard from "@/components/form/CommentAddCard"
+import { FileCard } from "@/components/showcase/FileCard"
+import PostCardOptions from "@/components/showcase/PostCardOptions"
 import {
   Card,
   CardContent,
@@ -12,16 +17,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card"
-import CommentCard from "@/components/display/CommentCard"
-import ReactionButton from "@/components/display/ReactionButton"
-import CommentAddCard from "@/components/form/CommentAddCard"
-import { FileCard } from "@/components/showcase/FileCard"
-import PostCardOptions from "@/components/showcase/PostCardOptions"
 
 interface PostCardProps {
-  post: post
+  post: Post
   userId: string
-  classroom: classroom
+  classroom: Classroom
   role: Role
 }
 

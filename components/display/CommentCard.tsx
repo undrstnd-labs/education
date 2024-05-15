@@ -5,6 +5,10 @@ import { comment } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
 
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentAddCard from "@/components/form/CommentAddCard"
+import { Icons } from "@/components/icons/Lucide"
+import CommentCardOptions from "@/components/showcase/CommentCardOptions"
 import { Button } from "@/components/ui/Button"
 import {
   Card,
@@ -21,10 +25,6 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/Sheet"
-import ReactionButton from "@/components/display/ReactionButton"
-import CommentAddCard from "@/components/form/CommentAddCard"
-import { Icons } from "@/components/icons/Lucide"
-import CommentCardOptions from "@/components/showcase/CommentCardOptions"
 
 import CommentReply from "./CommentReply"
 

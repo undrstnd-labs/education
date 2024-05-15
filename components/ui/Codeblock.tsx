@@ -6,8 +6,8 @@ import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism"
 
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 
-import { Button } from "@/components/ui/Button"
 import { Icons } from "@/components/icons/Lucide"
+import { Button } from "@/components/ui/Button"
 
 interface Props {
   language: string

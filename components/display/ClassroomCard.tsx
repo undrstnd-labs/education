@@ -1,7 +1,10 @@
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from "@navigation"
 import { Classroom, User } from "@prisma/client"
 
+import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions"
+import { LeaveClassroom } from "@/components/showcase/LeaveClassroom"
+import { ShareClassroom } from "@/components/showcase/ShareClassroom"
 import {
   Card,
   CardContent,
@@ -9,9 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/Card"
-import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions"
-import { LeaveClassroom } from "@/components/showcase/LeaveClassroom"
-import ShareClassroom from "@/components/showcase/ShareClassroom"
 
 interface classroomCardProps {
   classroom: Classroom & {
@@ -27,7 +27,7 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
         <CardTitle>
           <div className="flex items-center justify-between">
             <Link
-              href={`/dashboard/classroom/${classroom.id}`}
+              href={`/classroom/${classroom.id}`}
               key={classroom.id}
               className=" flex flex-1 items-center"
             >
@@ -47,14 +47,14 @@ export const ClassroomCard = ({ classroom, authorId }: classroomCardProps) => {
             </div>
           </div>
         </CardTitle>
-        <Link href={`/dashboard/classroom/${classroom.id}`} key={classroom.id}>
+        <Link href={`/classroom/${classroom.id}`} key={classroom.id}>
           <CardDescription className="hover:underline">
             {classroom.description}
           </CardDescription>
         </Link>
       </CardHeader>
       <CardContent className="-mt-5 w-full">
-        <Link href={`/dashboard/classroom/${classroom.id}`} key={classroom.id}>
+        <Link href={`/classroom/${classroom.id}`} key={classroom.id}>
           <div className="flex items-start gap-2">
             <Image
               className="mt-1 size-7 rounded-full "

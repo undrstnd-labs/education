@@ -4,12 +4,13 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 
-import { classroom, post } from "@/types/classroom"
+import { Classroom, Post } from "@/types/classroom"
 
 import { deleteFiles } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/icons/Lucide"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -38,14 +39,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
-import { Icons } from "@/components/icons/Lucide"
 
 import EditPost from "../form/EditPost"
 
 interface PostCardOptionsProps {
-  post: post
+  post: Post
   userId: string
-  classroom: classroom
+  classroom: Classroom
 }
 
 const PostCardOptions = ({ classroom, post, userId }: PostCardOptionsProps) => {

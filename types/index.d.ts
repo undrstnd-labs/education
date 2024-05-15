@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react"
+
 export interface NavItem {
   title: string
   href: string
@@ -51,4 +53,13 @@ export type ServerActionResult<Result> = Promise<
 export type customType = {
   changeCount: number
   isForwards: boolean
+}
+
+export type NavigationList = {
+  id: string
+  name: string
+  href: string
+  icon?: LucideIcon
+  image?: string
+  current: boolean
 }

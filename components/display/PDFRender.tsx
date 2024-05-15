@@ -12,6 +12,8 @@ import SimpleBar from "simplebar-react"
 import { cn, formatDate } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
+import { PDFFullScreen } from "@/components/display/PDFFullScreen"
+import { Icons } from "@/components/icons/Lucide"
 import { Button } from "@/components/ui/Button"
 import {
   DropdownMenu,
@@ -26,8 +28,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/Popover"
-import { PDFFullScreen } from "@/components/display/PDFFullScreen"
-import { Icons } from "@/components/icons/Lucide"
 
 import "react-pdf/dist/Page/TextLayer.css"
 import "react-pdf/dist/Page/AnnotationLayer.css"
