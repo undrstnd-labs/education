@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { uploadFileSchema } from "@/config/schema"
-import { saveChat, vectorizedDocument } from "@/lib/actions"
 import { uploadFilesStudent } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useToast } from "@/hooks/use-toast"
@@ -36,6 +35,9 @@ import {
 } from "@/components/ui/FileUpload"
 import { Form, FormField, FormItem } from "@/components/ui/Form"
 import { Progress } from "@/components/ui/Progress"
+
+import { saveChat } from "@/undrstnd/chat"
+import { vectorizedDocument } from "@/undrstnd/pinecone"
 
 type uploadFileType = z.infer<ReturnType<typeof uploadFileSchema>>
 

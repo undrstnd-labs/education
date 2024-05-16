@@ -17,13 +17,11 @@ export default async function OnboardingPage() {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
-    return null
+    return redirect("/login")
   }
 
   if (user && user.role !== "NOT_ASSIGNED") {
-    redirect("/dashboard")
-    return null
+    return redirect("/feed")
   }
 
   return (

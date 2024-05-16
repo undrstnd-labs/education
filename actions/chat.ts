@@ -1,38 +1,10 @@
 "use server"
 
-import { OpenAIEmbeddings } from "@langchain/openai"
-import { PineconeStore } from "@langchain/pinecone"
-import { redirect } from "@navigation"
-import { PDFLoader } from "langchain/document_loaders/fs/pdf"
-import { z } from "zod"
-
 import { type FileUpload } from "@/types/file"
 
-import { pinSchema } from "@/config/schema"
 import { pinecone } from "@/lib/pinecone"
 import { db } from "@/lib/prisma"
 import { deleteFile } from "@/lib/storage"
-
-export async function verifyPassCode(form: z.infer<typeof pinSchema>) {
-  const data = pinSchema.parse({
-    email: form.email,
-    pin: form.pin,
-  })
-
-  const fetchToken = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/auth/token/${data.email}`,
-    {
-      next: {
-        revalidate: 0,
-      },
-    }
-  ).then((res) => res.json())
-
-  return {
-    status: data.pin === fetchToken.passCode,
-    url: data.pin === fetchToken.passCode ? fetchToken.verificationUrl : "",
-  }
-}
 
 export async function getChats(studentId?: string) {
   return db.conversation.findMany({
@@ -131,33 +103,5 @@ export async function saveFile(file: FileUpload, studentId: string) {
       url: file.url,
       studentId,
     },
-  })
-}
-
-export async function refreshHistory(path: string) {
-  redirect(path)
-}
-
-export async function getMissingKeys() {
-  const keysRequired = ["GROQ_API_KEY"]
-  return keysRequired
-    .map((key) => (process.env[key] ? "" : key))
-    .filter((key) => key !== "")
-}
-
-export async function vectorizedDocument(id: string, uploadedFile: FileUpload) {
-  const fileCached = await fetch(uploadedFile.url).then((res) => res.blob())
-  const loader = new PDFLoader(fileCached)
-  const pageLevelDocs = await loader.load()
-
-  const pineconeIndex = pinecone.Index("undrstnd")
-
-  const embeddings = new OpenAIEmbeddings({
-    openAIApiKey: process.env.OPENAI_API_KEY!,
-  })
-
-  await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
-    pineconeIndex,
-    namespace: id,
   })
 }

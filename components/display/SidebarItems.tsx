@@ -4,10 +4,10 @@ import { AnimatePresence, motion } from "framer-motion"
 
 import { Chat } from "@/types/chat"
 
-import { removeChat } from "@/lib/actions"
-
 import { SidebarItem } from "@/components/display/SidebarItem"
 import { SidebarActions } from "@/components/showcase/SidebarActions"
+
+import { removeChat } from "@/undrstnd/chat"
 
 interface SidebarItemsProps {
   chats?: Chat[]

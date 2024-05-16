@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { pinSchema } from "@/config/schema"
-import { verifyPassCode } from "@/lib/actions"
 import { toast } from "@/hooks/use-toast"
 
 import {
@@ -26,6 +25,8 @@ import {
   InputOTPSlot,
 } from "@/components/ui/InputOTP"
 
+import { verifyOTPCode } from "@/undrstnd/token"
+
 function OTPform({ email }: { email: string }) {
   const router = useRouter()
   const [otp, setOtp] = useState("")
@@ -42,9 +43,9 @@ function OTPform({ email }: { email: string }) {
     setLoading(true)
 
     try {
-      const auth = await verifyPassCode(data)
+      const auth = await verifyOTPCode(data)
 
-      if (auth.status === false) {
+      if (!auth.status || !auth.url) {
         throw new Error("Invalid passCode")
       }
 

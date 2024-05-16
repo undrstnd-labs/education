@@ -23,7 +23,7 @@ module.exports = {
     "^@/components/(.*)$",
     "^@/components/ui/(.*)$",
     "",
-    "^@/app/(.*)$",
+    "^@/undrstnd/(.*)$",
     "",
     "^[./]",
     "^[../]",
