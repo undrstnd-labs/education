@@ -1,15 +1,15 @@
 "use client"
 
-import crypto from "crypto"
-
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Teacher } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { addClassroomSchema } from "@/config/schema"
 import { useRouter } from "@/lib/navigation"
+import { generateHash } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
@@ -28,20 +28,14 @@ import {
 import { Input } from "@/components/ui/Input"
 import { Textarea } from "@/components/ui/Textarea"
 
-interface AddClassroomProps {
-  userId: string
-}
+import { createClassroom } from "@/undrstnd/classroom"
 
-export function AddClassroom({ userId }: AddClassroomProps) {
+export function AddClassroom({ teacher }: { teacher: Teacher }) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const t = useTranslations("Pages.Classroom")
   const [isLoading, setIsLoading] = useState(false)
   const isDesktop = useMediaQuery("(min-width: 768px)")
-  const timeStamp = Date.now()
-  const code = timeStamp + userId
-  const hash = crypto.createHash("md5").update(code).digest("hex")
-  const classCode = hash.slice(0, 8)
 
   const formSchema = addClassroomSchema(t)
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,47 +48,39 @@ export function AddClassroom({ userId }: AddClassroomProps) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
-    try {
-      const res = await fetch("/api/classrooms", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: values.name,
-          description: values.description,
-          userId,
-          classCode,
-        }),
-      })
+    const classCode = generateHash()
 
-      if (res.ok) {
-        toast({
-          title: t("toastTitleAddClassroom"),
-          variant: "default",
-          description: t("toastDescriptionAddClassroom"),
-        })
-        router.refresh()
-        form.reset()
-      } else {
-        toast({
-          title: t("toast-title-create-error"),
-          description: t("toast-description-create-error"),
-          variant: "destructive",
-        })
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setIsLoading(false)
-      setOpen(false)
+    const classroom = await createClassroom(
+      classCode,
+      teacher,
+      values.name,
+      values.description
+    )
+
+    if (classroom) {
+      toast({
+        title: t("toastTitleAddClassroom"),
+        variant: "default",
+        description: t("toastDescriptionAddClassroom"),
+      })
+      router.refresh()
+      form.reset()
+    } else {
+      toast({
+        title: t("toast-title-create-error"),
+        variant: "destructive",
+      })
     }
+
+    setIsLoading(false)
+    setOpen(false)
   }
+
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="mb-4">{t("buttonCreate")}</Button>
+          <Button className="mb-4 w-full">{t("buttonCreate")}</Button>
         </DialogTrigger>
         <DialogContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>
@@ -156,7 +142,7 @@ export function AddClassroom({ userId }: AddClassroomProps) {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>
-          <Button className="mb-4">{t("buttonCreate")}</Button>
+          <Button className="mb-4 w-full">{t("buttonCreate")}</Button>
         </DrawerTrigger>
         <DrawerContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>

@@ -42,6 +42,11 @@ export const authOptions: NextAuthOptions = {
       }) => {
         const passCode = await updateVerificationUrl(identifier, url)
 
+        if (!passCode) {
+          console.log("Couldn't generate a passcode from the database")
+          return
+        }
+
         await sendMail("magic-link", {
           email: identifier,
           otp_link: url,

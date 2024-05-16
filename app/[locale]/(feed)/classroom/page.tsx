@@ -6,8 +6,6 @@ import { redirect } from "@/lib/navigation"
 import { getCurrentEntity, getCurrentUser } from "@/lib/session"
 
 import { ClassroomCard } from "@/components/display/ClassroomCard"
-import { AddClassroom } from "@/components/form/AddClassroom"
-import JoinClassroom from "@/components/form/JoinClassroom"
 
 async function getClassrooms(user: User) {
   const entity = (await getCurrentEntity(user)) as Student | Teacher
@@ -36,15 +34,13 @@ export default async function ClassroomsPage() {
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
+    return redirect("/login")
   }
 
-  const classrooms = await getClassrooms(user!)
+  const classrooms = await getClassrooms(user)
 
   return (
-    <div className="w-full p-4 ">
-      {user?.role === "TEACHER" && <AddClassroom userId={user.id} />}
-      {user?.role === "STUDENT" && <JoinClassroom userId={user.id} />}
+    <>
       <div className="flex flex-col gap-6">
         {classrooms && classrooms.length > 0 ? (
           classrooms.map((classroom) => {
@@ -64,6 +60,6 @@ export default async function ClassroomsPage() {
           </h1>
         )}
       </div>
-    </div>
+    </>
   )
 }

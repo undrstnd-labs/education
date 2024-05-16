@@ -3,5 +3,9 @@ interface ClassroomLayoutProps {
 }
 
 export default function ClassroomLayout({ children }: ClassroomLayoutProps) {
-  return <div className="min-h-screen">{children}</div>
+  return (
+    <main className="py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
+    </main>
+  )
 }

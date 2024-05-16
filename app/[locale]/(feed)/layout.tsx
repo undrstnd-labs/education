@@ -10,6 +10,8 @@ import {
   userAuthentificateVerification,
 } from "@/lib/session"
 
+import { AddClassroom } from "@/components/app/feed-add-classroom"
+import { JoinClassroom } from "@/components/app/feed-join-classroom"
 import { FeedNavigationList } from "@/components/app/feed-navigation-list"
 import { UserMenu, UserMenuIconDropdown } from "@/components/display/UserMenu"
 import { Icons } from "@/components/icons/Lucide"
@@ -38,13 +40,22 @@ async function getClassrooms(user: User) {
 
     if (res.ok) {
       const data: Classroom[] = await res.json()
-      return data
+      return {
+        entity,
+        classrooms: data,
+      }
     } else {
-      return []
+      return {
+        entity,
+        classrooms: [],
+      }
     }
   } catch (error) {
     console.log(error)
-    return []
+    return {
+      entity,
+      classrooms: [],
+    }
   }
 }
 
@@ -60,7 +71,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
     return null
   }
 
-  const classrooms = await getClassrooms(user)
+  const { entity, classrooms } = await getClassrooms(user)
 
   return (
     <>
@@ -91,6 +102,26 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
               </div>
               <FeedNavigationList classrooms={classrooms} />
             </div>
+            <div className="px-6 pb-4">
+              {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
+              {user.role === "STUDENT" && <JoinClassroom student={entity} />}
+              <Separator className="my-1" />
+              <UserMenu user={user}>
+                <div
+                  className={
+                    "flex cursor-pointer items-center gap-x-4 rounded-lg px-6 py-3 text-sm font-semibold leading-6 hover:bg-secondary/50"
+                  }
+                >
+                  <Avatar>
+                    <AvatarImage src={user.image} />
+                    <AvatarFallback>{user.name[0]}</AvatarFallback>
+                  </Avatar>
+                  <span aria-hidden="true" className="capitalize">
+                    {user.name}
+                  </span>
+                </div>
+              </UserMenu>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
@@ -109,7 +140,13 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
           </div>
 
           <FeedNavigationList classrooms={classrooms} />
-          <Separator className="my-2" />
+          <div className="h-20" />
+        </div>
+
+        <div className="px-6 pb-4">
+          {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
+          {user.role === "STUDENT" && <JoinClassroom student={entity} />}
+          <Separator className="my-1" />
           <UserMenu user={user}>
             <div
               className={

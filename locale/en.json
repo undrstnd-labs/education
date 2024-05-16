@@ -63,7 +63,7 @@
       "formSchemaPostName": "Post Name must contain at least 4 characters.",
       "formSchemaDescriptionMessage": "Post Description must contain at least 10 characters.",
       "formSchemaNameMessage": "Classroom name must be at least 4 characters.",
-      "formSchemaCodeMessage": "Classroom code must be exactly 8 characters.",
+      "formSchemaCodeMessage": "Code is invalid",
       "toastTitleAddClassroom": "Classroom created successfully",
       "toastDescriptionAddClassroom": "You have successfully created a classroom.",
       "toastTitleUpdateClassroom": "Classroom updated successfully",

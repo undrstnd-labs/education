@@ -118,9 +118,6 @@ importers:
       cmdk:
         specifier: ^1.0.0
         version: 1.0.0(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      crypto:
-        specifier: ^1.0.1
-        version: 1.0.1
       crypto-browserify:
         specifier: ^3.12.0
         version: 3.12.0
@@ -4209,13 +4206,6 @@ packages:
       {
         integrity: sha512-fz4spIh+znjO2VjL+IdhEpRJ3YN6sMzITSBijk6FK2UvTqruSQW+/cCZTSNsMiZNvUeq0CqurF+dAbyiGOY6Wg==,
       }
-
-  crypto@1.0.1:
-    resolution:
-      {
-        integrity: sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==,
-      }
-    deprecated: This package is no longer supported. It's now a built-in Node module. If you've depended on crypto, you should switch to the one that's built-in.
 
   css-tree@2.3.1:
     resolution:
@@ -12058,8 +12048,6 @@ snapshots:
       public-encrypt: 4.0.3
       randombytes: 2.1.0
       randomfill: 1.0.4
-
-  crypto@1.0.1: {}
 
   css-tree@2.3.1:
     dependencies:

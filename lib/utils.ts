@@ -1,6 +1,7 @@
 import { Activity, Classroom } from "@/types"
 import { Comment, Post, Student, Teacher, User } from "@prisma/client"
 import { clsx, type ClassValue } from "clsx"
+import { customAlphabet } from "nanoid"
 import { twMerge } from "tailwind-merge"
 import { v4 as uuidv4 } from "uuid"
 
@@ -16,6 +17,14 @@ export function verifyEmail(email: string): boolean {
 
 export function generateUuid() {
   return uuidv4()
+}
+
+export function generateHash() {
+  const nanoid = customAlphabet(
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+    8
+  )
+  return nanoid()
 }
 
 export function formatDate(date: Date, t: (arg: string) => string): string {

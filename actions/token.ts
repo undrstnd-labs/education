@@ -11,16 +11,21 @@ export async function verifyOTPCode(form: z.infer<typeof pinSchema>) {
     pin: form.pin,
   })
 
-  const verificationTokens = await db.verificationToken.findMany({
+  const verificationToken = await db.verificationToken.findFirst({
     where: {
       identifier: email.toLowerCase(),
     },
     orderBy: {
-      expires: "desc",
+      expires: "asc",
     },
   })
 
-  const verificationToken = verificationTokens[0]
+  if (!verificationToken) {
+    return {
+      status: false,
+      url: "",
+    }
+  }
 
   return {
     status: pin === verificationToken.passCode,
@@ -32,16 +37,20 @@ export async function verifyOTPCode(form: z.infer<typeof pinSchema>) {
 }
 
 export async function updateVerificationUrl(email: string, url: string) {
-  const verificationTokens = await db.verificationToken.findMany({
+  await new Promise((resolve) => setTimeout(resolve, 200))
+  const verificationToken = await db.verificationToken.findFirst({
     where: {
       identifier: email.toLowerCase(),
     },
     orderBy: {
-      expires: "desc",
+      expires: "asc",
     },
   })
 
-  const verificationToken = verificationTokens[0]
+  if (!verificationToken) {
+    return
+  }
+
   const passCode = Math.floor(100000 + Math.random() * 900000).toString()
 
   await db.verificationToken.update({

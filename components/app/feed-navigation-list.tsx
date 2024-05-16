@@ -106,7 +106,7 @@ export function FeedNavigationList({
             {t("your-classrooms")}
           </div>
           <ul role="list" className="-mx-2 mt-2 space-y-1">
-            <ScrollArea className="h-96">
+            <ScrollArea className="h-52 sm:h-72">
               <>
                 {classrooms.map((classroom) => (
                   <li key={classroom.name}>
