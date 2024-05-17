@@ -356,44 +356,72 @@
         "minutes-ago": "il y a quelques minutes",
         "hours-ago": "il y a quelques heures",
         "days-ago": "il y a quelques jours",
-        "feed": "Votre fil d'actualité",
+        "feed": "Votre fil",
         "posted": "Publié",
-        "commented": "Commenté"
+        "commented": "Commenté",
+        "metadata-title": "Accueil"
       },
       "classroom": {
         "title": "Salles de classe",
         "create-classroom": "Créez votre première salle de classe",
-        "paragraph": "Créez une salle de classe pour commencer à partager des publications et des fichiers avec vos élèves.",
+        "paragraph": "Créez une salle de classe pour commencer à partager des publications et des fichiers avec vos étudiants.",
         "join-classroom": "Rejoindre une salle de classe",
         "join-classroom-description": "Entrez le code de la salle de classe pour rejoindre une salle de classe."
+      },
+      "account": {
+        "metadata-title": "Compte",
+        "account": "Compte",
+        "back": "Retour",
+        "profile-pic-title": "Photo de profil",
+        "profile-pic-description": "Téléchargez une photo de profil",
+        "profile-name-title": "Votre nom",
+        "profile-name-description": "Votre nom sera visible pour les autres utilisateurs.",
+        "profile-bio-title": "Bio",
+        "profile-bio-description": "Dites-nous un peu sur vous.",
+        "save": "Enregistrer"
+      },
+      "preference": {
+        "metadata-title": "Préférence"
+      },
+      "danger-zone": {
+        "metadata-title": "Zone dangereuse"
+      },
+      "shared": {
+        "metadata-title": "Partagé"
       }
     },
     "components": {
       "layout": {
         "feed-navigation-list": {
-          "feed": "Fil d'actualité",
+          "feed": "Fil",
           "classroom": "Salles de classe",
           "dashboard": "Tableau de bord",
           "chat": "Conversations",
           "your-classrooms": "Vos salles de classe",
-          "archived": "Archivées"
+          "archived": "Archivés"
         },
         "feed-add-classroom": {
           "formSchemaNameMessage": "Le nom de la salle de classe doit comporter au moins 4 caractères.",
           "toastTitleAddClassroom": "Salle de classe créée avec succès",
-          "toast-title-create-error": "Échec de la création de la salle de classe",
+          "toast-title-create-error": "Échec de création de la salle de classe",
           "buttonCreate": "Créer une salle de classe",
-          "dialog-description-create": "Créez une salle de classe pour commencer à partager des publications et des fichiers avec vos élèves.",
+          "dialog-description-create": "Créez une salle de classe pour commencer à partager des publications et des fichiers avec vos étudiants.",
           "formLabelClassroomName": "Nom de la salle de classe",
           "formClassroomNamePlaceholder": "Entrez le nom de votre salle de classe ici",
           "formLabelClassroomDescription": "Description de la salle de classe",
           "formClassroomDescriptionPlaceholder": "Entrez la description de votre salle de classe ici",
           "formClassroomButton": "Soumettre"
+        },
+        "account-navigation-list": {
+          "profile": "Profil",
+          "preference": "Préférences",
+          "shared": "Partagé",
+          "danger": "Zone dangereuse"
         }
       },
       "app": {
         "feed-classroom-card": {
-          "archived": "Archivée"
+          "archived": "Archivé"
         },
         "feed-classroom-dropdown-actions": {
           "classroomOption": "Options de la salle de classe",
@@ -403,27 +431,27 @@
           "archiveClassroom": "Archiver",
           "alertDialogTitleUnarchive": "Êtes-vous sûr de vouloir désarchiver?",
           "alertDialogTitleArchive": "Êtes-vous sûr de vouloir archiver?",
-          "alertDialogDescriptionArchive": "Cette action peut être annulée. Cette action archivera la salle de classe ",
+          "alertDialogDescriptionArchive": "Cette action peut être annulée. Cela archivera la salle de classe ",
           "alertDialogTitleDelete": " Êtes-vous sûr de vouloir supprimer?",
-          "alertDialogDescriptionDelete": "Cette action peut être annulée. Cette action supprimera définitivement votre salle de classe.",
+          "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre salle de classe.",
           "alertDialogCancel": "Annuler",
           "alertDialogAction": "Confirmer",
-          "leaveApiSuccess": "Vous avez quitté la salle de classe avec succès",
-          "alertDialogDescriptionUnarchive": "Cette action peut être annulée. Cette action désarchivera la salle de classe.",
+          "leaveApiSuccess": "Salle de classe quittée avec succès",
+          "alertDialogDescriptionUnarchive": "Cette action peut être annulée. Cela désarchivera la salle de classe.",
           "alertDialogLeave": "Êtes-vous sûr de vouloir quitter cette salle de classe?",
-          "alertDialogLeaveDescription": "Cette action peut être annulée. Cette action vous retirera de la salle de classe.",
+          "alertDialogLeaveDescription": "Cette action peut être annulée. Cela vous retirera de la salle de classe.",
           "toastDescriptionDeleteClassroom": "Vous avez supprimé une salle de classe avec succès.",
           "toastTitleDeleteClassroom": "Salle de classe supprimée",
           "toastDescriptionArchiveClassroom": "Vous avez archivé une salle de classe avec succès.",
           "toastTitleArchiveClassroom": "Salle de classe archivée avec succès",
           "toastTitleunarchiveClassroom": "Salle de classe désarchivée avec succès",
           "toastDescriptionunarchiveClassroom": "Vous avez désarchivé une salle de classe avec succès.",
-          "error-toast-unarchive": "Échec de la désarchivage de la salle de classe",
-          "error-description-toast-unarchive": "Erreur lors de la désarchivage de la salle de classe",
+          "error-toast-unarchive": "Échec de la désarchivation de la salle de classe",
+          "error-description-toast-unarchive": "Une erreur est survenue lors de la désarchivation de la salle de classe",
           "error-toast-archive": "Échec de l'archivage de la salle de classe",
-          "error-description-toast-archive": "Erreur lors de l'archivage de la salle de classe",
+          "error-description-toast-archive": "Une erreur est survenue lors de l'archivage de la salle de classe",
           "error-toast-delete": "Échec de la suppression de la salle de classe",
-          "error-description-toast-delete": "Erreur lors de la suppression de la salle de classe",
+          "error-description-toast-delete": "Une erreur est survenue lors de la suppression de la salle de classe",
           "dialog-title-edit": "Mettre à jour la salle de classe",
           "dialog-description-edit": "Mettez à jour le nom et la description de la salle de classe",
           "dialog-confirm-edit": "Confirmer",
@@ -435,6 +463,13 @@
           "toastTitleUpdateClassroom": "Salle de classe mise à jour avec succès",
           "toastTitleUpdateClassroomError": "Échec de la mise à jour de la salle de classe",
           "formSchemaNameMessage": "Le nom de la salle de classe doit comporter au moins 4 caractères."
+        },
+        "account-profile-form": {
+          "image-too-large": "L'image est trop grande",
+          "image-description-error": "Veuillez télécharger une image de moins de 3Mo",
+          "save": "Enregistrer",
+          "image-uploaded": "Image téléchargée avec succès",
+          "image-upload-failed": "Échec du téléchargement de l'image"
         }
       }
     }
