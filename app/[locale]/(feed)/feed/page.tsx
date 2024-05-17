@@ -1,4 +1,5 @@
 import React from "react"
+import { type Metadata } from "next"
 import Image from "next/image"
 import { Link, redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
@@ -17,6 +18,13 @@ import { cn, processActivities } from "@/lib/utils"
 import { Icons } from "@/components/shared/icons"
 import { buttonVariants } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("app.pages.feed")
+  return {
+    title: `${t("metadata-title")}`,
+  }
+}
 
 async function getClassrooms(user: User) {
   const entity = (await getCurrentEntity(user)) as Student | Teacher

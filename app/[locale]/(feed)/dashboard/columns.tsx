@@ -19,10 +19,6 @@ export type Classroom = {
 
 export const columns: ColumnDef<Classroom>[] = [
   {
-    accessorKey: "id",
-    header: "Id",
-  },
-  {
     accessorKey: "classCode",
     header: () => {
       const t = useTranslations("Pages.TeacherDashboard")

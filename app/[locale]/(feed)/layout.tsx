@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
 import { unstable_setRequestLocale } from "next-intl/server"
@@ -118,10 +119,13 @@ export default async function FeedLayout({
                     "flex cursor-pointer items-center gap-x-4 rounded-lg px-6 py-3 text-sm font-semibold leading-6 hover:bg-secondary/50"
                   }
                 >
-                  <Avatar>
-                    <AvatarImage src={user.image} />
-                    <AvatarFallback>{user.name[0]}</AvatarFallback>
-                  </Avatar>
+                  <Image
+                    src={user.image}
+                    alt="Profile image"
+                    className="size-10 rounded-full object-cover"
+                    width={300}
+                    height={300}
+                  />
                   <span aria-hidden="true" className="capitalize">
                     {user.name}
                   </span>
@@ -159,10 +163,13 @@ export default async function FeedLayout({
                 "flex cursor-pointer items-center gap-x-4 rounded-lg px-6 py-3 text-sm font-semibold leading-6 hover:bg-secondary/50"
               }
             >
-              <Avatar>
-                <AvatarImage src={user.image} />
-                <AvatarFallback>{user.name[0]}</AvatarFallback>
-              </Avatar>
+              <Image
+                src={user.image}
+                alt="Profile image"
+                className="size-10 rounded-full object-cover"
+                width={300}
+                height={300}
+              />
               <span aria-hidden="true" className="capitalize">
                 {user.name}
               </span>

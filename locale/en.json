@@ -361,7 +361,8 @@
         "days-ago": "days ago",
         "feed": "Your Feed",
         "posted": "Posted",
-        "commented": "Commented"
+        "commented": "Commented",
+        "metadata-title": "Feed"
       },
       "classroom": {
         "title": "Classrooms",
@@ -369,6 +370,27 @@
         "paragraph": "Create a classroom to start sharing posts and files with your students.",
         "join-classroom": "Join a classroom",
         "join-classroom-description": "Enter the classroom code to join a classroom."
+      },
+      "account": {
+        "metadata-title": "Account",
+        "account": "Account",
+        "back": "Back",
+        "profile-pic-title": "Profile picture",
+        "profile-pic-description": "Upload a profile picture",
+        "profile-name-title": "Your name",
+        "profile-name-description": "Your name will be visible to other users.",
+        "profile-bio-title": "Bio",
+        "profile-bio-description": "Tell us a little about yourself.",
+        "save": "Save"
+      },
+      "preference": {
+        "metadata-title": "Preference"
+      },
+      "danger-zone": {
+        "metadata-title": "Danger zone"
+      },
+      "shared": {
+        "metadata-title": "Shared"
       }
     },
     "components": {
@@ -392,6 +414,12 @@
           "formLabelClassroomDescription": "Classroom description",
           "formClassroomDescriptionPlaceholder": "Enter your classroom description here",
           "formClassroomButton": "Submit"
+        },
+        "account-navigation-list": {
+          "profile": "Profile",
+          "preference": "Preferences",
+          "shared": "Shared",
+          "danger": "Danger zone"
         }
       },
       "app": {
@@ -439,6 +467,13 @@
           "toastTitleUpdateClassroom": "Classroom updated successfully",
           "toastTitleUpdateClassroomError": "Failed to update classroom",
           "formSchemaNameMessage": "Classroom name must be at least 4 characters."
+        },
+        "account-profile-form": {
+          "image-too-large": "Image is too large",
+          "image-description-error": "Please upload an image less than 3MB",
+          "save": "Save",
+          "image-uploaded": "Image uploaded successfully",
+          "image-upload-failed": "Failed to upload image"
         }
       }
     }

@@ -21,11 +21,6 @@ export function UserDropdown() {
           {t("account")}
         </Link>
       </DropdownMenuItem>
-      <DropdownMenuItem>
-        <Link href="/account/classrooms" className="w-full">
-          {t("classrooms")}
-        </Link>
-      </DropdownMenuItem>
       <DropdownMenuSeparator />
       <div className="flex flex-row items-center justify-between px-2 py-0.5">
         <p className="text-sm">{t("theme")}</p>
