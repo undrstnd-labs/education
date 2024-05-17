@@ -1,6 +1,7 @@
 import { type Metadata } from "next"
 import { redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
+import { unstable_setRequestLocale } from "next-intl/server"
 
 import { NextAuthUser } from "@/types/auth"
 import { Classroom } from "@/types/classroom"
@@ -58,10 +59,12 @@ async function getClassroom(user: User, classroomId: string) {
 }
 
 export default async function ClassroomPage({
-  params: { classroomId },
+  params: { locale, classroomId },
 }: {
-  params: { classroomId: string }
+  params: { classroomId: string; locale: string }
 }) {
+  unstable_setRequestLocale(locale)
+
   const user = await getCurrentUser()
   const toRedirect = await userAuthentificateVerification(user as NextAuthUser)
 

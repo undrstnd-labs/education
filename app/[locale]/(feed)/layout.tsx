@@ -1,5 +1,6 @@
 import { redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
+import { unstable_setRequestLocale } from "next-intl/server"
 
 import { NextAuthUser } from "@/types/auth"
 import { Classroom } from "@/types/classroom"
@@ -21,6 +22,7 @@ import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 interface FeedLayoutProps {
+  params: { locale: string }
   children: React.ReactNode
 }
 
@@ -58,7 +60,12 @@ async function getClassrooms(user: User) {
   }
 }
 
-export default async function FeedLayout({ children }: FeedLayoutProps) {
+export default async function FeedLayout({
+  children,
+  params: { locale },
+}: FeedLayoutProps) {
+  unstable_setRequestLocale(locale)
+
   const user = await getCurrentUser()
   const toRedirect = await userAuthentificateVerification(user as NextAuthUser)
 

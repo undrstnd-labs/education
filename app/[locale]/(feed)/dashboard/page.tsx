@@ -1,5 +1,5 @@
 import { Student, Teacher, User } from "@prisma/client"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { Classroom } from "@/types/classroom"
 
@@ -37,16 +37,22 @@ async function getClassrooms(user: User) {
   }
 }
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
+    return redirect("/login")
   }
 
   const classrooms = await getClassrooms(user!)
 
-  if (user?.role === "TEACHER") {
+  if (user.role === "TEACHER") {
     const t = await getTranslations("Pages.TeacherDashboard")
     return (
       <div className="container mx-auto py-10">

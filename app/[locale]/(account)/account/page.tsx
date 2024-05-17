@@ -1,10 +1,19 @@
+import { unstable_setRequestLocale } from "next-intl/server"
+
 import { redirect } from "@/lib/navigation"
 import { getCurrentUser } from "@/lib/session"
 
 import Profile from "@/components/form/Profile"
 
-export default async function AccountPage() {
+export default async function AccountPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   const userSession = await getCurrentUser()
+
   if (!userSession) {
     redirect("/login")
   }

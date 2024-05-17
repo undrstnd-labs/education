@@ -2,7 +2,7 @@ import React from "react"
 import Image from "next/image"
 import { Link, redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { Classroom } from "@/types"
 import { NextAuthUser } from "@/types/auth"
@@ -43,7 +43,13 @@ async function getClassrooms(user: User) {
   }
 }
 
-export default async function FeedPage() {
+export default async function FeedPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   const t = await getTranslations("app.pages.feed")
   const user = await getCurrentUser()
   const toRedirect = await userAuthentificateVerification(user as NextAuthUser)

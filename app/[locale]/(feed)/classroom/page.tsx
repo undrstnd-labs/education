@@ -1,5 +1,5 @@
 import { Student, Teacher, User } from "@prisma/client"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { Classroom } from "@/types/classroom"
 
@@ -44,7 +44,13 @@ async function getClassrooms(user: User) {
   }
 }
 
-export default async function ClassroomsPage() {
+export default async function ClassroomsPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   const user = await getCurrentUser()
   const t = await getTranslations("app.pages.classroom")
 

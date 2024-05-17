@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import { Link } from "@navigation"
 import { useTranslations } from "next-intl"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { cn, verifyEmail } from "@/lib/utils"
 
@@ -16,10 +16,15 @@ export async function generateMetadata() {
 }
 
 export default function LoginPage({
+  params: { locale },
+
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
+  params: { locale: string }
 }) {
+  unstable_setRequestLocale(locale)
+
   const t = useTranslations("Pages.Login")
   const email = searchParams.email as string
 

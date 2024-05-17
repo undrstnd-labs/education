@@ -1,5 +1,5 @@
 import { Link, redirect } from "@navigation"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
@@ -13,7 +13,13 @@ export async function generateMetadata() {
   return { title: `${t("title")}` }
 }
 
-export default async function OnboardingPage() {
+export default async function OnboardingPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   const user = await getCurrentUser()
 
   if (!user) {
