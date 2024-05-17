@@ -160,6 +160,7 @@ export function LogoText(props: SVGProps<SVGSVGElement>) {
 export const Icons = {
   logo: Command,
   menu: Menu,
+  loader: Loader2,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,

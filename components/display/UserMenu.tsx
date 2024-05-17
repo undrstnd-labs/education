@@ -10,7 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menui"
+} from "@/components/ui/dropdown-menu"
 
 export function UserMenu({
   user,

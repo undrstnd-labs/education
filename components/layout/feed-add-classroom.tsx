@@ -10,13 +10,11 @@ import { z } from "zod"
 import { addClassroomSchema } from "@/config/schema"
 import { useRouter } from "@/lib/navigation"
 import { generateHash } from "@/lib/utils"
-import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
 import { Icons } from "@/components/shared/icons"
+import { ResponsiveDialog } from "@/components/shared/responsive-dialog"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import {
   Form,
   FormControl,
@@ -33,9 +31,8 @@ import { createClassroom } from "@/undrstnd/classroom"
 export function AddClassroom({ teacher }: { teacher: Teacher }) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
-  const t = useTranslations("Pages.Classroom")
   const [isLoading, setIsLoading] = useState(false)
-  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const t = useTranslations("app.components.layout.feed-add-classroom")
 
   const formSchema = addClassroomSchema(t)
   const form = useForm<z.infer<typeof formSchema>>({
@@ -60,8 +57,6 @@ export function AddClassroom({ teacher }: { teacher: Teacher }) {
     if (classroom) {
       toast({
         title: t("toastTitleAddClassroom"),
-        variant: "default",
-        description: t("toastDescriptionAddClassroom"),
       })
       router.refresh()
       form.reset()
@@ -76,133 +71,65 @@ export function AddClassroom({ teacher }: { teacher: Teacher }) {
     setOpen(false)
   }
 
-  if (isDesktop) {
-    return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button className="w-full">{t("buttonCreate")}</Button>
-        </DialogTrigger>
-        <DialogContent onCloseAutoFocus={() => form.reset()}>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="mb-8 text-center text-2xl font-bold text-primary">
-                {t("buttonCreate")}
-              </div>
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">
-                      {t("formLabelClassroomName")}
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t("formClassroomNamePlaceholder")}
-                        {...field}
-                        disabled={isLoading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">
-                      {t("formLabelClassroomDescription")}
-                    </FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder={t("formClassroomDescriptionPlaceholder")}
-                        {...field}
-                        rows={2}
-                        className="resize-none"
-                        disabled={isLoading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading && (
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
-                )}
-                {t("formClassroomButton")}
-              </Button>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
-    )
-  } else {
-    return (
-      <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger asChild>
-          <Button className="w-full">{t("buttonCreate")}</Button>
-        </DrawerTrigger>
-        <DrawerContent onCloseAutoFocus={() => form.reset()}>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-6 px-6 pb-6"
-            >
-              <div className="mb-8 text-center text-2xl font-bold text-primary">
-                {t("buttonCreate")}
-              </div>
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">
-                      {t("formLabelClassroomName")}
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t("formClassroomNamePlaceholder")}
-                        {...field}
-                        disabled={isLoading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-bold">
-                      {t("formLabelClassroomDescription")}
-                    </FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder={t("formClassroomDescriptionPlaceholder")}
-                        {...field}
-                        rows={2}
-                        disabled={isLoading}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading && (
-                  <Icons.spinner className="mr-2 size-4 animate-spin" />
-                )}
-                {t("formClassroomButton")}
-              </Button>
-            </form>
-          </Form>
-        </DrawerContent>
-      </Drawer>
-    )
-  }
+  return (
+    <ResponsiveDialog
+      title={t("buttonCreate")}
+      description={t("dialog-description-create")}
+      loading={isLoading}
+      open={open}
+      setOpen={setOpen}
+      action={() => setOpen(false)}
+    >
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-bold">
+                  {t("formLabelClassroomName")}
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={t("formClassroomNamePlaceholder")}
+                    {...field}
+                    disabled={isLoading}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-bold">
+                  {t("formLabelClassroomDescription")}
+                </FormLabel>
+                <FormControl>
+                  <Textarea
+                    rows={2}
+                    disabled={isLoading}
+                    placeholder={t("formClassroomDescriptionPlaceholder")}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading && (
+              <Icons.loader className="mr-2 h-5 w-5 animate-spin" />
+            )}
+            {t("formClassroomButton")}
+          </Button>
+        </form>
+      </Form>
+    </ResponsiveDialog>
+  )
 }

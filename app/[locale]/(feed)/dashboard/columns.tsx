@@ -5,8 +5,8 @@ import { useTranslations } from "next-intl"
 
 import { Link } from "@/lib/navigation"
 
+import { FeedClassroomDropdownActions } from "@/components/app/feed-classroom-dropdown-actions"
 import { Icons } from "@/components/shared/icons"
-import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
@@ -108,7 +108,7 @@ export const columns: ColumnDef<Classroom>[] = [
 
       return (
         <div className="flex items-center justify-center">
-          <ClassroomCardOptions classroom={classroom as any} />
+          <FeedClassroomDropdownActions classroom={classroom as any} />
         </div>
       )
     },

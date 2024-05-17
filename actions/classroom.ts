@@ -1,6 +1,6 @@
 "use server"
 
-import { Student, Teacher } from "@prisma/client"
+import { Classroom, Student, Teacher } from "@prisma/client"
 
 import { db } from "@/lib/prisma"
 
@@ -67,5 +67,96 @@ export async function createClassroom(
       teacherId: teacher.id,
       classCode,
     },
+  })
+}
+
+export async function handleArchiveClassroom(
+  isArchive: boolean,
+  classroom: Classroom
+) {
+  const classroomArchived = await db.classroom.update({
+    where: {
+      id: classroom.id,
+    },
+    data: {
+      isArchived: isArchive,
+    },
+  })
+
+  if (isArchive) {
+    const students = await db.student.findMany({
+      where: {
+        classrooms: {
+          some: {
+            id: classroomArchived.id,
+          },
+        },
+      },
+    })
+
+    for (const student of students) {
+      await db.student.update({
+        where: {
+          id: student.id,
+        },
+        data: {
+          classrooms: {
+            disconnect: {
+              id: classroomArchived.id,
+            },
+          },
+        },
+      })
+    }
+  }
+
+  return classroomArchived
+}
+
+export async function deleteClassroom(teacher: Teacher, classroom: Classroom) {
+  const students = await db.student.findMany({
+    where: {
+      classrooms: {
+        some: {
+          id: classroom.id,
+        },
+      },
+    },
+  })
+
+  for (const student of students) {
+    await db.student.update({
+      where: {
+        id: student.id,
+      },
+      data: {
+        classrooms: {
+          disconnect: {
+            id: classroom.id,
+          },
+        },
+      },
+    })
+  }
+
+  return await db.classroom.delete({
+    where: {
+      id: classroom.id,
+      teacherId: teacher.id,
+    },
+  })
+}
+
+export async function editClasroom(
+  teacher: Teacher,
+  classroom: Classroom,
+  data: any
+) {
+  return await db.classroom.update({
+    where: {
+      id: classroom.id,
+      teacherId: teacher.id,
+    },
+    data,
   })
 }

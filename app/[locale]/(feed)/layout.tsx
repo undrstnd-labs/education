@@ -142,7 +142,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
           <div className="h-20" />
         </div>
 
-        <div className="px-6 pb-4">
+        <div className="w-full px-6 pb-4">
           {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
           {user.role === "STUDENT" && <JoinClassroom student={entity} />}
           <Separator className="my-3" />

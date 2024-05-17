@@ -15,7 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menui"
+} from "@/components/ui/dropdown-menu"
 
 interface FileCardProps {
   file: File

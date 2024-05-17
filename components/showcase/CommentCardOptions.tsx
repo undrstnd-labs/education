@@ -37,7 +37,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menui"
+} from "@/components/ui/dropdown-menu"
 
 import EditComment from "../form/EditComment"
 

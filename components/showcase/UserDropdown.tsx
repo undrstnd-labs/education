@@ -6,7 +6,7 @@ import { StatusWidget } from "@/components/display/StatusWidget"
 import {
   DropdownMenuItem,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menui"
+} from "@/components/ui/dropdown-menu"
 
 import { LanguageSwitch } from "../config/LanguageSwitch"
 

@@ -85,6 +85,7 @@ export default async function ClassroomsPage() {
                 </div>
               </div>
             )}
+
             {user.role === "STUDENT" && (
               <div className="-mt-20 flex h-screen w-full items-center justify-center">
                 <div className="relative block w-full max-w-md rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">

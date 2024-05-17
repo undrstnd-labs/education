@@ -7,7 +7,7 @@ import { downloadFileFromUrl } from "@/lib/storage"
 
 import { Icons } from "@/components/shared/icons"
 
-import { DropdownMenuItem } from "../ui/dropdown-menui"
+import { DropdownMenuItem } from "../ui/dropdown-menu"
 
 interface FileCardProps {
   file: File
