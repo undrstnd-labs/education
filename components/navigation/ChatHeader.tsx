@@ -3,8 +3,8 @@ import { Student, User } from "@prisma/client"
 import { SidebarToggle } from "@/components/config/SidebarToggle"
 import { ChatHistory } from "@/components/display/ChatHistory"
 import { UserMenu } from "@/components/display/UserMenu"
-import { Icons } from "@/components/icons/Lucide"
 import { SidebarMobile } from "@/components/navigation/SidebarMobile"
+import { Icons } from "@/components/shared/icons"
 
 //TODO: Change this header
 export function Header({ student }: { student: Student & { user: User } }) {

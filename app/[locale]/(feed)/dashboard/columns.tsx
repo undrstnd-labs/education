@@ -5,10 +5,10 @@ import { useTranslations } from "next-intl"
 
 import { Link } from "@/lib/navigation"
 
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions"
-import { Badge } from "@/components/ui/Badge"
-import { Button } from "@/components/ui/Button"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
 export type Classroom = {
   id: string

@@ -5,28 +5,27 @@ import { comment } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
 
+import CommentReply from "@/components/display//CommentReply"
 import ReactionButton from "@/components/display/ReactionButton"
 import CommentAddCard from "@/components/form/CommentAddCard"
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 import CommentCardOptions from "@/components/showcase/CommentCardOptions"
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card"
-import { Label } from "@/components/ui/Label"
+} from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from "@/components/ui/Sheet"
-
-import CommentReply from "./CommentReply"
+} from "@/components/ui/sheet"
 
 interface CommentCardProps {
   userId: string

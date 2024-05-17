@@ -10,7 +10,7 @@ import { Classroom } from "@/types/classroom"
 
 import { cn } from "@/lib/utils"
 
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 const navigationList = (t: (arg: string) => string) =>

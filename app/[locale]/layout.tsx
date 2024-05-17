@@ -10,7 +10,7 @@ import { siteConfig } from "@/config/site"
 import { Analytics } from "@/components/config/Analytics"
 import { Providers } from "@/components/config/Providers"
 import { TailwindIndicator } from "@/components/config/TailwindIndicator"
-import { Toaster } from "@/components/ui/Toaster"
+import { Toaster } from "@/components/ui/toaster"
 
 export const viewport: Viewport = {
   width: "device-width",

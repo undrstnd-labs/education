@@ -14,9 +14,10 @@ import { deleteFiles, uploadFilesClassroom } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
-import { Button } from "@/components/ui/Button"
-import { Dialog, DialogContent } from "@/components/ui/Dialog"
-import { Drawer, DrawerContent } from "@/components/ui/Drawer"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import {
   Form,
   FormControl,
@@ -24,11 +25,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form"
-import { Input } from "@/components/ui/Input"
-import { Textarea } from "@/components/ui/Textarea"
-
-import { Icons } from "../icons/Lucide"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 interface EditPostProps {
   post: Post

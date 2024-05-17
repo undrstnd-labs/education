@@ -5,8 +5,8 @@ import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 
 import { OnboardingAuthForm } from "@/components/form/OnboardingAuth"
-import { LogoPNG } from "@/components/icons/Overall"
-import { buttonVariants } from "@/components/ui/Button"
+import { LogoPNG } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
 
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Onboarding")

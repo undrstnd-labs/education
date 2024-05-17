@@ -11,7 +11,7 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/Resizable"
+} from "@/components/ui/resizable"
 
 import { getChat } from "@/undrstnd/chat"
 

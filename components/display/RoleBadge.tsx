@@ -2,9 +2,9 @@ import { useTranslations } from "next-intl"
 
 import { cn } from "@/lib/utils"
 
-import { Icons } from "@/components/icons/Lucide"
-import { Badge } from "@/components/ui/Badge"
-import { buttonVariants } from "@/components/ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { Badge } from "@/components/ui/badge"
+import { buttonVariants } from "@/components/ui/button"
 
 export function RoleBadge({ role }: { role: string }) {
   const t = useTranslations("Components.Display.RoleBadge")

@@ -13,10 +13,10 @@ import { generateHash } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
-import { Icons } from "@/components/icons/Lucide"
-import { Button } from "@/components/ui/Button"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import {
   Form,
   FormControl,
@@ -24,9 +24,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form"
-import { Input } from "@/components/ui/Input"
-import { Textarea } from "@/components/ui/Textarea"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 import { createClassroom } from "@/undrstnd/classroom"
 
@@ -80,7 +80,7 @@ export function AddClassroom({ teacher }: { teacher: Teacher }) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className="mb-4 w-full">{t("buttonCreate")}</Button>
+          <Button className="w-full">{t("buttonCreate")}</Button>
         </DialogTrigger>
         <DialogContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>
@@ -120,6 +120,7 @@ export function AddClassroom({ teacher }: { teacher: Teacher }) {
                         placeholder={t("formClassroomDescriptionPlaceholder")}
                         {...field}
                         rows={2}
+                        className="resize-none"
                         disabled={isLoading}
                       />
                     </FormControl>
@@ -142,7 +143,7 @@ export function AddClassroom({ teacher }: { teacher: Teacher }) {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>
-          <Button className="mb-4 w-full">{t("buttonCreate")}</Button>
+          <Button className="w-full">{t("buttonCreate")}</Button>
         </DrawerTrigger>
         <DrawerContent onCloseAutoFocus={() => form.reset()}>
           <Form {...form}>

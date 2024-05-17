@@ -1,11 +1,15 @@
 import { Student, Teacher, User } from "@prisma/client"
+import { getTranslations } from "next-intl/server"
 
 import { Classroom } from "@/types/classroom"
 
 import { redirect } from "@/lib/navigation"
 import { getCurrentEntity, getCurrentUser } from "@/lib/session"
 
-import { ClassroomCard } from "@/components/display/ClassroomCard"
+import { AddClassroom } from "@/components/app/feed-add-classroom"
+import { FeedClassroomCard } from "@/components/app/feed-classroom-card"
+import { JoinClassroom } from "@/components/app/feed-join-classroom"
+import { Icons } from "@/components/shared/icons"
 
 async function getClassrooms(user: User) {
   const entity = (await getCurrentEntity(user)) as Student | Teacher
@@ -22,22 +26,33 @@ async function getClassrooms(user: User) {
 
     if (res.ok) {
       const data: Classroom[] = await res.json()
-      return data
+      return {
+        entity,
+        classrooms: data,
+      }
     }
-    return null
+    return {
+      entity,
+      classrooms: [],
+    }
   } catch (error) {
     console.log(error)
+    return {
+      entity,
+      classrooms: [],
+    }
   }
 }
 
 export default async function ClassroomsPage() {
   const user = await getCurrentUser()
+  const t = await getTranslations("app.pages.classroom")
 
   if (!user) {
     return redirect("/login")
   }
 
-  const classrooms = await getClassrooms(user)
+  const { entity, classrooms } = await getClassrooms(user)
 
   return (
     <>
@@ -45,19 +60,48 @@ export default async function ClassroomsPage() {
         {classrooms && classrooms.length > 0 ? (
           classrooms.map((classroom) => {
             return (
-              <ClassroomCard
+              <FeedClassroomCard
                 classroom={classroom}
                 key={classroom.id}
-                authorId={user?.id!}
+                authorId={user.id}
               />
             )
           })
         ) : (
-          <h1 className="font-bold md:text-xl">
-            {user?.role === "TEACHER"
-              ? "No classrooms. Create one now"
-              : "No classrooms to show. Join one now"}
-          </h1>
+          <>
+            {user.role === "TEACHER" && (
+              <div className="-mt-20 flex h-screen w-full items-center justify-center">
+                <div className="relative block w-full max-w-md rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
+                  <Icons.books className="mx-auto size-24 text-secondary-foreground/60" />
+                  <span className="text-md mt-2 block font-semibold text-secondary-foreground">
+                    {t("create-classroom")}
+                  </span>
+                  <p className="mt-2 block text-sm font-normal text-secondary-foreground/60">
+                    {t("paragraph")}
+                  </p>
+                  <div className="py-6">
+                    <AddClassroom teacher={entity} />
+                  </div>
+                </div>
+              </div>
+            )}
+            {user.role === "STUDENT" && (
+              <div className="-mt-20 flex h-screen w-full items-center justify-center">
+                <div className="relative block w-full max-w-md rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
+                  <Icons.add className="mx-auto size-24 text-secondary-foreground/60" />
+                  <span className="text-md mt-2 block font-semibold text-secondary-foreground">
+                    {t("join-classroom")}
+                  </span>
+                  <p className="mt-2 block text-sm font-normal text-secondary-foreground/60">
+                    {t("join-classroom-description")}
+                  </p>
+                  <div className="py-6">
+                    <JoinClassroom student={entity} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </>

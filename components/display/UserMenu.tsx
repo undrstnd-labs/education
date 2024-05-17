@@ -3,14 +3,14 @@ import { NextAuthUser } from "@/types/auth"
 import { SignoutButton } from "@/components/config/SignoutButton"
 import { RoleBadge } from "@/components/display/RoleBadge"
 import { UserDropdown } from "@/components/showcase/UserDropdown"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
-import { Button } from "@/components/ui/Button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu"
+} from "@/components/ui/dropdown-menui"
 
 export function UserMenu({
   user,

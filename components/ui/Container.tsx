@@ -1,6 +1,6 @@
 import clsx from "clsx"
 
-export default function Container({
+export function Container({
   className,
   ...props
 }: {

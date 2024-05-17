@@ -22,8 +22,8 @@ import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
 
-import { buttonVariants } from "@/components/ui/Button"
-import { Input } from "@/components/ui/Input"
+import { buttonVariants } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 type DirectionOptions = "rtl" | "ltr" | undefined
 

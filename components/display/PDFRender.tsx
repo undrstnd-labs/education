@@ -13,21 +13,21 @@ import { cn, formatDate } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
 import { PDFFullScreen } from "@/components/display/PDFFullScreen"
-import { Icons } from "@/components/icons/Lucide"
-import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu"
-import { Input } from "@/components/ui/Input"
-import { Label } from "@/components/ui/Label"
+} from "@/components/ui/dropdown-menui"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/Popover"
+} from "@/components/ui/popover"
 
 import "react-pdf/dist/Page/TextLayer.css"
 import "react-pdf/dist/Page/AnnotationLayer.css"

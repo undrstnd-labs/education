@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { Classroom } from "@prisma/client"
 
-import { Icons } from "../icons/Lucide"
-import { Button } from "../ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
 
 interface ShareClassroomProps {
   classroom: Classroom

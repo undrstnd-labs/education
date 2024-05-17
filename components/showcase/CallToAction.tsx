@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Link } from "@navigation"
 
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 
 export default function CallToAction() {
   return (

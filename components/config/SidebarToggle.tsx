@@ -4,8 +4,8 @@ import * as React from "react"
 
 import { useSidebar } from "@/hooks/use-sidebar"
 
-import { Icons } from "@/components/icons/Lucide"
-import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
 
 export function SidebarToggle() {
   const { toggleSidebar } = useSidebar()

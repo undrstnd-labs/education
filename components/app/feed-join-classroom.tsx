@@ -10,14 +10,14 @@ import { z } from "zod"
 
 import { toast } from "@/hooks/use-toast"
 
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/Form"
+} from "@/components/ui/form"
 
 import { joinClassroom } from "@/undrstnd/classroom"
 

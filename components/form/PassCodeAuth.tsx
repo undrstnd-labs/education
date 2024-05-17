@@ -17,13 +17,13 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/Form"
+} from "@/components/ui/form"
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@/components/ui/InputOTP"
+} from "@/components/ui/input-otp"
 
 import { verifyOTPCode } from "@/undrstnd/token"
 

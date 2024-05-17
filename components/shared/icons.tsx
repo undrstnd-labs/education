@@ -1,3 +1,5 @@
+import { type SVGProps } from "react"
+import Image from "next/image"
 import {
   AlertTriangle,
   ArchiveRestore,
@@ -27,10 +29,11 @@ import {
   Heart,
   HelpCircle,
   Home,
-  Image,
+  ImageIcon,
   Laptop,
   LayoutDashboardIcon,
   Loader2,
+  LoaderIcon,
   LucideIcon,
   MailIcon,
   Menu,
@@ -58,7 +61,7 @@ import {
   SunMedium,
   ThumbsDown,
   ThumbsUp,
-  Trash,
+  Trash2Icon,
   TrashIcon,
   Upload,
   UserCircleIcon,
@@ -81,6 +84,79 @@ import { TiTick } from "react-icons/ti"
 
 export type Icon = LucideIcon
 
+function ChevronUpIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M17 14l-5-5-5 5"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function LogoPNG(
+  { className }: { className?: string } = { className: "" }
+) {
+  return (
+    <Image
+      src="/images/logos/Rounded.png"
+      alt="Undrstnd Logo"
+      width={798}
+      height={798}
+      className={className}
+    />
+  )
+}
+
+export function LogoText(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 659.66 191.16" {...props}>
+      <g id="Layer_1">
+        <circle
+          cx="85.59"
+          cy="102.92"
+          r="79.59"
+          fill="#0ea5e9"
+          stroke="#0ea5e9"
+          strokeMiterlimit="10"
+          strokeWidth="12"
+        />
+        <text
+          transform="translate(29.39 97.27) rotate(45) scale(.86 1)"
+          fill="#0ea5e9"
+          fontFamily="MyriadPro-Regular, 'Myriad Pro'"
+          fontSize="164.35"
+        >
+          <tspan x="0" y="0">
+            U
+          </tspan>
+        </text>
+        <path
+          d="m85.68,25.59h45.78v91.46c0,12.63-10.26,22.89-22.89,22.89h0c-12.63,0-22.89-10.26-22.89-22.89V25.59h0Z"
+          transform="translate(90.32 -52.53) rotate(45)"
+          fill="#111827"
+        />
+      </g>
+      <g id="Layer_2">
+        <text
+          transform="translate(250.34 144.06)"
+          fill="#f2f2f2"
+          fontFamily="Roboto-Medium, Roboto"
+          fontSize="100"
+          fontWeight="500"
+        >
+          <tspan x="0" y="0">
+            Undrstnd
+          </tspan>
+        </text>
+      </g>
+    </svg>
+  )
+}
+
 export const Icons = {
   logo: Command,
   menu: Menu,
@@ -88,10 +164,10 @@ export const Icons = {
   spinner: Loader2,
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
-  trash: Trash,
+  trash: Trash2Icon,
   post: FileText,
   page: File,
-  media: Image,
+  media: ImageIcon,
   settings: Settings,
   billing: CreditCard,
   ellipsis: MoreVertical,
@@ -160,4 +236,5 @@ export const Icons = {
   books: BookCopy,
   messages: MessageSquare,
   dashboard: LayoutDashboardIcon,
+  chevronUp: ChevronUpIcon,
 }

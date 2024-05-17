@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,8 +19,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/AlertDialog"
-import { Button } from "@/components/ui/Button"
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 import {
   Drawer,
   DrawerClose,
@@ -30,7 +30,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/Drawer"
+} from "@/components/ui/drawer"
 
 interface LeaveClassroomProps {
   classroom: Classroom

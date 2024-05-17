@@ -14,12 +14,11 @@ import { AddClassroom } from "@/components/app/feed-add-classroom"
 import { JoinClassroom } from "@/components/app/feed-join-classroom"
 import { FeedNavigationList } from "@/components/app/feed-navigation-list"
 import { UserMenu, UserMenuIconDropdown } from "@/components/display/UserMenu"
-import { Icons } from "@/components/icons/Lucide"
-import { LogoPNG } from "@/components/icons/Overall"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
-import { Button } from "@/components/ui/Button"
-import { Separator } from "@/components/ui/Separator"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/Sheet"
+import { Icons, LogoPNG } from "@/components/shared/icons"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 interface FeedLayoutProps {
   children: React.ReactNode
@@ -105,7 +104,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
             <div className="px-6 pb-4">
               {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
               {user.role === "STUDENT" && <JoinClassroom student={entity} />}
-              <Separator className="my-1" />
+              <Separator className="my-3" />
               <UserMenu user={user}>
                 <div
                   className={
@@ -146,7 +145,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
         <div className="px-6 pb-4">
           {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
           {user.role === "STUDENT" && <JoinClassroom student={entity} />}
-          <Separator className="my-1" />
+          <Separator className="my-3" />
           <UserMenu user={user}>
             <div
               className={

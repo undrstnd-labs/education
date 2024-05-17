@@ -1,5 +1,3 @@
-"use server"
-
 import { redirect } from "@navigation"
 import { Student, User } from "@prisma/client"
 import { getTranslations } from "next-intl/server"

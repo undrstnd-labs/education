@@ -14,9 +14,9 @@ import {
 } from "@/lib/session"
 import { cn, processActivities } from "@/lib/utils"
 
-import { Icons } from "@/components/icons/Lucide"
-import { buttonVariants } from "@/components/ui/Button"
-import { Card } from "@/components/ui/Card"
+import { Icons } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 
 async function getClassrooms(user: User) {
   const entity = (await getCurrentEntity(user)) as Student | Teacher

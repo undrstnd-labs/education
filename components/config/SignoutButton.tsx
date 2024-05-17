@@ -3,7 +3,7 @@
 import { signOut } from "next-auth/react"
 import { useTranslations } from "next-intl"
 
-import { DropdownMenuItem } from "@/components/ui/DropdownMenu"
+import { DropdownMenuItem } from "@/components/ui/dropdown-menui"
 
 export function SignoutButton() {
   const t = useTranslations("Components.Showcase.UserDropdown")

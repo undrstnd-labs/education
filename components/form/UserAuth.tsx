@@ -13,10 +13,10 @@ import { cn } from "@/lib/utils"
 import { toast } from "@/hooks/use-toast"
 
 import { EmailInput } from "@/components/form/EmailInput"
-import { Icons } from "@/components/icons/Lucide"
-import { buttonVariants } from "@/components/ui/Button"
-import { Label } from "@/components/ui/Label"
-import { Skeleton } from "@/components/ui/Skeleton"
+import { Icons } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: "login" | "register"

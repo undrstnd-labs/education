@@ -11,7 +11,7 @@ import {
   userAuthentificateVerification,
 } from "@/lib/session"
 
-import { ClassroomCard } from "@/components/display/ClassroomCard"
+import { FeedClassroomCard } from "@/components/app/feed-classroom-card"
 import PostCard from "@/components/display/PostCard"
 import { PostAddCard } from "@/components/form/PostAddCard"
 
@@ -81,7 +81,7 @@ export default async function ClassroomPage({
 
   return (
     <div className="flex flex-col gap-4">
-      <ClassroomCard authorId={user.id} classroom={classroom} />
+      <FeedClassroomCard authorId={user.id} classroom={classroom} />
       {user.role === "TEACHER" && (
         <PostAddCard userId={user.id} classroom={classroom} />
       )}

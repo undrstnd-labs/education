@@ -399,6 +399,13 @@
         "feed": "Your Feed",
         "posted": "Posted",
         "commented": "Commented"
+      },
+      "classroom": {
+        "title": "Classrooms",
+        "create-classroom": "Create your first classroom",
+        "paragraph": "Create a classroom to start sharing posts and files with your students.",
+        "join-classroom": "Join a classroom",
+        "join-classroom-description": "Enter the classroom code to join a classroom."
       }
     },
     "components": {

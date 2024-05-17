@@ -7,8 +7,8 @@ import { cn, verifyEmail } from "@/lib/utils"
 
 import { PassCodeAuth } from "@/components/form/PassCodeAuth"
 import { UserAuthForm, UserAuthSkeleton } from "@/components/form/UserAuth"
-import { LogoPNG } from "@/components/icons/Overall"
-import { buttonVariants } from "@/components/ui/Button"
+import { LogoPNG } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
 
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Register")

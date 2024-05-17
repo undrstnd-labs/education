@@ -9,8 +9,8 @@ import { getTranslatedEmailOptions } from "@/config/universities"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 
-import { Icons } from "@/components/icons/Lucide"
-import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
 import {
   Command,
   CommandEmpty,
@@ -18,14 +18,14 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/Command"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
-import { Input, InputProps } from "@/components/ui/Input"
+} from "@/components/ui/command"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
+import { Input, InputProps } from "@/components/ui/input"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/Popover"
+} from "@/components/ui/popover"
 
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => (

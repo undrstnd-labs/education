@@ -1,9 +1,9 @@
 import Image from "next/image"
 import { Link } from "@navigation"
 
-import { PlayIcon } from "@/components/icons/Overall"
-import { Button } from "@/components/ui/Button"
-import { TypingEffect } from "@/components/ui/TypingEffect"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
+import { TypingEffect } from "@/components/ui/typing-effect"
 
 export default function HerosectionHome() {
   return (
@@ -54,7 +54,7 @@ export default function HerosectionHome() {
               href="https://www.youtube.com/shorts/-1UjTQhkvLU"
             >
               <Button variant="outline">
-                <PlayIcon className="size-6 flex-none" />
+                <Icons.media className="size-6 flex-none" />
                 <span className="ml-2.5">
                   Regarder la vidéo de démonstration
                 </span>

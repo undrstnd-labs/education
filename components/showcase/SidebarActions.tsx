@@ -9,7 +9,7 @@ import { type Chat } from "@/types/chat"
 
 import { toast } from "@/hooks/use-toast"
 
-import { IconSpinner, IconTrash } from "@/components/icons/Overall"
+import { Icons } from "@/components/shared/icons"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,14 +19,14 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/AlertDialog"
-import { Button } from "@/components/ui/Button"
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip"
+} from "@/components/ui/tooltip"
 
 interface SidebarActionsProps {
   chat: Chat
@@ -57,9 +57,9 @@ export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
                 onClick={() => setDeleteDialogOpen(true)}
               >
                 {isRemovePending ? (
-                  <IconSpinner className="animate-spin" />
+                  <Icons.spinner className="animate-spin" />
                 ) : (
-                  <IconTrash />
+                  <Icons.trash />
                 )}
                 <span className="sr-only">Delete</span>
               </Button>
@@ -110,7 +110,9 @@ export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
                 })
               }}
             >
-              {isRemovePending && <IconSpinner className="mr-2 animate-spin" />}
+              {isRemovePending && (
+                <Icons.spinner className="mr-2 animate-spin" />
+              )}
               {t("delete-chat-confirm")}
             </AlertDialogAction>
           </AlertDialogFooter>

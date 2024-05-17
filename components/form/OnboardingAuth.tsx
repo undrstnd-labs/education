@@ -16,8 +16,8 @@ import { cn } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
 import { UniversityCard } from "@/components/display/UniversityCard"
-import { Icons } from "@/components/icons/Lucide"
-import { buttonVariants } from "@/components/ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -25,16 +25,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form"
-import { Input } from "@/components/ui/Input"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/Select"
-import { Textarea } from "@/components/ui/Textarea"
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 
 //TODO: Work on the dark theme
 export function OnboardingAuthForm({ user }: { user: UserType }) {

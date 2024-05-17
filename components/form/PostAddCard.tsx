@@ -15,11 +15,11 @@ import { uploadFilesClassroom } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
-import { Icons } from "@/components/icons/Lucide"
-import { Button } from "@/components/ui/Button"
-import { Card, CardContent } from "@/components/ui/Card"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/Dialog"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/Drawer"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import {
   Form,
   FormControl,
@@ -27,9 +27,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form"
-import { Input } from "@/components/ui/Input"
-import { Textarea } from "@/components/ui/Textarea"
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 interface PostAddCard {
   userId: string
@@ -206,6 +206,7 @@ export function PostAddCard({ userId, classroom }: PostAddCard) {
                         placeholder={t("formPlaceholderDescriptionAddPost")}
                         {...field}
                         rows={2}
+                        className="resize-none"
                         disabled={isLoading}
                       />
                     </FormControl>

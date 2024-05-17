@@ -3,12 +3,11 @@
 import { Popover } from "@headlessui/react"
 import { Link } from "@navigation"
 
-import { ChevronUpIcon, MenuIcon } from "@/components/icons/Navbar"
-import { LogoPNG } from "@/components/icons/Overall"
 import MobileAnimatePresence from "@/components/navigation/MobileAnimatePresence"
 import NavLinks from "@/components/navigation/NavLinks"
-import { Button } from "@/components/ui/Button"
-import Container from "@/components/ui/Container"
+import { Icons, LogoPNG } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
+import { Container } from "@/components/ui/container"
 
 export default function Header() {
   return (
@@ -38,9 +37,9 @@ export default function Header() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="size-6" />
+                        <Icons.chevronUp className="size-6" />
                       ) : (
-                        <MenuIcon className="size-6" />
+                        <Icons.menu className="size-6" />
                       )
                     }
                   </Popover.Button>
