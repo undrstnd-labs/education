@@ -10,10 +10,10 @@ import {
   userAuthentificateVerification,
 } from "@/lib/session"
 
-import { AddClassroom } from "@/components/app/feed-add-classroom"
-import { JoinClassroom } from "@/components/app/feed-join-classroom"
-import { FeedNavigationList } from "@/components/app/feed-navigation-list"
 import { UserMenu, UserMenuIconDropdown } from "@/components/display/UserMenu"
+import { AddClassroom } from "@/components/layout/feed-add-classroom"
+import { JoinClassroom } from "@/components/layout/feed-join-classroom"
+import { FeedNavigationList } from "@/components/layout/feed-navigation-list"
 import { Icons, LogoPNG } from "@/components/shared/icons"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -99,7 +99,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
               <div className="flex h-16 shrink-0 items-center">
                 <LogoPNG className="h-8 w-8" />
               </div>
-              <FeedNavigationList classrooms={classrooms} />
+              <FeedNavigationList user={user} classrooms={classrooms} />
             </div>
             <div className="px-6 pb-4">
               {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
@@ -138,7 +138,7 @@ export default async function FeedLayout({ children }: FeedLayoutProps) {
             </div>
           </div>
 
-          <FeedNavigationList classrooms={classrooms} />
+          <FeedNavigationList user={user} classrooms={classrooms} />
           <div className="h-20" />
         </div>
 

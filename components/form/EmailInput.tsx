@@ -1,8 +1,8 @@
 import * as React from "react"
 import Image from "next/image"
-import { EmailOption } from "@/types"
 import { useTranslations } from "next-intl"
 
+import { EmailOption } from "@/types"
 import { EmailSelectProps } from "@/types/auth"
 
 import { getTranslatedEmailOptions } from "@/config/universities"

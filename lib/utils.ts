@@ -1,9 +1,10 @@
-import { Activity, Classroom } from "@/types"
 import { Comment, Post, Student, Teacher, User } from "@prisma/client"
 import { clsx, type ClassValue } from "clsx"
 import { customAlphabet } from "nanoid"
 import { twMerge } from "tailwind-merge"
 import { v4 as uuidv4 } from "uuid"
+
+import { Activity, Classroom } from "@/types"
 
 import { emailSchema } from "@/config/schema"
 

@@ -2,18 +2,43 @@
 
 import React from "react"
 import Image from "next/image"
-import { NavigationList } from "@/types"
 import { Link, usePathname } from "@navigation"
+import { User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
+import { NavigationList } from "@/types"
 import { Classroom } from "@/types/classroom"
 
 import { cn } from "@/lib/utils"
 
 import { Icons } from "@/components/shared/icons"
+import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-const navigationList = (t: (arg: string) => string) =>
+const navigationStudentList = (t: (arg: string) => string) =>
+  [
+    {
+      id: "feed",
+      name: t("feed"),
+      href: "/feed",
+      icon: Icons.home,
+      current: true,
+    },
+    {
+      id: "classroom",
+      name: t("classroom"),
+      href: "/classroom",
+      icon: Icons.books,
+    },
+    {
+      id: "chat",
+      name: t("chat"),
+      href: "/chat",
+      icon: Icons.messages,
+    },
+  ] as NavigationList[]
+
+const navigationTeacherList = (t: (arg: string) => string) =>
   [
     {
       id: "feed",
@@ -34,22 +59,21 @@ const navigationList = (t: (arg: string) => string) =>
       href: "/dashboard",
       icon: Icons.dashboard,
     },
-    {
-      id: "chat",
-      name: t("chat"),
-      href: "/chat",
-      icon: Icons.messages,
-    },
   ] as NavigationList[]
 
 export function FeedNavigationList({
+  user,
   classrooms,
 }: {
+  user: User
   classrooms: Classroom[]
 }) {
   const path = usePathname()
-  const t = useTranslations("app.components.app.feed-navigation-list")
-  const navigation = navigationList(t)
+  const t = useTranslations("app.components.layout.feed-navigation-list")
+  const navigation =
+    user.role === "STUDENT"
+      ? navigationStudentList(t)
+      : navigationTeacherList(t)
 
   return (
     <nav className="flex flex-1 flex-col">
@@ -149,8 +173,14 @@ export function FeedNavigationList({
                           />
                         )
                       )}
-
-                      <span className="truncate">{classroom.name}</span>
+                      <div className="flex w-full flex-row items-center justify-between">
+                        <span className="truncate">{classroom.name}</span>
+                        {user.role === "TEACHER" && classroom.isArchived && (
+                          <Badge variant={"secondary"} className="ml-auto">
+                            {t("archived")}
+                          </Badge>
+                        )}
+                      </div>
                     </Link>
                   </li>
                 ))}

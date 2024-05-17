@@ -6,9 +6,9 @@ import { Classroom } from "@/types/classroom"
 import { redirect } from "@/lib/navigation"
 import { getCurrentEntity, getCurrentUser } from "@/lib/session"
 
-import { AddClassroom } from "@/components/app/feed-add-classroom"
 import { FeedClassroomCard } from "@/components/app/feed-classroom-card"
-import { JoinClassroom } from "@/components/app/feed-join-classroom"
+import { AddClassroom } from "@/components/layout/feed-add-classroom"
+import { JoinClassroom } from "@/components/layout/feed-join-classroom"
 import { Icons } from "@/components/shared/icons"
 
 async function getClassrooms(user: User) {

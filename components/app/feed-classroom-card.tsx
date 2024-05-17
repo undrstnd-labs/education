@@ -1,11 +1,13 @@
 import Image from "next/image"
 import { Link } from "@navigation"
 import { Classroom, User } from "@prisma/client"
+import { getTranslations } from "next-intl/server"
 
 import { Icons } from "@/components/shared/icons"
 import { ClassroomCardOptions } from "@/components/showcase/ClassroomCardOptions"
 import { LeaveClassroom } from "@/components/showcase/LeaveClassroom"
 import { ShareClassroom } from "@/components/showcase/ShareClassroom"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { CopyText } from "@/components/ui/copy-text"
@@ -17,14 +19,22 @@ interface classroomCardProps {
   }
 }
 
-export function FeedClassroomCard({ classroom, authorId }: classroomCardProps) {
+export async function FeedClassroomCard({
+  classroom,
+  authorId,
+}: classroomCardProps) {
+  const t = await getTranslations("app.components.app.feed-classroom-card")
   return (
     <Card className="flex flex-col gap-4 p-4 transition-all duration-150 hover:bg-accent/30 sm:p-6">
       <div className="flex items-start justify-between">
         <div className="space-y-1">
           <div className="flex items-center space-x-2">
             <h3 className="text-lg font-semibold">{classroom.name}</h3>
-            <CopyText text={classroom.classCode} />
+            {classroom.isArchived && classroom.teacher.userId === authorId ? (
+              <Badge variant={"secondary"}>{t("archived")}</Badge>
+            ) : (
+              <CopyText text={classroom.classCode} />
+            )}
           </div>
 
           <p className="text-sm text-muted-foreground">
@@ -33,17 +43,19 @@ export function FeedClassroomCard({ classroom, authorId }: classroomCardProps) {
         </div>
 
         <div className="flex items-center space-x-2">
-          <Link href={`/classroom/${classroom.id}`} key={classroom.id}>
-            <Button
-              variant="outline"
-              size={"icon"}
-              className="size-8 max-sm:size-6"
-            >
-              <Icons.external className="size-4" />
+          {!classroom.isArchived && (
+            <Link href={`/classroom/${classroom.id}`} key={classroom.id}>
+              <Button
+                variant="outline"
+                size={"icon"}
+                className="size-8 max-sm:size-6"
+              >
+                <Icons.external className="size-4" />
 
-              <span className="sr-only">Open classroom</span>
-            </Button>
-          </Link>
+                <span className="sr-only">Open classroom</span>
+              </Button>
+            </Link>
+          )}
           <ShareClassroom classroom={classroom} />
           {authorId === classroom.teacher.user.id ? (
             <ClassroomCardOptions classroom={classroom} />

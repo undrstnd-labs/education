@@ -1,10 +1,10 @@
 import React from "react"
 import Image from "next/image"
-import { Classroom } from "@/types"
 import { Link, redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
 import { getTranslations } from "next-intl/server"
 
+import { Classroom } from "@/types"
 import { NextAuthUser } from "@/types/auth"
 
 import {

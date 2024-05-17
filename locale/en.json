@@ -409,13 +409,19 @@
       }
     },
     "components": {
-      "app": {
+      "layout": {
         "feed-navigation-list": {
           "feed": "Feed",
           "classroom": "Classrooms",
           "dashboard": "Dashboard",
           "chat": "Conversations",
-          "your-classrooms": "Your Classrooms"
+          "your-classrooms": "Your Classrooms",
+          "archived": "Archived"
+        }
+      },
+      "app": {
+        "feed-classroom-card": {
+          "archived": "Archived"
         }
       }
     }
