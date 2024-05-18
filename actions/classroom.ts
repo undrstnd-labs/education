@@ -160,3 +160,18 @@ export async function editClasroom(
     data,
   })
 }
+
+export async function leaveClassroom(student: Student, classroom: Classroom) {
+  return await db.classroom.update({
+    where: {
+      id: classroom.id,
+    },
+    data: {
+      students: {
+        disconnect: {
+          id: student.id,
+        },
+      },
+    },
+  })
+}

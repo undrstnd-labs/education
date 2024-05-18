@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { SidebarProvider } from "@/hooks/use-sidebar"
 
-import { ThemeProvider } from "@/components/config/ThemeProvider"
+import { ThemeProvider } from "@/components/layout/theme-provider"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
 export function Providers({ children }: { children: React.ReactNode }) {

@@ -69,7 +69,7 @@ export default async function ClassroomsPage({
               <FeedClassroomCard
                 classroom={classroom}
                 key={classroom.id}
-                authorId={user.id}
+                entity={entity}
               />
             )
           })

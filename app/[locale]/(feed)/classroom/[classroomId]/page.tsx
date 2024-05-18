@@ -30,7 +30,7 @@ export async function generateMetadata({
   if (!user) {
     return {}
   }
-  const classroom = await getClassroom(user, params.classroomId)
+  const { classroom } = await getClassroom(user, params.classroomId)
 
   return {
     title:
@@ -42,7 +42,7 @@ async function getClassroom(user: User, classroomId: string) {
   const entity = (await getCurrentEntity(user)) as Student | Teacher
 
   try {
-    const res = await fetch(
+    const classroom = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/classrooms/${classroomId}/${user.role.toLowerCase()}/${entity.id}`,
       {
         method: "GET",
@@ -52,9 +52,16 @@ async function getClassroom(user: User, classroomId: string) {
       }
     ).then((res) => res.json())
 
-    return res as Classroom
+    return {
+      entity,
+      classroom,
+    }
   } catch (error) {
     console.log(error)
+    return {
+      entity,
+      classroom: {},
+    }
   }
 }
 
@@ -76,7 +83,7 @@ export default async function ClassroomPage({
     return null
   }
 
-  const classroom = await getClassroom(user, classroomId)
+  const { entity, classroom } = await getClassroom(user, classroomId)
 
   if (!classroom) {
     return redirect("/classroom")
@@ -84,7 +91,7 @@ export default async function ClassroomPage({
 
   return (
     <div className="flex flex-col gap-4">
-      <FeedClassroomCard authorId={user.id} classroom={classroom} />
+      <FeedClassroomCard entity={entity} classroom={classroom} />
       {user.role === "TEACHER" && (
         <PostAddCard userId={user.id} classroom={classroom} />
       )}
@@ -92,11 +99,11 @@ export default async function ClassroomPage({
         {classroom.posts && classroom.posts.length > 0 ? (
           classroom.posts
             .sort(
-              (a, b) =>
+              (a: any, b: any) =>
                 new Date(b.createdAt).getTime() -
                 new Date(a.createdAt).getTime()
             )
-            .map((post) => (
+            .map((post: any) => (
               <PostCard
                 key={post.id}
                 post={post}

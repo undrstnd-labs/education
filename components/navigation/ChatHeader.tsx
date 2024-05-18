@@ -1,8 +1,8 @@
 import { Student, User } from "@prisma/client"
 
-import { SidebarToggle } from "@/components/config/SidebarToggle"
 import { ChatHistory } from "@/components/display/ChatHistory"
 import { UserMenuIconDropdown } from "@/components/display/UserMenu"
+import { SidebarToggle } from "@/components/layout/sidebar-toggle"
 import { SidebarMobile } from "@/components/navigation/SidebarMobile"
 import { Icons } from "@/components/shared/icons"
 

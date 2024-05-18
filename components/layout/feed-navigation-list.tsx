@@ -12,7 +12,6 @@ import { Classroom } from "@/types/classroom"
 import { cn } from "@/lib/utils"
 
 import { Icons } from "@/components/shared/icons"
-import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 const navigationStudentList = (t: (arg: string) => string) =>
@@ -134,58 +133,55 @@ export function FeedNavigationList({
           <ul role="list" className="-mx-2 mt-2 space-y-1">
             <ScrollArea className="h-52 sm:h-72">
               <>
-                {classrooms.map((classroom) => (
-                  <li key={classroom.name}>
-                    <Link
-                      href={`/classroom/${classroom.id}`}
-                      className={cn(
-                        path === `/classroom/${classroom.id}`
-                          ? "bg-secondary/90 text-primary"
-                          : "text-secondary-foreground/60 hover:bg-secondary hover:text-secondary-foreground",
-                        "group flex gap-x-3 rounded-xl p-2 text-sm font-semibold leading-6 transition-all duration-300 hover:bg-secondary-foreground/10"
-                      )}
-                    >
-                      {classroom.teacher.user.image &&
-                      classroom.teacher.user.image.startsWith(
-                        "https://avatars.jakerunzer.com/"
-                      ) ? (
-                        <span
-                          className={cn(
-                            path === `/classroom/${classroom.id}`
-                              ? "border-primary text-primary"
-                              : "group-hover:border-secondary-foreground group-hover:text-secondary-foreground",
-                            "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium uppercase"
-                          )}
-                        >
-                          {classroom.name.slice(0, 2)}
-                        </span>
-                      ) : (
-                        classroom.teacher.user.image && (
-                          <Image
-                            src={classroom.teacher.user.image}
-                            alt={classroom.name}
-                            width={24}
-                            height={24}
+                {classrooms
+                  .filter((classroom) => !classroom.isArchived)
+                  .map((classroom) => (
+                    <li key={classroom.name}>
+                      <Link
+                        href={`/classroom/${classroom.id}`}
+                        className={cn(
+                          path === `/classroom/${classroom.id}`
+                            ? "bg-secondary/90 text-primary"
+                            : "text-secondary-foreground/60 hover:bg-secondary hover:text-secondary-foreground",
+                          "group flex gap-x-3 rounded-xl p-2 text-sm font-semibold leading-6 transition-all duration-300 hover:bg-secondary-foreground/10"
+                        )}
+                      >
+                        {classroom.teacher.user.image &&
+                        classroom.teacher.user.image.startsWith(
+                          "https://avatars.jakerunzer.com/"
+                        ) ? (
+                          <span
                             className={cn(
                               path === `/classroom/${classroom.id}`
-                                ? "border-primarytext-primary"
-                                : "border-gray-200 text-gray-400 group-hover:border-primary group-hover:text-primary",
-                              "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium"
+                                ? "border-primary text-primary"
+                                : "group-hover:border-secondary-foreground group-hover:text-secondary-foreground",
+                              "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium uppercase"
                             )}
-                          />
-                        )
-                      )}
-                      <div className="flex w-full flex-row items-center justify-between">
-                        <span className="truncate">{classroom.name}</span>
-                        {user.role === "TEACHER" && classroom.isArchived && (
-                          <Badge variant={"secondary"} className="ml-auto">
-                            {t("archived")}
-                          </Badge>
+                          >
+                            {classroom.name.slice(0, 2)}
+                          </span>
+                        ) : (
+                          classroom.teacher.user.image && (
+                            <Image
+                              src={classroom.teacher.user.image}
+                              alt={classroom.name}
+                              width={24}
+                              height={24}
+                              className={cn(
+                                path === `/classroom/${classroom.id}`
+                                  ? "border-primarytext-primary"
+                                  : "border-gray-200 text-gray-400 group-hover:border-primary group-hover:text-primary",
+                                "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium"
+                              )}
+                            />
+                          )
                         )}
-                      </div>
-                    </Link>
-                  </li>
-                ))}
+                        <div className="flex w-full flex-row items-center justify-between">
+                          <span className="truncate">{classroom.name}</span>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
               </>
             </ScrollArea>
           </ul>

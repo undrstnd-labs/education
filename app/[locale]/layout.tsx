@@ -8,9 +8,9 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { locales } from "@/config/locale"
 import { siteConfig } from "@/config/site"
 
-import { Analytics } from "@/components/config/Analytics"
-import { Providers } from "@/components/config/Providers"
-import { TailwindIndicator } from "@/components/config/TailwindIndicator"
+import { Analytics } from "@/components/layout/analytics"
+import { Providers } from "@/components/layout/providers"
+import { TailwindIndicator } from "@/components/layout/tailwind-indicator"
 import { Toaster } from "@/components/ui/toaster"
 
 export const viewport: Viewport = {

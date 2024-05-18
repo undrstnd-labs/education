@@ -10,7 +10,7 @@ interface ShareClassroomProps {
   classroom: Classroom
 }
 
-export function ShareClassroom({ classroom }: ShareClassroomProps) {
+export function FeedClassroomShare({ classroom }: ShareClassroomProps) {
   const [copied, setCopied] = useState(false)
   const copyLink = () => {
     if (typeof window !== "undefined") {

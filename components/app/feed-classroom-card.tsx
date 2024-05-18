@@ -1,19 +1,19 @@
 import Image from "next/image"
 import { Link } from "@navigation"
-import { Classroom, User } from "@prisma/client"
+import { Classroom, Student, Teacher, User } from "@prisma/client"
 import { getTranslations } from "next-intl/server"
 
 import { FeedClassroomDropdownActions } from "@/components/app/feed-classroom-dropdown-actions"
+import { FeedClassroomLeave } from "@/components/app/feed-classroom-leave"
+import { FeedClassroomShare } from "@/components/app/feed-classroom-share"
 import { Icons } from "@/components/shared/icons"
-import { LeaveClassroom } from "@/components/showcase/LeaveClassroom"
-import { ShareClassroom } from "@/components/showcase/ShareClassroom"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { CopyText } from "@/components/ui/copy-text"
 
 interface classroomCardProps {
-  authorId: string
+  entity: Teacher | Student
   classroom: Classroom & {
     teacher: { user: User; id: string; userId: string }
   }
@@ -21,7 +21,7 @@ interface classroomCardProps {
 
 export async function FeedClassroomCard({
   classroom,
-  authorId,
+  entity,
 }: classroomCardProps) {
   const t = await getTranslations("app.components.app.feed-classroom-card")
   return (
@@ -32,7 +32,7 @@ export async function FeedClassroomCard({
             <Link href={`/classroom/${classroom.id}`} key={classroom.id}>
               <h3 className="text-lg font-semibold">{classroom.name}</h3>
             </Link>
-            {classroom.isArchived && classroom.teacher.userId === authorId ? (
+            {classroom.isArchived && classroom.teacher.id === entity.id ? (
               <Badge variant={"secondary"}>{t("archived")}</Badge>
             ) : (
               <CopyText text={classroom.classCode} />
@@ -59,13 +59,16 @@ export async function FeedClassroomCard({
                   <span className="sr-only">Open classroom</span>
                 </Button>
               </Link>
-              <ShareClassroom classroom={classroom} />
+              <FeedClassroomShare classroom={classroom} />
             </>
           )}
-          {authorId === classroom.teacher.user.id ? (
+          {entity.id === classroom.teacher.id ? (
             <FeedClassroomDropdownActions classroom={classroom} />
           ) : (
-            <LeaveClassroom classroom={classroom} userId={authorId} />
+            <FeedClassroomLeave
+              classroom={classroom}
+              student={entity as Student}
+            />
           )}
         </div>
       </div>

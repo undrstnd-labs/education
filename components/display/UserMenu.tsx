@@ -1,8 +1,8 @@
 import { NextAuthUser } from "@/types/auth"
 
-import { SignoutButton } from "@/components/config/SignoutButton"
 import { RoleBadge } from "@/components/display/RoleBadge"
-import { UserDropdown } from "@/components/showcase/UserDropdown"
+import { SignoutButton } from "@/components/shared/sign-out"
+import { UserDropdown } from "@/components/shared/user-dropdown"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
