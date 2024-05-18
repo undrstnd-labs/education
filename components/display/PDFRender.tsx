@@ -12,8 +12,8 @@ import SimpleBar from "simplebar-react"
 import { cn, formatDate } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
-import { PDFFullScreen } from "@/components/display/PDFFullScreen"
 import { Icons } from "@/components/shared/icons"
+import { PDFViewDialog } from "@/components/shared/pdf-view-dialog"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -165,7 +165,7 @@ export function PDFRender({
                 <div className="l grid gap-2">
                   <div className="-ml-1 grid w-full grid-cols-2 items-center gap-3 space-x-3">
                     <Label htmlFor="rotation">{t("new-window")}</Label>
-                    <PDFFullScreen file={file} />
+                    <PDFViewDialog file={file} />
                   </div>
                   <div className="grid grid-cols-2 items-center gap-4">
                     <Label htmlFor="zoom">{t("zoom")}</Label>

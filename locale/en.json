@@ -396,7 +396,14 @@
       "shared": {
         "metadata-title": "Shared",
         "files": "Your shared files",
-        "files-description": "All of your shared files with us are here."
+        "files-description": "All of your shared files with us are here.",
+        "messages": "messages",
+        "view-chat": "View conversation",
+        "more-options": "More options",
+        "delete": "Delete file",
+        "title-dialog": "Are you sure you want to delete?",
+        "description-dialog": "This action can be undone. This will permanently delete your file.",
+        "cancel": "Cancel"
       }
     },
     "components": {
@@ -492,6 +499,20 @@
           "description-dialog": "This action can be undone. This will permanently delete your account.",
           "cancel": "Cancel",
           "delete": "Yes, delete my account"
+        },
+        "account-shared-pdf-preview": {
+          "error": "Error loading PDF"
+        }
+      },
+      "shared": {
+        "pdf-view-dialog": {
+          "open": "Open",
+          "download": "Download the file",
+          "copy": "Copy link of the file",
+          "error": "Error loading PDF"
+        },
+        "search-input": {
+          "placeholder": "Start typing what's on your mind..."
         }
       }
     }

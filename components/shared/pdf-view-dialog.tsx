@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { File } from "@prisma/client"
 import { motion } from "framer-motion"
@@ -18,6 +20,7 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import {
   Tooltip,
   TooltipContent,
@@ -56,14 +59,14 @@ function PDFLoader() {
   )
 }
 
-export function PDFFullScreen({ file }: { file: File }) {
+export function PDFViewDialog({ file }: { file: File }) {
   const { toast } = useToast()
   const { width, ref } = useResizeDetector()
 
   const [pageNumber, setPageNumber] = React.useState<number>(1)
   const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 })
 
-  const t = useTranslations("Components.Display.PDFFullScreen")
+  const t = useTranslations("app.components.shared.pdf-view-dialog")
 
   return (
     <Dialog>
@@ -132,7 +135,108 @@ export function PDFFullScreen({ file }: { file: File }) {
           <div ref={ref} className="z-0">
             <Document
               file={file.url}
-              className="max-w-full"
+              className="max-h-[calc(100vh-10rem)] max-w-full"
+              loading={<PDFLoader />}
+              onLoadSuccess={({ numPages }) => setPageNumber(numPages)}
+              onLoadError={(error) => {
+                toast({
+                  title: t("error"),
+                  variant: "destructive",
+                })
+              }}
+            >
+              {new Array(pageNumber).fill(0).map((_, index) => (
+                <Page
+                  key={index}
+                  pageNumber={index + 1}
+                  width={width ? width : 1}
+                />
+              ))}
+            </Document>
+          </div>
+        </SimpleBar>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+export function PDFViewDialogTrigger({ file }: { file: File }) {
+  const { toast } = useToast()
+  const { width, ref } = useResizeDetector()
+
+  const [pageNumber, setPageNumber] = React.useState<number>(1)
+  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 })
+
+  const t = useTranslations("app.components.shared.pdf-view-dialog")
+
+  return (
+    <Dialog>
+      <DialogTrigger className=" text-left">
+        <Button
+          aria-label="open in dialog"
+          variant={"ghost"}
+          className="mr-auto w-full text-left font-normal"
+          size={"sm"}
+        >
+          {t("open")}
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="w-full max-w-7xl">
+        <DialogHeader>
+          <div className="flex items-center justify-between px-4">
+            <h2 className="text-lg font-semibold">{file.name}</h2>
+            <div className="ml-auto flex flex-shrink-0 space-x-1 self-center px-6">
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    size={"icon"}
+                    variant={"outline"}
+                    className="hover:dark:bg-gray-600"
+                    onClick={() => {
+                      downloadFileFromUrl(
+                        file.url.split(
+                          `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/`
+                        )[1]
+                      )
+                    }}
+                  >
+                    <Icons.download className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>{t("download")}</span>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    size={"icon"}
+                    className="hover:dark:bg-gray-600"
+                    variant={"outline"}
+                    onClick={() => {
+                      copyToClipboard(file.url)
+                    }}
+                  >
+                    {isCopied ? (
+                      <Icons.check className="h-4 w-4" />
+                    ) : (
+                      <Icons.share className="h-4 w-4" />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <span>{t("copy")}</span>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </div>
+        </DialogHeader>
+
+        <SimpleBar autoHide={false} className="mt-6 max-h-[calc(100vh-10rem)]">
+          <div ref={ref} className="z-0">
+            <Document
+              file={file.url}
+              className="max-h-[calc(100vh-10rem)] max-w-full"
               loading={<PDFLoader />}
               onLoadSuccess={({ numPages }) => setPageNumber(numPages)}
               onLoadError={(error) => {

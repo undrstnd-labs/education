@@ -13,6 +13,28 @@ export async function getChats(studentId?: string) {
   })
 }
 
+export async function getChatsWithDetails(studentId: string) {
+  return await db.conversation.findMany({
+    where: {
+      studentId,
+      file: {
+        is: {
+          url: {
+            not: undefined,
+          },
+        },
+      },
+    },
+    include: {
+      messages: {
+        select: { id: true, createdAt: true },
+        orderBy: { createdAt: "asc" },
+      },
+      file: true,
+    },
+  })
+}
+
 export async function getChat(id: string, studentId: string) {
   return db.conversation.findFirst({
     where: { id, studentId },

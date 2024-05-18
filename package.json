@@ -67,6 +67,7 @@
     "cmdk": "^1.0.0",
     "crypto-browserify": "^3.12.0",
     "framer-motion": "^10.18.0",
+    "fuse.js": "^7.0.0",
     "geist": "^1.2.2",
     "groq-sdk": "^0.3.2",
     "input-otp": "^1.2.2",

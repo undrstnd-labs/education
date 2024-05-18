@@ -39,7 +39,6 @@ interface SidebarActionsProps {
 export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
   const router = useRouter()
   const t = useTranslations("Components.Showcase.SidebarActions")
-  const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false)
   const [isRemovePending, startRemoveTransition] = React.useTransition()
 
@@ -59,7 +58,7 @@ export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
                 {isRemovePending ? (
                   <Icons.spinner className="animate-spin" />
                 ) : (
-                  <Icons.trash />
+                  <Icons.trash className="h-4 w-4" />
                 )}
                 <span className="sr-only">Delete</span>
               </Button>
