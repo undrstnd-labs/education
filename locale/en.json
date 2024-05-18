@@ -375,22 +375,28 @@
         "metadata-title": "Account",
         "account": "Account",
         "back": "Back",
-        "profile-pic-title": "Profile picture",
-        "profile-pic-description": "Upload a profile picture",
-        "profile-name-title": "Your name",
-        "profile-name-description": "Your name will be visible to other users.",
+        "profile-title": "Your profile",
+        "profile-description": "Update your profile",
+        "danger-zone-title": "Danger zone",
+        "danger-zone-description": "Delete your account",
         "profile-bio-title": "Bio",
         "profile-bio-description": "Tell us a little about yourself.",
         "save": "Save"
       },
       "preference": {
-        "metadata-title": "Preference"
+        "metadata-title": "Preference",
+        "theme": "Change theme",
+        "theme-description": "Choose a theme that suits you.",
+        "language": "Change language",
+        "language-description": "Choose a language that suits you."
       },
       "danger-zone": {
         "metadata-title": "Danger zone"
       },
       "shared": {
-        "metadata-title": "Shared"
+        "metadata-title": "Shared",
+        "files": "Your shared files",
+        "files-description": "All of your shared files with us are here."
       }
     },
     "components": {
@@ -472,8 +478,20 @@
           "image-too-large": "Image is too large",
           "image-description-error": "Please upload an image less than 3MB",
           "save": "Save",
-          "image-uploaded": "Image uploaded successfully",
-          "image-upload-failed": "Failed to upload image"
+          "image-upload-failed": "Failed to upload image",
+          "profile-updated": "Your profile has been updated",
+          "profile-no-updated": "Failed to update profile",
+          "name": "Full name",
+          "placeholderName": "John Doe",
+          "bio": "Bio",
+          "placeholderBio": "I'm a student at ...",
+          "submit": "Update"
+        },
+        "account-delete-profile": {
+          "title-dialog": "Are you sure you want to delete?",
+          "description-dialog": "This action can be undone. This will permanently delete your account.",
+          "cancel": "Cancel",
+          "delete": "Yes, delete my account"
         }
       }
     }

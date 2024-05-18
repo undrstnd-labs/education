@@ -63,57 +63,6 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  context: z.infer<typeof routeContextSchema>
-) {
-  try {
-    const {
-      params: { userId },
-    } = routeContextSchema.parse(context)
-    if (!(await verifyCurrentUser(userId))) {
-      return new Response(null, { status: 403 })
-    }
-    const user = await db.user.delete({
-      where: {
-        id: userId,
-      },
-    })
-    if (user.role === "STUDENT") {
-      const classrooms = await db.classroom.findMany({
-        where: {
-          students: {
-            some: {
-              userId: userId,
-            },
-          },
-        },
-      })
-
-      for (const classroom of classrooms) {
-        await db.classroom.update({
-          where: {
-            id: classroom.id,
-          },
-          data: {
-            students: {
-              disconnect: {
-                userId: userId,
-              },
-            },
-          },
-        })
-      }
-    }
-    //FIXME: MAYBE delete from the students this classroom
-
-    return NextResponse.json(user, { status: 200 })
-  } catch (error: any) {
-    console.log(error)
-    return NextResponse.json({ error: error.message }, { status: 500 })
-  }
-}
-
 export async function PATCH(
   req: Request,
   context: z.infer<typeof routeContextSchema>

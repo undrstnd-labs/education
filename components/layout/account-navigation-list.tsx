@@ -2,13 +2,14 @@
 
 import React from "react"
 import { Link, usePathname } from "@navigation"
+import { User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
 import { cn } from "@/lib/utils"
 
 import { Separator } from "@/components/ui/separator"
 
-const navigation = (t: (arg: string) => string) => [
+const navigationStudent = (t: (arg: string) => string) => [
   {
     id: "profile",
     name: t("profile"),
@@ -26,9 +27,24 @@ const navigation = (t: (arg: string) => string) => [
   },
 ]
 
-export function AccountNavigationlist() {
+const navigationTeacher = (t: (arg: string) => string) => [
+  {
+    id: "profile",
+    name: t("profile"),
+    href: "/account",
+  },
+  {
+    id: "preference",
+    name: t("preference"),
+    href: "/account/preference",
+  },
+]
+
+export function AccountNavigationlist({ user }: { user: User }) {
   const path = usePathname()
   const t = useTranslations("app.components.layout.account-navigation-list")
+  const navigation =
+    user.role === "STUDENT" ? navigationStudent : navigationTeacher
 
   return (
     <nav className="text-sm text-muted-foreground">
@@ -46,19 +62,6 @@ export function AccountNavigationlist() {
           {item.name}
         </Link>
       ))}
-
-      <Separator className="my-2 w-full" />
-      <Link
-        href="/account/danger-zone"
-        className={cn(
-          path === "/account/danger-zone"
-            ? "bg-destructive/25 text-destructive"
-            : "text-destructive hover:bg-destructive-foreground hover:text-destructive",
-          "group flex gap-x-3 rounded-xl p-2 text-sm font-semibold leading-6 transition-all duration-300 hover:bg-destructive/10"
-        )}
-      >
-        {t("danger")}
-      </Link>
     </nav>
   )
 }
