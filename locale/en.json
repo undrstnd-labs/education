@@ -1,0 +1,539 @@
+{
+  "Pages": {
+    "Login": {
+      "buttonBack": "Back",
+      "loginTitle": "Welcome back",
+      "loginDescription": "Enter your email below to log in",
+      "buttonSignIn": "Sign In",
+      "labelChoice": "OR CONNECT WITH",
+      "labelNew": "New on the site?",
+      "labelCreateAccount": "Create an account"
+    },
+    "Register": {
+      "buttonConnection": "Log In",
+      "registerTitle": "Create your account",
+      "registerDescription": "Enter your email below to register",
+      "labelChoice": "OR CONNECT WITH",
+      "labelAccept": "When creating your account, you agree to our",
+      "labelConditions": "Terms of Service",
+      "labelAnd": "and",
+      "labelPolicy": "Privacy Policy."
+    },
+    "Dashboard": {
+      "home": "Home"
+    },
+    "Classroom": {
+      "updatedCommentTitleLabel": "Comment content",
+      "updatedCommentTitle": "Update comment",
+      "upadtedCommentToastTitleError": "Error",
+      "upadtedCommentToastDescriptionError": "An error occurred while updating the comment. Please try again.",
+      "upadtedCommentToastTitle": "Comment updated successfully",
+      "upadtedCommentToastDescription": "You have successfully updated a comment.",
+      "commentAddedTitleToastErreur": "Error",
+      "commentAddedDescriptionToastErreur": "An error occurred while adding a comment. Please try again.",
+      "commendAddedTitleToast": "Comment added successfully",
+      "commendAddedDescriptionToast": "You have successfully added a comment.",
+      "commentAddSchema": "Comment content should be at least 4 characters.",
+      "repliesLabel": "Replies to the above comment",
+      "addCommentPlaceholder": "Add a comment",
+      "fileOptions": "File Options",
+      "downloadFile": "Download file",
+      "fileCardSeeFile": "See file",
+      "toastPostModifiedSuccess": "Post modified successfully",
+      "toastPostModifiedSuccessDescription": "You have successfully modified a post.",
+      "toastPostModifiedFailed": "Post modification failed",
+      "toastPostModifiedFailedDescription": "An error occurred while modifying the post. Please try again.",
+      "toastPostCreatedFailed": "Post creation failed",
+      "toastPostCreatedFailedDescription": "An error occurred while creating the post. Please try again.",
+      "toastPostCreatedSuccess": "Post created successfully",
+      "toastPostCreatedSuccessDescription": "You have successfully created a post.",
+      "toastFilesFailed": "Error",
+      "toastFilesFailedDescription": "An error occurred while uploading files. Please try again.",
+      "toastFilesSuccess": "Files uploaded",
+      "toastFilesSuccessDescription": "You have successfully uploaded files. You can now post them.",
+      "uploadButtonLabel": "Upload Files",
+      "postFilesLabel": "Post Files",
+      "formLabelDescriptionAddPost": "Post Description",
+      "formPlaceholderDescriptionAddPost": "Enter your post description here",
+      "formLabelNameAddPost": "Post Name",
+      "formPlaceholderNameAddPost": "Enter your post name here",
+      "createPostTitle": "Create a new post",
+      "updatePostTitle": "Update post",
+      "buttonCreate": "Create classroom",
+      "formSchemaPostName": "Post Name must contain at least 4 characters.",
+      "formSchemaDescriptionMessage": "Post Description must contain at least 10 characters.",
+      "formSchemaCodeMessage": "Code is invalid",
+      "toastDescriptionUpdateClassroom": "You have successfully updated a classroom.",
+      "formTitleAddClassroom": "Create Classroom",
+      "formTitleUpdateClassroom": "Update Classroom",
+      "formLabelClassroomCode": "Classroom code",
+
+      "formClassroomCodePlaceholder": "Enter your classroom code here",
+      "formClassroomButton": "Submit",
+      "formClassroomJoinButton": "Join",
+      "joinApiSuccess": "Classroom joined successfully",
+      "joinApiSuccessDescription": "You have successfully joined this classroom.",
+      "joinApiError": "Classroom not found",
+      "joinApiErrorDescription": "The classroom you are trying to join does not exist.",
+      "joinApiAlreadyError": "You are already in this classroom",
+      "joinApiAlreadyErrorDescription": "You are already a member of this classroom.",
+      "joinApiErrorArchived": "Classroom is archived",
+      "joinApiErrorArchivedDescription": "The classroom you are trying to join is archived.",
+      "toast-title-create-error": "Failed to create classroom",
+      "toast-description-create-error": "Something went wrong while creating the classroom",
+      "toast-title-update-error": "Failed to update classroom",
+      "toast-description-update-error": "Something went wrong while updating the classroom"
+    },
+    "TeacherDashboard": {
+      "title": "Teacher Dashboard",
+      "name": "Name",
+      "status": "Status",
+      "classCode": "Class Code",
+      "archived": "Archived",
+      "unarchived": "Unarchived",
+      "inputFilterNames": "Filter Names...",
+      "columnsLabel": "Columns",
+      "noResultsLablel": "No results.",
+      "previousLabel": "Previous",
+      "nextLabel": "Next",
+      "row": "row",
+      "created": "created"
+    }
+  },
+
+  "Components": {
+    "Form": {
+      "UserAuth": {
+        "labelEmail": "Email",
+        "buttonForm": "{type, select, login {Log In} register {Sign Up} other {#}}",
+        "labelChoice": "OR CONNECT WITH",
+        "placeholderEmail": "student@university.com",
+        "invalidEmail": "Please enter a valid university email address.",
+        "invalidUniversityEmail": "Please enter a valid university email address.",
+        "toastSignInFailedTitle": "Something went wrong",
+        "toastSignInFailedDescription": "Your sign in attempt failed",
+        "toastSignInSuccessTitle": "Check your email",
+        "toastSignInSuccessDescription": "We sent you a login link. Be sure to check your spam too."
+      },
+      "PassCodeAuth": {
+        "verify-account": "Verify Your Account",
+        "verify-account-description": "Enter the 6-digit code sent to your email address",
+        "email-sent": "An email has been sent to",
+        "error": "Invalid code",
+        "try-again": "Please check your email and try again"
+      },
+      "Prompt": {
+        "new-chat": "New Chat",
+        "send-message": "Send message",
+        "upload-file": "Upload file",
+        "upload": "Upload",
+        "upload-file-description": "For uploading files, you can only upload one file at a time. The file size must be less than 25MB.",
+        "file-size-error": "File size must be less than 25MB",
+        "file-max-error": "You can only upload 1 file",
+        "click-to-select": "Click to upload",
+        "or-drag-drop": "or drag and drop",
+        "pdf-only": "Only PDF files are allowed",
+        "upload-success": "File uploaded successfully",
+        "upload-failed": "Failed to upload file"
+      },
+      "ChatPanel": {
+        "stop-generating": "Stop generating",
+        "regenerate": "Regenerate response",
+        "share": "Share"
+      }
+    },
+    "Display": {
+      "RoleBadge": {
+        "student": "Student",
+        "teacher": "Teacher"
+      },
+      "StatusWidget": {
+        "operational": "Operational",
+        "degraded-performance": "Degraded Performance",
+        "partial-outage": "Partial Outage",
+        "major-outage": "Major Outage",
+        "unknown": "Unknown",
+        "incident": "Incident",
+        "under-maintenance": "nder Maintenance"
+      },
+
+      "PostCardOptions": {
+        "toastTitleDeletePost": "Post deleted successfully",
+        "toastDescriptionDeletePost": "You have successfully deleted a post.",
+        "error-toast-delete": "Failed to delete post",
+        "error-description-toast-delete": "Something went wrong while deleting the post",
+        "postOption": "Post Options",
+        "editPost": "Edit",
+        "deletePost": "Delete",
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your post.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm",
+        "toastTitleDeletePostError": "Failed to delete post",
+        "toastDescriptionDeletePostError": "An error occurred while deleting the post. Please try again."
+      },
+      "Profile": {
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your account.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm"
+      },
+      "CommentCardOptions": {
+        "commentOption": "Comment Options",
+        "editComment": "Edit",
+        "deleteComment": "Delete",
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your comment.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm",
+        "toastTitleDeleteComment": "Comment deleted successfully",
+        "toastDescriptionDeleteComment": "You have successfully deleted a comment.",
+        "toastTitleDeleteCommentError": "Failed to delete comment",
+        "toastDescriptionDeleteCommentError": "An error occurred while deleting the comment. Please try again."
+      },
+      "Chat": {
+        "placeholder": "Type a message",
+        "send": "Send"
+      },
+      "ChatHistory": {
+        "title": "Chat History",
+        "newChat": "New Chat"
+      },
+      "SidebarList": {
+        "no-chats": "No chat history"
+      },
+      "SidebarItem": {
+        "shared-chat": "This is a shared chat."
+      },
+      "PDFFullScreen": {
+        "open": "Open",
+        "download": "Download the file",
+        "copy": "Copy link of the file",
+        "error": "Error loading PDF"
+      },
+      "PDFRender": {
+        "error": "Error loading PDF",
+        "customize-view": "View options",
+        "customize-view-description": "Customize the view of the PDF",
+        "new-window": "New window",
+        "zoom": "Zoom",
+        "rotation": "Rotation",
+        "just-now": "Just now",
+        "minutes-ago": "minutes ago",
+        "hours-ago": "hours ago",
+        "days-ago": "days ago"
+      }
+    },
+    "Showcase": {
+      "UserDropdown": {
+        "account": "Account",
+        "classrooms": "Classrooms",
+        "theme": "Theme",
+        "language": "Language",
+        "logout": "Logout"
+      },
+      "ClearHistory": {
+        "clear-history": "Clear History",
+        "clear-history-title": "Are you sure you want to clear the chat history?",
+        "clear-history-description": "This will permanently delete your chat history and remove your data from our servers.",
+        "cancel": "Cancel",
+        "clear-history-confirm": "Confirm",
+        "clear-history-failed": "Failed to clear chat history"
+      },
+      "SidebarActions": {
+        "share-chat": "Share chat",
+        "delete-chat": "Delete chat",
+        "delete-chat-title": "Are you sure you want to delete this chat?",
+        "delete-chat-description": "This will permanently delete your chat message and remove your data from our servers.",
+        "cancel": "Cancel",
+        "delete-chat-confirm": "Confirm",
+        "delete-chat-error": "Failed to delete chat",
+        "delete-chat-success": "Chat deleted successfully"
+      },
+      "ChatShareDialog": {
+        "toast-error-title": "Could not copy share link to clipboard",
+        "toast-success-title": "Share link copied to clipboard",
+        "share-title": "Share link to chat",
+        "share-description": "Anyone with the URL will be able to view the shared chat.",
+        "sharing": "Sharing",
+        "copy": "Copy link"
+      },
+      "ChatFooter": {
+        "footer-text-1": "can make mistakes. Consider reading the",
+        "footer-text-2": "to understand how it works."
+      },
+      "ChatEmptyScreen": {
+        "welcome": "How can I help you today?",
+        "description": "You can start a conversation here or try the following examples:",
+        "heading-1": "Help with homework",
+        "message-1": "Can you help me solve this math problem? \n",
+        "heading-2": "Prepare for a test",
+        "message-2": "I have a Python test tomorrow. Can you give me some questions to practice? \n",
+        "heading-3": "Improve writing skills",
+        "message-3": "Can you check my essay for grammar and spelling errors? \n"
+      }
+    },
+    "Config": {
+      "LanguageSwitch": {
+        "locale": "{locale, select, en {English} fr {French} other {Unknown}}"
+      },
+      "ReactionSwitch": {
+        "LIKE": "Like",
+        "DISLIKE": "Dislike",
+        "LOVE": "Love",
+        "APPLAUSE": "Applause",
+        "WOW": "Wow",
+        "INSIGHTFUL": "Insightful"
+      }
+    }
+  },
+
+  "Metadata": {
+    "Layout": {
+      "PrincipalLayout": {
+        "title": "Undrstnd - A better experience for students"
+      }
+    },
+    "Pages": {
+      "Login": {
+        "title": "Log in to your account"
+      },
+      "Register": {
+        "title": "Create your account"
+      },
+      "Dashboard": {
+        "title": "Dashboard"
+      },
+      "Chat": {
+        "title": "Chat"
+      },
+      "Onboarding": {
+        "title": "Onboarding"
+      }
+    }
+  },
+
+  "app": {
+    "pages": {
+      "feed": {
+        "just-now": "Just now",
+        "minutes-ago": "minutes ago",
+        "hours-ago": "hours ago",
+        "days-ago": "days ago",
+        "feed": "Your Feed",
+        "posted": "Posted",
+        "commented": "Commented",
+        "metadata-title": "Feed",
+        "nothing-title": "There's nothing to show here",
+        "paragraph": "No activity has been recorded yet."
+      },
+      "classroom": {
+        "title": "Classrooms",
+        "create-classroom": "Create your first classroom",
+        "paragraph": "Create a classroom to start sharing posts and files with your students.",
+        "join-classroom": "Join a classroom",
+        "join-classroom-description": "Enter the classroom code to join a classroom."
+      },
+      "account": {
+        "metadata-title": "Account",
+        "account": "Account",
+        "back": "Back",
+        "profile-title": "Your profile",
+        "profile-description": "Update your profile",
+        "danger-zone-title": "Danger zone",
+        "danger-zone-description": "Delete your account",
+        "profile-bio-title": "Bio",
+        "profile-bio-description": "Tell us a little about yourself.",
+        "save": "Save"
+      },
+      "preference": {
+        "metadata-title": "Preference",
+        "theme": "Change theme",
+        "theme-description": "Choose a theme that suits you.",
+        "language": "Change language",
+        "language-description": "Choose a language that suits you."
+      },
+      "danger-zone": {
+        "metadata-title": "Danger zone"
+      },
+      "shared": {
+        "metadata-title": "Shared",
+        "files": "Your shared files",
+        "files-description": "All of your shared files with us are here.",
+        "messages": "messages",
+        "view-chat": "View conversation",
+        "more-options": "More options",
+        "delete": "Delete file",
+        "title-dialog": "Are you sure you want to delete?",
+        "description-dialog": "This action can be undone. This will permanently delete your file.",
+        "cancel": "Cancel"
+      },
+      "otp-code": {
+        "metadata-title": "OTP Code",
+        "metadata-description": "Enter the code you received by email",
+        "button-back": "Back",
+        "page-title": "Welcome back",
+        "page-description": "Enter your email address to receive a magic link",
+        "new-user": "New on the site ?",
+        "label-new-user": "Create an account"
+      }
+    },
+    "components": {
+      "layout": {
+        "feed-navigation-list": {
+          "feed": "Feed",
+          "classroom": "Classrooms",
+          "dashboard": "Dashboard",
+          "chat": "Conversations",
+          "your-classrooms": "Your Classrooms",
+          "archived": "Archived",
+          "no-classrooms": "No classrooms..."
+        },
+        "feed-add-classroom": {
+          "formSchemaNameMessage": "Classroom name must be at least 4 characters.",
+          "toastTitleAddClassroom": "Classroom created successfully",
+          "toast-title-create-error": "Failed to create classroom",
+          "buttonCreate": "Create classroom",
+          "dialog-description-create": "Create a classroom to start sharing posts and files with your students.",
+          "formLabelClassroomName": "Classroom name",
+          "formClassroomNamePlaceholder": "Enter your classroom name here",
+          "formLabelClassroomDescription": "Classroom description",
+          "formClassroomDescriptionPlaceholder": "Enter your classroom description here",
+          "formClassroomButton": "Submit"
+        },
+        "account-navigation-list": {
+          "profile": "Profile",
+          "preference": "Preferences",
+          "shared": "Shared",
+          "danger": "Danger zone"
+        }
+      },
+      "app": {
+        "feed-classroom-card": {
+          "archived": "Archived"
+        },
+        "feed-classroom-dropdown-actions": {
+          "classroomOption": "Classroom Options",
+          "unarchiveClassroom": "Unarchive",
+          "editClassroom": "Edit ",
+          "deleteClassroom": "Delete",
+          "archiveClassroom": "Archive",
+          "alertDialogTitleUnarchive": "Are you sure you want to unarchive?",
+          "alertDialogTitleArchive": "Are you sure you want to archive?",
+          "alertDialogDescriptionArchive": "This action can be undone. This will archive the classroom ",
+          "alertDialogTitleDelete": " Are you sure you want to delete?",
+          "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your classroom.",
+          "alertDialogCancel": "Cancel",
+          "alertDialogAction": "Confirm",
+          "leaveApiSuccess": "Classroom left successfully",
+          "alertDialogDescriptionUnarchive": "This action can be undone. This will unarchive the classroom.",
+          "leaveApiSuccessDescription": "You have successfully left this classroom.",
+          "alertDialogLeave": "Are you sure you want to leave this classroom?",
+          "alertDialogLeaveDescription": "This action can be undone. This will remove you from the classroom.",
+          "toastDescriptionDeleteClassroom": "You have successfully deleted a classroom.",
+          "toastTitleDeleteClassroom": "Classroom deleted",
+          "toastDescriptionArchiveClassroom": "You have successfully archived a classroom.",
+          "toastTitleArchiveClassroom": "Classroom archived avec succès",
+          "toastTitleunarchiveClassroom": "Classroom unarchived successfully",
+          "toastDescriptionunarchiveClassroom": "You have successfully unarchived a classroom.",
+          "error-toast-unarchive": "Failed to unarchive classroom",
+          "error-description-toast-unarchive": "Something went wrong while unarchiving the classroom",
+          "error-toast-archive": "Failed to archive classroom",
+          "error-description-toast-archive": "Something went wrong while archiving the classroom",
+          "error-toast-delete": "Failed to delete classroom",
+          "error-description-toast-delete": "Something went wrong while deleting the classroom",
+          "dialog-title-edit": "Update Classroom",
+          "dialog-description-edit": "Update the classroom name and description",
+          "dialog-confirm-edit": "Confirm",
+          "dialog-cancel-edit": "Cancel",
+          "formLabelClassroomName": "Classroom name",
+          "formLabelClassroomDescription": "Classroom description",
+          "formClassroomNamePlaceholder": "Enter your classroom name here",
+          "formClassroomDescriptionPlaceholder": "Enter your classroom description here",
+          "toastTitleUpdateClassroom": "Classroom updated successfully",
+          "toastTitleUpdateClassroomError": "Failed to update classroom",
+          "formSchemaNameMessage": "Classroom name must be at least 4 characters."
+        },
+        "account-profile-form": {
+          "image-too-large": "Image is too large",
+          "image-description-error": "Please upload an image less than 3MB",
+          "save": "Save",
+          "image-upload-failed": "Failed to upload image",
+          "profile-updated": "Your profile has been updated",
+          "profile-no-updated": "Failed to update profile",
+          "name": "Full name",
+          "placeholderName": "John Doe",
+          "bio": "Bio",
+          "placeholderBio": "I'm a student at ...",
+          "submit": "Update"
+        },
+        "account-delete-profile": {
+          "title-dialog": "Are you sure you want to delete?",
+          "description-dialog": "This action can be undone. This will permanently delete your account.",
+          "cancel": "Cancel",
+          "delete": "Yes, delete my account"
+        },
+        "account-shared-pdf-preview": {
+          "error": "Error loading PDF"
+        },
+        "auth-otp-code": {
+          "verify-account": "Verify your account",
+          "verify-account-description": "Enter the 6-digit code you received by email",
+          "email-sent": "An email has been sent to",
+          "email": "You should enter a valid email",
+          "toast-error": "Make sure you entered the correct code"
+        },
+        "auth-input-university-form": {
+          "empty-command": "No university found.",
+          "search-command": "Search for a university",
+          "options": {
+            "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
+            "ensi": "National School of Computer Science",
+            "insat": "National Institute of Applied Sciences and Technology",
+            "fst": "Faculty of Sciences of Tunis",
+            "ipeit": "Preparatory Institute for Engineering Studies of Tunis",
+            "ihec": "Carthage Higher Institute of Commerce",
+            "ipeis": "Preparatory Institute for Engineering Studies of Sfax",
+            "ipest": "Preparatory Institute for Engineering Studies of Tunis",
+            "iset": "Higher Institute of Technological Studies of Sousse",
+            "isetn": "Higher Institute of Technological Studies of Nabeul",
+            "issatso": "Higher Institute of Applied Sciences and Technology of Sousse",
+            "esstt": "Higher School of Sciences and Technology of Tunis",
+            "enit": "National Engineering School of Tunis"
+          }
+        },
+        "auth-onboarding-form": {
+          "photo": "Profile picture",
+          "change-image": "Change image",
+          "name": "Full name",
+          "placeholderName": "John Doe",
+          "bio": "Bio",
+          "placeholderBio": "I'm a student at ...",
+          "phone": "Call",
+          "email": "Email",
+          "submit": "Submit",
+          "role": "Role",
+          "placeholderRole": "Please select your role",
+          "student": "Student",
+          "teacher": "Teacher",
+          "image-too-large": "Image is too large",
+          "image-description-error": "Please upload an image less than 3MB",
+          "error-toast-title": "Failed to update profile",
+          "success-toast-title": "Profile updated",
+          "success-toast-description": "Your profile has been updated successfully."
+        }
+      },
+      "shared": {
+        "pdf-view-dialog": {
+          "open": "Open",
+          "download": "Download the file",
+          "copy": "Copy link of the file",
+          "error": "Error loading PDF"
+        },
+        "search-input": {
+          "placeholder": "Start typing what's on your mind..."
+        }
+      }
+    }
+  }
+}

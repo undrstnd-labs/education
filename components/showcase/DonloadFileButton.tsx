@@ -5,8 +5,9 @@ import { useTranslations } from "next-intl"
 
 import { downloadFileFromUrl } from "@/lib/storage"
 
-import { Icons } from "../icons/Lucide"
-import { DropdownMenuItem } from "../ui/DropdownMenu"
+import { Icons } from "@/components/shared/icons"
+
+import { DropdownMenuItem } from "../ui/dropdown-menu"
 
 interface FileCardProps {
   file: File

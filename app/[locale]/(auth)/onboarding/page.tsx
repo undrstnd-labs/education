@@ -1,29 +1,33 @@
 import { Link, redirect } from "@navigation"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 
-import { buttonVariants } from "@/components/ui/Button"
-import { OnboardingAuthForm } from "@/components/form/OnboardingAuth"
-import { LogoPNG } from "@/components/icons/Overall"
+import { AuthOnboaringForm } from "@/components/app/auth-onboarding-form"
+import { LogoPNG } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
 
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Onboarding")
   return { title: `${t("title")}` }
 }
 
-export default async function OnboardingPage() {
+export default async function OnboardingPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   const user = await getCurrentUser()
 
   if (!user) {
-    redirect("/login")
-    return null
+    return redirect("/login")
   }
 
   if (user && user.role !== "NOT_ASSIGNED") {
-    redirect("/dashboard")
-    return null
+    return redirect("/feed")
   }
 
   return (
@@ -59,7 +63,7 @@ export default async function OnboardingPage() {
             <LogoPNG className="mr-2 size-6" />
             Undrstnd
           </div>
-          <OnboardingAuthForm user={user} />
+          <AuthOnboaringForm user={user} />
         </div>
       </div>
     </div>

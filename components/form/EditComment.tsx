@@ -13,6 +13,7 @@ import { useRouter } from "@/lib/navigation"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/shared/icons"
 import {
   Form,
   FormControl,
@@ -21,14 +22,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/Form"
+} from "@/components/ui/form"
 
-import { Icons } from "../icons/Lucide"
-import { Button } from "../ui/Button"
-import { Card, CardContent } from "../ui/Card"
-import { Dialog, DialogContent } from "../ui/Dialog"
-import { Drawer, DrawerContent } from "../ui/Drawer"
-import { Textarea } from "../ui/Textarea"
+import { Button } from "../ui/button"
+import { Card, CardContent } from "../ui/card"
+import { Dialog, DialogContent } from "../ui/dialog"
+import { Drawer, DrawerContent } from "../ui/drawer"
+import { Textarea } from "../ui/textarea"
 
 interface EditCommentProps {
   postId: string

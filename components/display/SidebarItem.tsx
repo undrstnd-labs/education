@@ -10,14 +10,7 @@ import { type Chat } from "@/types/chat"
 import { cn } from "@/lib/utils"
 import { useLocalStorage } from "@/hooks/use-local-storage"
 
-import { buttonVariants } from "@/components/ui/Button"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/Tooltip"
-import { IconMessage, IconUsers } from "@/components/icons/Overall"
+import { buttonVariants } from "@/components/ui/button"
 
 interface SidebarItemProps {
   index: number
@@ -55,23 +48,6 @@ export function SidebarItem({ index, chat, children }: SidebarItemProps) {
         ease: "easeIn",
       }}
     >
-      <div className="absolute left-2 top-1 flex size-6 items-center justify-center">
-        {chat.sharePath ? (
-          <TooltipProvider>
-            <Tooltip delayDuration={1000}>
-              <TooltipTrigger
-                tabIndex={-1}
-                className="focus:bg-muted focus:ring-1 focus:ring-ring"
-              >
-                <IconUsers className="mr-2 mt-1 text-zinc-500" />
-              </TooltipTrigger>
-              <TooltipContent>{t("shared-chat")}</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        ) : (
-          <IconMessage className="mr-2 mt-1 text-zinc-500" />
-        )}
-      </div>
       <Link
         href={`/chat/c/${chat.id}`}
         className={cn(

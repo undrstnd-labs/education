@@ -1,18 +1,19 @@
 import { type Metadata } from "next"
 import { redirect } from "@navigation"
 import { Student, User } from "@prisma/client"
+import { type Message } from "ai/react"
 
-import { getChat } from "@/lib/actions"
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
-import { getFormattedChat } from "@/lib/utils"
 
+import { Chat } from "@/components/display/Chat"
+import { PDFRender } from "@/components/display/PDFRender"
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/Resizable"
-import { Chat } from "@/components/display/Chat"
-import { PDFRender } from "@/components/display/PDFRender"
+} from "@/components/ui/resizable"
+
+import { getChat } from "@/undrstnd/chat"
 
 export interface ChatPageProps {
   params: {
@@ -33,6 +34,25 @@ export async function generateMetadata({
   return {
     title: `${chat?.title.toString().slice(0, 50)} | Undrstnd` ?? "Chat",
   }
+}
+
+async function getFormattedChat(chatId: string, studentId: string) {
+  const chat = await getChat(chatId, studentId)
+
+  const newChat = {
+    ...chat,
+    messages: chat!.messages.map((message: { role: string }) => {
+      if (message.role === "USER") {
+        return { ...message, role: "user" as Message["role"] }
+      } else if (message.role === "AI") {
+        return { ...message, role: "assistant" as Message["role"] }
+      } else {
+        return { ...message, role: "assistant" as Message["role"] }
+      }
+    }),
+  }
+
+  return newChat
 }
 
 export default async function ChatPage({

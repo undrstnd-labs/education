@@ -1,27 +1,27 @@
 import Image from "next/image"
 import { Role } from "@prisma/client"
 
-import { classroom, post } from "@/types/classroom"
+import { Classroom, Post } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
 
+import CommentCard from "@/components/display/CommentCard"
+import ReactionButton from "@/components/display/ReactionButton"
+import CommentAddCard from "@/components/form/CommentAddCard"
+import { FileCard } from "@/components/showcase/FileCard"
+import PostCardOptions from "@/components/showcase/PostCardOptions"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card"
-import CommentCard from "@/components/display/CommentCard"
-import ReactionButton from "@/components/display/ReactionButton"
-import CommentAddCard from "@/components/form/CommentAddCard"
-import { FileCard } from "@/components/showcase/FileCard"
-import PostCardOptions from "@/components/showcase/PostCardOptions"
+} from "@/components/ui/card"
 
 interface PostCardProps {
-  post: post
+  post: Post
   userId: string
-  classroom: classroom
+  classroom: Classroom
   role: Role
 }
 
@@ -38,7 +38,7 @@ const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
   )
 
   return (
-    <div className="flex flex-col gap-2">
+    <section id={post.id} className="flex flex-col gap-2">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
@@ -108,7 +108,7 @@ const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
       <div>
         <CommentAddCard postId={post.id} userId={userId} />
       </div>
-    </div>
+    </section>
   )
 }
 

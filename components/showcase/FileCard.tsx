@@ -4,8 +4,10 @@ import { Link } from "@navigation"
 import { File } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
-import { Button } from "@/components/ui/Button"
-import { Card } from "@/components/ui/Card"
+import { Icons } from "@/components/shared/icons"
+import DonloadFileButton from "@/components/showcase/DonloadFileButton"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,10 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu"
-import { Icons } from "@/components/icons/Lucide"
-
-import DonloadFileButton from "./DonloadFileButton"
+} from "@/components/ui/dropdown-menu"
 
 interface FileCardProps {
   file: File

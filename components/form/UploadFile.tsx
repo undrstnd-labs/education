@@ -7,35 +7,37 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { uploadFileSchema } from "@/config/schema"
-import { saveChat, vectorizedDocument } from "@/lib/actions"
 import { uploadFilesStudent } from "@/lib/storage"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useToast } from "@/hooks/use-toast"
 
-import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/Dialog"
+} from "@/components/ui/dialog"
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-} from "@/components/ui/Drawer"
+} from "@/components/ui/drawer"
 import {
   FileInput,
   FileUploader,
   FileUploaderContent,
   FileUploaderItem,
-} from "@/components/ui/FileUpload"
-import { Form, FormField, FormItem } from "@/components/ui/Form"
-import { Progress } from "@/components/ui/Progress"
-import { Icons } from "@/components/icons/Lucide"
+} from "@/components/ui/file-upload"
+import { Form, FormField, FormItem } from "@/components/ui/form"
+import { Progress } from "@/components/ui/progress"
+
+import { saveChat } from "@/undrstnd/chat"
+import { vectorizedDocument } from "@/undrstnd/pinecone"
 
 type uploadFileType = z.infer<ReturnType<typeof uploadFileSchema>>
 

@@ -1,10 +1,10 @@
 import { Student, User } from "@prisma/client"
 
-import { SidebarToggle } from "@/components/config/SidebarToggle"
 import { ChatHistory } from "@/components/display/ChatHistory"
-import { UserMenu } from "@/components/display/UserMenu"
-import { Icons } from "@/components/icons/Lucide"
+import { UserMenuIconDropdown } from "@/components/display/UserMenu"
+import { SidebarToggle } from "@/components/layout/sidebar-toggle"
 import { SidebarMobile } from "@/components/navigation/SidebarMobile"
+import { Icons } from "@/components/shared/icons"
 
 //TODO: Change this header
 export function Header({ student }: { student: Student & { user: User } }) {
@@ -18,7 +18,7 @@ export function Header({ student }: { student: Student & { user: User } }) {
           <SidebarToggle />
           <div className="flex items-center">
             <Icons.slash className="size-6 text-muted-foreground/50" />
-            <UserMenu user={student.user} />
+            <UserMenuIconDropdown user={student.user} />
           </div>
         </nav>
       </div>

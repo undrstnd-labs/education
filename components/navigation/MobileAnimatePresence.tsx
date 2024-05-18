@@ -4,8 +4,8 @@ import { Popover } from "@headlessui/react"
 import { Link } from "@navigation"
 import { AnimatePresence, motion } from "framer-motion"
 
-import { Button } from "@/components/ui/Button"
 import MobileNavLink from "@/components/navigation/MobileNavLink"
+import { Button } from "@/components/ui/button"
 
 export default function MobileAnimatePresence({ open }: { open: boolean }) {
   return (

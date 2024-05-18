@@ -10,18 +10,17 @@ import { commentAddCardSchema } from "@/config/schema"
 import { useRouter } from "@/lib/navigation"
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/Form"
-
-import { Icons } from "../icons/Lucide"
-import { Button } from "../ui/Button"
-import { Card, CardContent } from "../ui/Card"
-import { Textarea } from "../ui/Textarea"
+} from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea"
 
 interface CommentAddCardProps {
   postId: string

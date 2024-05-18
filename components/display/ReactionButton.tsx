@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip"
+} from "@/components/ui/tooltip"
 
 import ReactionProvider from "./ReactionProvider"
 

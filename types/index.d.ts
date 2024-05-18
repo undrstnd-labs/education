@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react"
+
 export interface NavItem {
   title: string
   href: string
@@ -51,4 +53,33 @@ export type ServerActionResult<Result> = Promise<
 export type customType = {
   changeCount: number
   isForwards: boolean
+}
+
+export type NavigationList = {
+  id: string
+  name: string
+  href: string
+  icon?: LucideIcon
+  image?: string
+  current: boolean
+}
+
+export type Activity = {
+  id: string
+  classroom: { name: string; id: string }
+  post?: { id: string; name: string }
+  type: "post" | "comment"
+  user: { name: string; image: string }
+  imageUrl: string
+  comment?: string
+  date: string
+}
+
+export type Classroom = Classroom & {
+  teacher: Teacher
+  posts: Post[] & {
+    comments: Comment[] & {
+      user: User
+    }
+  }
 }

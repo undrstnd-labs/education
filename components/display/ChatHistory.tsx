@@ -5,9 +5,9 @@ import { useTranslations } from "next-intl"
 
 import { cn } from "@/lib/utils"
 
-import { buttonVariants } from "@/components/ui/Button"
 import { SidebarList } from "@/components/display/SidebarList"
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
 
 export function ChatHistory({
   student,

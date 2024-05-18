@@ -3,14 +3,15 @@ import "@/styles/globals.css"
 import type { Metadata, Viewport } from "next"
 import { GeistSans } from "geist/font/sans"
 import { NextIntlClientProvider, useMessages } from "next-intl"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
+import { locales } from "@/config/locale"
 import { siteConfig } from "@/config/site"
 
-import { Toaster } from "@/components/ui/Toaster"
-import { Analytics } from "@/components/config/Analytics"
-import { Providers } from "@/components/config/Providers"
-import { TailwindIndicator } from "@/components/config/TailwindIndicator"
+import { Analytics } from "@/components/layout/analytics"
+import { Providers } from "@/components/layout/providers"
+import { TailwindIndicator } from "@/components/layout/tailwind-indicator"
+import { Toaster } from "@/components/ui/toaster"
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -89,6 +90,10 @@ export async function generateMetadata() {
   }
 }
 
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
+
 export default function PrincipalLayout({
   children,
   params: { locale },
@@ -96,9 +101,11 @@ export default function PrincipalLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
+  unstable_setRequestLocale(locale)
+
   const messages = useMessages()
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head />
       <body className={GeistSans.className}>
         <NextIntlClientProvider messages={messages} locale={locale}>
