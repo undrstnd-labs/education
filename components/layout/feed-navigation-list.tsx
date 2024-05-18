@@ -126,9 +126,11 @@ export function FeedNavigationList({
           </ul>
         </li>
         <li>
-          <div className="text-xs font-semibold leading-6 text-secondary-foreground/50">
-            {t("your-classrooms")}
-          </div>
+          {classrooms.length > 0 && (
+            <div className="text-xs font-semibold leading-6 text-secondary-foreground/50">
+              {t("your-classrooms")}
+            </div>
+          )}
           <ul role="list" className="-mx-2 mt-2 space-y-1">
             <ScrollArea className="h-52 sm:h-72">
               <>

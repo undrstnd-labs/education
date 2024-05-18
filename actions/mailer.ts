@@ -3,7 +3,7 @@ import nodemailer from "nodemailer"
 
 import { MagicLinkData } from "@/types/auth"
 
-import { MagicLink } from "@/components/email/MagicLink"
+import { MagicLink } from "@/components/shared/email-magic-link"
 
 function selectMailOptions(type: string, body: MagicLinkData) {
   let html

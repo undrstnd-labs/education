@@ -1,13 +1,13 @@
 "use client"
 
 import { useRef, useState } from "react"
+import Image from "next/image"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "@navigation"
+import { User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
-import { UserType } from "@/types/auth"
 
 import { onboaringSchema } from "@/config/schema"
 import { fetchUniversityData } from "@/config/universities"
@@ -36,19 +36,28 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 
-//TODO: Work on the dark theme
-export function OnboardingAuthForm({ user }: { user: UserType }) {
+import { updateProfileImage, updateUserOnboarding } from "@/undrstnd/user"
+
+export function AuthOnboaringForm({ user }: { user: User }) {
   const router = useRouter()
   const { toast } = useToast()
 
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const userImage = user.image
+    ? user.image
+    : `https://avatars.jakerunzer.com/${user.email}`
 
   const [loading, setLoading] = useState(false)
+  const [showIcon, setShowIcon] = useState(false)
   const [imagePreviewUrl, setImagePreviewUrl] = useState("")
   const [selectedImage, setSelectedImage] = useState<File | null>(null)
 
-  const translateEmailInput = useTranslations("Components.Form.EmailInput")
-  const translateOnboarding = useTranslations("Components.Form.OnboardingAuth")
+  const translateEmailInput = useTranslations(
+    "app.components.app.auth-input-university-form"
+  )
+  const translateOnboarding = useTranslations(
+    "app.components.app.auth-onboarding-form"
+  )
 
   const university = fetchUniversityData({
     email: user.email!.split("@")[1],
@@ -57,6 +66,10 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
 
   const form = useForm<z.infer<typeof onboaringSchema>>({
     resolver: zodResolver(onboaringSchema),
+    defaultValues: {
+      name: user.name || "",
+      image: userImage,
+    },
   })
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,57 +93,43 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
   async function onSubmit(values: z.infer<typeof onboaringSchema>) {
     setLoading(true)
 
-    let imageUrl
     if (selectedImage) {
-      imageUrl = await manageAvatar(selectedImage, user.id)
+      const imageUrl = await manageAvatar(selectedImage, user.id)
       setImagePreviewUrl(imageUrl)
-    } else {
-      imageUrl = `https://avatars.jakerunzer.com/${values.name}`
-    }
 
-    try {
-      const res = await fetch(`/api/user/${user.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...values,
-          image: imageUrl,
-          universitySlug: user.email!.split("@")[1],
-        }),
-      })
+      const userUpdated = await updateProfileImage(imageUrl, user)
 
-      if (!res.ok) {
+      if (!userUpdated) {
         toast({
-          title: translateOnboarding("error-toast-title"),
+          title: translateOnboarding("image-upload-failed"),
           variant: "destructive",
         })
-      } else {
-        router.push("/dashboard")
-        toast({
-          title: translateOnboarding("success-toast-title"),
-          description: translateOnboarding("success-toast-description"),
-        })
+        setLoading(false)
+        return
       }
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setLoading(false)
-      router.refresh()
+      setSelectedImage(null)
+    }
+
+    const updatedUser = await updateUserOnboarding(user, values)
+
+    if (!updatedUser) {
+      toast({
+        title: translateOnboarding("error-toast-title"),
+        variant: "destructive",
+      })
+    } else {
+      router.push("/feed")
+      toast({
+        title: translateOnboarding("success-toast-title"),
+        description: translateOnboarding("success-toast-description"),
+      })
     }
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-        <div className="col-span-full">
-          <label
-            htmlFor="photo"
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            {translateOnboarding("photo")}
-          </label>
+        <div className="flex items-center justify-between">
           <div className="mt-2 flex items-center gap-x-3">
             <input
               type="file"
@@ -141,27 +140,59 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
             />
 
             {selectedImage ? (
-              <img
-                src={imagePreviewUrl}
-                alt="Profile image"
-                onClick={() => fileInputRef.current?.click()}
-                width={48}
-                height={48}
-                className="size-12 cursor-pointer rounded-full"
-              />
+              <div className="relative inline-block">
+                <img
+                  src={imagePreviewUrl}
+                  alt="Profile image"
+                  onClick={() => fileInputRef.current?.click()}
+                  width={300}
+                  height={300}
+                  className="size-32 cursor-pointer rounded-full border-2 border-secondary-foreground/50 object-cover"
+                />
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className={`absolute inset-0 flex cursor-pointer items-center justify-center ${
+                    showIcon ? "opacity-100" : "opacity-0"
+                  } rounded-full bg-secondary-foreground/70 bg-opacity-50 transition-opacity duration-200`}
+                  onMouseEnter={() => {
+                    setShowIcon(true)
+                  }}
+                  onMouseLeave={() => {
+                    setShowIcon(false)
+                  }}
+                >
+                  <Icons.media className="h-6 w-6 text-secondary" />
+                </div>
+              </div>
             ) : (
-              <Icons.user
-                className="size-12 cursor-pointer text-gray-400"
-                onClick={() => fileInputRef.current?.click()}
-              />
+              <>
+                <div className="relative inline-block">
+                  <Image
+                    src={`${userImage}?${Date.now()}`}
+                    alt="Profile image"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="size-32 cursor-pointer rounded-full border-2 border-secondary-foreground/50 object-cover"
+                    width={300}
+                    height={300}
+                  />
+
+                  <div
+                    onClick={() => fileInputRef.current?.click()}
+                    className={`absolute inset-0 flex cursor-pointer items-center justify-center ${
+                      showIcon ? "opacity-100" : "opacity-0"
+                    } rounded-full bg-secondary-foreground/70 bg-opacity-50 transition-opacity duration-200`}
+                    onMouseEnter={() => {
+                      setShowIcon(true)
+                    }}
+                    onMouseLeave={() => {
+                      setShowIcon(false)
+                    }}
+                  >
+                    <Icons.media className="h-6 w-6 text-secondary" />
+                  </div>
+                </div>
+              </>
             )}
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              type="button"
-              className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-            >
-              {translateOnboarding("change-image")}
-            </button>
           </div>
         </div>
 
@@ -228,7 +259,9 @@ export function OnboardingAuthForm({ user }: { user: UserType }) {
           )}
         />
 
-        <UniversityCard university={university} t={translateOnboarding} />
+        {user.universitySlug && (
+          <UniversityCard university={university} t={translateOnboarding} />
+        )}
 
         <button
           type="submit"

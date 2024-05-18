@@ -4,7 +4,7 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { getCurrentUser } from "@/lib/session"
 import { cn } from "@/lib/utils"
 
-import { OnboardingAuthForm } from "@/components/form/OnboardingAuth"
+import { AuthOnboaringForm } from "@/components/app/auth-onboarding-form"
 import { LogoPNG } from "@/components/shared/icons"
 import { buttonVariants } from "@/components/ui/button"
 
@@ -63,7 +63,7 @@ export default async function OnboardingPage({
             <LogoPNG className="mr-2 size-6" />
             Undrstnd
           </div>
-          <OnboardingAuthForm user={user} />
+          <AuthOnboaringForm user={user} />
         </div>
       </div>
     </div>

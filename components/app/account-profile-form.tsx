@@ -66,6 +66,7 @@ export function AccountProfileForm({ user }: ProfileFormProps) {
       setSelectedImage(null)
     }
   }
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

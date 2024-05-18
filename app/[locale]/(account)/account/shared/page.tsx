@@ -1,7 +1,7 @@
 import React, { cache } from "react"
 import { type Metadata } from "next"
 import { Link, redirect } from "@navigation"
-import { Conversation, File, Message } from "@prisma/client"
+import { Conversation, File } from "@prisma/client"
 import Fuse from "fuse.js"
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 

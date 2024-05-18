@@ -79,6 +79,7 @@ import {
 } from "react-icons/ai"
 import { FaRegLightbulb, FaSurprise } from "react-icons/fa"
 import { FaHandsClapping } from "react-icons/fa6"
+import { GiNightSleep } from "react-icons/gi"
 import { GoSignOut } from "react-icons/go"
 import { TiTick } from "react-icons/ti"
 
@@ -102,7 +103,7 @@ export function LogoPNG(
 ) {
   return (
     <Image
-      src="/images/logos/Rounded.png"
+      src="https://undrstnd.vercel.app/images/logos/Rounded.png"
       alt="Undrstnd Logo"
       width={798}
       height={798}
@@ -238,4 +239,5 @@ export const Icons = {
   messages: MessageSquare,
   dashboard: LayoutDashboardIcon,
   chevronUp: ChevronUpIcon,
+  sleep: GiNightSleep,
 }

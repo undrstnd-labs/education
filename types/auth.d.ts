@@ -33,17 +33,6 @@ export type TokenType = {
   verificationUrl: string
 }
 
-export type UserType = {
-  id: string
-  name: string | null
-  email: string | null
-  image: string | null
-  role: "NOT_ASSIGNED" | "STUDENT" | "TEACHER"
-  emailVerified: Date | null
-  createdAt: Date | null
-  updatedAt: Date | null
-}
-
 export interface NextAuthUser extends User {
   role: string
 }

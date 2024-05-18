@@ -114,3 +114,16 @@ export const onboaringSchema = z.object({
   image: z.string().url().optional(),
   role: z.union([z.literal("STUDENT"), z.literal("TEACHER")]),
 })
+
+export const authOTPCodeTranslatedSchema = (t: (key: string) => string) =>
+  z.object({
+    email: z.string().email({
+      message: t("email"),
+    }),
+    pin: z.string().length(6),
+  })
+
+export const authOTPCodeSchema = z.object({
+  email: z.string().email(),
+  pin: z.string().length(6),
+})

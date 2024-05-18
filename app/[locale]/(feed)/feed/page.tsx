@@ -76,11 +76,21 @@ export default async function FeedPage({
   return (
     <main className="py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h1 className="py-4 text-2xl font-semibold">{t("feed")}</h1>
+        {activities.length > 0 && (
+          <h1 className="py-4 text-2xl font-semibold">{t("feed")}</h1>
+        )}
         <div className="flow-root space-y-3">
           {activities.length === 0 && (
-            <div className="flex h-96 items-center justify-center">
-              <p className="text-gray-500">{t("noActivities")}</p>
+            <div className="-mt-20 flex h-screen w-full items-center justify-center">
+              <div className="relative block w-full max-w-md rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
+                <Icons.sleep className="mx-auto size-24 text-secondary-foreground/60" />
+                <span className="text-md mt-2 block font-semibold text-secondary-foreground">
+                  {t("nothing-title")}
+                </span>
+                <p className="mt-2 block text-sm font-normal text-secondary-foreground/60">
+                  {t("paragraph")}
+                </p>
+              </div>
             </div>
           )}
           {activities.map((classroomActivities, idx) => (

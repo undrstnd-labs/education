@@ -140,7 +140,7 @@ function EmailOptionsList({
   onSelect: (option: string) => void
   options: EmailOption[]
 }) {
-  const t = useTranslations("Components.Form.EmailInput")
+  const t = useTranslations("app.components.app.auth-input-university-form")
 
   return (
     <Command>
@@ -179,34 +179,38 @@ function EmailOptionsList({
   )
 }
 
-const EmailInput = ({
+const AuthInputUniversityForm = ({
   disabled,
   register,
+  setValue,
   ...props
 }: {
   disabled: boolean
   register: any
+  setValue: any
 } & InputProps) => {
-  const t = useTranslations("Components.Form.EmailInput")
+  const t = useTranslations("app.components.app.auth-input-university-form")
   const options = getTranslatedEmailOptions(t)
 
   const [email, setEmail] = React.useState("")
   const [selectedUniversity, setSelectedUniversity] = React.useState("")
 
-  React.useEffect(() => {
-    if (selectedUniversity) {
-      const emailParts = email.split("@")
-      if (emailParts.length > 1) {
-        setEmail(`${emailParts[0]}@${selectedUniversity}`)
+  const handleSelect = (option: string) => {
+    if (!email.endsWith(`@${option}`)) {
+      setSelectedUniversity(option)
+      const atIndex = email.indexOf("@")
+      if (atIndex !== -1) {
+        setEmail(email.substring(0, atIndex) + `@${option}`)
       } else {
-        setEmail(`${email}@${selectedUniversity}`)
+        setEmail(`${email}@${option}`)
       }
     }
-  }, [selectedUniversity, email])
-
-  const handleSelect = (option: string) => {
-    setSelectedUniversity(option)
+    setValue("email", email)
   }
+
+  React.useEffect(() => {
+    setValue("email", email)
+  }, [email, setValue])
 
   return (
     <div className="flex items-center">
@@ -228,4 +232,4 @@ const EmailInput = ({
   )
 }
 
-export { InputComponent, EmailSelectResponsive, EmailInput }
+export { InputComponent, EmailSelectResponsive, AuthInputUniversityForm }

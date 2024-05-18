@@ -115,51 +115,12 @@
         "toastSignInSuccessTitle": "Check your email",
         "toastSignInSuccessDescription": "We sent you a login link. Be sure to check your spam too."
       },
-      "EmailInput": {
-        "empty-command": "No university found.",
-        "search-command": "Search for a university",
-        "options": {
-          "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
-          "ensi": "National School of Computer Science",
-          "insat": "National Institute of Applied Sciences and Technology",
-          "fst": "Faculty of Sciences of Tunis",
-          "ipeit": "Preparatory Institute for Engineering Studies of Tunis",
-          "ihec": "Carthage Higher Institute of Commerce",
-          "ipeis": "Preparatory Institute for Engineering Studies of Sfax",
-          "ipest": "Preparatory Institute for Engineering Studies of Tunis",
-          "iset": "Higher Institute of Technological Studies of Sousse",
-          "isetn": "Higher Institute of Technological Studies of Nabeul",
-          "issatso": "Higher Institute of Applied Sciences and Technology of Sousse",
-          "esstt": "Higher School of Sciences and Technology of Tunis",
-          "enit": "National Engineering School of Tunis"
-        }
-      },
       "PassCodeAuth": {
         "verify-account": "Verify Your Account",
         "verify-account-description": "Enter the 6-digit code sent to your email address",
         "email-sent": "An email has been sent to",
         "error": "Invalid code",
         "try-again": "Please check your email and try again"
-      },
-      "OnboardingAuth": {
-        "photo": "Profile picture",
-        "change-image": "Change image",
-        "name": "Full name",
-        "placeholderName": "John Doe",
-        "bio": "Bio",
-        "placeholderBio": "I'm a student at ...",
-        "phone": "Call",
-        "email": "Email",
-        "submit": "Submit",
-        "role": "Role",
-        "placeholderRole": "Please select your role",
-        "student": "Student",
-        "teacher": "Teacher",
-        "image-too-large": "Image is too large",
-        "image-description-error": "Please upload an image less than 3MB",
-        "error-toast-title": "Failed to update profile",
-        "success-toast-title": "Profile updated",
-        "success-toast-description": "Your profile has been updated successfully."
       },
       "Prompt": {
         "new-chat": "New Chat",
@@ -362,7 +323,9 @@
         "feed": "Your Feed",
         "posted": "Posted",
         "commented": "Commented",
-        "metadata-title": "Feed"
+        "metadata-title": "Feed",
+        "nothing-title": "There's nothing to show here",
+        "paragraph": "No activity has been recorded yet."
       },
       "classroom": {
         "title": "Classrooms",
@@ -404,6 +367,15 @@
         "title-dialog": "Are you sure you want to delete?",
         "description-dialog": "This action can be undone. This will permanently delete your file.",
         "cancel": "Cancel"
+      },
+      "otp-code": {
+        "metadata-title": "OTP Code",
+        "metadata-description": "Enter the code you received by email",
+        "button-back": "Back",
+        "page-title": "Welcome back",
+        "page-description": "Enter your email address to receive a magic link",
+        "new-user": "New on the site ?",
+        "label-new-user": "Create an account"
       }
     },
     "components": {
@@ -414,7 +386,8 @@
           "dashboard": "Dashboard",
           "chat": "Conversations",
           "your-classrooms": "Your Classrooms",
-          "archived": "Archived"
+          "archived": "Archived",
+          "no-classrooms": "No classrooms..."
         },
         "feed-add-classroom": {
           "formSchemaNameMessage": "Classroom name must be at least 4 characters.",
@@ -502,6 +475,52 @@
         },
         "account-shared-pdf-preview": {
           "error": "Error loading PDF"
+        },
+        "auth-otp-code": {
+          "verify-account": "Verify your account",
+          "verify-account-description": "Enter the 6-digit code you received by email",
+          "email-sent": "An email has been sent to",
+          "email": "You should enter a valid email",
+          "toast-error": "Make sure you entered the correct code"
+        },
+        "auth-input-university-form": {
+          "empty-command": "No university found.",
+          "search-command": "Search for a university",
+          "options": {
+            "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
+            "ensi": "National School of Computer Science",
+            "insat": "National Institute of Applied Sciences and Technology",
+            "fst": "Faculty of Sciences of Tunis",
+            "ipeit": "Preparatory Institute for Engineering Studies of Tunis",
+            "ihec": "Carthage Higher Institute of Commerce",
+            "ipeis": "Preparatory Institute for Engineering Studies of Sfax",
+            "ipest": "Preparatory Institute for Engineering Studies of Tunis",
+            "iset": "Higher Institute of Technological Studies of Sousse",
+            "isetn": "Higher Institute of Technological Studies of Nabeul",
+            "issatso": "Higher Institute of Applied Sciences and Technology of Sousse",
+            "esstt": "Higher School of Sciences and Technology of Tunis",
+            "enit": "National Engineering School of Tunis"
+          }
+        },
+        "auth-onboarding-form": {
+          "photo": "Profile picture",
+          "change-image": "Change image",
+          "name": "Full name",
+          "placeholderName": "John Doe",
+          "bio": "Bio",
+          "placeholderBio": "I'm a student at ...",
+          "phone": "Call",
+          "email": "Email",
+          "submit": "Submit",
+          "role": "Role",
+          "placeholderRole": "Please select your role",
+          "student": "Student",
+          "teacher": "Teacher",
+          "image-too-large": "Image is too large",
+          "image-description-error": "Please upload an image less than 3MB",
+          "error-toast-title": "Failed to update profile",
+          "success-toast-title": "Profile updated",
+          "success-toast-description": "Your profile has been updated successfully."
         }
       },
       "shared": {

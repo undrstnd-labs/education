@@ -30,6 +30,37 @@ export async function updateUser(
   })
 }
 
+export async function updateUserOnboarding(user: User, values: any) {
+  const userUpdated = await db.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      name: values.name,
+      bio: values.bio,
+      image: values.image,
+      universitySlug: values.universitySlug,
+      role: values.role,
+    },
+  })
+
+  if (userUpdated && values.role === "TEACHER") {
+    return await db.teacher.create({
+      data: {
+        userId: user.id,
+      },
+    })
+  }
+
+  if (userUpdated && values.role === "STUDENT") {
+    return await db.student.create({
+      data: {
+        userId: user.id,
+      },
+    })
+  }
+}
+
 export async function deleteAccount(user: User) {
   if (user.role === "STUDENT") {
     const classrooms = await db.classroom.findMany({

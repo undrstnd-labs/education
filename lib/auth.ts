@@ -77,6 +77,7 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, user }): Promise<JWT> {
       if (user) {
+        //FIXME: Uncomment this when we have a proper email verification for Github
         if (!verifyEmail(user.email as string)) {
           throw new Error("Invalid email address")
         }

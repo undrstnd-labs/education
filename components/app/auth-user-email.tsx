@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "@navigation"
 import { signIn } from "next-auth/react"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
@@ -12,36 +12,39 @@ import { getUserAuthSchema } from "@/config/schema"
 import { cn } from "@/lib/utils"
 import { toast } from "@/hooks/use-toast"
 
-import { EmailInput } from "@/components/form/EmailInput"
+import { AuthInputUniversityForm } from "@/components/app/auth-input-university-form"
 import { Icons } from "@/components/shared/icons"
 import { buttonVariants } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-import { Skeleton } from "@/components/ui/skeleton"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: "login" | "register"
 }
 
-export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
+export function AuthUserEmail({
+  type,
+  className,
+  ...props
+}: UserAuthFormProps) {
+  const router = useRouter()
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
+
   const t = useTranslations("Components.Form.UserAuth")
   const userAuthSchema = getUserAuthSchema(
     t("invalidEmail"),
     t("invalidUniversityEmail")
   )
-  type FormData = z.infer<typeof userAuthSchema>
 
+  type FormData = z.infer<typeof userAuthSchema>
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
   })
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
 
   async function onSubmit(data: FormData) {
     setIsLoading(true)
@@ -50,10 +53,10 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       await signIn("email", {
         email: data.email.toLowerCase(),
         redirect: false,
-        callbackUrl: searchParams?.get("from") || "/feed",
+        callbackUrl: "/feed",
       })
 
-      router.push(pathname + "?email=" + data.email.toLowerCase())
+      router.push("/otp-code/" + data.email.toLowerCase())
       return toast({
         title: t("toastSignInSuccessTitle"),
         description: t("toastSignInSuccessDescription"),
@@ -78,10 +81,11 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
               {t("labelEmail")}
             </Label>
 
-            <EmailInput
+            <AuthInputUniversityForm
               disabled={isLoading || isGitHubLoading}
               placeholder={t("placeholderEmail")}
               register={register}
+              setValue={setValue}
               {...FormData}
             />
 
@@ -113,12 +117,11 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       <button
         type="button"
         className={cn(buttonVariants({ variant: "outline" }))}
-        disabled
         onClick={() => {
           setIsGitHubLoading(true)
-          signIn("github", { callbackUrl: "/dashboard" })
+          signIn("github", { callbackUrl: "/onboarding" })
         }}
-        /*        TODO:  disabled={isLoading || isGitHubLoading}*/
+        disabled={isLoading || isGitHubLoading}
       >
         {isGitHubLoading ? (
           <Icons.spinner className="mr-2 size-4 animate-spin" />
@@ -129,8 +132,4 @@ export function UserAuthForm({ type, className, ...props }: UserAuthFormProps) {
       </button>
     </div>
   )
-}
-
-export function UserAuthSkeleton() {
-  return <Skeleton className="h-12 w-[200px]" />
 }
