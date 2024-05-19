@@ -1,8 +1,8 @@
 import { Link } from "@navigation"
 import { useTranslations } from "next-intl"
 
-import { StatusWidget } from "@/components/display/StatusWidget"
 import { LanguageSwitch } from "@/components/shared/language-switch"
+import { StatusWidget } from "@/components/shared/status-widget"
 import { ThemeSwitch } from "@/components/shared/theme-switch"
 import {
   DropdownMenuItem,

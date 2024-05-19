@@ -11,13 +11,14 @@ const groq = new OpenAI({
   apiKey: process.env.GROQ_API_KEY!,
 })
 
+//TODO: the tuned messages should be translated
 export async function POST(req: Request) {
   const json = await req.json()
   const { messages, id, studentId } = json
   let pineconeId = id
 
   const conversation = await db.conversation.findUnique({
-    where: { id },
+    where: { id: pineconeId },
     select: {
       file: {
         select: {

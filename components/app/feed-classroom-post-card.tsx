@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Role } from "@prisma/client"
+import { Role, Student, Teacher } from "@prisma/client"
 import { getTranslations } from "next-intl/server"
 
 import { Classroom, Post } from "@/types/classroom"
@@ -8,10 +8,10 @@ import { emojis } from "@/config/emojis"
 import { formatDate } from "@/lib/utils"
 
 import { FeedClassroomFileCard } from "@/components/app/feed-classroom-file-card"
+import { FeedClassroomPostTeacherActions } from "@/components/app/feed-classroom-post-teacher-actions"
 import CommentCard from "@/components/display/CommentCard"
 import ReactionButton from "@/components/display/ReactionButton"
 import CommentAddCard from "@/components/form/CommentAddCard"
-import PostCardOptions from "@/components/showcase/PostCardOptions"
 import {
   Card,
   CardContent,
@@ -22,15 +22,15 @@ import {
 
 interface PostCardProps {
   post: Post
-  userId: string
   classroom: Classroom
+  entity: Student | Teacher
   role: Role
 }
 
 export async function FeedClassroomPostCard({
   post,
-  userId,
   classroom,
+  entity,
   role,
 }: PostCardProps) {
   const t = await getTranslations("app.components.app.feed-classroom-post-card")
@@ -67,10 +67,10 @@ export async function FeedClassroomPostCard({
               </div>
             </div>
             {role === "TEACHER" && (
-              <PostCardOptions
-                classroom={classroom}
+              <FeedClassroomPostTeacherActions
                 post={post}
-                userId={userId}
+                teacher={entity}
+                classroom={classroom}
               />
             )}
           </CardTitle>
@@ -79,12 +79,16 @@ export async function FeedClassroomPostCard({
           {post.files && post.files.length > 0 && (
             <ul className="grid grid-cols-1 gap-4 pt-0.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {post.files.map((file) => (
-                <FeedClassroomFileCard key={file.id} file={file} />
+                <FeedClassroomFileCard
+                  key={file.id}
+                  file={file}
+                  entity={entity}
+                />
               ))}
             </ul>
           )}
         </CardHeader>
-        <CardContent>
+        {/*         <CardContent>
           <div className="flex gap-2 max-sm:grid max-sm:grid-cols-3">
             {emojis.map((icon, index) => {
               const count = reactionCounts[icon.value] || 0
@@ -100,9 +104,9 @@ export async function FeedClassroomPostCard({
               )
             })}
           </div>
-        </CardContent>
+        </CardContent> */}
       </Card>
-      {post.comments &&
+      {/*      {post.comments &&
         post.comments.length > 0 &&
         post.comments.map((comment) => {
           return !comment.parentId ? (
@@ -113,10 +117,10 @@ export async function FeedClassroomPostCard({
               postId={post.id}
             />
           ) : null
-        })}
-      <div>
+        })} */}
+      {/*       <div>
         <CommentAddCard postId={post.id} userId={userId} />
-      </div>
+      </div> */}
     </section>
   )
 }

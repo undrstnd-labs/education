@@ -79,6 +79,7 @@ export function FeedAddClassroom({ teacher }: { teacher: Teacher }) {
       open={open}
       setOpen={setOpen}
       action={() => setOpen(false)}
+      buttonExist={true}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

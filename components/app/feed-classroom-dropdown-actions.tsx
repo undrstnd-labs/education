@@ -224,7 +224,7 @@ export function FeedClassroomDropdownActions({
           loading={loading}
           open={isModifyOpen}
           setOpen={setIsModifyOpen}
-          action={() => setIsModifyOpen(false)}
+          action={() => ({})}
         >
           <Form {...form}>
             <form

@@ -113,9 +113,9 @@ export default async function ClassroomPage({
               <FeedClassroomPostCard
                 key={post.id}
                 post={post}
-                userId={user.id}
                 classroom={classroom}
                 role={user.role}
+                entity={entity}
               />
             ))
         ) : (

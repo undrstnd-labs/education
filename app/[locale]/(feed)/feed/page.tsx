@@ -76,7 +76,7 @@ export default async function FeedPage({
   return (
     <main className="py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {(activities.length > 0 || activities[0].length > 0) && (
+        {(activities.length > 0 || activities[0]?.length > 0) && (
           <h1 className="py-4 text-2xl font-semibold">{t("feed")}</h1>
         )}
 

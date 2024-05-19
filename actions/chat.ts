@@ -4,7 +4,6 @@ import { type FileUpload } from "@/types/file"
 
 import { pinecone } from "@/lib/pinecone"
 import { db } from "@/lib/prisma"
-import { deleteFile } from "@/lib/storage"
 
 export async function getChats(studentId?: string) {
   return db.conversation.findMany({
@@ -81,16 +80,6 @@ export async function removeChat({ id }: { id: string }) {
           })
 
           if (conversation?.fileId) {
-            const file = await db.file.findUnique({
-              where: {
-                id: conversation?.fileId,
-              },
-            })
-
-            if (file) {
-              await deleteFile(file.url)
-            }
-
             await db.file.deleteMany({
               where: {
                 id: conversation.fileId,
@@ -127,7 +116,13 @@ export async function saveChat(
   file: FileUpload,
   path: string
 ) {
-  const createdFile = await saveFile(file, studentId)
+  const createdFile = await saveFile(
+    {
+      ...file,
+      url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${file.url}`,
+    },
+    studentId
+  )
 
   return db.conversation.create({
     data: {

@@ -148,22 +148,6 @@
         "incident": "Incident",
         "under-maintenance": "nder Maintenance"
       },
-
-      "PostCardOptions": {
-        "toastTitleDeletePost": "Post deleted successfully",
-        "toastDescriptionDeletePost": "You have successfully deleted a post.",
-        "error-toast-delete": "Failed to delete post",
-        "error-description-toast-delete": "Something went wrong while deleting the post",
-        "postOption": "Post Options",
-        "editPost": "Edit",
-        "deletePost": "Delete",
-        "alertDialogTitleDelete": " Are you sure you want to delete?",
-        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your post.",
-        "alertDialogCancel": "Cancel",
-        "alertDialogAction": "Confirm",
-        "toastTitleDeletePostError": "Failed to delete post",
-        "toastDescriptionDeletePostError": "An error occurred while deleting the post. Please try again."
-      },
       "Profile": {
         "alertDialogTitleDelete": " Are you sure you want to delete?",
         "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your account.",
@@ -553,6 +537,23 @@
         },
         "feed-classroom-open-chat": {
           "open-chat": "Chat with file"
+        },
+        "feed-classroom-post-teacher-actions": {
+          "toastTitleDeletePost": "Post deleted successfully",
+          "toastTitleDeletePostError": "Failed to delete post",
+          "postOption": "Post options",
+          "editPost": "Edit",
+          "deletePost": "Delete",
+          "alertDialogTitleDelete": " Are you sure you want to delete?",
+          "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your post.",
+          "alertDialogCancel": "Cancel",
+          "alertDialogAction": "Confirm",
+          "dialog-title-edit": "Update Post",
+          "dialog-description-edit": "Update the post content",
+          "formLabelNameAddPost": "Post title",
+          "formLabelDescriptionAddPost": "Post description",
+          "postFilesLabel": "Post Files",
+          "formClassroomButton": "Submit"
         }
       },
       "shared": {

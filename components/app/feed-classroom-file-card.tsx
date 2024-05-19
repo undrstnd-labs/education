@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Link } from "@navigation"
-import { File } from "@prisma/client"
+import { File, Student, Teacher } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
 import { FeedClassroomOpenChat } from "@/components/app/feed-classroom-open-chat"
@@ -22,9 +22,10 @@ import {
 
 interface FileCardProps {
   file: File
+  entity: Student | Teacher
 }
 
-export function FeedClassroomFileCard({ file }: FileCardProps) {
+export function FeedClassroomFileCard({ file, entity }: FileCardProps) {
   const t = useTranslations("app.components.app.feed-classroom-file-card")
 
   return (
@@ -80,7 +81,7 @@ export function FeedClassroomFileCard({ file }: FileCardProps) {
             <DropdownMenuSeparator />
             {file.type === "application/pdf" && (
               <>
-                <FeedClassroomOpenChat file={file} />
+                <FeedClassroomOpenChat file={file} studentId={entity.id} />
                 <DropdownMenuSeparator />
               </>
             )}

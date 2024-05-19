@@ -12,11 +12,11 @@ import {
   userAuthentificateVerification,
 } from "@/lib/session"
 
-import { UserMenu, UserMenuIconDropdown } from "@/components/display/UserMenu"
 import { FeedAddClassroom } from "@/components/layout/feed-add-classroom"
 import { FeedJoinClassroom } from "@/components/layout/feed-join-classroom"
 import { FeedNavigationList } from "@/components/layout/feed-navigation-list"
 import { Icons, LogoPNG } from "@/components/shared/icons"
+import { UserMenu, UserMenuIconDropdown } from "@/components/shared/user-menu"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
