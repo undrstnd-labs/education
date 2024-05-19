@@ -119,6 +119,7 @@ export function AuthOnboaringForm({ user }: { user: User }) {
       })
     } else {
       router.push("/feed")
+      router.refresh()
       toast({
         title: translateOnboarding("success-toast-title"),
         description: translateOnboarding("success-toast-description"),

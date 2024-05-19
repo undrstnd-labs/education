@@ -37,7 +37,7 @@ export async function verifyOTPCode(form: z.infer<typeof pinSchema>) {
 }
 
 export async function updateVerificationUrl(email: string, url: string) {
-  await new Promise((resolve) => setTimeout(resolve, 200))
+  await new Promise((resolve) => setTimeout(resolve, 2000))
   const verificationToken = await db.verificationToken.findFirst({
     where: {
       identifier: email.toLowerCase(),

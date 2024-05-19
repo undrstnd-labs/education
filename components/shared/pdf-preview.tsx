@@ -14,6 +14,7 @@ import { useResizeDetector } from "react-resize-detector"
 import { useToast } from "@/hooks/use-toast"
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+
 function PDFLoader() {
   const variants = {
     initial: {
@@ -41,7 +42,7 @@ function PDFLoader() {
   )
 }
 
-export function AccountSharedPDFPreview({ file }: { file: File }) {
+export function PDFPreview({ file }: { file: File }) {
   const { toast } = useToast()
   const { width, ref } = useResizeDetector()
 

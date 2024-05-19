@@ -34,7 +34,7 @@ function DialogComponent(props: ResponsiveDialogProps) {
   return (
     <Dialog open={props.open} onOpenChange={props.setOpen}>
       <DialogTrigger asChild>
-        <Button className="w-full">{props.title}</Button>
+        <Button className="w-full max-w-sm">{props.title}</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -51,9 +51,9 @@ function DrawerComponent(props: ResponsiveDialogProps) {
   return (
     <Drawer open={props.open} onOpenChange={props.setOpen}>
       <DrawerTrigger asChild>
-        <Button className="w-full">{props.title}</Button>
+        <Button className="w-full max-w-sm">{props.title}</Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="h-full px-2">
         <DrawerHeader>
           <DrawerTitle>{props.title}</DrawerTitle>
         </DrawerHeader>

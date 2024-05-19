@@ -1,14 +1,16 @@
 import Image from "next/image"
 import { Role } from "@prisma/client"
+import { getTranslations } from "next-intl/server"
 
 import { Classroom, Post } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
+import { formatDate } from "@/lib/utils"
 
+import { FeedClassroomFileCard } from "@/components/app/feed-classroom-file-card"
 import CommentCard from "@/components/display/CommentCard"
 import ReactionButton from "@/components/display/ReactionButton"
 import CommentAddCard from "@/components/form/CommentAddCard"
-import { FileCard } from "@/components/showcase/FileCard"
 import PostCardOptions from "@/components/showcase/PostCardOptions"
 import {
   Card,
@@ -25,7 +27,14 @@ interface PostCardProps {
   role: Role
 }
 
-const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
+export async function FeedClassroomPostCard({
+  post,
+  userId,
+  classroom,
+  role,
+}: PostCardProps) {
+  const t = await getTranslations("app.components.app.feed-classroom-post-card")
+
   const reactionCounts = post.reactions.reduce(
     (acc, reaction) => {
       const icon = emojis.find((icon) => icon.value === reaction.reactionType)
@@ -53,7 +62,7 @@ const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
               <div className="flex flex-col ">
                 <div className="text-sm">{post.teacher.user.name}</div>
                 <div className="text-xs text-muted-foreground">
-                  {post.teacher.user.email}
+                  {formatDate(new Date(post.createdAt), t)}
                 </div>
               </div>
             </div>
@@ -65,14 +74,14 @@ const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
               />
             )}
           </CardTitle>
-          <h2 className="font-bold">{post.name}</h2>
+          <CardTitle className="font-bold">{post.name}</CardTitle>
           <CardDescription>{post.content}</CardDescription>
           {post.files && post.files.length > 0 && (
-            <div className="grid grid-cols-1 gap-4 pt-0.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-4 pt-0.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {post.files.map((file) => (
-                <FileCard key={file.id} file={file} />
+                <FeedClassroomFileCard key={file.id} file={file} />
               ))}
-            </div>
+            </ul>
           )}
         </CardHeader>
         <CardContent>
@@ -111,5 +120,3 @@ const PostCard = ({ post, userId, classroom, role }: PostCardProps) => {
     </section>
   )
 }
-
-export default PostCard

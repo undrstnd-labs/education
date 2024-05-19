@@ -1,10 +1,9 @@
 import { type Metadata } from "next"
 import { redirect } from "@navigation"
 import { Student, Teacher, User } from "@prisma/client"
-import { unstable_setRequestLocale } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { NextAuthUser } from "@/types/auth"
-import { Classroom } from "@/types/classroom"
 
 import {
   getCurrentEntity,
@@ -12,9 +11,13 @@ import {
   userAuthentificateVerification,
 } from "@/lib/session"
 
+import {
+  FeedClassroomAddPost,
+  FeedClassroomAddPostTrigger,
+} from "@/components/app/feed-classroom-add-post"
 import { FeedClassroomCard } from "@/components/app/feed-classroom-card"
-import PostCard from "@/components/display/PostCard"
-import { PostAddCard } from "@/components/form/PostAddCard"
+import { FeedClassroomPostCard } from "@/components/app/feed-classroom-post-card"
+import { Icons } from "@/components/shared/icons"
 
 export interface ClassroomProps {
   params: {
@@ -71,6 +74,7 @@ export default async function ClassroomPage({
   params: { classroomId: string; locale: string }
 }) {
   unstable_setRequestLocale(locale)
+  const t = await getTranslations("app.pages.classroom")
 
   const user = await getCurrentUser()
   const toRedirect = await userAuthentificateVerification(user as NextAuthUser)
@@ -92,9 +96,11 @@ export default async function ClassroomPage({
   return (
     <div className="flex flex-col gap-4">
       <FeedClassroomCard entity={entity} classroom={classroom} />
-      {user.role === "TEACHER" && (
-        <PostAddCard userId={user.id} classroom={classroom} />
+
+      {user.role === "TEACHER" && classroom.posts.length > 0 && (
+        <FeedClassroomAddPost teacher={entity} classroom={classroom} />
       )}
+
       <div className="flex flex-col gap-6">
         {classroom.posts && classroom.posts.length > 0 ? (
           classroom.posts
@@ -104,7 +110,7 @@ export default async function ClassroomPage({
                 new Date(a.createdAt).getTime()
             )
             .map((post: any) => (
-              <PostCard
+              <FeedClassroomPostCard
                 key={post.id}
                 post={post}
                 userId={user.id}
@@ -113,12 +119,40 @@ export default async function ClassroomPage({
               />
             ))
         ) : (
-          // TODO: Adda a dotted line to the center of the page with a message
-          <h1 className="font-bold md:text-xl">
-            {user?.role === "TEACHER"
-              ? "No posts. Create one now"
-              : "No posts to show. Wait for the teacher to post something."}
-          </h1>
+          <>
+            {user.role === "TEACHER" && (
+              <div className="flex flex-col">
+                <div className="block w-full flex-grow rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
+                  <Icons.add className="mx-auto size-24 text-secondary-foreground/60" />
+                  <span className="text-md mt-2 block font-semibold text-secondary-foreground">
+                    {t("add-post")}
+                  </span>
+                  <p className="mt-2 block text-sm font-normal text-secondary-foreground/60">
+                    {t("add-post-description")}
+                  </p>
+                  <div className="py-6">
+                    <FeedClassroomAddPostTrigger
+                      teacher={entity}
+                      classroom={classroom}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            {user.role === "STUDENT" && (
+              <div className="flex flex-col">
+                <div className="block w-full flex-grow rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
+                  <Icons.sleep className="mx-auto size-24 text-secondary-foreground/60" />
+                  <span className="text-md mt-2 block font-semibold text-secondary-foreground">
+                    {t("nothing-title")}
+                  </span>
+                  <p className="mt-2 block text-sm font-normal text-secondary-foreground/60">
+                    {t("nothing-paragraph")}
+                  </p>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

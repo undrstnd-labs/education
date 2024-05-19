@@ -98,8 +98,8 @@ const PostCardOptions = ({ classroom, post, userId }: PostCardOptionsProps) => {
         <DropdownMenuTrigger asChild>
           <Button
             variant="outline"
-            size="icon"
-            className="h-8 w-8 max-sm:h-6 max-sm:w-6"
+            size="small-icon"
+            className="size-5 max-sm:h-6 max-sm:w-6"
           >
             <Icons.moreHorizontal className="h-4 w-4" />
             <span className="sr-only">Toggle options of post</span>

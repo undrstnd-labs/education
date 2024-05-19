@@ -43,8 +43,6 @@
       "toastPostModifiedSuccessDescription": "You have successfully modified a post.",
       "toastPostModifiedFailed": "Post modification failed",
       "toastPostModifiedFailedDescription": "An error occurred while modifying the post. Please try again.",
-      "toastPostCreatedFailed": "Post creation failed",
-      "toastPostCreatedFailedDescription": "An error occurred while creating the post. Please try again.",
       "toastPostCreatedSuccess": "Post created successfully",
       "toastPostCreatedSuccessDescription": "You have successfully created a post.",
       "toastFilesFailed": "Error",
@@ -53,10 +51,6 @@
       "toastFilesSuccessDescription": "You have successfully uploaded files. You can now post them.",
       "uploadButtonLabel": "Upload Files",
       "postFilesLabel": "Post Files",
-      "formLabelDescriptionAddPost": "Post Description",
-      "formPlaceholderDescriptionAddPost": "Enter your post description here",
-      "formLabelNameAddPost": "Post Name",
-      "formPlaceholderNameAddPost": "Enter your post name here",
       "createPostTitle": "Create a new post",
       "updatePostTitle": "Update post",
       "buttonCreate": "Create classroom",
@@ -67,9 +61,7 @@
       "formTitleAddClassroom": "Create Classroom",
       "formTitleUpdateClassroom": "Update Classroom",
       "formLabelClassroomCode": "Classroom code",
-
       "formClassroomCodePlaceholder": "Enter your classroom code here",
-      "formClassroomButton": "Submit",
       "formClassroomJoinButton": "Join",
       "joinApiSuccess": "Classroom joined successfully",
       "joinApiSuccessDescription": "You have successfully joined this classroom.",
@@ -332,7 +324,11 @@
         "create-classroom": "Create your first classroom",
         "paragraph": "Create a classroom to start sharing posts and files with your students.",
         "join-classroom": "Join a classroom",
-        "join-classroom-description": "Enter the classroom code to join a classroom."
+        "join-classroom-description": "Enter the classroom code to join a classroom.",
+        "add-post": "Add your first post",
+        "add-post-description": "Create a post to start sharing with your students.",
+        "nothing-title": "There's nothing to show here",
+        "nothing-paragraph": "No posts have been created yet."
       },
       "account": {
         "metadata-title": "Account",
@@ -366,7 +362,10 @@
         "delete": "Delete file",
         "title-dialog": "Are you sure you want to delete?",
         "description-dialog": "This action can be undone. This will permanently delete your file.",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "no-matching-results": "No matching results",
+        "no-matching-results-description": "No files found matching your search query.",
+        "create-chat": "Create a new chat"
       },
       "otp-code": {
         "metadata-title": "OTP Code",
@@ -521,17 +520,53 @@
           "error-toast-title": "Failed to update profile",
           "success-toast-title": "Profile updated",
           "success-toast-description": "Your profile has been updated successfully."
+        },
+        "feed-classroom-add-post": {
+          "create-post": "Create a new post",
+          "create-post-description": "Create a post to start sharing with your students.",
+          "classroom-name-label": "Classroom name",
+          "classroom-name-placeholder": "Enter your classroom name here",
+          "classroom-content-label": "Post content",
+          "classroom-content-placeholder": "Enter your post content here",
+          "or-drag-drop": "or drag and drop",
+          "file-type": "Images and PDF files are allowed",
+          "upload-success": "File uploaded successfully",
+          "upload-failed": "Failed to upload file",
+          "click-to-select": "Click to upload",
+          "formClassroomButton": "Submit",
+          "toastPostCreatedFailed": "Post creation failed"
+        },
+        "feed-classroom-post-card": {
+          "just-now": "Just now",
+          "minutes-ago": "minutes ago",
+          "hours-ago": "hours ago",
+          "days-ago": "days ago"
+        },
+        "feed-classroom-file-card": {
+          "open": "Open",
+          "download": "Download the file",
+          "copy": "Copy link of the file",
+          "error": "Error loading PDF",
+          "more-options": "More options",
+          "view-file": "View file",
+          "download-file": "Download file"
+        },
+        "feed-classroom-open-chat": {
+          "open-chat": "Chat with file"
         }
       },
       "shared": {
         "pdf-view-dialog": {
-          "open": "Open",
+          "open": "Preview file",
           "download": "Download the file",
           "copy": "Copy link of the file",
           "error": "Error loading PDF"
         },
         "search-input": {
           "placeholder": "Start typing what's on your mind..."
+        },
+        "download-file-button": {
+          "download": "Download"
         }
       }
     }

@@ -52,7 +52,7 @@ export async function FeedClassroomCard({
                 <Button
                   variant="outline"
                   size={"icon"}
-                  className="size-8 max-sm:size-6"
+                  className="mt-1 size-8 max-sm:size-6"
                 >
                   <Icons.external className="size-4" />
 

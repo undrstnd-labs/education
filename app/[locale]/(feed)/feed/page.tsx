@@ -76,11 +76,12 @@ export default async function FeedPage({
   return (
     <main className="py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {activities.length > 0 && (
+        {(activities.length > 0 || activities[0].length > 0) && (
           <h1 className="py-4 text-2xl font-semibold">{t("feed")}</h1>
         )}
+
         <div className="flow-root space-y-3">
-          {activities.length === 0 && (
+          {(activities.length === 0 || activities[0].length === 0) && (
             <div className="-mt-20 flex h-screen w-full items-center justify-center">
               <div className="relative block w-full max-w-md rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
                 <Icons.sleep className="mx-auto size-24 text-secondary-foreground/60" />
@@ -93,6 +94,7 @@ export default async function FeedPage({
               </div>
             </div>
           )}
+
           {activities.map((classroomActivities, idx) => (
             <Card className="p-6">
               <ul role="list" className="-mb-8">

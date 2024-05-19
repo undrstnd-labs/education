@@ -8,9 +8,9 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
 
 import { AccountSharedDeleteFile } from "@/components/app/account-shared-delete-file"
-import { AccountSharedPDFPreview } from "@/components/app/account-shared-pdf-preview"
 import { AccountSharedSearch } from "@/components/shared/account-shared-search"
 import { Icons } from "@/components/shared/icons"
+import { PDFPreview } from "@/components/shared/pdf-preview"
 import { PDFViewDialogTrigger } from "@/components/shared/pdf-view-dialog"
 import { Button } from "@/components/ui/button"
 import {
@@ -104,14 +104,18 @@ export default async function SharedPage({
             searchParams.search ? (
               <div className="-mt-20 flex h-screen w-full items-center justify-center">
                 <div className="relative block w-full max-w-md rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
-                  <Icons.add className="mx-auto size-24 text-secondary-foreground/60" />
+                  <Icons.sleep className="mx-auto size-24 text-secondary-foreground/60" />
                   <span className="text-md mt-2 block font-semibold text-secondary-foreground">
-                    {t("join-classroom")}
+                    {t("no-matching-results")}
                   </span>
                   <p className="mt-2 block text-sm font-normal text-secondary-foreground/60">
-                    {t("join-classroom-description")}
+                    {t("no-matching-results-description")}
                   </p>
-                  <div className="py-6">ee</div>
+                  <div className="py-6">
+                    <Link href="/chat">
+                      <Button>{t("create-chat")}</Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -139,9 +143,9 @@ export default async function SharedPage({
                         <Link
                           href={chat.file?.url!}
                           target="_blank"
-                          className="group aspect-h-7 aspect-w-10 block max-w-xs overflow-hidden rounded-lg border bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 sm:max-w-full"
+                          className="group aspect-h-7 aspect-w-10 block max-w-xs overflow-hidden rounded-lg border bg-gray-100 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-gray-100 sm:max-w-full"
                         >
-                          <AccountSharedPDFPreview file={chat.file as File} />
+                          <PDFPreview file={chat.file as File} />
                           <button
                             type="button"
                             className="absolute inset-0 focus:outline-none"
@@ -153,12 +157,12 @@ export default async function SharedPage({
                         </Link>
                         <div className="mt-2 flex justify-between">
                           <div>
-                            <p className="pointer-events-none block w-32 truncate text-sm font-medium text-gray-900 sm:w-full">
+                            <p className="pointer-events-none block w-32 truncate text-sm font-medium text-secondary-foreground sm:w-full">
                               {chat.title.slice(0, 30)}
                               {chat.title.length > 20 ? "..." : ""}
                             </p>
 
-                            <p className="pointer-events-none block text-sm font-medium text-gray-500">
+                            <p className="pointer-events-none block text-sm font-medium text-secondary-foreground/50">
                               {chat.messages.length} {t("messages")}
                             </p>
                           </div>

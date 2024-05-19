@@ -71,7 +71,16 @@ export const addPostSchema = (t: (arg: string) => string) =>
     content: z.string().min(10, {
       message: t("formSchemaDescriptionMessage"),
     }),
-    files: z.array(z.unknown()).optional(),
+    files: z
+      .array(
+        z.instanceof(File).refine((file) => file.size < 25 * 1024 * 1024, {
+          message: t("file-size-error"),
+        })
+      )
+      .max(10, {
+        message: t("file-max-error"),
+      })
+      .optional(),
   })
 
 export const editPostSchema = (t: (arg: string) => string) =>

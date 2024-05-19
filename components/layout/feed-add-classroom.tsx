@@ -28,7 +28,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 import { createClassroom } from "@/undrstnd/classroom"
 
-export function AddClassroom({ teacher }: { teacher: Teacher }) {
+export function FeedAddClassroom({ teacher }: { teacher: Teacher }) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)

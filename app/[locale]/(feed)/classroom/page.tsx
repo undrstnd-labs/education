@@ -7,8 +7,8 @@ import { redirect } from "@/lib/navigation"
 import { getCurrentEntity, getCurrentUser } from "@/lib/session"
 
 import { FeedClassroomCard } from "@/components/app/feed-classroom-card"
-import { AddClassroom } from "@/components/layout/feed-add-classroom"
-import { JoinClassroom } from "@/components/layout/feed-join-classroom"
+import { FeedAddClassroom } from "@/components/layout/feed-add-classroom"
+import { FeedJoinClassroom } from "@/components/layout/feed-join-classroom"
 import { Icons } from "@/components/shared/icons"
 
 async function getClassrooms(user: User) {
@@ -86,7 +86,7 @@ export default async function ClassroomsPage({
                     {t("paragraph")}
                   </p>
                   <div className="py-6">
-                    <AddClassroom teacher={entity} />
+                    <FeedAddClassroom teacher={entity} />
                   </div>
                 </div>
               </div>
@@ -103,7 +103,7 @@ export default async function ClassroomsPage({
                     {t("join-classroom-description")}
                   </p>
                   <div className="py-6">
-                    <JoinClassroom student={entity} />
+                    <FeedJoinClassroom student={entity} />
                   </div>
                 </div>
               </div>
