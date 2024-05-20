@@ -58,7 +58,7 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                   alt={comment.user.name!}
                   width={16}
                   height={16}
-                  className="size-6"
+                  className="size-6 rounded-xl"
                 />
                 <div className="flex flex-col ">
                   <div className="text-sm">{comment.user.name}</div>
@@ -117,7 +117,7 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                         )}
                       </div>
 
-                      <SheetFooter className="mt-2">
+                      <SheetFooter className="mt-2 ">
                         <div className="w-full">
                           <CommentAddCard
                             postId={postId}

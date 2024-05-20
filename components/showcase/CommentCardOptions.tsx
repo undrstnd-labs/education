@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { deleteComment } from "@/actions/comment"
 import { useTranslations } from "next-intl"
 
 import { comment } from "@/types/classroom"
@@ -59,33 +60,19 @@ const CommentCardOptions = ({
   const isDesktop = useMediaQuery("(min-width: 768px)")
   const t = useTranslations("Components.Display.CommentCardOptions")
   const handleDelete = async () => {
-    try {
-      const res = await fetch(`/api/comments/${postId}/${comment.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId }),
-      })
-      if (res.ok) {
-        toast({
-          title: t("toastTitleDeleteComment"),
-          variant: "default",
-          description: t("toastDescriptionDeleteComment"),
-        })
-        router.refresh()
-      } else {
-        toast({
-          title: t("toastTitleDeleteCommentError"),
-          variant: "destructive",
-          description: t("toastDescriptionDeleteCommentError"),
-        })
-      }
-    } catch (error) {
+    const commentDeleted = await deleteComment(postId, comment.id)
+    if (commentDeleted) {
       toast({
-        title: "Error deleting comment",
+        title: t("toastTitleDeleteComment"),
+        variant: "default",
+        description: t("toastDescriptionDeleteComment"),
+      })
+      router.refresh()
+    } else {
+      toast({
+        title: t("toastTitleDeleteCommentError"),
         variant: "destructive",
-        description: "An error occurred while deleting the comment",
+        description: t("toastDescriptionDeleteCommentError"),
       })
     }
   }
@@ -160,11 +147,11 @@ const CommentCardOptions = ({
                   className="bg-red-700 text-white hover:bg-red-500"
                   onClick={handleDelete}
                 >
-                  {t("alertDialogCancel")}
+                  {t("alertDialogAction")}
                 </Button>
               </DrawerClose>
               <DrawerClose asChild>
-                <Button variant="outline"> {t("alertDialogAction")}</Button>
+                <Button variant="outline"> {t("alertDialogCancel")}</Button>
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>

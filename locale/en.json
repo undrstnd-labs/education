@@ -105,7 +105,18 @@
         "toastSignInFailedTitle": "Something went wrong",
         "toastSignInFailedDescription": "Your sign in attempt failed",
         "toastSignInSuccessTitle": "Check your email",
-        "toastSignInSuccessDescription": "We sent you a login link. Be sure to check your spam too."
+        "toastSignInSuccessDescription": "We sent you a login link. Be sure to check your spam too.",
+        "hoverCardTitle": "Github Authentification",
+        "universityEmail": "University email",
+        "must": "must be the",
+        "primaryEmail": "primary email",
+        "yourGithub": "in your Github to sign in.",
+        "githubErrorTitle": "Github Authentification Error",
+        "githubErrorDescription": "To sign in with GitHub, your university email must be the primary email in your GitHub account. Please follow these steps:",
+        "step1": "Go to your GitHub account and navigate to the settings.",
+        "step2": "Go to 'Access, Emails' and set your university email as your primary email.",
+        "step3": "Make sure that on the same 'Access, Emails' page, the 'Keep my email addresses private' option is unchecked.",
+        "step4": "Go to 'Public profile' and select your university email as the public email."
       },
       "PassCodeAuth": {
         "verify-account": "Verify Your Account",

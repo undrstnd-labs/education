@@ -111,6 +111,7 @@ export default async function ClassroomPage({
             )
             .map((post: any) => (
               <FeedClassroomPostCard
+                userId={user.id}
                 key={post.id}
                 post={post}
                 classroom={classroom}

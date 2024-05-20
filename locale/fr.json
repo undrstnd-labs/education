@@ -112,7 +112,18 @@
         "toastSignInFailedTitle": "Erreur",
         "toastSignInFailedDescription": "Votre tentative de connexion a échoué",
         "toastSignInSuccessTitle": "Vérifier votre e-mail",
-        "toastSignInSuccessDescription": "Nous vous avons envoyé un lien de connexion. Assurez-vous de vérifier vos spams également."
+        "toastSignInSuccessDescription": "Nous vous avons envoyé un lien de connexion. Assurez-vous de vérifier vos spams également.",
+        "hoverCardTitle": "Authentification de Github",
+        "universityEmail": "Adresse e-mail universitaire",
+        "must": "doit être l'",
+        "primaryEmail": "adresse e-mail principale",
+        "yourGithub": "dans votre Github pour vous connecter.",
+        "githubErrorTitle": "Erreur d'authentification github",
+        "githubErrorDescription": "Pour vous connecter avec GitHub, l'adresse e-mail de votre université doit être l'adresse e-mail principale de votre compte GitHub. Veuillez suivre ces étapes:",
+        "step1": "Accédez à votre compte GitHub et accédez aux paramètres.",
+        "step2": "Allez dans 'Accès, Emails' et définissez l'adresse e-mail de votre université comme adresse e-mail principale.",
+        "step3": "Assurez-vous que sur la même page 'Accès, Emails', l'option 'Garder mes adresses e-mail privées' est décochée.",
+        "step4": "Accédez à 'Profil public' et sélectionnez l'adresse e-mail de votre université comme adresse e-mail publique."
       },
       "EmailInput": {
         "empty-command": "Aucune université trouvée.",

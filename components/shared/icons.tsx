@@ -81,6 +81,7 @@ import { FaRegLightbulb, FaSurprise } from "react-icons/fa"
 import { FaHandsClapping } from "react-icons/fa6"
 import { GiNightSleep } from "react-icons/gi"
 import { GoSignOut } from "react-icons/go"
+import { MdOutlineInfo } from "react-icons/md"
 import { TiTick } from "react-icons/ti"
 
 export type Icon = LucideIcon
@@ -240,4 +241,5 @@ export const Icons = {
   dashboard: LayoutDashboardIcon,
   chevronUp: ChevronUpIcon,
   sleep: GiNightSleep,
+  info: MdOutlineInfo,
 }

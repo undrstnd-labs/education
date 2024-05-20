@@ -1,6 +1,7 @@
 "use client"
 
 import { Dispatch, SetStateAction, useState } from "react"
+import { updateComment } from "@/actions/comment"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
@@ -59,44 +60,31 @@ const EditComment = ({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true)
-    try {
-      const res = await fetch(`/api/comments/${postId}/${comment.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          text: values.text,
-          userId,
-          parentId: comment.parentId,
-        }),
+
+    const commentUpdated = await updateComment(
+      postId,
+      comment.id,
+      values.text,
+      comment.parentId
+    )
+    if (commentUpdated) {
+      form.reset()
+      toast({
+        title: t("upadtedCommentToastTitle"),
+        description: t("upadtedCommentToastDescription"),
+        variant: "default",
       })
-      if (res.ok) {
-        form.reset()
-        toast({
-          title: t("upadtedCommentToastTitle"),
-          description: t("upadtedCommentToastDescription"),
-          variant: "default",
-        })
-        router.refresh()
-      } else {
-        toast({
-          title: t("upadtedCommentToastTitleError"),
-          description: t("upadtedCommentToastDescriptionError"),
-          variant: "destructive",
-        })
-      }
-    } catch (error) {
+      router.refresh()
+    } else {
       toast({
         title: t("upadtedCommentToastTitleError"),
         description: t("upadtedCommentToastDescriptionError"),
         variant: "destructive",
       })
-    } finally {
-      form.reset()
-      setLoading(false)
-      setOpen(false)
     }
+
+    setLoading(false)
+    setOpen(false)
   }
 
   if (isDesktop) {

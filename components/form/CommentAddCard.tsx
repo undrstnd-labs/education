@@ -1,6 +1,7 @@
 "use client"
 
 import { KeyboardEvent, useRef, useState } from "react"
+import { createComment } from "@/actions/comment"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
@@ -43,43 +44,24 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true)
-    try {
-      const res = await fetch(`/api/comments/${postId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          text: values.text,
-          userId,
-          parentId: parentid,
-        }),
+    const comment = await createComment(userId, postId, values.text, parentid)
+    if (comment) {
+      toast({
+        title: t("commendAddedTitleToast"),
+        description: t("commendAddedDescriptionToast"),
+        variant: "default",
       })
-      if (res.ok) {
-        form.reset()
-        toast({
-          title: t("commendAddedTitleToast"),
-          description: t("commendAddedDescriptionToast"),
-          variant: "default",
-        })
-        router.refresh()
-      } else {
-        toast({
-          title: t("commentAddedTitleToastErreur"),
-          description: t("commentAddedDescriptionToastErreur"),
-          variant: "destructive",
-        })
-      }
-    } catch (error) {
+      form.reset()
+      router.refresh()
+    } else {
       toast({
         title: t("commentAddedTitleToastErreur"),
         description: t("commentAddedDescriptionToastErreur"),
         variant: "destructive",
       })
-    } finally {
-      form.reset()
-      setLoading(false)
     }
+
+    setLoading(false)
   }
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter" && !event.shiftKey) {

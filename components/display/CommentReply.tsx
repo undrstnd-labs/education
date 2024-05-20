@@ -43,7 +43,7 @@ const CommentReply = ({ comment, userId, postId }: CommentReplyProps) => {
                 alt={comment.user.name!}
                 width={16}
                 height={16}
-                className="size-6"
+                className="size-6 rounded-xl"
               />
               <div className="flex flex-col ">
                 <div className="text-sm">{comment.user.name}</div>

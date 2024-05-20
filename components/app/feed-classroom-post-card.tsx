@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/card"
 
 interface PostCardProps {
+  userId: string
   post: Post
   classroom: Classroom
   entity: Student | Teacher
@@ -28,6 +29,7 @@ interface PostCardProps {
 }
 
 export async function FeedClassroomPostCard({
+  userId,
   post,
   classroom,
   entity,
@@ -57,7 +59,7 @@ export async function FeedClassroomPostCard({
                 alt={post.teacher.user.name!}
                 width={16}
                 height={16}
-                className="size-6"
+                className="size-6 rounded-xl"
               />
               <div className="flex flex-col ">
                 <div className="text-sm">{post.teacher.user.name}</div>
@@ -88,7 +90,7 @@ export async function FeedClassroomPostCard({
             </ul>
           )}
         </CardHeader>
-        {/*         <CardContent>
+        <CardContent>
           <div className="flex gap-2 max-sm:grid max-sm:grid-cols-3">
             {emojis.map((icon, index) => {
               const count = reactionCounts[icon.value] || 0
@@ -104,9 +106,9 @@ export async function FeedClassroomPostCard({
               )
             })}
           </div>
-        </CardContent> */}
+        </CardContent>
       </Card>
-      {/*      {post.comments &&
+      {post.comments &&
         post.comments.length > 0 &&
         post.comments.map((comment) => {
           return !comment.parentId ? (
@@ -117,10 +119,10 @@ export async function FeedClassroomPostCard({
               postId={post.id}
             />
           ) : null
-        })} */}
-      {/*       <div>
+        })}
+      <div>
         <CommentAddCard postId={post.id} userId={userId} />
-      </div> */}
+      </div>
     </section>
   )
 }
