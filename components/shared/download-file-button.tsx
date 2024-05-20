@@ -5,24 +5,20 @@ import { useTranslations } from "next-intl"
 
 import { downloadFileFromUrl } from "@/lib/storage"
 
-import { Icons } from "@/components/shared/icons"
-
-import { DropdownMenuItem } from "../ui/dropdown-menu"
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu"
 
 interface FileCardProps {
   file: File
 }
 
-const DonloadFileButton = ({ file }: FileCardProps) => {
-  const t = useTranslations("Pages.Classroom")
+export function DownloadFileButton({ file }: FileCardProps) {
+  const t = useTranslations("app.components.shared.download-file-button")
   return (
     <DropdownMenuItem
       className="flex items-center gap-2 hover:cursor-pointer"
       onClick={() => downloadFileFromUrl(file.url)}
     >
-      <Icons.downloadFile className="size-4" /> {t("downloadFile")}
+      {t("download")}
     </DropdownMenuItem>
   )
 }
-
-export default DonloadFileButton

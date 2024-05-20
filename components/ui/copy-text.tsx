@@ -16,7 +16,7 @@ export function CopyText({ text }: CopyTextProps) {
   return (
     <code
       onClick={() => copyToClipboard(text)}
-      className={`relative flex cursor-pointer items-center rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold hover:bg-accent/80 hover:text-secondary-foreground`}
+      className={`relative hidden cursor-pointer items-center rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold hover:bg-accent/80 hover:text-secondary-foreground sm:flex`}
     >
       {text}
       <button className="ml-2 flex h-4 w-4 items-center justify-center rounded-full bg-muted  hover:bg-accent hover:text-secondary-foreground">

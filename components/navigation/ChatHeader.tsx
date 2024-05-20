@@ -1,10 +1,10 @@
 import { Student, User } from "@prisma/client"
 
 import { ChatHistory } from "@/components/display/ChatHistory"
-import { UserMenuIconDropdown } from "@/components/display/UserMenu"
+import { SidebarMobile } from "@/components/layout/sidebar-mobile"
 import { SidebarToggle } from "@/components/layout/sidebar-toggle"
-import { SidebarMobile } from "@/components/navigation/SidebarMobile"
 import { Icons } from "@/components/shared/icons"
+import { UserMenuIconDropdown } from "@/components/shared/user-menu"
 
 //TODO: Change this header
 export function Header({ student }: { student: Student & { user: User } }) {

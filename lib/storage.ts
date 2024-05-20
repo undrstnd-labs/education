@@ -95,7 +95,7 @@ export async function uploadFilesStudent(
 
   return {
     name: file.name,
-    url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/${data.path}`,
+    url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${data.path}`,
     type: file.type,
     size: file.size,
   }
@@ -114,7 +114,7 @@ export async function deleteFile(fileUrl: string) {
     .from("files")
     .remove([
       fileUrl.split(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/`
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/`
       )[1],
     ])
 }

@@ -4,8 +4,8 @@ import { getTranslations } from "next-intl/server"
 
 import { getCurrentStudent } from "@/lib/session"
 
+import { SidebarDesktop } from "@/components/layout/sidebar-desktop"
 import { Header } from "@/components/navigation/ChatHeader"
-import { SidebarDesktop } from "@/components/navigation/SidebarDesktop"
 
 import "simplebar-react/dist/simplebar.min.css"
 

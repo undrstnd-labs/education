@@ -94,7 +94,7 @@ export function PDFViewDialog({ file }: { file: File }) {
                     onClick={() => {
                       downloadFileFromUrl(
                         file.url.split(
-                          `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/`
+                          `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/`
                         )[1]
                       )
                     }}
@@ -195,7 +195,7 @@ export function PDFViewDialogTrigger({ file }: { file: File }) {
                     onClick={() => {
                       downloadFileFromUrl(
                         file.url.split(
-                          `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/`
+                          `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/`
                         )[1]
                       )
                     }}

@@ -12,12 +12,11 @@ import {
   userAuthentificateVerification,
 } from "@/lib/session"
 
-import { UserMenu, UserMenuIconDropdown } from "@/components/display/UserMenu"
-import { AddClassroom } from "@/components/layout/feed-add-classroom"
-import { JoinClassroom } from "@/components/layout/feed-join-classroom"
+import { FeedAddClassroom } from "@/components/layout/feed-add-classroom"
+import { FeedJoinClassroom } from "@/components/layout/feed-join-classroom"
 import { FeedNavigationList } from "@/components/layout/feed-navigation-list"
 import { Icons, LogoPNG } from "@/components/shared/icons"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { UserMenu, UserMenuIconDropdown } from "@/components/shared/user-menu"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
@@ -110,8 +109,10 @@ export default async function FeedLayout({
               <FeedNavigationList user={user} classrooms={classrooms} />
             </div>
             <div className="px-6 pb-4">
-              {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
-              {user.role === "STUDENT" && <JoinClassroom student={entity} />}
+              {user.role === "TEACHER" && <FeedAddClassroom teacher={entity} />}
+              {user.role === "STUDENT" && (
+                <FeedJoinClassroom student={entity} />
+              )}
               <Separator className="my-3" />
               <UserMenu user={user}>
                 <div
@@ -154,8 +155,8 @@ export default async function FeedLayout({
         </div>
 
         <div className="w-full px-6 pb-4">
-          {user.role === "TEACHER" && <AddClassroom teacher={entity} />}
-          {user.role === "STUDENT" && <JoinClassroom student={entity} />}
+          {user.role === "TEACHER" && <FeedAddClassroom teacher={entity} />}
+          {user.role === "STUDENT" && <FeedJoinClassroom student={entity} />}
           <Separator className="my-3" />
           <UserMenu user={user}>
             <div

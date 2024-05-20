@@ -11,9 +11,27 @@ const groq = new OpenAI({
   apiKey: process.env.GROQ_API_KEY!,
 })
 
+//TODO: the tuned messages should be translated
 export async function POST(req: Request) {
   const json = await req.json()
   const { messages, id, studentId } = json
+  let pineconeId = id
+
+  const conversation = await db.conversation.findUnique({
+    where: { id: pineconeId },
+    select: {
+      file: {
+        select: {
+          postId: true,
+          id: true,
+        },
+      },
+    },
+  })
+
+  if (conversation?.file?.postId) {
+    pineconeId = conversation.file.id
+  }
 
   const embeddings = new OpenAIEmbeddings({
     openAIApiKey: process.env.OPENAI_API_KEY,
@@ -22,7 +40,7 @@ export async function POST(req: Request) {
   const pineconeIndex = pinecone.Index("undrstnd")
   const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
     pineconeIndex,
-    namespace: id,
+    namespace: pineconeId,
   })
 
   const results = await vectorStore.similaritySearch(

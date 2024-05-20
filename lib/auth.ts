@@ -11,7 +11,7 @@ import { sendMail } from "@/undrstnd/mailer"
 import { updateVerificationUrl } from "@/undrstnd/token"
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db),
+  adapter: PrismaAdapter(db as any),
   secret: process.env.NEXTAUTH_SECRET!,
   session: {
     strategy: "jwt",

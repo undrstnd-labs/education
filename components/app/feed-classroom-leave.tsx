@@ -41,6 +41,7 @@ export function FeedClassroomLeave({
       })
     }
     router.refresh()
+    router.push("/classroom")
     setLoading(false)
     setOpen(false)
   }
@@ -52,7 +53,7 @@ export function FeedClassroomLeave({
         className="size-8 max-sm:size-6"
         onClick={() => setOpen(true)}
       >
-        <Icons.leaveClassroom className="size-4 text-red-500 " />
+        <Icons.leaveClassroom className="size-4 text-red-500" />
         <span className="sr-only">Leave classroom</span>
       </Button>
       <ResponsiveAlertDialog

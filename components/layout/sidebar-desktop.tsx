@@ -1,7 +1,7 @@
 import { Student, User } from "@prisma/client"
 
 import { ChatHistory } from "@/components/display/ChatHistory"
-import { Sidebar } from "@/components/navigation/Sidebar"
+import { Sidebar } from "@/components/layout/sidebar"
 
 export function SidebarDesktop({
   student,

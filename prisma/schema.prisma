@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL_DEV")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL_ACCELRATE")
+  directUrl = env("DATABASE_URL")
 }
 
 enum Role {

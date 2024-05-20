@@ -53,7 +53,7 @@ function SubmitButton({
   )
 }
 
-export function JoinClassroom({ student }: { student: Student }) {
+export function FeedJoinClassroom({ student }: { student: Student }) {
   const router = useRouter()
   const t = useTranslations("Pages.Classroom")
   const [isLoading, setIsLoading] = useState(false)

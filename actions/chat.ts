@@ -4,7 +4,6 @@ import { type FileUpload } from "@/types/file"
 
 import { pinecone } from "@/lib/pinecone"
 import { db } from "@/lib/prisma"
-import { deleteFile } from "@/lib/storage"
 
 export async function getChats(studentId?: string) {
   return db.conversation.findMany({
@@ -48,53 +47,67 @@ export async function getChat(id: string, studentId: string) {
 }
 
 export async function removeChat({ id }: { id: string }) {
-  try {
-    await Promise.all([
-      (async () => {
-        const pineconeIndex = pinecone.Index("undrstnd")
-        const namespace = pineconeIndex.namespace(id)
-        await namespace.deleteAll()
-      })(),
-      (async () => {
-        const conversation = await db.conversation.findUnique({
-          where: {
-            id,
-          },
-          select: {
-            fileId: true,
-          },
-        })
+  const conversation = await db.conversation.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      file: {
+        select: {
+          id: true,
+          postId: true,
+        },
+      },
+    },
+  })
 
-        if (conversation?.fileId) {
-          const file = await db.file.findUnique({
+  if (!conversation?.file?.postId) {
+    try {
+      await Promise.all([
+        (async () => {
+          const pineconeIndex = pinecone.Index("undrstnd")
+          const namespace = pineconeIndex.namespace(id)
+          await namespace.deleteAll()
+        })(),
+        (async () => {
+          const conversation = await db.conversation.findUnique({
             where: {
-              id: conversation?.fileId,
+              id,
+            },
+            select: {
+              fileId: true,
             },
           })
 
-          if (file) {
-            await deleteFile(file.url)
+          if (conversation?.fileId) {
+            await db.file.deleteMany({
+              where: {
+                id: conversation.fileId,
+              },
+            })
           }
 
-          await db.file.deleteMany({
+          await db.conversation.delete({
             where: {
-              id: conversation.fileId,
+              id,
             },
           })
-        }
+        })(),
+      ])
 
-        await db.conversation.delete({
-          where: {
-            id,
-          },
-        })
-      })(),
-    ])
-
-    return { message: "Chat deleted successfully" }
-  } catch (error) {
-    return { message: "Chat not found" }
+      return { message: "Chat deleted successfully" }
+    } catch (error) {
+      return { message: "Chat not found" }
+    }
   }
+
+  await db.conversation.delete({
+    where: {
+      id,
+    },
+  })
+
+  return { message: "Chat deleted successfully" }
 }
 
 export async function saveChat(
@@ -103,7 +116,13 @@ export async function saveChat(
   file: FileUpload,
   path: string
 ) {
-  const createdFile = await saveFile(file, studentId)
+  const createdFile = await saveFile(
+    {
+      ...file,
+      url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${file.url}`,
+    },
+    studentId
+  )
 
   return db.conversation.create({
     data: {

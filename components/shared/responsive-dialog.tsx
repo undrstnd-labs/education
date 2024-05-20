@@ -28,14 +28,17 @@ interface ResponsiveDialogProps {
   open: boolean
   setOpen: (open: boolean) => void
   action: () => void
+  buttonExist?: boolean
 }
 
 function DialogComponent(props: ResponsiveDialogProps) {
   return (
     <Dialog open={props.open} onOpenChange={props.setOpen}>
-      <DialogTrigger asChild>
-        <Button className="w-full">{props.title}</Button>
-      </DialogTrigger>
+      {props.buttonExist && (
+        <DialogTrigger asChild>
+          <Button className="w-full max-w-sm">{props.title}</Button>
+        </DialogTrigger>
+      )}
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{props.title}</DialogTitle>
@@ -50,10 +53,12 @@ function DialogComponent(props: ResponsiveDialogProps) {
 function DrawerComponent(props: ResponsiveDialogProps) {
   return (
     <Drawer open={props.open} onOpenChange={props.setOpen}>
-      <DrawerTrigger asChild>
-        <Button className="w-full">{props.title}</Button>
-      </DrawerTrigger>
-      <DrawerContent>
+      {props.buttonExist && (
+        <DrawerTrigger asChild>
+          <Button className="w-full max-w-sm">{props.title}</Button>
+        </DrawerTrigger>
+      )}
+      <DrawerContent className="h-full px-2">
         <DrawerHeader>
           <DrawerTitle>{props.title}</DrawerTitle>
         </DrawerHeader>
