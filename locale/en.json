@@ -23,6 +23,8 @@
       "home": "Home"
     },
     "Classroom": {
+      "firstReply": "Add your first reply",
+      "firstReplyDescription": "Create a reply to this comment",
       "updatedCommentTitleLabel": "Comment content",
       "updatedCommentTitle": "Update comment",
       "upadtedCommentToastTitleError": "Error",
@@ -307,6 +309,8 @@
         "minutes-ago": "minutes ago",
         "hours-ago": "hours ago",
         "days-ago": "days ago",
+        "weeks-ago": "weeks ago",
+        "months-ago": "months ago",
         "feed": "Your Feed",
         "posted": "Posted",
         "commented": "Commented",
@@ -535,7 +539,9 @@
           "just-now": "Just now",
           "minutes-ago": "minutes ago",
           "hours-ago": "hours ago",
-          "days-ago": "days ago"
+          "days-ago": "days ago",
+          "weeks-ago": "weeks ago",
+          "months-ago": "months ago"
         },
         "feed-classroom-file-card": {
           "open": "Open",

@@ -58,7 +58,7 @@ function DrawerComponent(props: ResponsiveDialogProps) {
           <Button className="w-full max-w-sm">{props.title}</Button>
         </DrawerTrigger>
       )}
-      <DrawerContent className="h-full px-2">
+      <DrawerContent className="h-fit px-4">
         <DrawerHeader>
           <DrawerTitle>{props.title}</DrawerTitle>
         </DrawerHeader>

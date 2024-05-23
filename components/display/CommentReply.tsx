@@ -1,9 +1,11 @@
 import React from "react"
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 import { comment } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
+import { formatDate } from "@/lib/utils"
 
 import ReactionButton from "@/components/display/ReactionButton"
 import CommentCardOptions from "@/components/showcase/CommentCardOptions"
@@ -22,6 +24,7 @@ interface CommentReplyProps {
 }
 
 const CommentReply = ({ comment, userId, postId }: CommentReplyProps) => {
+  const t = useTranslations("app.components.app.feed-classroom-post-card")
   const reactionCounts = comment.reactions.reduce(
     (acc: { [x: string]: any }, reaction: { reactionType: string }) => {
       const icon = emojis.find((icon) => icon.value === reaction.reactionType)
@@ -45,10 +48,10 @@ const CommentReply = ({ comment, userId, postId }: CommentReplyProps) => {
                 height={16}
                 className="size-6 rounded-xl"
               />
-              <div className="flex flex-col ">
+              <div className="flex flex-col items-start ">
                 <div className="text-sm">{comment.user.name}</div>
-                <div className="text-xs text-muted-foreground">
-                  {comment.user.email}
+                <div className="self-start text-xs text-muted-foreground">
+                  {formatDate(new Date(comment.createdAt), t)}
                 </div>
               </div>
             </div>

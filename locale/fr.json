@@ -23,6 +23,8 @@
       "home": "Accueil"
     },
     "Classroom": {
+      "firstReply": "Ajoutez votre première réponse",
+      "firstReplyDescription": "Créer une réponse à ce commentaire",
       "updatedCommentTitleLabel": "Contenu du commentaire",
       "updatedCommentTitle": "Mettre à jour le commentaire",
       "upadtedCommentToastTitleError": "Erreur",
@@ -364,9 +366,11 @@
     "pages": {
       "feed": {
         "just-now": "À l'instant",
-        "minutes-ago": "il y a quelques minutes",
-        "hours-ago": "il y a quelques heures",
-        "days-ago": "il y a quelques jours",
+        "minutes-ago": "minutes plus tôt",
+        "hours-ago": "heures plus tôt",
+        "days-ago": "jours plus tôt",
+        "weeks-ago": "semaines plus tôt",
+        "months-ago": "mois plus tôt",
         "feed": "Votre fil",
         "posted": "Publié",
         "commented": "Commenté",
@@ -481,6 +485,14 @@
           "save": "Enregistrer",
           "image-uploaded": "Image téléchargée avec succès",
           "image-upload-failed": "Échec du téléchargement de l'image"
+        },
+        "feed-classroom-post-card": {
+          "just-now": "À l'instant",
+          "minutes-ago": "minutes plus tôt",
+          "hours-ago": "heures plus tôt",
+          "days-ago": "jours plus tôt",
+          "weeks-ago": "semaines plus tôt",
+          "months-ago": "mois plus tôt"
         }
       }
     }

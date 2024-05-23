@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl"
 import { comment } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
+import { formatDate } from "@/lib/utils"
 
 import CommentReply from "@/components/display//CommentReply"
 import ReactionButton from "@/components/display/ReactionButton"
@@ -35,6 +36,7 @@ interface CommentCardProps {
 
 const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
   const t = useTranslations("Pages.Classroom")
+  const t1 = useTranslations("app.components.app.feed-classroom-post-card")
   const reactionCounts = comment.reactions.reduce(
     (acc: { [x: string]: any }, reaction: { reactionType: string }) => {
       const icon = emojis.find((icon) => icon.value === reaction.reactionType)
@@ -63,7 +65,7 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                 <div className="flex flex-col ">
                   <div className="text-sm">{comment.user.name}</div>
                   <div className="text-xs text-muted-foreground">
-                    {comment.user.email}
+                    {formatDate(new Date(comment.createdAt), t1)}
                   </div>
                 </div>
               </div>
@@ -98,7 +100,7 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                         {t("repliesLabel")}
                       </Label>
 
-                      <div className=" flex flex-1 flex-col gap-2 overflow-y-auto  ">
+                      <div className=" flex flex-1 flex-col gap-2 overflow-y-auto ">
                         {comment.replies && comment.replies.length > 0 ? (
                           comment.replies.map((reply) => {
                             return (
@@ -111,9 +113,19 @@ const CommentCard = ({ userId, comment, postId }: CommentCardProps) => {
                             )
                           })
                         ) : (
-                          <Label className="py-2 font-bold">
-                            No replies yet
-                          </Label>
+                          <div className="flex flex-1 flex-col justify-center">
+                            <div className="flex flex-col">
+                              <div className="block w-full flex-grow rounded-lg border-2 border-dashed border-secondary-foreground/20 p-12 text-center transition-all duration-300 hover:border-secondary-foreground/50">
+                                <Icons.add className="mx-auto size-24 text-secondary-foreground/60 max-sm:size-16" />
+                                <span className="text-md mt-2 block font-semibold text-secondary-foreground max-sm:text-sm">
+                                  {t("firstReply")}
+                                </span>
+                                <p className="mt-2 block text-sm font-normal text-secondary-foreground/60 max-sm:text-xs">
+                                  {t("firstReplyDescription")}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
                         )}
                       </div>
 
