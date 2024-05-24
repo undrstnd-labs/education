@@ -26,11 +26,11 @@ Notre système comporte les acteurs suivants:
 \section{Modèle informationnel de contexte}
 \justifying
 Le modèle informationnel de contexte donne un aperçu global de notre plateforme en identifiant les acteurs et leurs interactions avec le système. À travers le diagramme de contexte, nous illustrons ces échanges pour une meilleure compréhension. Cette représentation simplifiée du fonctionnement de notre application aide à saisir les flux d'informations et le rôle des différents intervenants.\\
-La Figure 3.1 montre le diagramme de contexte et illustre bien le modèle informationnel de l'application.
+La figure \ref{fig:diagramme de context} montre le diagramme de contexte et illustre bien le modèle informationnel de l'application.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.2\textwidth,height=0.4\textheight]{images/chp3/fig1.png}
+    \includegraphics[width=1\textwidth,height=0.35\textheight]{images/chp3/fig1.png}
     \caption{Diagramme de contexte dynamique de notre plateforme}
     \label{fig:diagramme de context}    
 \end{figure}
@@ -46,20 +46,20 @@ Les besoins fonctionnels définissent les actions que notre système doit accomp
     \begin{itemize}[itemsep=1pt, parsep=1pt]
         \item \textbf{S'inscrire: }Permettre à l'étudiant de créer un compte sur la plateforme en fournissant des informations nécessaires.
         \item \textbf{S'identifier : }Permettre à l’étudiant de se connecter à son compte pour accéder aux fonctionnalités de la plateforme.
-        \item  \textbf{Accéder au classroom : } Permettre à l'étudiant de rejoindre et quitter les classrooms, d’ouvrir ou télécharger les documents partagés, de démarrer un chat avec le modèle dans le contexte des documents partagés et d'interagir avec les publications.
-        \item   \textbf{Démarrer chat : }Permettre à l'étudiant de créer un espace de communication instantanée avec notre chatbot. Dans cette espace, l'étudiant peut non seulement démarrer une nouvelle conversation mais aussi consulter son historique et poursuivre la communication dans une conversation existante. Cette fonctionnalité lui permet d’envoyer une requête en se référant à un document spécifique ou sans faisant référence. Le premier cas est préconditionné par l’importation d’un document dans la conversation courante. 
-        \item    \textbf{Gérer propre média : }Permettre à l'étudiant de consulter ses documents partagés ainsi que de les supprimer de la base de données.
-        \item    \textbf{Consulter historique: }Permettre à l’étudiant de consulter l’historique des classrooms, des commentaires ou des postes.
-        \item    \textbf{Gérer profil : }Permettre à l'étudiant de créer un compte sur la plateforme en fournissant des informations nécessaires.
+        \item \textbf{Accéder au classroom : } Permettre à l'étudiant de rejoindre et quitter les classrooms, d’ouvrir ou télécharger les documents partagés, de démarrer un chat avec le modèle dans le contexte des documents partagés et d'interagir avec les publications.
+        \item \textbf{Démarrer chat : }Permettre à l'étudiant de créer un espace de communication instantanée avec notre chatbot. Dans cette espace, l'étudiant peut non seulement démarrer une nouvelle conversation mais aussi consulter son historique et poursuivre la communication dans une conversation existante. Cette fonctionnalité lui permet d’envoyer une requête en se référant à un document spécifique ou sans faisant référence. Le premier cas est préconditionné par l’importation d’un document dans la conversation courante. 
+        \item \textbf{Gérer propre média : }Permettre à l'étudiant de consulter ses documents partagés ainsi que de les supprimer de la base de données.
+        \item \textbf{Consulter historique: }Permettre à l’étudiant de consulter l’historique des classrooms, des commentaires ou des postes.
+        \item \textbf{Gérer profil : }Permettre à l'étudiant de créer un compte sur la plateforme en fournissant des informations nécessaires.
     \end{itemize}
     \item \textbf{Besoins fonctionnels de l'enseignant :}
     \begin{itemize}[itemsep=1pt, parsep=1pt]
         \item \textbf{S'inscrire: }Permettre à l'enseignant de créer un compte sur la plateforme en fournissant des informations nécessaires.
         \item \textbf{S'identifier : }Permettre à l'enseignant de se connecter à son compte pour accéder aux fonctionnalités de la plateforme.
-        \item  \textbf{Gérer classroom : }Permettre à l'enseignant de créer, modifier, archiver, désarchiver et supprimer ses classrooms.
-        \item   \textbf{Accéder au classroom : } Permettre à l'enseignant de gérer des publications en créant, modifiant et supprimant des publications, d'ouvrir ou télécharger des documents partagés, d'inviter des étudiants au classroom et d'interagir sur les publications.
-        \item    \textbf{Consulter historique: } Permettre à l’enseignant de consulter l’historique des classrooms, des commentaires ou des postes.
-        \item    \textbf{Gérer profil :  } Permettre à l'enseignant de mettre à jour et de gérer les informations de son profil utilisateur telles que ses informations personnelles et ses préférences ainsi que de supprimer son profil.
+        \item \textbf{Gérer classroom : }Permettre à l'enseignant de créer, modifier, archiver, désarchiver et supprimer ses classrooms.
+        \item \textbf{Accéder au classroom : } Permettre à l'enseignant de gérer des publications en créant, modifiant et supprimant des publications, d'ouvrir ou télécharger des documents partagés, d'inviter des étudiants au classroom et d'interagir sur les publications.
+        \item \textbf{Consulter historique: } Permettre à l’enseignant de consulter l’historique des classrooms, des commentaires ou des postes.
+        \item \textbf{Gérer profil :  } Permettre à l'enseignant de mettre à jour et de gérer les informations de son profil utilisateur telles que ses informations personnelles et ses préférences ainsi que de supprimer son profil.
     \end{itemize}
     \item \textbf{Besoins fonctionnels du modèle MoE :}
     \begin{itemize}[itemsep=1pt, parsep=1pt]
@@ -74,9 +74,9 @@ Les besoins non fonctionnels de notre système sont:
 \begin{itemize}[itemsep=1pt, parsep=1pt]
     \item \textbf{La sécurité : }L'application doit garantir à l'utilisateur connecté l'intégrité et la confidentialité de ses données.
     \item \textbf{La convivialité : }La conception de l’interface utilisateur doit être simple et intuitive permettant aux utilisateurs de naviguer facilement dans le système et d’accomplir leurs tâches de manière efficace et agréable.
-    \item  \textbf{La performance : } Le système doit être en mesure de fournir des performances rapides et efficaces.
+    \item \textbf{La performance : } Le système doit être en mesure de fournir des performances rapides et efficaces.
     \item \textbf{Fiabilité : } L’application doit fonctionner de façon cohérente pour les utilisateurs.
-    \item  \textbf{Rapidité: } Le système doit traiter les requêtes en temps réel et fournir des réponses instantanées aux étudiants pour répondre à leurs besoins. 
+    \item \textbf{Rapidité: } Le système doit traiter les requêtes en temps réel et fournir des réponses instantanées aux étudiants pour répondre à leurs besoins. 
 \end{itemize}
 
 \section{Spécification des besoins }
@@ -84,39 +84,39 @@ Pour une meilleure documentation de notre plateforme, nous allons formaliser, da
 
 \subsection{Diagramme de cas d’utilisation global}
 Le diagramme de cas d'utilisation est le mécanisme le plus populaire pour la spécification des exigences. Il illustre les interactions entre les acteurs et le système. En outre, il donne une vue d'ensemble des fonctionnalités que le système doit offrir pour répondre aux besoins des utilisateurs.\\
-La Figure 3.2 illustre le diagramme de cas d’utilisation global de notre application.
+La figure \ref{fig:diagramme de cas d’utilisation global} illustre le diagramme de cas d’utilisation global de notre application.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.2\textwidth,height=0.65\textheight]{images/chp3/fig2.png}
+    \includegraphics[width=1\textwidth,height=0.45\textheight]{images/chp3/fig2.png}
     \caption{Diagramme de cas d’utilisation global}
     \label{fig:diagramme de cas d’utilisation global}    
 \end{figure}
 
 \subsection{Diagrammes de cas d’utilisation détaillés}
-Dans cette partie, nous allons raffiner les cas d'utilisation présentés dans la Figure 3.2. Le raffinement sera représenté par un diagramme de cas d'utilisation détaillé de chaque  acteur.
+Dans cette partie, nous allons raffiner les cas d'utilisation présentés dans la figure \ref{fig:diagramme de cas d’utilisation global}. Le raffinement sera représenté par un diagramme de cas d'utilisation détaillé de chaque  acteur.
 
 \subsubsection{Diagramme de cas d’utilisation détaillé de l’acteur << Etudiant>>}
-La Figure 3.3 illustre le diagramme de cas d’utilisation détaillé de l’acteur étudiant après avoir s’identifier.
+La figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << Etudiant >>} illustre le diagramme de cas d’utilisation détaillé de l’acteur étudiant après avoir s’identifier.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth,height=0.8\textheight]{images/chp3/fig3.png}
+    \includegraphics[width=0.8\textwidth,height=0.6\textheight]{images/chp3/fig3.png}
     \caption{Diagramme de cas d’utilisation détaillé de l’acteur << Etudiant >>}
     \label{fig:diagramme de cas d’utilisation détaillé de l’acteur << Etudiant >>}    
 \end{figure}
 
 \subsubsection{Diagramme de cas d’utilisation détaillé de l’acteur << Enseignant >>}
-La Figure 3.4 illustre le diagramme de cas d’utilisation détaillé de l’acteur enseignant après avoir s’identifier.
+La figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << Enseignant >>} illustre le diagramme de cas d’utilisation détaillé de l’acteur enseignant après avoir s’identifier.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth,height=0.8\textheight]{images/chp3/fig4.png}
+    \includegraphics[width=0.9\textwidth,height=0.8\textheight]{images/chp3/fig4.png}
     \caption{Diagramme de cas d’utilisation détaillé de l’acteur << Enseignant >>}
     \label{fig:diagramme de cas d’utilisation détaillé de l’acteur << Enseignant >>}    
 \end{figure}
 
 
 \subsubsection{ Diagramme de cas d’utilisation détaillé de l’acteur << Modèle MoE >>}
-La Figure 3.5 illustre le diagramme de cas d’utilisation détaillé de l’acteur modèle MoE.
+La figure \ref{fig: Diagramme de cas d’utilisation détaillé de l’acteur <<Modèle MoE>>>} illustre le diagramme de cas d’utilisation détaillé de l’acteur modèle MoE.
 
 \begin{figure}[H]
     \centering
@@ -131,7 +131,9 @@ L'analyse des besoins est une étape importante permettant de représenter le co
 \subsubsection{Cas d’utilisation << S’identifier >> }
 \begin{itemize}[itemsep=1pt, parsep=1pt]
     \item \textbf{Description textuelle}\\
-    Le tableau 3.1 montre la description textuelle du cas d’utilisation \textbf{<< S’identifier >>}.
+    Le tableau \ref{tab:Description textuelle du cas d’utilisation « s’identifiere »} 
+    
+    montre la description textuelle du cas d’utilisation \textbf{<< S’identifier >>}.
 
     \begin{longtable}{|>{\RaggedRight\arraybackslash}p{4cm}|>{\RaggedRight\arraybackslash}p{12cm}|}
         \caption{Description textuelle du cas d’utilisation « s’identifier »} \\
@@ -173,8 +175,8 @@ L'analyse des besoins est une étape importante permettant de représenter le co
         \textbf{Scénarios alternatifs} & 
         \begin{enumerate}
             \item L’utilisateur accède à la page de connexion.
-            \item L’utilisateur essaie de se connecter en appuyant sur le bouton \textbf{\textit{‘Github’}}.
-            \item Le système affiche la page principale de la plateforme.
+            \item L’utilisateur essaie de se connecter en appuyant sur le bouton \textbf{\textit{‘Github’}}. 
+            \item Le système affiche la page principale de la plateforme. \newline \textbf{Notez bien} que l'utilisateur doit utiliser son email universitaire comme email principal et publique sur son compte GitHub.
         \end{enumerate} \\
         \hline
         \textbf{Exceptions} & 
@@ -184,10 +186,12 @@ L'analyse des besoins est une étape importante permettant de représenter le co
         \end{itemize} \\
         \hline
     \end{longtable}
+    \label{tab:Description textuelle du cas d’utilisation « s’identifiere »}
+
     
     \item \textbf{Diagramme de séquence acteur-système}\\
      Pour ce cas d'utilisation, l'utilisateur peut être soit un étudiant, soit un enseignant lors de l'identification.\\
-     La Figure 3.6 illustre le diagramme de séquence \textbf{<< S’identifier >>}.
+     La figure \ref{fig:diagramme de séquence << S’identifier >>} illustre le diagramme de séquence \textbf{<< S’identifier >>}.
      \begin{figure}[H]
         \centering
         \includegraphics[width=1.1\textwidth,height=0.85\textheight]{images/chp3/fig6.png}
@@ -288,7 +292,7 @@ L'analyse des besoins est une étape importante permettant de représenter le co
     \end{longtable}
     
     \item \textbf{Diagramme de séquence acteur-système}\\
-    La Figure 3.7 illustre le diagramme de séquence \textbf{<< Créer classroom >>}.
+    La figure 3.7 illustre le diagramme de séquence \textbf{<< Créer classroom >>}.
      \begin{figure}[H]
         \centering
         \includegraphics[width=1.1\textwidth,height=0.85\textheight]{images/chp3/fig7.png}
@@ -350,11 +354,11 @@ L'analyse des besoins est une étape importante permettant de représenter le co
     \end{longtable}
     
     \item \textbf{Diagramme de séquence acteur-système}\\
-    La Figure 3.8 illustre le diagramme de séquence \textbf{<< Démarrer chat>>}.
+    La figure 3.8 illustre le diagramme de séquence \textbf{<< Démarrer chat>>}.
      \begin{figure}[H]
         \centering
-        \includegraphics[width=1.1\textwidth,height=0.85\textheight]{images/chp3/fig8.png}
-        \caption{Diagramme de séquence << Démarrer chat >>}        
+        \includegraphics[width=0.5\textwidth,height=0.7\textheight]{images/chp3/fig8.png}     
+           \caption{Diagramme de séquence << Démarrer chat >>}        
         \label{fig:Diagramme de séquence << Démarrer chat >>}    
     \end{figure}
     
@@ -369,7 +373,7 @@ Pour la partie frontend, nous allons utiliser le framework Next.js.
 \begin{itemize}[itemsep=1pt, parsep=1pt]
     \item \textbf{Nextjs }\\
     Next.js est un framework gratuit et open source s'appuyant sur la bibliothèque javascript React. Next.js se distingue par sa capacité à offrir une expérience utilisateur performante et réactive. Grâce à sa structure basée sur React, Next.js permet de construire des interfaces utilisateur dynamiques et interactives avec une facilité. Son approche basée sur le rendu côté serveur garantit des performances optimales. Il offre aussi ses fonctionnalités avancées telles que le pré rendu des pages et le routage dynamique facilitant la navigation fluide et la gestion efficace des données.\\
-    La Figure 3.9 présente les statistiques de la satisfaction des utilisateurs à l’usage des frameworks et bibliothèques dans le domaine du développement web.
+    La figure 3.9 présente les statistiques de la satisfaction des utilisateurs à l’usage des frameworks et bibliothèques dans le domaine du développement web.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth,height=0.4\textheight]{images/chp3/fig9.png}
@@ -387,7 +391,7 @@ Pour notre système de gestion de base de données, nous avons opté pour une ap
 \begin{itemize}[itemsep=1pt, parsep=1pt]
     \item \textbf{PostgreSQL }\\
     PostgreSQL est un système de gestion de base de données relationnelle open source qui offre une performance robuste, une fiabilité élevée et une extensibilité exceptionnelle. Connu pour sa conformité aux normes SQL, PostgreSQL prend en charge une large gamme de fonctionnalités avancées telles que les jointures complexes, les transactions ACID (Atomicité, Cohérence, Isolation, Durabilité) et la réplication asynchrone. Il est préféré pour être un choix pour les développeurs et les entreprises qui cherchent une solution de base de données puissante et fiable pour leurs applications.\\
-    La Figure 3.10 présente les statistiques des options de base de données les plus populaires.
+    La figure 3.10 présente les statistiques des options de base de données les plus populaires.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1.2\textwidth,height=0.4\textheight]{images/chp3/fig10.png}
