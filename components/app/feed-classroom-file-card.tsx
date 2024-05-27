@@ -1,5 +1,3 @@
-"use client"
-
 import Image from "next/image"
 import { Link } from "@navigation"
 import { File, Student, Teacher } from "@prisma/client"
@@ -23,9 +21,10 @@ import {
 interface FileCardProps {
   file: File
   entity: Student | Teacher
+  role: string
 }
 
-export function FeedClassroomFileCard({ file, entity }: FileCardProps) {
+export function FeedClassroomFileCard({ file, entity, role }: FileCardProps) {
   const t = useTranslations("app.components.app.feed-classroom-file-card")
 
   return (
@@ -79,7 +78,7 @@ export function FeedClassroomFileCard({ file, entity }: FileCardProps) {
           <DropdownMenuContent>
             <DropdownMenuLabel>{t("more-options")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {file.type === "application/pdf" && (
+            {file.type === "application/pdf" && role === "STUDENT" && (
               <>
                 <FeedClassroomOpenChat file={file} studentId={entity.id} />
                 <DropdownMenuSeparator />
@@ -106,7 +105,6 @@ export function FeedClassroomFileCard({ file, entity }: FileCardProps) {
             <DropdownMenuItem asChild>
               <DownloadFileButton file={file} />
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

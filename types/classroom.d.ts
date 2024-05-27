@@ -1,6 +1,6 @@
 import {
   Classroom,
-  Comment,
+  Comment as CommentPrisma,
   File,
   Post as PostPrisma,
   Reaction,
@@ -19,8 +19,8 @@ export type Classroom = Classroom & {
   posts: Post[]
 }
 
-export type comment = Comment & {
+export type Comment = CommentPrisma & {
   user: User
   reactions: Reaction[]
-  replies: comment[]
+  replies: Comment[]
 }

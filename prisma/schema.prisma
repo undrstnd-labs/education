@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  engineType = "binary"
 }
 
 datasource db {
@@ -219,6 +220,7 @@ model Reaction {
   createdAt DateTime @default(now())
 
   @@map(name: "reactions")
+  @@unique([reactionType, userId, commentId, postId])
 }
 
 model Conversation {

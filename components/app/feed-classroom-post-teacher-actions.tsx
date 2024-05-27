@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Teacher } from "@prisma/client"
 import { useTranslations } from "next-intl"
@@ -56,7 +55,6 @@ export function FeedClassroomPostTeacherActions({
   post,
   teacher,
 }: PostCardOptionsProps) {
-  const router = useRouter()
   const refFiles = useRef<HTMLInputElement>(null)
   const t = useTranslations(
     "app.components.app.feed-classroom-post-teacher-actions"
@@ -89,7 +87,6 @@ export function FeedClassroomPostTeacherActions({
       toast({
         title: t("toastTitleDeletePost"),
       })
-      router.refresh()
     } else {
       toast({
         title: t("toastTitleDeletePostError"),
@@ -122,18 +119,18 @@ export function FeedClassroomPostTeacherActions({
     await updatePost(post, classroom, teacher, values)
 
     if (filesToUpload.length > 0) {
-      const uploaded = await uploadFilesClassroom(files, classroom, post)
+      await uploadFilesClassroom(files, classroom, post)
       const createdFiles = await Promise.all(
         filesToUpload.map((file) => createFile(file, post, classroom, teacher))
       )
 
-      const postUpdatedFiles = await updatePostFiles(
-        createdFiles,
-        post,
-        classroom
-      )
-
-      if (uploaded && createdFiles && postUpdatedFiles) {
+      const uploaded = await updatePostFiles(createdFiles, post, classroom)
+      if (!uploaded) {
+        return toast({
+          title: t("toastTitleUploadFilesError"),
+          variant: "destructive",
+        })
+      } else {
         toast({
           title: t("toastTitleUploadFiles"),
         })
@@ -146,18 +143,12 @@ export function FeedClassroomPostTeacherActions({
       )
 
       if (!filesDeleted) {
-        toast({
+        return toast({
           title: t("toastTitleDeleteFilesError"),
           variant: "destructive",
         })
-      } else {
-        toast({
-          title: t("toastTitleUploadFiles"),
-        })
       }
     }
-
-    router.refresh()
     setloading(false)
     setIsModifyOpen(false)
   }
@@ -247,7 +238,11 @@ export function FeedClassroomPostTeacherActions({
                 </FormItem>
               )}
             />
-            <FormField
+
+            {/**
+             * #TODO: Fix the file upload
+             */}
+            {/*       <FormField
               control={form.control}
               name="files"
               render={({ field }) => (
@@ -302,7 +297,7 @@ export function FeedClassroomPostTeacherActions({
                   </div>
                 </FormItem>
               )}
-            />
+            /> */}
 
             <Button type="submit" className="w-full" disabled={loading}>
               {loading && (

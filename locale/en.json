@@ -23,8 +23,6 @@
       "home": "Home"
     },
     "Classroom": {
-      "firstReply": "Add your first reply",
-      "firstReplyDescription": "Create a reply to this comment",
       "updatedCommentTitleLabel": "Comment content",
       "updatedCommentTitle": "Update comment",
       "upadtedCommentToastTitleError": "Error",
@@ -265,14 +263,6 @@
     "Config": {
       "LanguageSwitch": {
         "locale": "{locale, select, en {English} fr {French} other {Unknown}}"
-      },
-      "ReactionSwitch": {
-        "LIKE": "Like",
-        "DISLIKE": "Dislike",
-        "LOVE": "Love",
-        "APPLAUSE": "Applause",
-        "WOW": "Wow",
-        "INSIGHTFUL": "Insightful"
       }
     }
   },
@@ -571,6 +561,39 @@
           "formLabelDescriptionAddPost": "Post description",
           "postFilesLabel": "Post Files",
           "formClassroomButton": "Submit"
+        },
+        "feed-classroom-post-reactions": {
+          "LIKE": "Like",
+          "DISLIKE": "Dislike",
+          "LOVE": "Love",
+          "APPLAUSE": "Applause",
+          "WOW": "Wow",
+          "INSIGHTFUL": "Insightful"
+        },
+        "feed-classroom-post-comment": {
+          "just-now": "Just now",
+          "minutes-ago": "minutes ago",
+          "hours-ago": "hours ago",
+          "days-ago": "days ago",
+          "option-comment": "Comment options",
+          "edit-comment": "Edit",
+          "delete-comment": "Delete",
+          "dialog-title-edit": "Update comment",
+          "dialog-description-edit": "Update the comment content",
+          "dialog-confirm-edit": "Confirm",
+          "dialog-cancel-edit": "Cancel",
+          "updated-comment-title-label": "Comment content",
+          "add-comment-placeholder": "Add a comment",
+          "form-comment-button": "Update",
+          "edited": "Edited",
+          "toast-error-update": "Failed to update comment",
+          "toast-error-delete": "Failed to delete comment",
+          "alert-dialog-title-delete": " Are you sure you want to delete?",
+          "alert-dialog-description-delete": "This action can be undone. This will permanently delete your comment.",
+          "alert-dialog-cancel": "Cancel",
+          "alert-dialog-action": "Confirm",
+          "placeholder-empty": "Write your first reply",
+          "placeholder-empty-description": "Create a reply to this comment"
         }
       },
       "shared": {

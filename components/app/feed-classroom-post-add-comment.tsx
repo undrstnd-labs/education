@@ -1,8 +1,8 @@
-"use client"
-
-import { KeyboardEvent, useRef, useState } from "react"
+import React, { KeyboardEvent, useRef, useState } from "react"
+import Image from "next/image"
 import { createComment } from "@/actions/comment"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Post, Student, Teacher, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -13,7 +13,6 @@ import { toast } from "@/hooks/use-toast"
 
 import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Form,
   FormControl,
@@ -23,18 +22,22 @@ import {
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
 
-interface CommentAddCardProps {
-  postId: string
-  userId: string
-  parentid?: string
-}
-
-const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
+export function FeedClassroomPostAddComment({
+  entity,
+  post,
+  parentId,
+}: {
+  entity: (Student & { user: User }) | (Teacher & { user: User })
+  post: Post
+  parentId?: string
+}) {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
+
   const t = useTranslations("Pages.Classroom")
   const formSchema = commentAddCardSchema(t)
-  const router = useRouter()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,15 +45,23 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
     },
   })
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault()
+      form.handleSubmit(onSubmit)()
+    }
+  }
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true)
-    const comment = await createComment(userId, postId, values.text, parentid)
+    const comment = await createComment(
+      entity.user.id,
+      post.id,
+      values.text,
+      parentId
+    )
+
     if (comment) {
-      toast({
-        title: t("commendAddedTitleToast"),
-        description: t("commendAddedDescriptionToast"),
-        variant: "default",
-      })
       form.reset()
       router.refresh()
     } else {
@@ -63,15 +74,19 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
 
     setLoading(false)
   }
-  const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault()
-      form.handleSubmit(onSubmit)()
-    }
-  }
+
   return (
-    <Card>
-      <CardContent className="w-full  px-6 py-3">
+    <div className="flex items-start space-x-4 px-4 py-2">
+      <div className="hidden flex-shrink-0 sm:block">
+        <Image
+          className="inline-block h-10 w-10 rounded-full"
+          src={entity.user.image!}
+          alt={entity.user.name!}
+          width={100}
+          height={100}
+        />
+      </div>
+      <div className="min-w-0 flex-1">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
@@ -87,17 +102,28 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
                         disabled={loading}
                         ref={textareaRef}
                         onKeyDown={handleKeyDown}
+                        rows={3}
+                        className="block w-full resize-none"
                       />
-
                       <Button
                         type="submit"
-                        size={"icon"}
-                        variant={"outline"}
-                        className="absolute bottom-2 right-2 flex h-6 w-6 items-center justify-center rounded-full border border-gray-500
-                       hover:bg-accent max-sm:size-5"
-                        disabled={loading}
+                        variant="default"
+                        size="sm"
+                        className="absolute bottom-2 right-2"
                       >
-                        <Icons.add className="size-5 text-gray-500 max-sm:size-4 " />
+                        {loading ? (
+                          <Icons.loader
+                            className="h-6 w-6 animate-spin text-secondary"
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Icons.enter
+                            className="h-6 w-6 text-secondary"
+                            aria-hidden="true"
+                          />
+                        )}
+
+                        <span className="sr-only">Comment</span>
                       </Button>
                     </div>
                   </FormControl>
@@ -108,9 +134,7 @@ const CommentAddCard = ({ postId, userId, parentid }: CommentAddCardProps) => {
             />
           </form>
         </Form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
-
-export default CommentAddCard

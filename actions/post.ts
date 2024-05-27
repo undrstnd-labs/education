@@ -106,3 +106,25 @@ export async function deleteFile(file: File, post: Post) {
     },
   })
 }
+
+export async function getPost(postId: string) {
+  return await db.post.findUnique({
+    where: {
+      id: postId,
+    },
+    include: {
+      teacher: {
+        include: {
+          user: true,
+        },
+      },
+      files: true,
+      reactions: true,
+      comments: {
+        include: {
+          user: true,
+        },
+      },
+    },
+  })
+}

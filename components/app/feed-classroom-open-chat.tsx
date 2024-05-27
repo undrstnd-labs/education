@@ -24,12 +24,7 @@ export function FeedClassroomOpenChat({
     <DropdownMenuItem
       className="flex items-center gap-2 hover:cursor-pointer"
       onClick={async () => {
-        const chat = await saveChat(
-          file.id,
-          studentId,
-          file,
-          `/chat/c/${file.id}`
-        )
+        await saveChat(file.id, studentId, file, `/chat/c/${file.id}`)
         router.push(`/chat/c/${file.id}`)
         router.refresh()
       }}

@@ -8,7 +8,7 @@ export async function createComment(
   text: string,
   parentId?: string
 ) {
-  const comment = await db.comment.create({
+  return await db.comment.create({
     data: {
       text,
       userId,
@@ -16,7 +16,6 @@ export async function createComment(
       parentId: parentId || null,
     },
   })
-  return comment
 }
 
 export async function updateComment(
@@ -25,7 +24,7 @@ export async function updateComment(
   text: string,
   parentId: string | null
 ) {
-  const comment = await db.comment.update({
+  return await db.comment.update({
     where: {
       id: commentId,
       postId,
@@ -35,15 +34,13 @@ export async function updateComment(
       parentId,
     },
   })
-  return comment
 }
 
 export async function deleteComment(postId: string, commentId: string) {
-  const comment = await db.comment.delete({
+  return await db.comment.delete({
     where: {
       id: commentId,
       postId,
     },
   })
-  return comment
 }

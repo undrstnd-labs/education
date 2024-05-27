@@ -1,10 +1,9 @@
 "use client"
 
-import { useRef, useState } from "react"
-import Image from "next/image"
+import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "@navigation"
-import { Post, File as SupabaseFile, Teacher } from "@prisma/client"
+import { File as SupabaseFile, Teacher } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { DropzoneOptions } from "react-dropzone"
 import { useForm } from "react-hook-form"
@@ -14,15 +13,12 @@ import { Classroom } from "@/types/classroom"
 
 import { addPostSchema } from "@/config/schema"
 import { uploadFilesClassroom } from "@/lib/storage"
-import { useMediaQuery } from "@/hooks/use-media-query"
 import { toast } from "@/hooks/use-toast"
 
 import { Icons } from "@/components/shared/icons"
 import { ResponsiveDialog } from "@/components/shared/responsive-dialog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
 import {
   FileInput,
   FileUploader,
@@ -83,7 +79,6 @@ export function FeedClassroomAddPost({
   classroom,
 }: FeedClassroomAddPost) {
   const router = useRouter()
-
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
   const [progress, setProgress] = useState<number>(0)
@@ -196,6 +191,7 @@ export function FeedClassroomAddPost({
           title: t("upload-success"),
         })
         await new Promise((resolve) => setTimeout(resolve, 500))
+        router.push(`/classroom/${classroom.id}`)
       } catch (error) {
         console.log(error)
         toast({
@@ -209,7 +205,6 @@ export function FeedClassroomAddPost({
     }
 
     setOpen(false)
-    router.refresh()
     form.reset({ files: [] })
     setLoading(false)
   }
@@ -345,7 +340,6 @@ export function FeedClassroomAddPostTrigger({
   classroom,
 }: FeedClassroomAddPost) {
   const router = useRouter()
-
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
   const [progress, setProgress] = useState<number>(0)
@@ -391,6 +385,7 @@ export function FeedClassroomAddPostTrigger({
     return interval
   }
 
+  // TODO: Send an email using nodemailer
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true)
 
@@ -458,6 +453,7 @@ export function FeedClassroomAddPostTrigger({
           title: t("upload-success"),
         })
         await new Promise((resolve) => setTimeout(resolve, 500))
+        router.push(`/classroom/${classroom.id}`)
       } catch (error) {
         console.log(error)
         toast({
@@ -471,7 +467,6 @@ export function FeedClassroomAddPostTrigger({
     }
 
     setOpen(false)
-    router.refresh()
     form.reset({ files: [] })
     setLoading(false)
   }

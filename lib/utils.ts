@@ -42,10 +42,6 @@ export function formatDate(date: Date, t: (arg: string) => string): string {
     return `${Math.floor(diffInSeconds / 3600)} ${t("hours-ago")}`
   } else if (diffInSeconds < 604800) {
     return `${Math.floor(diffInSeconds / 86400)} ${t("days-ago")}`
-  } else if (diffInSeconds < 2419200) {
-    return `${Math.floor(diffInSeconds / 604800)} ${t("days-ago")}`
-  } else if (diffInSeconds < 29030400) {
-    return `${Math.floor(diffInSeconds / 2419200)} ${t("days-ago")}`
   } else {
     return date.toLocaleDateString("en-US", {
       year: "numeric",
