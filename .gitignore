@@ -50,3 +50,5 @@ next-env.d.ts
 *.mtc
 *.mtc*
 *.out
+*.bbl
+*.blg
