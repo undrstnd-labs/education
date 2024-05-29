@@ -23,6 +23,8 @@
       "home": "Home"
     },
     "Classroom": {
+      "firstReply": "Create a reply to this comment",
+      "firstReplyDescription": "Write your first reply",
       "updatedCommentTitleLabel": "Comment content",
       "updatedCommentTitle": "Update comment",
       "upadtedCommentToastTitleError": "Error",
@@ -43,6 +45,8 @@
       "toastPostModifiedSuccessDescription": "You have successfully modified a post.",
       "toastPostModifiedFailed": "Post modification failed",
       "toastPostModifiedFailedDescription": "An error occurred while modifying the post. Please try again.",
+      "toastPostCreatedFailed": "Post creation failed",
+      "toastPostCreatedFailedDescription": "An error occurred while creating the post. Please try again.",
       "toastPostCreatedSuccess": "Post created successfully",
       "toastPostCreatedSuccessDescription": "You have successfully created a post.",
       "toastFilesFailed": "Error",
@@ -51,6 +55,10 @@
       "toastFilesSuccessDescription": "You have successfully uploaded files. You can now post them.",
       "uploadButtonLabel": "Upload Files",
       "postFilesLabel": "Post Files",
+      "formLabelDescriptionAddPost": "Post description",
+      "formPlaceholderDescriptionAddPost": "Enter your post description here",
+      "formLabelNameAddPost": "Post title",
+      "formPlaceholderNameAddPost": "Enter your post title here",
       "createPostTitle": "Create a new post",
       "updatePostTitle": "Update post",
       "buttonCreate": "Create classroom",
@@ -62,6 +70,7 @@
       "formTitleUpdateClassroom": "Update Classroom",
       "formLabelClassroomCode": "Classroom code",
       "formClassroomCodePlaceholder": "Enter your classroom code here",
+      "formClassroomButton": "Submit",
       "formClassroomJoinButton": "Join",
       "joinApiSuccess": "Classroom joined successfully",
       "joinApiSuccessDescription": "You have successfully joined this classroom.",
@@ -118,12 +127,51 @@
         "step3": "Make sure that on the same 'Access, Emails' page, the 'Keep my email addresses private' option is unchecked.",
         "step4": "Go to 'Public profile' and select your university email as the public email."
       },
+      "EmailInput": {
+        "empty-command": "No university found.",
+        "search-command": "Search for a university",
+        "options": {
+          "isimm": "Institut supérieur d'informatique et de mathématiques de Monastir",
+          "ensi": "École nationale des sciences de l'informatique",
+          "insat": "Institut national des sciences appliquées et de technologie",
+          "fst": "Faculté des sciences de Tunis",
+          "ipeit": "Institut préparatoire aux études d'ingénieur de Tunis",
+          "ihec": "Institut des hautes études commerciales de Carthage",
+          "ipeis": "Institut préparatoire aux études d'ingénieur de Sfax",
+          "ipest": "Institut préparatoire aux études d'ingénieur de Tunis",
+          "iset": "Institut des sciences et des techniques de Sousse",
+          "isetn": "Institut des sciences et des techniques de Nabeul",
+          "issatso": "Institut des sciences appliquées et de technologie de Sousse",
+          "esstt": "École supérieure des sciences et de la technologie de Tunis",
+          "enit": "École nationale d'ingénieurs de Tunis"
+        }
+      },
       "PassCodeAuth": {
         "verify-account": "Verify Your Account",
         "verify-account-description": "Enter the 6-digit code sent to your email address",
         "email-sent": "An email has been sent to",
         "error": "Invalid code",
         "try-again": "Please check your email and try again"
+      },
+      "OnboardingAuth": {
+        "photo": "Profile picture",
+        "change-image": "Change image",
+        "name": "Full name",
+        "placeholderName": "Jean Dupont",
+        "bio": "Bio",
+        "placeholderBio": "I'm a student at ...",
+        "phone": "Phone",
+        "email": "Email",
+        "submit": "Submit",
+        "role": "Role",
+        "placeholderRole": "Please select your role",
+        "student": "Student",
+        "teacher": "Teacher",
+        "image-too-large": "Image is too large",
+        "image-description-error": "Please upload an image less than 3MB",
+        "error-toast-title": "Failed to update profile",
+        "success-toast-title": "Profile updated",
+        "success-toast-description": "Your profile has been updated successfully."
       },
       "Prompt": {
         "new-chat": "New Chat",
@@ -158,6 +206,21 @@
         "unknown": "Unknown",
         "incident": "Incident",
         "under-maintenance": "nder Maintenance"
+      },
+      "PostCardOptions": {
+        "toastTitleDeletePost": "Post deleted successfully",
+        "toastDescriptionDeletePost": "You have successfully deleted a post.",
+        "error-toast-delete": "Failed to delete post",
+        "error-description-toast-delete": "An error occurred while deleting the post. Please try again.",
+        "postOption": "Post Options",
+        "editPost": "Edit",
+        "deletePost": "Delete",
+        "alertDialogTitleDelete": " Are you sure you want to delete?",
+        "alertDialogDescriptionDelete": "This action can be undone. This will permanently delete your post.",
+        "alertDialogCancel": "Cancel",
+        "alertDialogAction": "Confirm",
+        "toastTitleDeletePostError": "Failed to delete post",
+        "toastDescriptionDeletePostError": "An error occurred while deleting the post. Please try again."
       },
       "Profile": {
         "alertDialogTitleDelete": " Are you sure you want to delete?",
@@ -263,6 +326,14 @@
     "Config": {
       "LanguageSwitch": {
         "locale": "{locale, select, en {English} fr {French} other {Unknown}}"
+      },
+      "ReactionSwitch": {
+        "LIKE": "Like",
+        "DISLIKE": "Dislike",
+        "LOVE": "Love",
+        "APPLAUSE": "Applause",
+        "WOW": "Wow",
+        "INSIGHTFUL": "Insightful"
       }
     }
   },
@@ -325,6 +396,10 @@
         "back": "Back",
         "profile-title": "Your profile",
         "profile-description": "Update your profile",
+        "profile-pic-title": "Profile picture",
+        "profile-pic-description": "Upload a profile photo",
+        "profile-name-title": "Your name",
+        "profile-name-description": "Your name will be visible to other users.",
         "danger-zone-title": "Danger zone",
         "danger-zone-description": "Delete your account",
         "profile-bio-title": "Bio",

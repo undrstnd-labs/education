@@ -57,7 +57,7 @@
       "postFilesLabel": "Fichiers de post",
       "formLabelDescriptionAddPost": "Description du post",
       "formPlaceholderDescriptionAddPost": "Entrez la description du post ici",
-      "formLabelNameAddPost": "Nom du post",
+      "formLabelNameAddPost": "Titre du post",
       "formPlaceholderNameAddPost": "Entrez le nom du post ici",
       "createPostTitle": "Créer un nouveau post",
       "updatePostTitle": "Mettre à jour le post",
@@ -91,7 +91,7 @@
       "status": "Statut",
       "classCode": "Code de la classe",
       "archived": "Archivé",
-      "unarchived": "Dé-archivé",
+      "unarchived": "Désarchivé",
       "inputFilterNames": "Filtrer les noms...",
       "columnsLabel": "Colonnes",
       "noResultsLablel": "Aucun résultat.",
@@ -337,6 +337,7 @@
       }
     }
   },
+
   "Metadata": {
     "Layout": {
       "PrincipalLayout": {
@@ -374,35 +375,70 @@
         "feed": "Votre fil",
         "posted": "Publié",
         "commented": "Commenté",
-        "metadata-title": "Accueil"
+        "metadata-title": "Accueil",
+        "nothing-title": "Il n'y a rien à montrer ici",
+        "paragraph": "Aucune activité n'a encore été enregistrée."
       },
       "classroom": {
         "title": "Salles de classe",
         "create-classroom": "Créez votre première salle de classe",
         "paragraph": "Créez une salle de classe pour commencer à partager des publications et des fichiers avec vos étudiants.",
         "join-classroom": "Rejoindre une salle de classe",
-        "join-classroom-description": "Entrez le code de la salle de classe pour rejoindre une salle de classe."
+        "join-classroom-description": "Entrez le code de la salle de classe pour rejoindre une salle de classe.",
+        "add-post": "Ajouter un post",
+        "add-post-description": "Créez un poste pour commencer à partager avec vos élèves.",
+        "nothing-title": "Il n'y a rien à montrer ici",
+        "nothing-paragraph": "Aucun poste n'a encore été créé."
       },
       "account": {
         "metadata-title": "Compte",
         "account": "Compte",
         "back": "Retour",
+        "profile-title": "Votre profil",
+        "profile-description": "Modifier votre profile",
         "profile-pic-title": "Photo de profil",
         "profile-pic-description": "Téléchargez une photo de profil",
         "profile-name-title": "Votre nom",
         "profile-name-description": "Votre nom sera visible pour les autres utilisateurs.",
+        "danger-zone-title": "Zone dangereuse",
+        "danger-zone-description": "Supprimer votre description",
         "profile-bio-title": "Bio",
         "profile-bio-description": "Dites-nous un peu sur vous.",
         "save": "Enregistrer"
       },
       "preference": {
-        "metadata-title": "Préférence"
+        "metadata-title": "Préférence",
+        "theme": "Changer de thème",
+        "theme-description": "Choisissez un thème qui vous convient.",
+        "language": "Changer de langue",
+        "language-description": "Choisissez une langue qui vous convient."
       },
       "danger-zone": {
         "metadata-title": "Zone dangereuse"
       },
       "shared": {
-        "metadata-title": "Partagé"
+        "metadata-title": "Partagé",
+        "files": "Vos fichiers partagés",
+        "files-description": "Tous vos fichiers partagés avec nous sont ici.",
+        "messages": "messages",
+        "view-chat": "Voir la conversation",
+        "more-options": "Plus d'options",
+        "delete": "Supprimer le fichier",
+        "title-dialog": "Êtes-vous sûr de vouloir supprimer?",
+        "description-dialog": "Cette action peut être annulée. Cela supprimera définitivement votre fichier.",
+        "cancel": "Annuler",
+        "no-matching-results": "Aucun résultat correspondant",
+        "no-matching-results-description": "Aucun fichier trouvé correspondant à votre requête de recherche.",
+        "create-chat": "Créer une nouvelle conversation"
+      },
+      "otp-code": {
+        "metadata-title": "Code OTP",
+        "metadata-description": "Entrez le code que vous avez reçu par email",
+        "button-back": "Retour",
+        "page-title": "Bienvenue de retour",
+        "page-description": "Entrez votre adresse email pour recevoir un lien magique",
+        "new-user": "Nouveau sur le site ?",
+        "label-new-user": "Créer un compte"
       }
     },
     "components": {
@@ -413,7 +449,8 @@
           "dashboard": "Tableau de bord",
           "chat": "Conversations",
           "your-classrooms": "Vos salles de classe",
-          "archived": "Archivés"
+          "archived": "Archivés",
+          "no-classrooms": "Pas de classrooms..."
         },
         "feed-add-classroom": {
           "formSchemaNameMessage": "Le nom de la salle de classe doit comporter au moins 4 caractères.",
@@ -453,6 +490,7 @@
           "alertDialogAction": "Confirmer",
           "leaveApiSuccess": "Salle de classe quittée avec succès",
           "alertDialogDescriptionUnarchive": "Cette action peut être annulée. Cela désarchivera la salle de classe.",
+          "leaveApiSuccessDescription": "Vous avez réussi à quitter cette salle de classe.",
           "alertDialogLeave": "Êtes-vous sûr de vouloir quitter cette salle de classe?",
           "alertDialogLeaveDescription": "Cette action peut être annulée. Cela vous retirera de la salle de classe.",
           "toastDescriptionDeleteClassroom": "Vous avez supprimé une salle de classe avec succès.",
@@ -484,7 +522,83 @@
           "image-description-error": "Veuillez télécharger une image de moins de 3Mo",
           "save": "Enregistrer",
           "image-uploaded": "Image téléchargée avec succès",
-          "image-upload-failed": "Échec du téléchargement de l'image"
+          "image-upload-failed": "Échec du téléchargement de l'image",
+          "profile-no-updated": "Failed to update profile",
+          "name": "Nom complet",
+          "placeholderName": "John Doe",
+          "bio": "Biographie",
+          "placeholderBio": "Étudiant à ...",
+          "submit": "Modifier"
+        },
+        "account-delete-profile": {
+          "title-dialog": "Êtes-vous sûr de vouloir supprimer?",
+          "description-dialog": "Cette action peut être annulée. Cela supprimera définitivement votre compte.",
+          "cancel": "Annuler",
+          "delete": "Oui, supprimer mon compte"
+        },
+        "account-shared-pdf-preview": {
+          "error": "Erreur de chargement du PDF"
+        },
+        "auth-otp-code": {
+          "verify-account": "Vérifier votre compte",
+          "verify-account-description": "Entrez le code à 6 chiffres envoyé à votre adresse e-mail",
+          "email-sent": "Un e-mail a été envoyé à",
+          "email": "Vous devez entrer un email valide",
+          "toast-error": "Assurez-vous d'avoir entré le bon code"
+        },
+        "auth-input-university-form": {
+          "empty-command": "Aucune université trouvée.",
+          "search-command": "Rechercher une université",
+          "options": {
+            "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
+            "ensi": "National School of Computer Science",
+            "insat": "National Institute of Applied Sciences and Technology",
+            "fst": "Faculty of Sciences of Tunis",
+            "ipeit": "Preparatory Institute for Engineering Studies of Tunis",
+            "ihec": "Carthage Higher Institute of Commerce",
+            "ipeis": "Preparatory Institute for Engineering Studies of Sfax",
+            "ipest": "Preparatory Institute for Engineering Studies of Tunis",
+            "iset": "Higher Institute of Technological Studies of Sousse",
+            "isetn": "Higher Institute of Technological Studies of Nabeul",
+            "issatso": "Higher Institute of Applied Sciences and Technology of Sousse",
+            "esstt": "Higher School of Sciences and Technology of Tunis",
+            "enit": "National Engineering School of Tunis"
+          }
+        },
+        "auth-onboarding-form": {
+          "photo": "Photo de profil",
+          "change-image": "Changer d'image",
+          "name": "Nom complet",
+          "placeholderName": "John Doe",
+          "bio": "Biographie",
+          "placeholderBio": "Étudiant à ...",
+          "phone": "Téléphone",
+          "email": "Email",
+          "submit": "Soumettre",
+          "role": "Rôle",
+          "placeholderRole": "Veuillez sélectionner votre rôle",
+          "student": "Étudiant",
+          "teacher": "Enseignant",
+          "image-too-large": "L'image est trop grande",
+          "image-description-error": "Veuillez télécharger une image de moins de 3Mo",
+          "error-toast-title": "Échec de la mise à jour du profil",
+          "success-toast-title": "Profile mis à jour",
+          "success-toast-description": "Votre profil a été mis à jour avec succès."
+        },
+        "feed-classroom-add-post": {
+          "create-post": "Créer un nouveau poste",
+          "create-post-description": "Créez un poste pour commencer à partager avec vos élèves.",
+          "classroom-name-label": "Nom de la salle de classe",
+          "classroom-name-placeholder": "Entrez le nom de votre salle de classe ici",
+          "classroom-content-label": "Contenu du poste",
+          "classroom-content-placeholder": "Entrez le contenu de votre poste ici",
+          "or-drag-drop": "ou glisser-déposer",
+          "file-type": "Les images et les fichiers PDF sont autorisés",
+          "upload-success": "Fichier importé avec succès",
+          "upload-failed": "Échec du importation du fichier",
+          "click-to-select": "Cliquez pour importer",
+          "formClassroomButton": "Soumettre",
+          "toastPostCreatedFailed": "Échec de la création du poste"
         },
         "feed-classroom-post-card": {
           "just-now": "À l'instant",
@@ -493,6 +607,82 @@
           "days-ago": "jours plus tôt",
           "weeks-ago": "semaines plus tôt",
           "months-ago": "mois plus tôt"
+        },
+        "feed-classroom-file-card": {
+          "open": "Ouvrir",
+          "download": "Télécharger le fichier",
+          "copy": "Copier le lien du fichier",
+          "error": "Erreur lors de l'affichage du PDF",
+          "more-options": "Plus d'options",
+          "view-file": "Voir le fichier",
+          "download-file": "Télécharger le fichier"
+        },
+        "feed-classroom-open-chat": {
+          "open-chat": "Discutez avec un fichier"
+        },
+        "feed-classroom-post-teacher-actions": {
+          "toastTitleDeletePost": "Poste supprimé avec succès",
+          "toastTitleDeletePostError": "Échec de la suppression du poste",
+          "postOption": "Options de poste",
+          "editPost": "Éditer",
+          "deletePost": "Supprimer",
+          "alertDialogTitleDelete": " Êtes-vous sûr de vouloir supprimer ?",
+          "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre poste.",
+          "alertDialogCancel": "Annuler",
+          "alertDialogAction": "Confirmer",
+          "dialog-title-edit": "Modifier le poste",
+          "dialog-description-edit": "Mettez à jour le contenu du poste",
+          "formLabelNameAddPost": "Titre du poste",
+          "formLabelDescriptionAddPost": "Description du post",
+          "postFilesLabel": "Fichiers de post",
+          "formClassroomButton": "Soumettre"
+        },
+        "feed-classroom-post-reactions": {
+          "LIKE": "J'aime",
+          "DISLIKE": "Je n'aime pas",
+          "LOVE": "J'adore",
+          "APPLAUSE": "Applaudissements",
+          "WOW": "Wouah",
+          "INSIGHTFUL": "Instructif"
+        },
+        "feed-classroom-post-comment": {
+          "just-now": "Juste maintenant",
+          "minutes-ago": "minutes plus tôt",
+          "hours-ago": "heures plus tôt",
+          "days-ago": "jours plus tôt",
+          "option-comment": "Options de commentaire",
+          "edit-comment": "Éditer",
+          "delete-comment": "Supprimer",
+          "dialog-title-edit": "Modifier le commentaire",
+          "dialog-description-edit": "Mettez à jour le contenu du commentaire",
+          "dialog-confirm-edit": "Confirmer",
+          "dialog-cancel-edit": "Annuler",
+          "updated-comment-title-label": "Contenu du commentaire",
+          "add-comment-placeholder": "Ajouter un commentaire",
+          "form-comment-button": "Modifier",
+          "edited": "Modifié",
+          "toast-error-update": "Échec de la mise à jour du commentaire",
+          "toast-error-delete": "Échec de la suppression du commentaire",
+          "alert-dialog-title-delete": " Êtes-vous sûr de vouloir supprimer ?",
+          "alert-dialog-description-delete": "Cette action peut être annulée. Cela supprimera définitivement votre commentaire.",
+          "alert-dialog-cancel": "Annuler",
+          "alert-dialog-action": "Confirmer",
+          "placeholder-empty": "Écrivez votre première réponse",
+          "placeholder-empty-description": "Créer une réponse à ce commentaire"
+        }
+      },
+      "shared": {
+        "pdf-view-dialog": {
+          "open": "Aperçu du fichier",
+          "download": "Télécharger le fichier",
+          "copy": "Copier le lien du fichier",
+          "error": "Erreur de chargement du PDF"
+        },
+        "search-input": {
+          "placeholder": "Commencez à écrire ce que vous pensez..."
+        },
+        "download-file-button": {
+          "download": "Télécharger"
         }
       }
     }
