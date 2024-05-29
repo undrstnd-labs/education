@@ -12,22 +12,22 @@ import SimpleBar from "simplebar-react"
 import { cn, formatDate } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
-import { Button } from "@/components/ui/Button"
+import { Icons } from "@/components/shared/icons"
+import { PDFViewDialog } from "@/components/shared/pdf-view-dialog"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/DropdownMenu"
-import { Input } from "@/components/ui/Input"
-import { Label } from "@/components/ui/Label"
+} from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/Popover"
-import { PDFFullScreen } from "@/components/display/PDFFullScreen"
-import { Icons } from "@/components/icons/Lucide"
+} from "@/components/ui/popover"
 
 import "react-pdf/dist/Page/TextLayer.css"
 import "react-pdf/dist/Page/AnnotationLayer.css"
@@ -165,7 +165,7 @@ export function PDFRender({
                 <div className="l grid gap-2">
                   <div className="-ml-1 grid w-full grid-cols-2 items-center gap-3 space-x-3">
                     <Label htmlFor="rotation">{t("new-window")}</Label>
-                    <PDFFullScreen file={file} />
+                    <PDFViewDialog file={file} />
                   </div>
                   <div className="grid grid-cols-2 items-center gap-4">
                     <Label htmlFor="zoom">{t("zoom")}</Label>

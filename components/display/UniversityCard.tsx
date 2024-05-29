@@ -1,7 +1,8 @@
 import Image from "next/image"
+
 import { TranslationFunction, University } from "@/types"
 
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 
 export function UniversityCard({
   university,

@@ -1,15 +1,15 @@
-"use server"
-
 import { redirect } from "@navigation"
 import { Student, User } from "@prisma/client"
 import { getTranslations } from "next-intl/server"
 
 import { getCurrentStudent } from "@/lib/session"
 
+import { SidebarDesktop } from "@/components/layout/sidebar-desktop"
 import { Header } from "@/components/navigation/ChatHeader"
-import { SidebarDesktop } from "@/components/navigation/SidebarDesktop"
 
 import "simplebar-react/dist/simplebar.min.css"
+
+import { unstable_setRequestLocale } from "next-intl/server"
 
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Chat")
@@ -18,9 +18,15 @@ export async function generateMetadata() {
 
 interface ChatLayoutProps {
   children: React.ReactNode
+  params: { locale: string }
 }
 
-export default async function ChatLayout({ children }: ChatLayoutProps) {
+export default async function ChatLayout({
+  children,
+  params: { locale },
+}: ChatLayoutProps) {
+  unstable_setRequestLocale(locale)
+
   const student = (await getCurrentStudent()) as Student & {
     user: User
   }

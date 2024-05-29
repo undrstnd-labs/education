@@ -1,7 +1,7 @@
 import { Post } from "@prisma/client"
 import { v4 as uuidv4 } from "uuid"
 
-import { classroom } from "@/types/classroom"
+import { Classroom } from "@/types/classroom"
 import { supabaseFile } from "@/types/supabase"
 
 import { supabase } from "@/lib/supabase"
@@ -46,7 +46,7 @@ export async function manageAvatar(file: File, userId: string) {
 
 export async function uploadFilesClassroom(
   files: File[],
-  classroom: classroom,
+  classroom: Classroom,
   post: Post
 ): Promise<supabaseFile[]> {
   const uploadedFiles: supabaseFile[] = []
@@ -95,7 +95,7 @@ export async function uploadFilesStudent(
 
   return {
     name: file.name,
-    url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/${data.path}`,
+    url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${data.path}`,
     type: file.type,
     size: file.size,
   }
@@ -114,7 +114,7 @@ export async function deleteFile(fileUrl: string) {
     .from("files")
     .remove([
       fileUrl.split(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}storage/v1/object/public/files/`
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/`
       )[1],
     ])
 }

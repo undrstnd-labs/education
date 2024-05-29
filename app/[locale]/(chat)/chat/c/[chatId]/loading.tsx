@@ -1,7 +1,7 @@
 import React from "react"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
-import { Skeleton } from "@/components/ui/Skeleton"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Skeleton } from "@/components/ui/skeleton"
 
 // TODO: Improve the loading state
 export default async function LoadingChatPage() {

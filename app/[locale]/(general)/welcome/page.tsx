@@ -1,12 +1,19 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { Link } from "@navigation"
+import { unstable_setRequestLocale } from "next-intl/server"
 
 export const metadata: Metadata = {
   title: "Bienvenu",
 }
 
-export default function Welcome() {
+export default function Welcome({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   return (
     <main>
       <div className="prose m-auto mt-8 max-w-lg px-5 py-24 text-lg text-gray-400">

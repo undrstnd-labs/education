@@ -2,10 +2,10 @@ import * as React from "react"
 import { type UseChatHelpers } from "ai/react"
 import { useTranslations } from "next-intl"
 
-import { Button, ButtonScrollToBottom } from "@/components/ui/Button"
 import { Prompt } from "@/components/form/Prompt"
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 import { FooterText } from "@/components/showcase/ChatFooter"
+import { Button, ButtonScrollToBottom } from "@/components/ui/button"
 
 export interface ChatPanelProps
   extends Pick<

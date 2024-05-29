@@ -30,6 +30,13 @@ export async function GET(
             orderBy: {
               createdAt: "desc",
             },
+            include: {
+              comments: {
+                include: {
+                  user: true,
+                },
+              },
+            },
           },
         },
       },

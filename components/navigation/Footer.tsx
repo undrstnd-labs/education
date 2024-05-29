@@ -3,7 +3,7 @@ import Link from "next/link"
 import { marketingConfig } from "@/config/marketing"
 import { siteConfig } from "@/config/site"
 
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
 
 export default function Footer() {
   return (

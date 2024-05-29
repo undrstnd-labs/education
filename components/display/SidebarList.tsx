@@ -2,9 +2,9 @@ import { cache } from "react"
 import { Student, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
-import { getChats } from "@/lib/actions"
-
 import { SidebarItems } from "@/components/display/SidebarItems"
+
+import { getChats } from "@/undrstnd/chat"
 
 const loadChats = cache(async (studentId?: string) => {
   return await getChats(studentId)
