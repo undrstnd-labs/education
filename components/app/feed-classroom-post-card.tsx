@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { useSearchParams } from "next/navigation"
 import { Role, Student, Teacher, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
@@ -35,10 +36,10 @@ import { getPost } from "@/undrstnd/post"
 
 interface PostCardProps {
   post: Post
+  posts: Post[]
   classroom: Classroom
   entity: (Student & { user: User }) | (Teacher & { user: User })
   role: Role
-  updatePosts: (posts: Post[]) => void
 }
 
 function FileSkeleton() {
@@ -54,28 +55,35 @@ function FileSkeleton() {
 
 export function FeedClassroomPostCard({
   post: oldPost,
+  posts,
   classroom,
   entity,
   role,
-  updatePosts,
 }: PostCardProps) {
+  const searchParams = useSearchParams()
   const [isLoading, setIsLoading] = useState(true)
   const [post, setCurrentPost] = useState<Post>(oldPost)
+
   const t = useTranslations("app.components.app.feed-classroom-post-card")
 
   useEffect(() => {
     setCurrentPost(oldPost)
   }, [oldPost])
 
-  // #TODO: Make subscription to the files and check the file postId if it matches the post id and then update it
+  // #FIXME: Make subscription to the files and check the file postId if it matches the post id and then update it
   useEffect(() => {
     const fetchDataPost = async () => {
       await new Promise((resolve) => setTimeout(resolve, 4000))
-      const newPost = await getPost(post.id)
-      if (newPost) {
-        setCurrentPost(newPost as Post)
+      if (searchParams.has("loading")) {
+        return
+      } else {
+        const newPost = await getPost(post.id)
+        if (newPost) {
+          setCurrentPost(newPost as Post)
+        }
+        console.log
+        setIsLoading(false)
       }
-      setIsLoading(false)
     }
 
     const fetchDataComment = async () => {
@@ -97,7 +105,7 @@ export function FeedClassroomPostCard({
     } else {
       setIsLoading(false)
     }
-  }, [post])
+  }, [post, searchParams])
 
   const reactions = post.reactions?.reduce(
     (acc, reaction) => {
@@ -109,22 +117,6 @@ export function FeedClassroomPostCard({
     },
     {} as { [key: string]: number }
   )
-
-  //FIXME: It always add reactions & comments to the last post
-  useEffect(() => {
-    useSubscribeToReactions(post, (newPost) => {
-      console.log(newPost)
-      console.log(post)
-
-      setCurrentPost(newPost)
-    })
-  }, [post])
-
-  useEffect(() => {
-    useSubscribeToComments(post, (newPost) => {
-      setCurrentPost(newPost)
-    })
-  }, [post])
 
   return (
     <section id={post.id} className="flex flex-col gap-2">
@@ -214,7 +206,7 @@ export function FeedClassroomPostCard({
         </CardContent>
         <FeedClassroomPostAddComment entity={entity} post={post} />
         {isLoading ? (
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 p-4">
             <Skeleton className="h-12 w-12 rounded-full" />
             <div className="space-y-2">
               <Skeleton className="h-4 w-[250px]" />

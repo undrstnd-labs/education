@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {
   Comment,
   Post,
@@ -9,7 +9,6 @@ import {
   Student,
   Teacher,
 } from "@prisma/client"
-import { type LucideIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { ReactionIcon } from "@/types/icon"
@@ -63,72 +62,87 @@ export function FeedClassroomPostReactions({
   entity,
   reactions,
 }: ReactionButtonPostProps) {
+  const [isReacted, setIsReacted] = useState<Reaction | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const t = useTranslations("app.components.app.feed-classroom-post-reactions")
 
-  function isReacted() {
-    return post.reactions.find(
-      (reaction) =>
-        reaction.reactionType.toString() === icon.value &&
-        reaction.userId === entity.userId
+  useEffect(() => {
+    function checkIsReacted() {
+      return (
+        post.reactions.find(
+          (reaction) =>
+            reaction.reactionType.toString() === icon.value &&
+            reaction.userId === entity.userId
+        ) || null
+      )
+    }
+
+    setIsReacted(checkIsReacted())
+  }, [post.reactions])
+
+  const handleAddReaction = async () => {
+    setIsLoading(true)
+    await addReactionPost(entity.userId, post, icon.value as ReactionType)
+    setIsLoading(false)
+  }
+
+  const handleRemoveReaction = async () => {
+    setIsLoading(true)
+    await removeReactionPost(
+      entity.userId,
+      isReacted!.id,
+      post,
+      icon.value as ReactionType
     )
+    setIsReacted(null)
+    setIsLoading(false)
   }
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button
-          disabled={isLoading}
-          onClick={async () => {
-            setIsLoading(true)
-            const isReactedCheck = await checkReactionPost(
-              entity.userId,
-              post.id,
-              icon.value as ReactionType
-            )
-            if (!isReacted() || !isReactedCheck) {
-              await addReactionPost(
-                entity.userId,
-                post,
-                icon.value as ReactionType
-              )
-            } else {
-              try {
-                await removeReactionPost(
-                  entity.userId,
-                  // @ts-ignore: Object is possibly 'null'.
-                  isReacted().id,
-                  post,
-                  icon.value as ReactionType
-                )
-              } catch (error) {
-                console.error(error)
-              }
-            }
-            setIsLoading(false)
-          }}
-          variant={isReacted() ? "secondary" : "outline"}
-          size={"sm"}
-          style={{
-            border: "0.25px solid",
-            borderColor: isReacted() ? icon.color : "text-secondary-foreground",
-          }}
-        >
-          <icon.Icon
+        {isReacted ? (
+          <Button
+            disabled={isLoading}
+            onClick={handleRemoveReaction}
+            variant="secondary"
+            size="sm"
             style={{
-              color: isReacted() ? icon.color : "text-secondary-foreground",
+              border: "0.25px solid",
+              borderColor: icon.color,
             }}
-            className={cn(`size-4 max-sm:size-3`)}
-          />
+          >
+            <icon.Icon
+              style={{
+                color: icon.color,
+              }}
+              className={cn(`size-4 max-sm:size-3`)}
+            />
 
-          {reactions[icon.value] && (
             <span
               className={cn("ml-2 text-xs font-semibold max-sm:text-[10px]")}
             >
               {reactions[icon.value]}
             </span>
-          )}
-        </Button>
+          </Button>
+        ) : (
+          <Button
+            disabled={isLoading}
+            onClick={handleAddReaction}
+            variant="outline"
+            size="sm"
+          >
+            <icon.Icon className={cn(`size-4 max-sm:size-3`)} />
+
+            {reactions[icon.value] && (
+              <span
+                className={cn("ml-2 text-xs font-semibold max-sm:text-[10px]")}
+              >
+                {reactions[icon.value]}
+              </span>
+            )}
+          </Button>
+        )}
       </TooltipTrigger>
       <TooltipContent>
         <p style={{ color: icon.color }}> {t(`${icon.value}`)} </p>

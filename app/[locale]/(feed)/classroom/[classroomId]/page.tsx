@@ -11,7 +11,6 @@ import {
   userAuthentificateVerification,
 } from "@/lib/session"
 
-import { FeedClassroomAddPost } from "@/components/app/feed-classroom-add-post"
 import { FeedClassroomCard } from "@/components/app/feed-classroom-card"
 import { FeedClassroomPosts } from "@/components/app/feed-classroom-posts"
 
@@ -96,9 +95,6 @@ export default async function ClassroomPage({
   return (
     <div className="flex flex-col gap-4">
       <FeedClassroomCard entity={entity} classroom={classroom} />
-      {user.role === "TEACHER" && classroom.posts.length > 0 && (
-        <FeedClassroomAddPost teacher={entity} classroom={classroom} />
-      )}
 
       <FeedClassroomPosts
         classroom={classroom}

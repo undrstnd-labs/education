@@ -3,25 +3,31 @@ import { Post } from "@/types/classroom"
 import { supabase } from "@/lib/supabase"
 
 type Callback = (updatedPost: Post) => void
-type Callbacks = (updatedPosts: Post[]) => void
 
-const handleReactionInserts = (payload: any, post: Post) => {
+const handleReactionInserts = (payload: any, posts: Post[]) => {
+  const postIndex = posts.findIndex((post) => post.id === payload.new.postId)
   return {
-    ...post,
-    reactions: [...post.reactions, payload.new],
+    ...posts[postIndex],
+    reactions: [...posts[postIndex].reactions, payload.new],
   }
 }
 
-const handleReactionDeletes = (payload: any, post: Post) => {
+const handleReactionDeletes = (payload: any, posts: Post[]) => {
+  const postIndex = posts.findIndex((post) =>
+    post.reactions.some((reaction) => reaction.id === payload.old.id)
+  )
+
+  const updatedReactions = posts[postIndex].reactions.filter(
+    (reaction) => reaction.id !== payload.old.id
+  )
+
   return {
-    ...post,
-    reactions: post.reactions.filter(
-      (reaction) => reaction.id !== payload.old.id
-    ),
+    ...posts[postIndex],
+    reactions: updatedReactions,
   }
 }
 
-export function useSubscribeToReactions(post: Post, callback: Callback) {
+export function useSubscribeToReactions(posts: Post[], callback: Callback) {
   supabase
     .channel("reactions")
     .on(
@@ -29,10 +35,10 @@ export function useSubscribeToReactions(post: Post, callback: Callback) {
       { event: "*", schema: "public", table: "reactions" },
       (payload) => {
         if (payload.eventType === "INSERT") {
-          const updatedPost = handleReactionInserts(payload, post)
+          const updatedPost = handleReactionInserts(payload, posts)
           callback(updatedPost)
         } else if (payload.eventType === "DELETE") {
-          const updatedPost = handleReactionDeletes(payload, post)
+          const updatedPost = handleReactionDeletes(payload, posts)
           callback(updatedPost)
         }
       }
@@ -40,71 +46,114 @@ export function useSubscribeToReactions(post: Post, callback: Callback) {
     .subscribe()
 }
 
-const handleCommentInserts = (payload: any, post: Post) => {
-  if (payload.new.parentId != null) {
-    return {
-      ...post,
-      comments: post.comments.map((comment) => {
-        if (comment.id === payload.new.parentId) {
-          return {
-            ...comment,
-            replies: [...comment?.replies, { ...payload.new, reactions: [] }],
-          }
+const handleCommentInserts = (payload: any, posts: Post[]) => {
+  if (payload.new.parentId !== null) {
+    return posts.map((post) => {
+      if (post.id === payload.new.postId) {
+        return {
+          ...post,
+          comments: post.comments.map((comment) => {
+            if (comment.id === payload.new.parentId) {
+              return {
+                ...comment,
+                comments: [
+                  ...comment.comments,
+                  { ...payload.new, reactions: [] },
+                ],
+              }
+            }
+            return comment
+          }),
         }
-        return comment
-      }),
-    }
-  }
-
-  console.log(post)
-  console.log(payload.new)
-  return {
-    ...post,
-    comments: [...post?.comments, { ...payload.new, reactions: [] }],
-  }
-}
-
-const handleCommentDeletes = (payload: any, post: Post) => {
-  return {
-    ...post,
-    comments: post.comments.filter((comment) => comment.id !== payload.old.id),
-  }
-}
-
-const handleCommentUpdates = (payload: any, post: Post) => {
-  return {
-    ...post,
-    comments: post.comments.map((comment) => {
-      if (comment.id === payload.new.id) {
-        console.log(payload.new)
-        console.log(comment)
-        return payload.new
       }
-      return comment
-    }),
+      return post
+    })
   }
+
+  return posts.map((post) => {
+    if (post.id === payload.new.postId) {
+      return {
+        ...post,
+        comments: [
+          ...post.comments,
+          {
+            ...payload.new,
+            comments: [],
+            reactions: [],
+          },
+        ],
+      }
+    }
+    return post
+  })
 }
 
-export function useSubscribeToComments(post: Post, callback: Callback) {
+const handleCommentDeletes = (payload: any, posts: Post[]) => {
+  return posts.map((post) => {
+    if (post.id === payload.old.postId) {
+      return {
+        ...post,
+        comments: post.comments
+          .map((comment) => {
+            if (comment.id === payload.old.id) {
+              if ("comments" in comment) {
+                comment.comments = [] // Clear sub-comments if any
+              }
+              return null // Mark comment for deletion
+            }
+            return comment
+          })
+          .filter(Boolean), // Remove null values (i.e., marked comments)
+      }
+    }
+    return post
+  })
+}
+
+const handleCommentUpdates = (payload: any, posts: Post[]) => {
+  return posts.map((post) => {
+    if (post.id === payload.old.postId) {
+      return {
+        ...post,
+        comments: post.comments.map((comment) => {
+          if (comment.id === payload.old.id) {
+            return {
+              ...comment,
+              ...payload.new, // Update comment with new data
+            }
+          }
+          return comment
+        }),
+      }
+    }
+    return post
+  })
+}
+
+export function useSubscribeToComments(posts: Post[], callback: Callback) {
   supabase
     .channel("comments")
     .on(
       "postgres_changes",
       { event: "*", schema: "public", table: "comments" },
       (payload) => {
-        if (payload.eventType === "INSERT") {
-          const updatedPost = handleCommentInserts(payload, post)
+        /*         if (payload.eventType === "INSERT") {
+          const updatedPost = handleCommentInserts(payload, posts)
           callback(updatedPost)
         } else if (payload.eventType === "DELETE") {
-          const updatedPost = handleCommentDeletes(payload, post)
+          const updatedPost = handleCommentDeletes(payload, posts)
           callback(updatedPost)
         } else if (payload.eventType === "UPDATE") {
-          const updatedPost = handleCommentUpdates(payload, post)
+          const updatedPost = handleCommentUpdates(payload, posts)
           callback(updatedPost)
-        }
+        } */
       }
     )
     .subscribe()
+
+  return () => {
+    supabase.channel("comments").unsubscribe()
+  }
 }
 
 const handlePostInserts = (payload: any, posts: Post[]) => {

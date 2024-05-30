@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "@navigation"
+import { usePathname, useRouter } from "@navigation"
 import { File as SupabaseFile, Teacher } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { DropzoneOptions } from "react-dropzone"
@@ -79,6 +79,7 @@ export function FeedClassroomAddPost({
   classroom,
 }: FeedClassroomAddPost) {
   const router = useRouter()
+  const path = usePathname()
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
   const [progress, setProgress] = useState<number>(0)
@@ -126,6 +127,7 @@ export function FeedClassroomAddPost({
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true)
+    router.push(`${path}?loading=true`)
 
     const postCreated = await createPost(classroom, teacher, {
       name: values.name,
@@ -191,7 +193,6 @@ export function FeedClassroomAddPost({
           title: t("upload-success"),
         })
         await new Promise((resolve) => setTimeout(resolve, 500))
-        router.push(`/classroom/${classroom.id}`)
       } catch (error) {
         console.log(error)
         toast({
@@ -207,6 +208,9 @@ export function FeedClassroomAddPost({
     setOpen(false)
     form.reset({ files: [] })
     setLoading(false)
+
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    router.push(`${path}`)
   }
 
   return (
@@ -340,6 +344,8 @@ export function FeedClassroomAddPostTrigger({
   classroom,
 }: FeedClassroomAddPost) {
   const router = useRouter()
+  const path = usePathname()
+
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState<boolean>(false)
   const [progress, setProgress] = useState<number>(0)
@@ -388,6 +394,7 @@ export function FeedClassroomAddPostTrigger({
   // TODO: Send an email using nodemailer
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true)
+    router.push(`${path}?loading=true`)
 
     const postCreated = await createPost(classroom, teacher, {
       name: values.name,
@@ -453,7 +460,6 @@ export function FeedClassroomAddPostTrigger({
           title: t("upload-success"),
         })
         await new Promise((resolve) => setTimeout(resolve, 500))
-        router.push(`/classroom/${classroom.id}`)
       } catch (error) {
         console.log(error)
         toast({
@@ -469,6 +475,9 @@ export function FeedClassroomAddPostTrigger({
     setOpen(false)
     form.reset({ files: [] })
     setLoading(false)
+
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+    router.push(`${path}`)
   }
 
   return (
