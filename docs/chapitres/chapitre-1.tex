@@ -2,6 +2,12 @@
 \chapter{Contexte général et étude préalable}
 \label{chap:etude-preliminaire}
 \mtcaddchapter
+\definecolor{vert}{RGB}{15,134, 35}
+\definecolor{rouge}{RGB}{212,46, 46}
+\definecolor{orange}{RGB}{223,130 , 42}
+\newcommand{\oui}{\textcolor{vert}{Oui}}
+\newcommand{\non}{\textcolor{rouge}{Non}}
+
 \section*{Introduction}
 \justifying
 Ce chapitre vise à exposer l'étude préliminaire de notre projet. Tout d’abord, nous présenterons,dans la première section, le contexte général et l’entité qui nous a accueilli pour faire un stage de fin d'études. De plus, nous aborderons, dans cette section, la problématique et l'idée générale de notre projet. Puis, nous entreprendrons une analyse approfondie de l'existant en mettant en évidence les avantages et les limites des solutions similaires présentées sur le marché afin de nous en inspirer et de retenir une solution plus raffinée. Ensuite, nous détaillerons la solution retenue. Enfin, nous exposerons, dans les deux dernières sections, la méthodologie de développement la plus adaptée à la réalisation de notre projet et le diagramme de Gantt illustrant le planning général de celui-ci. Finalement, nous clôturons ce chapitre par une conclusion.
@@ -141,54 +147,47 @@ Le logo de cette plateforme est affiché dans la Figure 1.4.
         \end{itemize}
 
 \subsection{Évaluation des solutions étudiées}
-Après une étude approfondie de l’existant, nous évaluons les plateformes selon les neuf critères \textit{(Cx)} suivants :
+Après une étude approfondie de l’existant, nous évaluons les plateformes selon les neuf critères \textbf{\textit{(Cx)}} suivants :
 \begin{itemize}[itemsep=2pt, parsep=2pt]
     \item \textbf{Tokens par contexte (C1)} : Ce critère d’évaluation permet d’indiquer le nombre de tokens par contexte, représentant une mesure de la capacité du modèle à comprendre et générer du texte cohérent.
-    \item \textbf{Accès gratuit (C2)} :  Ce critère d’évaluation permet de vérifier si l'utilisation de la plateforme ne nécessite aucun paiement ou frais d'inscription.
-    \item \textbf{Benchmark de la AlpacaEval (C3)} :  L'évaluation de la plateforme selon l'outil AlpacaEval, qui est un évaluateur automatique pour les modèles de langage de suivi d'instructions.
-    \item \textbf{Gestion de contenu multimédia (C4)} :  Ce critère teste la possibilité de télécharger, stocker et accéder à divers formats de contenu tels que des audios, PDFs, vidéos et images.
-    \item \textbf{Système de chat interactif avec l’Intelligence Artificiel (C5)} : Ce critère d’évaluation vérifie si une fonctionnalité de messagerie instantanée permettant aux étudiants de poser des questions et de recevoir des réponses basées sur les contenus téléchargés.
-    \item \textbf{Création et gestion de salles de classe virtuelles (C6)} : Ce critère d’évaluation examine l’existence d’outils pour créer, gérer et partager des ressources dans des espaces de classe virtuels.
-    \item \textbf{Résumés automatiques (C7)} : Ce critère d’évaluation vérifie l’existence des fonctionnalités pour résumer et traduire automatiquement le contenu téléchargé en facilitant la compréhension dans différentes langues.
-    \item \textbf{Système de partage et collaboration (C8)} : Ce critère d’évaluation permet de vérifier l’existence d’un système de partage et de collaboration qui permet aux étudiants de partager des informations et de collaborer sur des projets ou des discussions.
-    \item  \textbf{Temps de génération de la réponse (C9)} : Ce critère d'évaluation évalue le temps estimé et nécessaire pour qu'une application réponde à une requête. Il est spécifiquement conçu pour les solutions axées sur la rapidité et qui utilisent des algorithmes intelligents, en se concentrant sur les interactions entre l'utilisateur et le système pour fournir une réponse efficace.
+    \item \textbf{Accès gratuit (C2)} : Ce critère d’évaluation permet de vérifier si l'utilisation de la plateforme ne nécessite aucun paiement ou frais d'inscription.
+    \item \textbf{Gestion de contenu multimédia (C3)} : Ce critère teste la possibilité de télécharger, stocker et accéder à divers formats de contenu tels que des PDFs et images.
+    \item \textbf{Système de chat interactif avec l’Intelligence Artificiel (C4)} : Ce critère d’évaluation vérifie si une fonctionnalité de messagerie instantanée permettant aux utilisateurs de poser des questions et de recevoir des réponses basées sur les contenus téléchargés.
+    \item \textbf{Génération de tokens par seconde (C5)} : Ce critère d'évaluation permet de mesurer la vitesse à laquelle une solution qui utilise des algorithmes intelligents est capable de générer des tokens.
+    \item \textbf{Interface utilisateur (C6)} : Ce critère permet de voir si la plateforme a une interface facile à utiliser et à comprendre.
 \end{itemize}
 
 \vspace{0.5em}
 \noindent Le résultat de l’évaluation est affiché dans le tableau \ref{tab:tableau_comparatif} ci-dessous.
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.5}
-    \setlength{\tabcolsep}{10pt} 
     \caption{Tableau comparatif entre les solutions existantes}
     \label{tab:tableau_comparatif}
-    \begin{tabular}{|l|c|c|c|c|}
+    \begin{tabular}{|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{1.75cm}|>{\centering\arraybackslash}p{4.75cm}|>{\centering\arraybackslash}p{4.75cm}|}
       \hline
+      \rowcolor{gray!25}
       \textbf{Critère} & \textbf{Google Classroom} & \textbf{Piazza} & \textbf{ChatGPT} & \textbf{POE (Llama-2-70b)} \\
       \hline
-      C1 & - & - & 6.25\% & 6.25\% \\
+      C1 & -- & -- & 4096 & 4096 \\
       \hline
-      C2 & 100\% & 100\% & 40\% & 50\% \\
+      C2 & \oui & \oui & \textcolor{orange}{Oui, mais avec une version payante} & \textcolor{orange}{Oui, mais avec des limites} \\
       \hline
-      C3 & - & - & 14.13\% & 13.87\% \\
+      C3 & \oui & \oui & \non & \non \\
       \hline
-      C4 & 80\% & 70\% & - & - \\
+      C4 & \non & \non & \oui & \oui \\
       \hline
-      C5 & - & - & 100\% & 100\% \\
+      C5 & -- & -- & 68.73 token/second & 44.7 token/second \\
       \hline
-      C6 & 100\% & 40\% & - & - \\
-      \hline
-      C7 & - & - & 60\% & 65\% \\
-      \hline
-      C8 & 70\% & 50\% & - & - \\
-      \hline
-      C9 & - & - & 12\% & 14\% \\
+      C6 & \textcolor{vert}{Très bien} & \textcolor{rouge}{Mauvaise} & \textcolor{vert}{Très bien} & \textcolor{orange}{Bien}  \\
       \hline
     \end{tabular}
 \end{table}
 
 \vspace{0.5em}
-\noindent D'après notre étude et les résultats d'analyse présentés dans le tableau \ref{tab:tableau_comparatif}, il est évident qu' aucune des solutions étudiées n'a entièrement satisfait à nos critères d'évaluation. Les solutions comme \textit{Google Classroom} et \textit{Piazza} ne présentent pas d'aspect d'intelligence artificielle permettant d'aider les étudiants dans leurs études. En revanche, les solutions dotées d'intelligence artificielle telles que ChatGPT et Poe ne répondent pas aux critères de gestion de salle de classe virtuelle ni de gestion de contenu de différents types de documents. Bien que ces dernières proposent un chat interactif avec une intelligence artificielle, celui-ci se limite au texte et ne permet pas de partager d'autres types de documents tels que des PDF ou des fichiers audio, à moins d'utiliser leur version payante.En outre, le temps de réponse de leur chatbot devient plus long en raison de l’augmentation du nombre d’utilisateurs, ce qui peut affecter la qualité de l’expérience utilisateur.
+
+\noindent \textbf{Légende}:  \hspace{0.5em} \textbf{--}: Critère n’est pas  adaptée à la solution.\\
+\noindent D'après notre étude et les résultats d'analyse présentés dans le tableau 1.1, il est évident qu' aucune des solutions étudiées n'a entièrement satisfait à nos critères d'évaluation. Les solutions comme \textbf{Google Classroom} et \textbf{Piazza} ne présentent pas d'aspect d'intelligence artificielle permettant d'aider les étudiants dans leurs études. En revanche, les solutions dotées d'intelligence artificielle telles que \textbf{ChatGPT} et \textbf{Poe} ne répondent pas au critère de de gestion de contenu de différents types de documents. Bien que ces dernières proposent un chat interactif avec une intelligence artificielle, celui-ci se limite au texte et ne permet pas de partager d'autres types de documents tels que des PDF, à moins d'utiliser leur version payante.En outre, le temps de réponse de leur chatbot devient plus long en raison de l’augmentation du nombre d’utilisateurs, ce qui peut affecter la qualité de l’expérience utilisateur.
 
 \section{Solution proposée}
 Après avoir identifié les lacunes des solutions existantes sur le marché, nous envisageons de concevoir et de développer une plateforme plus innovante, gratuite et open-source.\\
@@ -208,7 +207,7 @@ Notre plateforme incluera les fonctionnalités classiques existantes dans les so
     \end{itemize}   
 \end{itemize}
 \vspace{0.5em}
-\textbf{Fonctionnalités du système de chat intelligent :}\\
+\textbf{Fonctionnalités du système de chat intelligent :}
 \begin{itemize}
     \item Espace de chat instantané qui se base sur un algorithme intelligent permettant aux apprenants d'interagir avec le système. Les apprenants pourront partager un document de format différent (image, pdf, text) dans cet espace de chat, bénéficiant ainsi d'une variété de services automatiques avec un temps de réponse très rapide (200 ms vous permettant d'obtenir une réponse de 2 pages) tels que :
     \begin{itemize}[itemsep=2pt, parsep=2pt]

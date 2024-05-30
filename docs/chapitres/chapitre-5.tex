@@ -29,7 +29,7 @@ Pour mettre en place notre solution, nous avons utilisé deux ordinateurs portab
 \end{longtable}
 
 \subsection{Environnement logiciel}
-Le tableau 5.2 illustre la liste des outils utilisés lors du développement de notre application web. \newpage
+Le tableau 5.2 illustre la liste des outils utilisés lors du développement de notre application web.
 \begin{longtable}{|p{4cm}|p{11cm}|}
     \caption{Liste des outils utilisé lors du développement de l’application} \\
     \hline
@@ -80,13 +80,26 @@ La Figure 5.1 illustre la structure du dossier \textbf{“app”}.\\
 \noindent En outre, Next.js offre également un dossier spécial appelé \textbf{"api"} pour créer des endpoints API pour la partie backend de notre application.\\
 Cela permet de créer facilement des API REST pour notre application.\\
 De plus, il est important de noter que Next.js propose également les \textbf{"Server Actions"} qui peuvent également jouer un role rôle similaire à celui du dossier \textbf{"api"} pour créer des endpoints API.\\
-Les Figures 5.2 et 5.3 illustrent la structure des dossiers \textbf{“api”} et \textbf{“actions”}.\\
-
+Les Figures 5.2 et 5.3 illustrent la structure des dossiers \textbf{“api”} et \textbf{“actions”}.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth,height=0.9\textwidth]{images/chp5/fig2.png}
+        \caption{Structure du dossier "api" dans notre projet}
+        \label{fig:Structure du dossier "api" dans notre projet}
+    \end{minipage}
+    \hspace{0.05\textwidth}
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth,height=0.9\textwidth]{images/chp5/fig2.png}
+        \caption{Structure du dossier "actions" dans notre projet}
+        \label{fig:Structure du dossier "actions" dans notre projet}
+    \end{minipage}
+\end{figure}
 
 
 \noindent Next.js simplifie ainsi la création d'applications web full stack en fournissant une solution complète pour la gestion du routage et de la création d'API.
-
-
 
 
 \section{Intègration du Modèle LLM}
@@ -105,7 +118,7 @@ La Figure 5.5 synthétise les étapes et le fonctionnement de Dynamic RAG pour l
 Cette approche s'appuie sur l'utilisation de l'API GroqCloud ainsi que sur l'intégration d'autres technologies.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/chp5/fig5.png}
+    \includegraphics[width=1.1\textwidth,height=0.55\textwidth]{images/chp5/fig5.png}
     \caption{Exemple du déroulement et des étapes de Dynamic RAG avec nos technologies}
     \label{fig:Exemple du déroulement et des étapes de Dynamic RAG avec nos technologies}
 \end{figure}
