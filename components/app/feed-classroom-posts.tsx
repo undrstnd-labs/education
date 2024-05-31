@@ -19,6 +19,8 @@ import {
 import { FeedClassroomPostCard } from "@/components/app/feed-classroom-post-card"
 import { Icons } from "@/components/shared/icons"
 
+import { getPost } from "@/undrstnd/post"
+
 interface FeedClassroomPostsProps {
   classroom: Classroom
   role: Role
@@ -43,27 +45,33 @@ export function FeedClassroomPosts({
     }
   }, [posts])
 
-  console.log(posts)
-
-  //FIXME: It always add reactions & comments to the last post
   useEffect(() => {
     useSubscribeToReactions(posts, (newPost) => {
-      // now find the post in the newPosts array
-      console.log(newPost)
       const index = posts.findIndex((post) => post.id === newPost.id)
-      console.log(index)
       const updatedPosts = [...posts]
       updatedPosts[index] = newPost
       setPosts(updatedPosts)
     })
   }, [posts])
 
-  /*   useEffect(() => {
-    useSubscribeToComments(post, (newPost) => {
-      setCurrentPost(newPost)
+  useEffect(() => {
+    useSubscribeToComments(posts, async (newPost) => {
+      const updatedPosts = [...posts]
+      if (newPost.teacher) {
+        const index = posts.findIndex((post) => post.id === newPost.id)
+        updatedPosts[index] = newPost
+        setPosts(updatedPosts)
+      } else {
+        const fetchedPost = await getPost(newPost.id)
+        if (fetchedPost) {
+          const index = posts.findIndex((post) => post.id === newPost.id)
+          updatedPosts[index] = fetchedPost
+          setPosts(updatedPosts)
+        }
+      }
     })
-  }, [post])
- */
+  }, [posts])
+
   return (
     <>
       {role === "TEACHER" && posts.length > 0 && (

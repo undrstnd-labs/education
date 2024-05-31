@@ -10,10 +10,6 @@ import { Classroom, Post } from "@/types/classroom"
 
 import { emojis } from "@/config/emojis"
 import { formatDate } from "@/lib/utils"
-import {
-  useSubscribeToComments,
-  useSubscribeToReactions,
-} from "@/hooks/use-subscribe"
 
 import { FeedClassroomFileCard } from "@/components/app/feed-classroom-file-card"
 import { FeedClassroomPostAddComment } from "@/components/app/feed-classroom-post-add-comment"
@@ -78,19 +74,14 @@ export function FeedClassroomPostCard({
         return
       } else {
         const newPost = await getPost(post.id)
-        if (newPost) {
-          setCurrentPost(newPost as Post)
-        }
-        console.log
+        setCurrentPost(newPost as Post)
         setIsLoading(false)
       }
     }
 
     const fetchDataComment = async () => {
       const newPost = await getPost(post.id)
-      if (newPost) {
-        setCurrentPost(newPost as Post)
-      }
+      setCurrentPost(newPost as Post)
       setIsLoading(false)
     }
 
@@ -100,7 +91,11 @@ export function FeedClassroomPostCard({
       setIsLoading(false)
     }
 
-    if (!post.comments || post.comments.some((comment) => !comment.user)) {
+    if (
+      !post.comments ||
+      !Array.isArray(post.comments) ||
+      post.comments.some((comment: any) => !comment.user)
+    ) {
       fetchDataComment()
     } else {
       setIsLoading(false)

@@ -47,87 +47,88 @@ export function useSubscribeToReactions(posts: Post[], callback: Callback) {
 }
 
 const handleCommentInserts = (payload: any, posts: Post[]) => {
+  const postIndex = posts.findIndex((post) => post.id === payload.new.postId)
+
   if (payload.new.parentId !== null) {
-    return posts.map((post) => {
-      if (post.id === payload.new.postId) {
-        return {
-          ...post,
-          comments: post.comments.map((comment) => {
-            if (comment.id === payload.new.parentId) {
-              return {
-                ...comment,
-                comments: [
-                  ...comment.comments,
-                  { ...payload.new, reactions: [] },
-                ],
-              }
-            }
-            return comment
-          }),
-        }
-      }
-      return post
-    })
+    const commentIndex = posts[postIndex].comments.findIndex(
+      (comment) => comment.id === payload.new.parentId
+    )
+
+    const updatedComments = (
+      posts[postIndex].comments[commentIndex].comments || []
+    ).concat([{ ...payload.new, reactions: [] }])
+
+    return {
+      ...posts[postIndex],
+      comments: {
+        ...posts[postIndex].comments,
+        [commentIndex]: {
+          ...posts[postIndex].comments[commentIndex],
+          comments: updatedComments,
+        },
+      },
+    }
   }
 
-  return posts.map((post) => {
-    if (post.id === payload.new.postId) {
-      return {
-        ...post,
-        comments: [
-          ...post.comments,
-          {
-            ...payload.new,
-            comments: [],
-            reactions: [],
-          },
-        ],
-      }
-    }
-    return post
-  })
+  const updatedComments = (posts[postIndex].comments || []).concat([
+    {
+      ...payload.new,
+      comments: [],
+      reactions: [],
+    },
+  ])
+
+  return {
+    ...posts[postIndex],
+    comments: updatedComments,
+  }
 }
 
 const handleCommentDeletes = (payload: any, posts: Post[]) => {
-  return posts.map((post) => {
-    if (post.id === payload.old.postId) {
-      return {
-        ...post,
-        comments: post.comments
-          .map((comment) => {
-            if (comment.id === payload.old.id) {
-              if ("comments" in comment) {
-                comment.comments = [] // Clear sub-comments if any
-              }
-              return null // Mark comment for deletion
-            }
-            return comment
-          })
-          .filter(Boolean), // Remove null values (i.e., marked comments)
-      }
-    }
-    return post
-  })
+  const commentIdToDelete = payload.old.id
+
+  const postIndex = posts.findIndex((post) =>
+    post.comments.some((comment) => comment.id === commentIdToDelete)
+  )
+
+  const commentIndex = posts[postIndex].comments.findIndex(
+    (comment) => comment.id === commentIdToDelete
+  )
+
+  posts[postIndex].comments.splice(commentIndex, 1)
+
+  return {
+    ...posts[postIndex],
+    comments: posts[postIndex].comments,
+  }
 }
 
 const handleCommentUpdates = (payload: any, posts: Post[]) => {
-  return posts.map((post) => {
-    if (post.id === payload.old.postId) {
-      return {
-        ...post,
-        comments: post.comments.map((comment) => {
-          if (comment.id === payload.old.id) {
-            return {
-              ...comment,
-              ...payload.new, // Update comment with new data
-            }
-          }
-          return comment
-        }),
-      }
-    }
-    return post
-  })
+  const commentIdToUpdate = payload.old.id
+
+  const postIndex = posts.findIndex(
+    (post) =>
+      Array.isArray(post.comments) &&
+      post.comments.some((comment) => comment.id === commentIdToUpdate)
+  )
+
+  const commentIndex = posts[postIndex].comments.findIndex(
+    (comment) => comment.id === commentIdToUpdate
+  )
+
+  const updatedComment = {
+    ...posts[postIndex].comments[commentIndex],
+    ...payload.new,
+  }
+
+  const updatedComments = posts[postIndex].comments.map((comment) =>
+    comment.id === commentIdToUpdate ? updatedComment : comment
+  )
+
+  return {
+    ...posts[postIndex],
+    comments: updatedComments,
+  }
 }
 
 export function useSubscribeToComments(posts: Post[], callback: Callback) {
@@ -137,7 +138,7 @@ export function useSubscribeToComments(posts: Post[], callback: Callback) {
       "postgres_changes",
       { event: "*", schema: "public", table: "comments" },
       (payload) => {
-        /*         if (payload.eventType === "INSERT") {
+        if (payload.eventType === "INSERT") {
           const updatedPost = handleCommentInserts(payload, posts)
           callback(updatedPost)
         } else if (payload.eventType === "DELETE") {
@@ -146,7 +147,7 @@ export function useSubscribeToComments(posts: Post[], callback: Callback) {
         } else if (payload.eventType === "UPDATE") {
           const updatedPost = handleCommentUpdates(payload, posts)
           callback(updatedPost)
-        } */
+        }
       }
     )
     .subscribe()

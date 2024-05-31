@@ -23,7 +23,6 @@ export async function GET(
     return NextResponse.json({ message: "User not found" }, { status: 404 })
   }
 
-  //TODO : Finding the best querry to get the best practices of the replies and comments
   try {
     const comments = await db.comment.findMany({
       where: {

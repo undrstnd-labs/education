@@ -94,13 +94,22 @@ function DropdownActions({
   }
 
   const handleDelete = async () => {
-    const commentDeleted = await deleteComment(post.id, comment.id)
-    if (!commentDeleted) {
+    try {
+      const commentDeleted = await deleteComment(post.id, comment.id)
+      if (!commentDeleted) {
+        toast({
+          title: t("toast-error-delete"),
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      console.error(error)
       toast({
         title: t("toast-error-delete"),
         variant: "destructive",
       })
     }
+    setIsDeleteOpen(false)
   }
 
   return (
@@ -198,9 +207,6 @@ function ReplyComment({
   post: Post
   comment: Comment
 }) {
-  // in here get data for the comment to get the user
-  // fix not showing the reply comments in their place
-
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -348,13 +354,6 @@ export function FeedClassroomPostComment({
           >
             {formatDate(new Date(comment.createdAt), t)}
           </time>
-          {comment.createdAt.toDateString !== comment.updatedAt.toDateString &&
-            comment.createdAt &&
-            comment.updatedAt && (
-              <span className="flex-none text-xs text-secondary-foreground/50">
-                ({t("edited")})
-              </span>
-            )}
         </div>
         <div className="ml-auto flex items-center space-x-2">
           <ReplyComment t={t} entity={entity} post={post} comment={comment} />
@@ -363,24 +362,9 @@ export function FeedClassroomPostComment({
           )}
         </div>
       </div>
-      <p className="mt-3 truncate text-sm text-secondary-foreground/80">
+      <p className="mt-3 text-sm text-secondary-foreground/80">
         {comment.text}
       </p>
-
-      {/*       <div className="mt-2 flex gap-2 max-sm:grid max-sm:grid-cols-3">
-        {emojis.map((icon, index) => {
-          return (
-            //@TODO: Mohamed amine Jguirim here!!! after 30 mins he will give up and go crying
-            <FeedClassroomCommentReactions
-              key={index}
-              icon={icon}
-              comment={comment}
-              entity={entity}
-              reactions={reactions}
-            />
-          )
-        })}
-      </div> */}
     </li>
   )
 }
