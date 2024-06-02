@@ -13,7 +13,10 @@ import { formatDate } from "@/lib/utils"
 
 import { FeedClassroomFileCard } from "@/components/app/feed-classroom-file-card"
 import { FeedClassroomPostAddComment } from "@/components/app/feed-classroom-post-add-comment"
-import { FeedClassroomPostComment } from "@/components/app/feed-classroom-post-comment"
+import {
+  FeedClassroomCommentSkeleton,
+  FeedClassroomPostComment,
+} from "@/components/app/feed-classroom-post-comment"
 import {
   FeedClassroomPostReactions,
   FeedClassroomPostReactionsSkeleton,
@@ -79,24 +82,8 @@ export function FeedClassroomPostCard({
       }
     }
 
-    const fetchDataComment = async () => {
-      const newPost = await getPost(post.id)
-      setCurrentPost(newPost as Post)
-      setIsLoading(false)
-    }
-
     if (!post.teacher) {
       fetchDataPost()
-    } else {
-      setIsLoading(false)
-    }
-
-    if (
-      !post.comments ||
-      !Array.isArray(post.comments) ||
-      post.comments.some((comment: any) => !comment.user)
-    ) {
-      fetchDataComment()
     } else {
       setIsLoading(false)
     }
@@ -112,6 +99,8 @@ export function FeedClassroomPostCard({
     },
     {} as { [key: string]: number }
   )
+
+  console.log(post.comments)
 
   return (
     <section id={post.id} className="flex flex-col gap-2">
@@ -201,20 +190,17 @@ export function FeedClassroomPostCard({
         </CardContent>
         <FeedClassroomPostAddComment entity={entity} post={post} />
         {isLoading ? (
-          <div className="flex items-center space-x-4 p-4">
-            <Skeleton className="h-12 w-12 rounded-full" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-            </div>
-          </div>
+          <FeedClassroomCommentSkeleton />
         ) : (
           <ul className="mb-4 block items-start px-4">
             {post.comments &&
               post.comments.length > 0 &&
-              post.comments.map((comment) => {
-                return (
-                  !comment.parentId && (
+              post.comments
+                .filter(
+                  (comment) => !comment.parentId || comment.parentId === null
+                )
+                .map((comment) => {
+                  return (
                     <FeedClassroomPostComment
                       key={comment.id}
                       entity={entity}
@@ -222,8 +208,7 @@ export function FeedClassroomPostCard({
                       post={post}
                     />
                   )
-                )
-              })}
+                })}
           </ul>
         )}
       </Card>

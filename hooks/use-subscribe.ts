@@ -49,24 +49,27 @@ export function useSubscribeToReactions(posts: Post[], callback: Callback) {
 const handleCommentInserts = (payload: any, posts: Post[]) => {
   const postIndex = posts.findIndex((post) => post.id === payload.new.postId)
 
-  if (payload.new.parentId !== null) {
-    const commentIndex = posts[postIndex].comments.findIndex(
-      (comment) => comment.id === payload.new.parentId
-    )
+  if (payload.new.parentId) {
+    if (posts[postIndex] && Array.isArray(posts[postIndex].comments)) {
+      const commentIndex = posts[postIndex].comments.findIndex(
+        (comment) => comment.id === payload.new.parentId
+      )
 
-    const updatedComments = (
-      posts[postIndex].comments[commentIndex].comments || []
-    ).concat([{ ...payload.new, reactions: [] }])
+      const updatedComments = (
+        posts[postIndex].comments[commentIndex].replies || []
+      ).concat([{ ...payload.new, reactions: [] }])
 
-    return {
-      ...posts[postIndex],
-      comments: {
-        ...posts[postIndex].comments,
-        [commentIndex]: {
-          ...posts[postIndex].comments[commentIndex],
-          comments: updatedComments,
-        },
-      },
+      return {
+        ...posts[postIndex],
+        comments: [
+          ...posts[postIndex].comments.slice(0, commentIndex),
+          {
+            ...posts[postIndex].comments[commentIndex],
+            replies: updatedComments,
+          },
+          ...posts[postIndex].comments.slice(commentIndex + 1),
+        ],
+      }
     }
   }
 
@@ -87,47 +90,108 @@ const handleCommentInserts = (payload: any, posts: Post[]) => {
 const handleCommentDeletes = (payload: any, posts: Post[]) => {
   const commentIdToDelete = payload.old.id
 
-  const postIndex = posts.findIndex((post) =>
-    post.comments.some((comment) => comment.id === commentIdToDelete)
-  )
-
-  const commentIndex = posts[postIndex].comments.findIndex(
-    (comment) => comment.id === commentIdToDelete
-  )
-
-  posts[postIndex].comments.splice(commentIndex, 1)
-
-  return {
-    ...posts[postIndex],
-    comments: posts[postIndex].comments,
-  }
-}
-
-const handleCommentUpdates = (payload: any, posts: Post[]) => {
-  const commentIdToUpdate = payload.old.id
-
   const postIndex = posts.findIndex(
     (post) =>
       Array.isArray(post.comments) &&
-      post.comments.some((comment) => comment.id === commentIdToUpdate)
+      post.comments.some(
+        (comment) =>
+          comment.id === commentIdToDelete ||
+          comment.replies.some((reply: any) => reply.id === commentIdToDelete)
+      )
   )
 
-  const commentIndex = posts[postIndex].comments.findIndex(
-    (comment) => comment.id === commentIdToUpdate
-  )
-
-  const updatedComment = {
-    ...posts[postIndex].comments[commentIndex],
-    ...payload.new,
-  }
-
-  const updatedComments = posts[postIndex].comments.map((comment) =>
-    comment.id === commentIdToUpdate ? updatedComment : comment
-  )
+  const updatedComments = posts[postIndex].comments
+    .map((comment: any) => {
+      if (comment.id === commentIdToDelete) {
+        return null
+      } else {
+        const updatedReplies = comment.replies.filter(
+          (reply: any) => reply.id !== commentIdToDelete
+        )
+        return {
+          ...comment,
+          replies: updatedReplies,
+        }
+      }
+    })
+    .filter((comment: any) => comment !== null)
 
   return {
     ...posts[postIndex],
     comments: updatedComments,
+  }
+}
+
+const handleCommentUpdates = (payload: any, posts: Post[]) => {
+  const commentIdToUpdate = payload.new
+
+  let postIndex = 0
+  if (commentIdToUpdate.parentId) {
+    postIndex = posts.findIndex(
+      (post) =>
+        Array.isArray(post.comments) &&
+        post.comments.some(
+          (comment) => comment.id === commentIdToUpdate.parentId
+        )
+    )
+    const parentCommentIndex = posts[postIndex].comments.findIndex(
+      (comment) => comment.id === commentIdToUpdate.parentId
+    )
+
+    const childCommentIndex = posts[postIndex].comments[
+      parentCommentIndex
+    ].replies.findIndex((comment: any) => comment.id === commentIdToUpdate.id)
+
+    const updatedComment = {
+      ...posts[postIndex].comments[parentCommentIndex].replies[
+        childCommentIndex
+      ],
+      ...payload.new,
+    }
+
+    const updatedComments = posts[postIndex].comments[
+      parentCommentIndex
+    ].replies.map((comment: any) =>
+      comment.id === commentIdToUpdate.id ? updatedComment : comment
+    )
+
+    const updatedParentComment = {
+      ...posts[postIndex].comments[parentCommentIndex],
+      replies: updatedComments,
+    }
+
+    return {
+      ...posts[postIndex],
+      comments: [
+        ...posts[postIndex].comments.slice(0, parentCommentIndex),
+        updatedParentComment,
+        ...posts[postIndex].comments.slice(parentCommentIndex + 1),
+      ],
+    }
+  } else {
+    postIndex = posts.findIndex(
+      (post) =>
+        Array.isArray(post.comments) &&
+        post.comments.some((comment) => comment.id === commentIdToUpdate.id)
+    )
+
+    const commentIndex = posts[postIndex].comments.findIndex(
+      (comment) => comment.id === commentIdToUpdate.id
+    )
+
+    const updatedComment = {
+      ...posts[postIndex].comments[commentIndex],
+      ...payload.new,
+    }
+
+    return {
+      ...posts[postIndex],
+      comments: [
+        ...posts[postIndex].comments.slice(0, commentIndex),
+        updatedComment,
+        ...posts[postIndex].comments.slice(commentIndex + 1),
+      ],
+    }
   }
 }
 

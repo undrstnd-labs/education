@@ -30,8 +30,16 @@ export function generateHash() {
 
 export function formatDate(date: Date, t: (arg: string) => string): string {
   const currentDate = new Date()
+
+  const utcDate = new Date(
+    date.getTime() - date.getTimezoneOffset() * 60000
+  ).toISOString()
+  const utcCurrentDate = new Date(
+    currentDate.getTime() - currentDate.getTimezoneOffset() * 60000
+  ).toISOString()
+
   const diffInSeconds = Math.floor(
-    (currentDate.getTime() - date.getTime()) / 1000
+    (new Date(utcCurrentDate).getTime() - new Date(utcDate).getTime()) / 1000
   )
 
   if (diffInSeconds < 60) {

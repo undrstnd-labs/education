@@ -1,6 +1,5 @@
 import React, { KeyboardEvent, useRef, useState } from "react"
 import Image from "next/image"
-import { createComment } from "@/actions/comment"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Post, Student, Teacher, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
@@ -21,6 +20,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
+
+import { createComment } from "@/undrstnd/comment"
 
 export function FeedClassroomPostAddComment({
   entity,
@@ -110,6 +111,7 @@ export function FeedClassroomPostAddComment({
                         variant="default"
                         size="sm"
                         className="absolute bottom-2 right-2"
+                        disabled={loading}
                       >
                         {loading ? (
                           <Icons.loader

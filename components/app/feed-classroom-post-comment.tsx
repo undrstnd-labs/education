@@ -40,9 +40,10 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Skeleton } from "@/components/ui/skeleton"
 import { Textarea } from "@/components/ui/textarea"
 
-import { deleteComment, updateComment } from "@/undrstnd/comment"
+import { deleteComment, getComment, updateComment } from "@/undrstnd/comment"
 
 interface FeedClassroomPostCommentProps {
   entity: (Student & { user: User }) | (Teacher & { user: User })
@@ -196,6 +197,94 @@ function DropdownActions({
   )
 }
 
+function Reply({
+  reply,
+  post,
+  t,
+}: {
+  reply: Comment
+  post: Post
+  t: (key: string) => string
+}) {
+  const [user, setUser] = React.useState(reply.user)
+  const [isLoading, setIsLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    async function fetchData() {
+      if (!user) {
+        setIsLoading(true)
+        try {
+          const data = (await getComment(reply.postId, reply.id))!
+          setIsLoading(false)
+          setUser(data.user as User)
+        } catch (error) {
+          console.log(error)
+          setIsLoading(false)
+        }
+      } else {
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [user])
+
+  return (
+    <li key={post.id} className="py-4">
+      <div className="flex items-center gap-x-3">
+        {isLoading ? (
+          <Skeleton className="h-6 w-6 rounded-full" />
+        ) : (
+          <Image
+            src={user.image!}
+            alt={user.name!}
+            width={24}
+            height={24}
+            className="h-6 w-6 flex-none rounded-full"
+          />
+        )}
+        <div className="flex items-center space-x-2">
+          {isLoading ? (
+            <Skeleton className="h-4 w-[250px]" />
+          ) : (
+            <h3 className="flex-auto truncate text-sm font-semibold capitalize leading-6 text-secondary-foreground">
+              {user.name}
+            </h3>
+          )}
+          <span className="mx-1">•</span>
+          <time
+            dateTime={reply.createdAt.toString()}
+            className="flex-none text-xs text-secondary-foreground/50"
+          >
+            {formatDate(new Date(reply.createdAt), t)}
+          </time>
+          {reply.createdAt !== reply.updatedAt && (
+            <span className="flex-none text-xs text-secondary-foreground/50">
+              ({t("edited")})
+            </span>
+          )}
+        </div>
+        {isLoading ? (
+          <div className="ml-auto flex items-center space-x-2">
+            <Skeleton className="size-6" />
+          </div>
+        ) : (
+          <>
+            {user.id === user.id && (
+              <div className="ml-auto flex items-center space-x-2">
+                <DropdownActions t={t} comment={reply} post={post} />
+              </div>
+            )}
+          </>
+        )}
+      </div>
+      <p className="mt-3 truncate text-sm text-secondary-foreground/80">
+        {reply.text}
+      </p>
+    </li>
+  )
+}
+
 function ReplyComment({
   t,
   entity,
@@ -235,11 +324,6 @@ function ReplyComment({
               >
                 {formatDate(new Date(comment.createdAt), t)}
               </time>
-              {comment.createdAt !== comment.updatedAt && (
-                <span className="flex-none text-xs text-secondary-foreground/50">
-                  ({t("edited")})
-                </span>
-              )}
             </div>
           </div>
           <p className="mt-3 truncate text-sm text-secondary-foreground/80">
@@ -255,46 +339,9 @@ function ReplyComment({
                   new Date(b.createdAt).getTime()
                 )
               })
-              .map((reply) => {
-                return (
-                  <li key={post.id} className="py-4">
-                    <div className="flex items-center gap-x-3">
-                      <Image
-                        src={reply.user.image!}
-                        alt={reply.user.name!}
-                        width={24}
-                        height={24}
-                        className="h-6 w-6 flex-none rounded-full"
-                      />
-                      <div className="flex items-center space-x-2">
-                        <h3 className="flex-auto truncate text-sm font-semibold capitalize leading-6 text-secondary-foreground">
-                          {reply.user.name}
-                        </h3>
-                        <span className="mx-1">•</span>
-                        <time
-                          dateTime={reply.createdAt.toString()}
-                          className="flex-none text-xs text-secondary-foreground/50"
-                        >
-                          {formatDate(new Date(reply.createdAt), t)}
-                        </time>
-                        {reply.createdAt !== reply.updatedAt && (
-                          <span className="flex-none text-xs text-secondary-foreground/50">
-                            ({t("edited")})
-                          </span>
-                        )}
-                      </div>
-                      {reply.user.id === reply.user.id && (
-                        <div className="ml-auto flex items-center space-x-2">
-                          <DropdownActions t={t} comment={reply} post={post} />
-                        </div>
-                      )}
-                    </div>
-                    <p className="mt-3 truncate text-sm text-secondary-foreground/80">
-                      {reply.text}
-                    </p>
-                  </li>
-                )
-              })
+              .map((reply) => (
+                <Reply key={reply.id} reply={reply} post={post} t={t} />
+              ))
           ) : (
             <div className="flex flex-1 flex-col justify-center">
               <div className="flex flex-col">
@@ -326,13 +373,25 @@ function ReplyComment({
   )
 }
 
+export function FeedClassroomCommentSkeleton() {
+  return (
+    <div className="flex items-center space-x-4 p-4">
+      <Skeleton className="h-12 w-12 rounded-full" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
+    </div>
+  )
+}
+
 export function FeedClassroomPostComment({
   entity,
   comment,
   post,
 }: FeedClassroomPostCommentProps) {
   const t = useTranslations("app.components.app.feed-classroom-post-comment")
-  //FIXME: not showing the replies
+
   return (
     <li key={post.id} className="py-4">
       <div className="flex items-center gap-x-3">

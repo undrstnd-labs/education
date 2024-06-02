@@ -44,3 +44,15 @@ export async function deleteComment(postId: string, commentId: string) {
     },
   })
 }
+
+export async function getComment(postId: string, commentId: string) {
+  return await db.comment.findFirst({
+    where: {
+      postId,
+      id: commentId,
+    },
+    include: {
+      user: true,
+    },
+  })
+}
