@@ -1,13 +1,7 @@
 \vfill 
 \chapter{Analyse et spécification des besoins}
 \label{chap:analyse-specification-besoins}
-\vfill 
-\minitoc
 \mtcaddchapter
-\vfill 
-
-\newpage
-
 \section*{Introduction}
 \justifying
 L’étape d’analyse et spécification des besoins est une étape indispensable pour comprendre les fonctionnalités que le système doit fournir. Ce chapitre sera consacré à détailler cette étape: Nous commencerons par l’identification des acteurs. Puis, nous élaborons le diagramme de contexte de notre système. Ensuite, nous allons faire un recueil sur  les besoins fonctionnels et non fonctionnels de notre projet. Par la suite, nous allons spécifier et analyser les besoins identifiés en se basant sur le modèle de cas d’utilisation et le diagramme de séquence d'analyse du langage  \textbf{U}nified  \textbf{M}odeling  \textbf{L}anguage \textbf{(UML)}. Enfin, un recueil sur les besoins techniques sera présenté tout en citant les frameworks choisis.
@@ -15,7 +9,7 @@ L’étape d’analyse et spécification des besoins est une étape indispensabl
 
 \section{Identification des acteurs}
 \justifying
-Un acteur est une entité externe qui définit le rôle joué par un utilisateur, humain ou non humain, qui interagit avec un système interactif. [x]\\
+Un acteur est une entité externe qui définit le rôle joué par un utilisateur, humain ou non humain, qui interagit avec un système interactiff. \cite{acteur}\\
 Notre système comporte les acteurs suivants:
 \begin{itemize}[itemsep=2pt, parsep=2pt]
     \item \textbf{Etudiant}: L'étudiant, en tant qu'utilisateur inscrit, est au cœur de notre système qui peut interagir avec notre chatbot Mixture of Experts et bénéficier de ses services intelligents. Ainsi, il peut accéder aux salons virtuels (Classrooms) et leurs contenus auxquels il est affilié  c-à-d les ressources pédagogiques de ses enseignants. Ensuite, cet utilisateur peut partager des supports pédagogiques (de ses enseignants ou provenant de sources externes) dans un espace de chat instantané, sollicitant ainsi d'une gamme de services intelligents tels que l'explication, la traduction, la correction d'exercices, la génération de résumés, etc. Ces fonctionnalités sont conçues pour clarifier ses cours, assurant une assistance personnalisée tout au long de son apprentissage.
@@ -26,7 +20,7 @@ Notre système comporte les acteurs suivants:
 \section{Modèle informationnel de contexte}
 \justifying
 Le modèle informationnel de contexte donne un aperçu global de notre plateforme en identifiant les acteurs et leurs interactions avec le système. À travers le diagramme de contexte, nous illustrons ces échanges pour une meilleure compréhension. Cette représentation simplifiée du fonctionnement de notre application aide à saisir les flux d'informations et le rôle des différents intervenants.\\
-La figure \ref{fig:diagramme de context} montre le diagramme de contexte et illustre bien le modèle informationnel de l'application.
+La Figure \ref{fig:diagramme de context} montre le diagramme de contexte et illustre bien le modèle informationnel de l'application.
 
 \begin{figure}[H]
     \centering
@@ -84,7 +78,7 @@ Pour une meilleure documentation de notre plateforme, nous allons formaliser, da
 
 \subsection{Diagramme de cas d’utilisation global}
 Le diagramme de cas d'utilisation est le mécanisme le plus populaire pour la spécification des exigences. Il illustre les interactions entre les acteurs et le système. En outre, il donne une vue d'ensemble des fonctionnalités que le système doit offrir pour répondre aux besoins des utilisateurs.\\
-La figure \ref{fig:diagramme de cas d’utilisation global} illustre le diagramme de cas d’utilisation global de notre application.
+La Figure \ref{fig:diagramme de cas d’utilisation global} illustre le diagramme de cas d’utilisation global de notre application.
 
 \begin{figure}[H]
     \centering
@@ -94,10 +88,10 @@ La figure \ref{fig:diagramme de cas d’utilisation global} illustre le diagramm
 \end{figure}
 
 \subsection{Diagrammes de cas d’utilisation détaillés}
-Dans cette partie, nous allons raffiner les cas d'utilisation présentés dans la figure \ref{fig:diagramme de cas d’utilisation global}. Le raffinement sera représenté par un diagramme de cas d'utilisation détaillé de chaque  acteur.
+Dans cette partie, nous allons raffiner les cas d'utilisation présentés dans la Figure \ref{fig:diagramme de cas d’utilisation global}. Le raffinement sera représenté par un diagramme de cas d'utilisation détaillé de chaque  acteur.
 
 \subsubsection{Diagramme de cas d’utilisation détaillé de l’acteur << Etudiant>>}
-La figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << Etudiant >>} illustre le diagramme de cas d’utilisation détaillé de l’acteur étudiant après avoir s’identifier.
+La Figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << Etudiant >>} illustre le diagramme de cas d’utilisation détaillé de l’acteur étudiant après avoir s’identifier.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth,height=0.6\textheight]{images/chp3/fig3.png}
@@ -106,7 +100,7 @@ La figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << 
 \end{figure}
 
 \subsubsection{Diagramme de cas d’utilisation détaillé de l’acteur << Enseignant >>}
-La figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << Enseignant >>} illustre le diagramme de cas d’utilisation détaillé de l’acteur enseignant après avoir s’identifier.
+La Figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << Enseignant >>} illustre le diagramme de cas d’utilisation détaillé de l’acteur enseignant après avoir s’identifier.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth,height=0.8\textheight]{images/chp3/fig4.png}
@@ -116,7 +110,7 @@ La figure \ref{fig:diagramme de cas d’utilisation détaillé de l’acteur << 
 
 
 \subsubsection{ Diagramme de cas d’utilisation détaillé de l’acteur << Modèle MoE >>}
-La figure \ref{fig: Diagramme de cas d’utilisation détaillé de l’acteur <<Modèle MoE>>>} illustre le diagramme de cas d’utilisation détaillé de l’acteur modèle MoE.
+La Figure \ref{fig: Diagramme de cas d’utilisation détaillé de l’acteur <<Modèle MoE>>>} illustre le diagramme de cas d’utilisation détaillé de l’acteur modèle MoE.
 
 \begin{figure}[H]
     \centering
@@ -131,7 +125,7 @@ L'analyse des besoins est une étape importante permettant de représenter le co
 \subsubsection{Cas d’utilisation << S’identifier >> }
 \begin{itemize}[itemsep=1pt, parsep=1pt]
     \item \textbf{Description textuelle}\\
-    Le tableau \ref{tab:Description textuelle du cas d’utilisation « s’identifiere »} 
+    Le tableau \ref{tab:Description textuelle du cas d’utilisation « S’identifiere »} 
     
     montre la description textuelle du cas d’utilisation \textbf{<< S’identifier >>}.
 
@@ -191,7 +185,7 @@ L'analyse des besoins est une étape importante permettant de représenter le co
     
     \item \textbf{Diagramme de séquence acteur-système}\\
      Pour ce cas d'utilisation, l'utilisateur peut être soit un étudiant, soit un enseignant lors de l'identification.\\
-     La figure \ref{fig:diagramme de séquence << S’identifier >>} illustre le diagramme de séquence \textbf{<< S’identifier >>}.
+     La Figure \ref{fig:diagramme de séquence << S’identifier >>} illustre le diagramme de séquence \textbf{<< S’identifier >>}.
      \begin{figure}[H]
         \centering
         \includegraphics[width=1.1\textwidth,height=0.85\textheight]{images/chp3/fig6.png}
@@ -261,6 +255,10 @@ L'analyse des besoins est une étape importante permettant de représenter le co
                 \item L’enseignant clique sur le bouton \textbf{\textit{‘Confirmer’}}.
                 \item Le système retire le classroom de la base de données.
             \end{enumerate}
+        \end{itemize} \\
+        \hline
+        \textbf{Scénarios alternatifs} & 
+        \begin{itemize}[label=]
             \item \textbf{Scénario alternatif 3: Archiver classroom }
             \begin{enumerate}
                 \item L’enseignant demande la page de classrooms.
@@ -279,8 +277,6 @@ L'analyse des besoins est une étape importante permettant de représenter le co
                 \item L’enseignant clique sur le bouton \textbf{\textit{‘Confirmer’}}.
                 \item Le système désarchive le classroom.
             \end{enumerate}
-
-
         \end{itemize} \\
         \hline
         \textbf{Exceptions} & 
@@ -292,7 +288,7 @@ L'analyse des besoins est une étape importante permettant de représenter le co
     \end{longtable}
     
     \item \textbf{Diagramme de séquence acteur-système}\\
-    La figure 3.7 illustre le diagramme de séquence \textbf{<< Créer classroom >>}.
+    La Figure 3.7 illustre le diagramme de séquence \textbf{<< Créer classroom >>}.
      \begin{figure}[H]
         \centering
         \includegraphics[width=1.1\textwidth,height=0.85\textheight]{images/chp3/fig7.png}
@@ -354,10 +350,10 @@ L'analyse des besoins est une étape importante permettant de représenter le co
     \end{longtable}
     
     \item \textbf{Diagramme de séquence acteur-système}\\
-    La figure 3.8 illustre le diagramme de séquence \textbf{<< Démarrer chat>>}.
+    La Figure 3.8 illustre le diagramme de séquence \textbf{<< Démarrer chat>>}.
      \begin{figure}[H]
         \centering
-        \includegraphics[width=0.5\textwidth,height=0.7\textheight]{images/chp3/fig8.png}     
+        \includegraphics[width=1.1\textwidth,height=0.85\textheight]{images/chp3/fig8.png}     
            \caption{Diagramme de séquence << Démarrer chat >>}        
         \label{fig:Diagramme de séquence << Démarrer chat >>}    
     \end{figure}
@@ -368,38 +364,39 @@ L'analyse des besoins est une étape importante permettant de représenter le co
 Dans cette section, nous allons présenter les logiciels et outils utilisés pour développer et mettre en œuvre notre plateforme. Nous allons mettre en valeur le Framework utilisé pour le développement frontend et backend ainsi que la base de donnée choisie pour notre projet.
 
 \subsection{Framework frontend}
-Pour la partie frontend, nous allons utiliser le framework Next.js.
-
-\begin{itemize}[itemsep=1pt, parsep=1pt]
-    \item \textbf{Nextjs }\\
-    Next.js est un framework gratuit et open source s'appuyant sur la bibliothèque javascript React. Next.js se distingue par sa capacité à offrir une expérience utilisateur performante et réactive. Grâce à sa structure basée sur React, Next.js permet de construire des interfaces utilisateur dynamiques et interactives avec une facilité. Son approche basée sur le rendu côté serveur garantit des performances optimales. Il offre aussi ses fonctionnalités avancées telles que le pré rendu des pages et le routage dynamique facilitant la navigation fluide et la gestion efficace des données.\\
-    La figure 3.9 présente les statistiques de la satisfaction des utilisateurs à l’usage des frameworks et bibliothèques dans le domaine du développement web.
+\noindent Pour la partie frontend, nous allons utiliser le framework Next.js.
+\vspace{0.5em}
+\begin{wrapfigure}{l}{0.08\linewidth}
+    \vspace{-15pt}
+    \includegraphics[width=0.1\textwidth]{images/chp5/nextjs.png}
+\end{wrapfigure}
+\textbf{Next.js} est un framework gratuit et open source s'appuyant sur la bibliothèque javascript React. Next.js se distingue par sa capacité à offrir une expérience utilisateur performante et réactive. Grâce à sa structure basée sur React, Next.js permet de construire des interfaces utilisateur dynamiques et interactives avec une facilité. Son approche basée sur le rendu côté serveur garantit des performances optimales. Il offre aussi ses fonctionnalités avancées telles que le pré rendu des pages et le routage dynamique facilitant la navigation fluide et la gestion efficace des données.\\
+La Figure 3.9 présente les statistiques de la satisfaction des utilisateurs à l’usage des frameworks et bibliothèques dans le domaine du développement web.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth,height=0.4\textheight]{images/chp3/fig9.png}
-        \caption{Les statistiques de la satisfaction des utilisateurs à l’usage des frameworks et bibliothèques dans le domaine du développement web}[6]        
+        \caption{Les statistiques de la satisfaction des utilisateurs à l’usage des frameworks et bibliothèques dans le domaine du développement web\cite{StatsFramework}}        
         \label{fig:Les statistiques de la satisfaction des utilisateurs à l’usage des frameworks et bibliothèques dans le domaine du développement web}    
     \end{figure}
-    
-\end{itemize}
 
 \subsection{Framework backend}
-Next.js est souvent associé au développement frontend en raison de sa capacité à créer des interfaces utilisateur réactives et performantes. Il offre également des fonctionnalités robustes pour la partie backend. Grâce à sa compatibilité avec Node.js, Next.js permet de développer facilement des applications web full-stack en combinant efficacement le frontend et le backend. L'utilisation de Next.js pour la partie backend offre plusieurs avantages comme la possibilité de créer des API RESTful, la gestion des bases de données et la mise en œuvre de la logique métier côté serveur. Avec son architecture flexible et sa facilité d'utilisation, Next.js permet aux développeurs de créer des applications web complètes et cohérentes en offrant ainsi une expérience utilisateur fluide et satisfaisante pour la partie frontend et aussi la partie backend.
+\noindent Next.js est souvent associé au développement frontend en raison de sa capacité à créer des interfaces utilisateur réactives et performantes. Il offre également des fonctionnalités robustes pour la partie backend. Grâce à sa compatibilité avec Node.js, Next.js permet de développer facilement des applications web full-stack en combinant efficacement le frontend et le backend. L'utilisation de Next.js pour la partie backend offre plusieurs avantages comme la possibilité de créer des API RESTful, la gestion des bases de données et la mise en œuvre de la logique métier côté serveur. Avec son architecture flexible et sa facilité d'utilisation, Next.js permet aux développeurs de créer des applications web complètes et cohérentes en offrant ainsi une expérience utilisateur fluide et satisfaisante pour la partie frontend et aussi la partie backend.
 
 \subsection{Base de données}
-Pour notre système de gestion de base de données, nous avons opté pour une approche SQL en utilisant PostgreSQL. Cette décision découle des nombreux avantages offerts par les bases de données SQL telles que la robustesse des transactions et la gestion efficace des données structurées.
-\begin{itemize}[itemsep=1pt, parsep=1pt]
-    \item \textbf{PostgreSQL }\\
-    PostgreSQL est un système de gestion de base de données relationnelle open source qui offre une performance robuste, une fiabilité élevée et une extensibilité exceptionnelle. Connu pour sa conformité aux normes SQL, PostgreSQL prend en charge une large gamme de fonctionnalités avancées telles que les jointures complexes, les transactions ACID (Atomicité, Cohérence, Isolation, Durabilité) et la réplication asynchrone. Il est préféré pour être un choix pour les développeurs et les entreprises qui cherchent une solution de base de données puissante et fiable pour leurs applications.\\
-    La figure 3.10 présente les statistiques des options de base de données les plus populaires.
+\noindent Pour notre système de gestion de base de données, nous avons opté pour une approche SQL en utilisant PostgreSQL. Cette décision découle des nombreux avantages offerts par les bases de données SQL telles que la robustesse des transactions et la gestion efficace des données structurées.
+\vspace{0.5em}
+\begin{wrapfigure}{l}{0.1\linewidth}
+    \vspace{-15pt}
+    \includegraphics[width=0.1\textwidth]{images/chp5/postgresql.png}
+\end{wrapfigure}
+\textbf{PostgreSQL }est un système de gestion de base de données relationnelle open source qui offre une performance robuste, une fiabilité élevée et une extensibilité exceptionnelle. Connu pour sa conformité aux normes SQL, PostgreSQL prend en charge une large gamme de fonctionnalités avancées telles que les jointures complexes, les transactions \textbf{ACID} (\textbf{A}tomicité, \textbf{C}ohérence, \textbf{I}solation, \textbf{D}urabilité) et la réplication asynchrone. Il est préféré pour être un choix pour les développeurs et les entreprises qui cherchent une solution de base de données puissante et fiable pour leurs applications.\\
+La Figure 3.10 présente les statistiques des options de base de données les plus populaires.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1.2\textwidth,height=0.4\textheight]{images/chp3/fig10.png}
-        \caption{Les statistiques des options de base de données les plus populaires}[7]        
+        \caption{Les statistiques des options de base de données les plus populaires \cite{StatsBdd}}      
         \label{fig:Les statistiques des options de base de données les plus populaires}    
     \end{figure}
     
-\end{itemize}
-
 \section*{Conclusion}
 Dans ce chapitre, nous avons mis en œuvre les branches fonctionnelle et technique de la méthode 2TUP se utilisant le modèle de cas d'utilisation (diagramme et description textuelle) et le diagramme de séquence d'analyse. Dans le chapitre suivant, nous présenterons la conception préliminaire et détaillée de notre application en appliquant la branche de la réalisation de la méthode 2TUP.
