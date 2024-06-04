@@ -89,7 +89,7 @@ L'approche sparse du MoE signifie que seuls quelques experts sont activés pour 
 \subsubsection{Processus de formation et d'inférence}
 \justifying
 Le processus d'entraînement de Mixture of Experts (MoE) implique simultanément l'apprentissage des paramètres des experts et du routeur. \\
-Pendant la formation, chaque jeton d'entrée est dirigé vers un ou plusieurs experts en fonction des poids appris par le routeur. Les experts traitent ces jetons et retournent leurs sorties respectives. Ces sorties sont combinées pour former la sortie finale du MoE utilisée pour calculer la perte et mettre à jour les paramètres du modèle.
+Pendant la formation, chaque jeton d'entrée est dirigé vers un ou plusieurs experts en fonction des poids appris par le routeur. Les experts traitent ces jetons et retournent leurs sorties respectives. Ces sorties sont combinées pour former la sortie finale du MoE utilisée pour calculer la perte et mettre à jour les paramètres du modèle.\\
 En phase d'inférence, seuls les experts les plus pertinents sont sélectionnés selon les poids du routeur en réduisant ainsi la complexité de calcul et améliorant l'efficacité du MoE. Bien que tous les paramètres doivent être chargés en mémoire, seuls ceux nécessaires sont utilisés pendant l'inférence.
 
 \subsubsection{Raisons du Choix de l'Algorithme Sparse Mixture of Experts }
@@ -134,25 +134,22 @@ Parmi les services Cloud intégrés dans notre plateforme, nous retrouvons le Ru
 Les services cloud utilisés dans notre plateforme sont présentés dans le tableau 2.1.
 
 
-\begin{table}[H]
-    \centering
+\begin{longtable}{|>{\RaggedRight\arraybackslash}p{0.3\textwidth}|>{\RaggedRight\arraybackslash}p{0.7\textwidth}|}
     \caption{Descriptions des services de cloud computing}
-    \begin{tabular}{|>{\RaggedRight\arraybackslash}p{4cm}|>{\RaggedRight\arraybackslash}p{10cm}|}
-        \hline
-        \textbf{Service} & \textbf{Description} \\
-        \hline
-        \textbf{Runtime Edge} & Edge Runtime est idéal pour la diffusion de contenu dynamique et personnalisé avec une faible latence en utilisant de petites fonctions simples. Sa rapidité provient de l'utilisation minimale des ressources, mais cela peut être limité dans de nombreux scénarios. Dans notre application, Edge Runtime est utilisé pour optimiser la diffusion de contenu personnalisé pour garantir ainsi une expérience utilisateur rapide et réactive. \\
-        \hline
-        \textbf{Serverless} & Les architectures sans serveur, ou Serverless, permettent de déléguer la gestion des serveurs à un fournisseur de services Cloud. Cette approche offre plusieurs avantages tels qu'une réduction des coûts d'exploitation, une scalabilité automatique et une simplification de la maintenance. Dans notre application, le Serverless est utilisé pour gérer les fonctions backend telles que le traitement des données et la gestion des Application Programming Interface (API). \\
-        \hline
-        \textbf{Content Delivery Network} & Un Content Delivery Network (CDN) est un réseau de serveurs distribués géographiquement qui permet de distribuer du contenu à grande échelle. L'utilisation d'un CDN permet d'améliorer les performances de notre application en réduisant la latence et en optimisant la bande passante. Dans notre cas, le CDN est utilisé pour distribuer les ressources statiques de notre application telles que les images, les feuilles de style et les scripts. \\
-        \hline
-    \end{tabular}
-    \label{table:cloud_services}
-\end{table}
+    \label{table:cloud_services} \\
+    \hline
+    \rowcolor{gray!25}
+    \textbf{Service} & \textbf{Description} \\
+    \hline
+    \cellcolor{gray!25}\textbf{Runtime Edge} & Edge Runtime est idéal pour la diffusion de contenu dynamique et personnalisé avec une faible latence en utilisant de petites fonctions simples. Sa rapidité provient de l'utilisation minimale des ressources, mais cela peut être limité dans de nombreux scénarios. Dans notre application, Edge Runtime est utilisé pour optimiser la diffusion de contenu personnalisé pour garantir ainsi une expérience utilisateur rapide et réactive. \\
+    \hline
+    \cellcolor{gray!25}\textbf{Serverless} & Les architectures sans serveur, ou Serverless, permettent de déléguer la gestion des serveurs à un fournisseur de services Cloud. Cette approche offre plusieurs avantages tels qu'une réduction des coûts d'exploitation, une scalabilité automatique et une simplification de la maintenance. Dans notre application, le Serverless est utilisé pour gérer les fonctions backend telles que le traitement des données et la gestion des \textbf{A}pplication \textbf{P}rogramming \textbf{I}nterface \textbf{(API)}. \\
+    \hline
+    \cellcolor{gray!25}\textbf{Content Delivery Network} & Un Content Delivery Network (CDN) est un réseau de serveurs distribués géographiquement qui permet de distribuer du contenu à grande échelle. L'utilisation d'un CDN permet d'améliorer les performances de notre application en réduisant la latence et en optimisant la bande passante. Dans notre cas, le CDN est utilisé pour distribuer les ressources statiques de notre application telles que les images, les feuilles de style et les scripts. \\
+    \hline
+\end{longtable}
 
 \section*{Conclusion}
 \justifying
-Notre application exploite des techniques d'apprentissage profond et une infrastructure cloud avancée pour offrir une expérience utilisateur optimale et répondre aux exigences de performance et de fiabilité. Le chapitre suivant approfondira les exigences fonctionnelles et non fonctionnelles pour concevoir notre solution adaptée.
-
+Notre application exploite des techniques d'apprentissage profond et une infrastructure cloud avancée pour offrir une expérience utilisateur optimale et répondre aux exigences de performance et de fiabilité. Le chapitre suivant approfondira les branches fonctionnelle et technique de la méthode 2TUP. Celles nous permettra d’identifier les exigences fonctionnelles, non fonctionnelles et techniques pour concevoir et réaliser notre solution.
 

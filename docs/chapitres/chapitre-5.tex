@@ -14,17 +14,18 @@ Pour mettre en place notre solution, nous avons utilisé deux ordinateurs portab
 \begin{longtable}{|c|c|c|}
     \caption{Caractéristiques de l’environnement matériel} \\
     \hline
+    \rowcolor{gray!25}
     & \textbf{Ordinateur 1} & \textbf{Ordinateur 2} \\
     \hline
-    \textbf{Marque} & HP & Lenovo \\
+    \cellcolor{gray!25}\textbf{Marque} & HP & Lenovo \\
     \hline
-    \textbf{Processeur} & Intel i7 10\textsuperscript{ème} génération & Intel i5 8\textsuperscript{ème} génération \\
+    \cellcolor{gray!25}\textbf{Processeur} & Intel i7 10\textsuperscript{ème} génération & Intel i5 8\textsuperscript{ème} génération \\
     \hline
-    \textbf{Ram} & 12 GO & 8 GO \\
+    \cellcolor{gray!25}\textbf{Ram} & 12 GO & 8 GO \\
     \hline
-    \textbf{Disque Dur} & 512 GO SSD & 512 GO SSD \\
+    \cellcolor{gray!25}\textbf{Disque Dur} & 512 GO SSD & 512 GO SSD \\
     \hline
-    \textbf{Système d’exploitation} & Windows 10 & Kubuntu LTS 22 \\
+    \cellcolor{gray!25}\textbf{Système d’exploitation} & Windows 10 & Kubuntu LTS 22 \\
     \hline
 \end{longtable}
 
@@ -33,6 +34,7 @@ Le tableau 5.2 illustre la liste des outils utilisés lors du développement de 
 \begin{longtable}{|p{4cm}|p{11cm}|}
     \caption{Liste des outils utilisé lors du développement de l’application} \\
     \hline
+        \rowcolor{gray!25}
         \textbf{Outil/Technologie} & \textbf{Description} \\
     \hline
     \centering \textbf{Visual Studio Code} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/vscode.png} & Visual Studio Code est un éditeur de code source développé par Microsoft reconnu pour sa légèreté, sa robustesse et ses extensions. \\
@@ -53,7 +55,7 @@ Le tableau 5.2 illustre la liste des outils utilisés lors du développement de 
     \hline
     \centering \textbf{Tailwind CSS} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1cm]{chp5/tailwind.png} & Tailwind CSS est une bibliothèque CSS utilitaire qui permet de concevoir rapidement des interfaces utilisateur modernes et personnalisées. \\
     \hline
-    \centering \textbf{Prisma} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/prisma.png} & Prisma est un ORM (Object-Relational Mapping) qui facilite l'interaction avec la base de données en utilisant un langage de requête TypeScript sécurisé. \\
+    \centering \textbf{Prisma} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/prisma.png} & Prisma est un \textbf{ORM} (\textbf{O}bject-\textbf{R}elational \textbf{M}apping) qui facilite l'interaction avec la base de données en utilisant un langage de requête TypeScript sécurisé. \\
     \hline
     \centering \textbf{PostgreSQL} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/postgresql.png} & PostgreSQL est un système de gestion de base de données relationnelles robuste et performant. \\
     \hline
@@ -72,7 +74,7 @@ Le tableau 5.2 illustre la liste des outils utilisés lors du développement de 
 \end{longtable}
 
 \section{Framework Next.js}
-Notre application web est développée en utilisant le framework Next.js qui est construit sur la bibliothèque ReactJS et qui offre des fonctionnalités supplémentaires pour la création d'applications web modernes. Next.js est un framework full stack qui permet de créer des applications web performantes et optimisées en facilitant la création d'interfaces utilisateur.\\
+Notre plateforme est développée en utilisant le framework Next.js qui est construit sur la bibliothèque ReactJS et qui offre des fonctionnalités supplémentaires pour la création d'applications web modernes. Next.js est un framework full stack qui permet de créer des applications web performantes et optimisées en facilitant la création d'interfaces utilisateur.\\
 Avec Next.js, nous pouvons utiliser le dossier \textbf{"app"} pour gérer le routage de notre application. Il permet de créer des routes dynamiques, des groupes de routes et des routes imbriquées en créant simplement des dossiers.\\
 La Figure 5.1 illustre la structure du dossier \textbf{“app”}.\\
 
@@ -124,7 +126,7 @@ Cette approche s'appuie sur l'utilisation de l'API GroqCloud ainsi que sur l'int
 \end{figure}
 
 \subsection{Evaluation}
-Étant donné que nous avons appliqué  le modèle Mixtral 8x7b via l'intégration de l’API GroqCloud qui déjà évaluée et validée.  Nous ne sommes pas, donc, en mesure d'effectuer une évaluation du modèle par nous-mêmes ,mais, nous allons nous focaliser sur des métriques d'évaluations standards qui nous semblent pertinentes dans le contexte de notre travail. En particulier, nous avons mis le focus sur les cinq métriques d'évaluation suivantes :
+Étant donné que nous avons appliqué le modèle Mixtral 8x7b via l'intégration de l'API GroqCloud qui a déjà été évaluée et validée, nous ne sommes pas en mesure d'effectuer une évaluation du modèle par nous-mêmes. Nous allons donc nous focaliser sur des métriques d'évaluation standard qui nous semblent pertinentes dans le contexte de notre travail. En particulier, nous avons mis le focus sur les cinq métriques d'évaluation suivantes :
 \begin{itemize}
     \item \textbf{Qualité}: La qualité est une métrique qui mesure la précision et la fiabilité des résultats produits par le modèle. Elle permet d'évaluer la performance du modèle en termes de pertinence et de cohérence des réponses fournies.
     \item \textbf{Vitesse}: La vitesse est une métrique qui mesure le temps nécessaire pour qu'un modèle de langage traite une requête et génère une réponse.
@@ -163,4 +165,5 @@ Notons que les informations de cette section sont issues de la référence suiva
 Dans cette section nous allons présenter quelques interfaces de notre plateforme.
 
 \section*{Conclusion}
-Dans ce chapitre final, nous avons débuté en présentant les outils logiciels et le matériel que nous avons employés pour la réalisation de notre projet, ainsi que l'intégration du modèle LLM pour. Enfin, nous avons clôturé par quelques interfaces qui présentent les principales fonctionnalités de notre plateforme.
+Dans ce chapitre final, nous avons débuté en présentant les outils logiciels et le matériel que nous avons employés pour la réalisation de notre projet, ainsi que l'intégration du modèle LLM. Enfin, nous avons clôturé par quelques interfaces qui présentent les principales fonctionnalités de notre plateforme.
+
