@@ -71,7 +71,7 @@ Dans la Figure 4.3, nous représentons l’architecture globale de notre platefo
 \end{figure}
 
 \subsection{Déploiement de notre plateforme}
-Pour représenter le déploiement de notre plateforme, nous avons utilisé le diagramme de déploiement ( voir Figure 4.4). Ce diagramme est une vue statique qui illustre l'utilisation de l'infrastructure physique par le système ainsi que la  répartition des composants du système et les relations entre eux.
+Pour représenter le déploiement de notre plateforme, nous avons utilisé le diagramme de déploiement (voir Figure 4.4). Ce diagramme est une vue statique qui illustre l'utilisation de l'infrastructure physique par le système ainsi que la  répartition des composants du système et les relations entre eux.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.8\textwidth]{images/chp4/fig4.png}
@@ -96,7 +96,7 @@ La Figure 4.5 illustre le modèle conceptuel de notre application.
 
 \subsection{Modèle logique de données}
 Pour organiser un modèle MCD, différents modèles logiques de données peuvent être utilisés. Dans notre projet, nous avons choisi d'utiliser le modèle relationnel car il répond bien à nos besoins non fonctionnels. En suivant les règles de transformation du modèle entité-association vers un modèle relationnel, nous obtiendrons le schéma relationnel suivant : \\
-\textbf{Account} ( \textbf{\uline{id\_account}} , type , provider , providerAccountId , refresh\_token , access\_token , expires\_at , token\_type , scope , id-token , session\_state , createdAt , updatedAt , \#id\_user ) \\
+\textbf{Account} ( \textbf{\uline{id\_account}} , type , provider , providerAccountId , refresh\_token , access\_token , expires\_at , token\_type , scope , id\_token , session\_state , createdAt , updatedAt , \#id\_user ) \\
 \textbf{Session} ( \textbf{\uline{id\_session}} , sessionToken , expires , \#id\_user ) \\ 
 \textbf{User} ( \textbf{\uline{id\_user}} , name , email , bio , emailVerified , image , rôle , universitySlug , createdAt , updatedAt ) \\
 \textbf{VerificationToken} ( \textbf{\uline{id\_verification\_token}} , token , expires , passCode , verificationUrl ) \\
@@ -104,7 +104,7 @@ Pour organiser un modèle MCD, différents modèles logiques de données peuvent
 \textbf{Student} ( \textbf{\uline{id\_student}} , \#id\_user ) \\
 \textbf{Classroom} ( \textbf{\uline{id\_classroom}} , classCode , name , description , isArchived , createdAt , updatedAt , \#id\_teacher ) \\
 \textbf{Post} ( \textbf{\uline{id\_post}} , name , content , createdAt , updatedAt , \#id\_teacher , \#id\_classroom) \\
-\textbf{File} ( \textbf{\uline{id\_file}} , size , name , type , url , \#\uline{id\_post} , \#id\_student ) \\
+\textbf{File} ( \textbf{\uline{id\_file}} , size , name , type , url , \#id\_post , \#id\_student ) \\
 \textbf{Comment} ( \textbf{\uline{id\_comment}}, text, createdAt , updatedAt , \#id\_user , \#id\_post ) \\
 \textbf{Reaction} ( \textbf{\uline{id\_reaction}} , reactionType , createdAt , \#id\_user , \#id\_comment , \#id\_post ) \\
 \textbf{Conversation} ( \textbf{\uline{id\_conversation}} , title , path , createdAt , updatedAt , \#id\_student , \#id\_file ) \\
@@ -186,7 +186,7 @@ La Figure 4.11 illustre le diagramme d’états-transitions de l’objet \textbf
 
 \subsubsection{Diagramme de timing}
 Un diagramme de timing (temps) est un genre de diagrammes d'interaction qui est spécialement conçu pour prendre en compte les contraintes temporelles d'un logiciel.\\
-Dans ce type de diagramme, les messages représentent les communications ou les interactions entre les différentes entités du système. Ils peuvent être synchrones, asynchrones ou des appels de méthodes. En plus ,le diagramme de timing peut inclure aussi des informations sur les états des entités impliquées à des différents moments de l’exécution du système.\\
+Dans ce type de diagramme, les messages représentent les communications ou les interactions entre les différentes entités du système. Ils peuvent être synchrones, asynchrones ou des appels de méthodes. En plus, le diagramme de timing peut inclure aussi des informations sur les états des entités impliquées à des différents moments de l’exécution du système.\\
 La Figure 4.12 illustre le diagramme de timing du cas d’utilisation \textbf{<< Démarrer chat >>} et plus spécifiquement lors de l’envoie d’un message.
 
 \begin{figure}[H]
@@ -226,7 +226,7 @@ La Figure 4.14 montre la maquette de l’interface \textbf{<< Classroom Page >>}
 La Figure 4.15 montre la maquette de l’interface \textbf{<< Chat Page >>}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth,height=0.4\textwidth]{images/chp4/fig16.png}
+    \includegraphics[width=0.85\textwidth,height=0.5\textwidth]{images/chp4/fig15.png}
     \caption{Maquette de l’interface << Chat Page >>}
     \label{fig:Maquette de l’interface <<Chat Page>>}    
 \end{figure}

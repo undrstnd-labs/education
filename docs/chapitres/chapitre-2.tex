@@ -1,10 +1,10 @@
 \vfill 
-\chapter{Fondements de l'Intelligence Artificielle et de l'Infrastructure Cloud dans notre Plateforme}
+\chapter{Fondements de l'intelligence artificielle et de l'infrastructure cloud dans notre plateforme}
 \label{chap:fondements de l'Intelligence Artificielle et de l'Infrastructure Cloud dans notre Plateforme}
 \mtcaddchapter
 \section*{Introduction}
 \justifying
-Ce chapitre explore les fondements de l'Intelligence Artificielle (IA) et de l'infrastructure cloud dans notre plateforme. Nous aborderons des définitions et explications des concepts clés de l’AI et de l’apprentissage profond, notre choix de l'algorithme MoE et l'intégration du cloud. Cette compréhension nous permettra de saisir les capacités de notre plateforme.
+Ce chapitre explore les fondements de l'Intelligence Artificielle (IA) et de l'infrastructure cloud dans notre plateforme. Nous aborderons des définitions et explications des concepts clés de l’IA et de l’apprentissage profond, notre choix de l'algorithme MoE et l'intégration du cloud. Cette compréhension nous permettra de saisir les capacités de notre plateforme.
 
 \section{L'intelligence artificielle dans notre plateforme}
 \justifying
@@ -36,7 +36,7 @@ Les modèles de langage naturel (NLP) sont des composants de l'intelligence arti
 \justifying
 Les modèles de langage de grande taille (LLM) sont des modèles d'intelligence artificielle qui ont été entraînés sur de vastes ensembles de données textuelles pour acquérir une compréhension approfondie du langage naturel. Ces modèles sont capables de générer du texte cohérent et de qualité et sont souvent utilisés pour une variété de tâches en NLP.
 
-\subsubsection{Tokenizers  }
+\subsubsection{Tokenizers}
 \justifying
 Les tokenizers sont des outils essentiels en traitement automatique du NLP qui découpent le texte en unités plus petites appelées "tokens". Ces tokens peuvent être des mots, des sous-mots ou même des caractères individuels. Ils servent de points de départ pour l'analyse et le traitement du texte.
 
@@ -61,7 +61,7 @@ La Figure 2.1. synthétise les étapes et le déroulement  de Dynamic RAG.
 \end{figure}
 
 
-\subsection{Algorithme d’Apprentissage Adopté}
+\subsection{Algorithme d’apprentissage adopté}
 \justifying
 Dans cette section, nous expliquerons le Sparse Mixture of Experts (MoE), l’algorithme d’apprentissage adopté. Nous aborderons l'introduction à cet algorithme, la définition de la couche Sparse MoE et son architecture ainsi que le processus de formation et d'inférence associé.\\
 Bien notez que les informations de cette section sont issues de la référence suivante. \cite{moe}
@@ -80,7 +80,7 @@ La Figure 2.2. synthétise l’architecture de l’algorithme Sparse Mixture of 
     \label{fig:architecture sparse moe}    
 \end{figure}
 
-\subsubsection{ Fonctionnement de l'algorithme Sparse Mixture of Experts}
+\subsubsection{Fonctionnement de l'algorithme Sparse Mixture of Experts}
 \justifying
 L'algorithme sparse Mixture of Experts est une méthode avancée qui combine les avantages des modèles experts spécialisés avec la flexibilité des modèles généralistes.\\
 Contrairement aux réseaux neuronaux traditionnels qui utilisent une seule architecture de modèle pour traiter toutes les entrées, le MoE divise le processus d'apprentissage en plusieurs experts spécialisés. Ces experts sont ensuite combinés de manière pondérée pour générer une prédiction finale (voir Figure 2.2). Chaque expert est responsable de traiter une portion spécifique de l'entrée en apportant ainsi sa propre expertise à la résolution du problème. Ces experts peuvent être considérés comme des sous-modèles qui se spécialisent dans différentes parties de l'espace d'entrée.\\
@@ -92,13 +92,13 @@ Le processus d'entraînement de Mixture of Experts (MoE) implique simultanément
 Pendant la formation, chaque jeton d'entrée est dirigé vers un ou plusieurs experts en fonction des poids appris par le routeur. Les experts traitent ces jetons et retournent leurs sorties respectives. Ces sorties sont combinées pour former la sortie finale du MoE utilisée pour calculer la perte et mettre à jour les paramètres du modèle.\\
 En phase d'inférence, seuls les experts les plus pertinents sont sélectionnés selon les poids du routeur en réduisant ainsi la complexité de calcul et améliorant l'efficacité du MoE. Bien que tous les paramètres doivent être chargés en mémoire, seuls ceux nécessaires sont utilisés pendant l'inférence.
 
-\subsubsection{Raisons du Choix de l'Algorithme Sparse Mixture of Experts }
+\subsubsection{Raisons du choix de l'algorithme Sparse Mixture of Experts}
 \justifying
 Le choix d'adopter l'algorithme Sparse Mixture of Experts (MoE) repose sur sa capacité à optimiser l'utilisation des ressources computationnelles en ne faisant fonctionner que les parties pertinentes du modèle. Cela permet d'augmenter l'efficacité de l'apprentissage et réduire la charge de calcul qui est essentiel pour des applications à grande échelle nécessitant des modèles complexes.\\
 En intégrant le Sparse MoE dans notre plateforme, nous sommes en mesure de fournir des réponses plus précises et adaptées aux besoins spécifiques de chaque utilisateur en améliorant ainsi l'expérience globale d'apprentissage.
 
 
-\section{Le Cloud dans notre plateforme}
+\section{Le cloud dans notre plateforme}
 \justifying
 Dans cette partie, nous allons présenter le cloud computing, les types de cloud ainsi que le type de cloud adopté dans notre plateforme.
 
@@ -115,12 +115,12 @@ Dans cette section, nous présenterons les types de cloud, suivi par le type ado
 \justifying
 Le cloud computing est divisé en trois types principaux : public, privé et hybride.
 \begin{itemize}[itemsep=2pt, parsep=2pt]
-    \item \textbf{Cloud privé}\\ Un cloud privé est un environnement de cloud computing dédié à une seule organisation.Dans un cloud privé, toutes les ressources sont isolées et sous le contrôle d'une seule organisation. Ainsi, le cloud privé est également appelé cloud interne ou d'entreprise. \cite{cloudPrivé}
+    \item \textbf{Cloud privé}\\ Un cloud privé est un environnement de cloud computing dédié à une seule organisation. Dans un cloud privé, toutes les ressources sont isolées et sous le contrôle d'une seule organisation. Ainsi, le cloud privé est également appelé cloud interne ou d'entreprise. \cite{cloudPrivé}
     \item \textbf{Cloud publique}\\ Un cloud public est une infrastructure informatique dans laquelle un fournisseur de services met des ressources à la disposition du public via internet. Les ressources varient selon le fournisseur mais peuvent inclure des capacités de stockage, des applications ou des machines virtuelles. \cite{CloudPublique}
     \item \textbf{Cloud hybride}\\ Un cloud hybride est un environnement informatique mixte dans lequel des applications s'exécutent à l'aide d'une combinaison de ressources de calcul, de stockage et de services dans différents environnements (clouds publics et clouds privés, y compris des centres de données sur site ou en périphérie). \cite{CloudHybride}
 \end{itemize}
 
-\subsubsection{Type de cloud adopté }
+\subsubsection{Type de cloud adopté}
 \justifying
 Notre application repose sur une architecture Cloud hybride qui combine à la fois des services de Cloud public et de Cloud privé. Cette approche nous permet de tirer parti des avantages de chaque modèle en fonction des besoins spécifiques de notre application. 
 
@@ -128,7 +128,7 @@ Notre application repose sur une architecture Cloud hybride qui combine à la fo
 \justifying
 L'infrastructure Cloud offre de nombreux avantages pour notre projet. Tout d'abord, elle nous permet de bénéficier d'une grande scalabilité en adaptant automatiquement les ressources allouées en fonction des besoins de notre application. De plus, elle garantit une haute disponibilité et une redondance des données grâce à la répartition géographique des serveurs. Enfin, l'infrastructure Cloud nous permet de réduire nos coûts d'exploitation. 
 
-\subsection{Service cloud adoptés }
+\subsection{Service cloud adoptés}
 \justifying
 Parmi les services Cloud intégrés dans notre plateforme, nous retrouvons le Runtime Edge, le Serverless et le \textbf{CDN} (\textbf{C}ontent \textbf{D}elivery \textbf{N}etwork).\\
 Les services cloud utilisés dans notre plateforme sont présentés dans le tableau 2.1.
