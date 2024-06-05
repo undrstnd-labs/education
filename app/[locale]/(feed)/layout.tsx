@@ -101,14 +101,17 @@ export default async function FeedLayout({
             </div>
           </div>
 
-          <SheetContent side={"left"} className="w-full">
+          <SheetContent
+            side={"left"}
+            className="flex w-full flex-col justify-between"
+          >
             <div className="flex grow flex-col gap-y-5 overflow-y-auto px-2 pb-4">
               <div className="flex h-16 shrink-0 items-center">
                 <LogoPNG className="h-8 w-8" />
               </div>
               <FeedNavigationList user={user} classrooms={classrooms} />
             </div>
-            <div className="px-6 pb-4">
+            <div className="px-6 pb-4 ">
               {user.role === "TEACHER" && <FeedAddClassroom teacher={entity} />}
               {user.role === "STUDENT" && (
                 <FeedJoinClassroom student={entity} />
@@ -117,7 +120,7 @@ export default async function FeedLayout({
               <UserMenu user={user}>
                 <div
                   className={
-                    "flex cursor-pointer items-center gap-x-4 rounded-lg px-6 py-3 text-sm font-semibold leading-6 hover:bg-secondary/50"
+                    "flex cursor-pointer items-center gap-x-4 rounded-lg px-6 py-0 text-sm font-semibold leading-6 hover:bg-secondary/50"
                   }
                 >
                   <Image
