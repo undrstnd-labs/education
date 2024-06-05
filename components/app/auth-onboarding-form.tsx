@@ -15,7 +15,7 @@ import { manageAvatar } from "@/lib/storage"
 import { cn } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 
-import { UniversityCard } from "@/components/display/UniversityCard"
+import { AuthOnboardingUniversityCard } from "@/components/app/auth-onboaring-university-card"
 import { Icons } from "@/components/shared/icons"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -261,7 +261,7 @@ export function AuthOnboaringForm({ user }: { user: User }) {
         />
 
         {user.universitySlug && (
-          <UniversityCard university={university} t={translateOnboarding} />
+          <AuthOnboardingUniversityCard university={university} t={translateOnboarding} />
         )}
 
         <button

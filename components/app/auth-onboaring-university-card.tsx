@@ -4,7 +4,7 @@ import { TranslationFunction, University } from "@/types"
 
 import { Icons } from "@/components/shared/icons"
 
-export function UniversityCard({
+export function AuthOnboardingUniversityCard({
   university,
   t,
 }: {
