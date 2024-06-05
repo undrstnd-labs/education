@@ -5,7 +5,7 @@ import { type Message } from "ai/react"
 
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
 
-import { Chat } from "@/components/display/Chat"
+import { ChatContext } from "@/components/app/chat-context"
 import { PDFRender } from "@/components/display/PDFRender"
 import {
   ResizableHandle,
@@ -80,8 +80,12 @@ export default async function ChatPage({
 
   if (!chat.file) {
     return (
-      // @ts-ignore: initialMessages is not null
-      <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+      <ChatContext
+        id={chat.id}
+        student={student}
+        // @ts-ignore: initialMessages is not null
+        initialMessages={chat.messages}
+      />
     )
   }
 
@@ -97,8 +101,12 @@ export default async function ChatPage({
         minSize={40}
         style={{ height: "80vh", overflowY: "auto" }}
       >
-        {/* @ts-ignore: initialMessages is not null */}
-        <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+        <ChatContext
+          id={chat.id}
+          student={student}
+          // @ts-ignore: initialMessages is not null
+          initialMessages={chat.messages}
+        />
       </ResizablePanel>
     </ResizablePanelGroup>
   )

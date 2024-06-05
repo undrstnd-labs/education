@@ -1,25 +1,25 @@
 \vfill 
 \chapter{Contexte général et étude préalable}
 \label{chap:etude-preliminaire}
-\vfill 
-\minitoc
 \mtcaddchapter
-\vfill 
-
-\newpage 
+\definecolor{vert}{RGB}{15,134, 35}
+\definecolor{rouge}{RGB}{212,46, 46}
+\definecolor{orange}{RGB}{223,130 , 42}
+\newcommand{\oui}{\textcolor{vert}{Oui}}
+\newcommand{\non}{\textcolor{rouge}{Non}}
 
 \section*{Introduction}
 \justifying
-Ce chapitre vise à exposer l'étude préliminaire de notre projet. Tout d’abord, nous présenterons,dans la première section, le contexte général et l’entité qui nous a accueilli pour faire un stage de fin d'études. De plus, nous aborderons, dans cette section, la problématique et l'idée générale de notre projet. Puis, nous entreprendrons une analyse approfondie de l'existant en mettant en évidence les avantages et les limites des solutions similaires présentées sur le marché afin de nous en inspirer et de retenir une solution plus raffinée. Ensuite, nous détaillerons la solution retenue. Enfin, nous exposerons, dans les deux dernières sections, la méthodologie de développement la plus adaptée à la réalisation de notre projet et le diagramme de Gantt illustrant le planning général de celui-ci. Finalement, nous clôturons ce chapitre par une conclusion.
+Ce chapitre vise à exposer l'étude préliminaire de notre projet. Tout d’abord, nous présenterons, dans la première section, le contexte général et l’entité qui nous a accueilli pour faire un stage de fin d'études. De plus, nous aborderons, dans cette section, la problématique et l'idée générale de notre projet. Puis, nous entreprendrons une analyse approfondie de l'existant en mettant en évidence les avantages et les limites des solutions similaires présentées sur le marché afin de nous en inspirer et de retenir une solution plus raffinée. Ensuite, nous détaillerons la solution retenue. Enfin, nous exposerons, dans les deux dernières sections, la méthodologie de développement la plus adaptée à la réalisation de notre projet et le diagramme de Gantt illustrant le planning général de celui-ci. Finalement, nous clôturons ce chapitre par une conclusion.
 \section{Contexte général et cadre académique du projet}
 \justifying
 Dans cette partie, nous représenterons le contexte général de notre projet qui inclut le cadre académique, la présentation de l’organisme d’accueil, la problématique et l’idée générale de notre projet.
 
 \subsection{Cadre académique du projet}
-Notre projet, intitulé « \textit{Conception et développement d’une plateforme E-learning intégrant un modèle intelligent d’élucidation des documents} », s’inscrit dans le cadre de la préparation d’un projet de fin d’études en vue de l’obtention du diplôme national de Licence en Sciences d’Informatique à  « l’\textbf{I}nstitut \textbf{S}upérieur d’\textbf{I}nformatique et de \textbf{M}athématiques de \textbf{M}onastir \textbf{(ISIMM)} » pour l’année universitaire 2023/2024. Le stage a été effectué au sein de la société \textbf{G}lobe \textbf{S}ervices \textbf{I}nformatique \textbf{GSI} durant une période de 4 mois.
+Notre projet, intitulé « \textit{Conception et développement d’une plateforme E-learning intégrant un modèle intelligent d’élucidation des documents} », s’inscrit dans le cadre de la préparation d’un projet de fin d’études en vue de l’obtention du diplôme national de Licence en Sciences d’Informatique à  « l’\textbf{I}nstitut \textbf{S}upérieur d’\textbf{I}nformatique et de \textbf{M}athématiques de \textbf{M}onastir \textbf{(ISIMM)} » pour l’année universitaire 2023/2024. Le stage a été effectué au sein de la société \textbf{G}lobe \textbf{S}ervices \textbf{I}nformatique \textbf{(GSI)} durant une période de 4 mois.
 
 \subsection{Présentation de l`entité d`accueil}
-L’idée initiale de notre projet est proposée par nous-même et elle est adoptée par  Globe Services Informatique, une entreprise établie à Houmet Souk, Monastir, en Tunisie. Fondée le 20 mai 2000 en tant que société à responsabilité limitée (SARL), GSI se concentre principalement sur le commerce et la maintenance de matériel informatique, ainsi que sur le développement web.\\
+L’idée initiale de notre projet est proposée par nous-même et elle est adoptée par  Globe Services Informatique, une entreprise établie à Houmet Souk, Monastir, en Tunisie. Elle est fondée le 20 mai 2000 en tant que société à responsabilité limitée (SARL). GSI se concentre, principalement, sur le commerce, la maintenance des matériels informatiques et le développement web.\\
 Son logo est présenté dans la Figure 1.1.
 \begin{figure}[H]
     \centering
@@ -30,7 +30,7 @@ Son logo est présenté dans la Figure 1.1.
 
 \noindent Les secteurs d`activités de GSI sont :
 \begin{itemize}[itemsep=2pt, parsep=2pt]
-    \item La vente et la maintenance de matériel informatique.
+    \item Vente de matériel et accessoires informatiques.
     \item Maintenance et réparation de matériel informatique et pièces électroniques.
     \item Développement de logiciels et création de sites web.
     \item Assistance aux entreprises et travaux publicitaires assistés par ordinateur.
@@ -38,16 +38,16 @@ Son logo est présenté dans la Figure 1.1.
 
 \noindent Identité de l'organisation :
 \begin{itemize}[itemsep=2pt, parsep=2pt]
-    \item \textbf{Nom} : Globe Services Informatique (GSI).
-    \item \textbf{Fondateur} : Adel Sriha.
-    \item \textbf{Adresse} : 5 Rue de la République, Houmet Souk, Monastir, Tunisie.
-    \item \textbf{Contact}: 
+    \item \textit{Nom} : STE Globe Services Informatique (GSI)
+    \item \textit{Fondateur} : Adel Sriha.
+    \item \textit{Adresse} : 5 Rue de la République, Houmet Souk, Monastir, Tunisie.
+    \item \textit{Contact}: 
     \begin{itemize}[itemsep=2pt, parsep=2pt]
-        \item \textbf{Téléphone} : 73 447 836.
-        \item \textbf{Fax} : 73 468 696.
+        \item \textit{Téléphone} : 73 447 836.
+        \item \textit{Fax} : 73 468 696.
     \end{itemize}
-    \item \textbf{E-mail} : \href{mailto:commercial@gsi.com.tn}{commercial@gsi.com.tn}.
-    \item \textbf{Site web} : \href{https://www.gsi.com.tn/}{www.gsi.com.tn}.
+    \item \textit{E-mail} : \href{mailto:commercial@gsi.com.tn}{commercial@gsi.com.tn}.
+    \item \textit{Site Web} : \href{https://www.gsi.com.tn/}{www.gsi.com.tn}.
 \end{itemize}
 
 \subsection{La problématique}
@@ -63,7 +63,7 @@ Dans le quotidien estudiantin et dans le déroulement ordinaire d'un cours, où 
 À l'origine de notre projet, nous avons puisé notre inspiration dans notre expérience de la vie estudiantine. Ainsi, nous cherchons à relever les défis auxquels nos pairs sont confrontés tels que la compréhension de leurs cours, l’accès aux ressources pédagogiques adaptées et le besoin de soutien académique personnalisé.
 
 \vspace{0.5em}
-\noindent{Notre idée consiste à concevoir et mettre en œuvre une plateforme interactive et intelligente visant à révolutionner l'expérience d'apprentissage des étudiants et des enseignants. Cette plateforme fournira des contenus multimédias et des outils d'intelligence artificielle (IA) pour favoriser un apprentissage personnalisé et collaboratif. En outre, elle sera une solution open-source riche en services pertinents et intelligents. Pour se faire, nous prévoyons d'exploiter les technologies de pointe en matière d'IA et de tirer parti des services de cloud pour garantir une solution robuste.}
+\noindent{Notre idée consiste à concevoir et mettre en œuvre une plateforme interactive et intelligente visant à révolutionner l'expérience d'apprentissage des étudiants et des enseignants. Cette plateforme fournira des contenus multimédias et des outils d'intelligence artificielle (IA) pour favoriser un apprentissage personnalisé. En outre, elle sera une solution open-source riche en services pertinents et intelligents. Pour se faire, nous prévoyons d'exploiter les technologies de pointe en matière d'IA et de tirer parti des services de cloud pour garantir une solution robuste.}
 
 \vspace{0.5em}
 \noindent{Il est primordial de souligner que notre projet repose sur une idée préliminaire, mais celle-ci peut être affinée en étudiant les solutions similaires disponibles sur le marché. Avant de plonger dans une analyse et une évaluation approfondies des options existantes, nous allons d'abord expliquer les concepts fondamentaux qui sont pertinents pour notre cadre de travail.}
@@ -91,7 +91,7 @@ Le logo de cette plateforme est affiché dans la Figure 1.2.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.2\textwidth]{images/google-classroom-logo.png}
-    \caption{Logo du Google Classroom}[1]
+    \caption{Logo du Google Classroom \cite{googleClassroom}}
     \label{fig:google-classroom-logo}
 \end{figure}
 \noindent \textbf{Google classroom} permet de :
@@ -106,7 +106,7 @@ Le logo de cette plateforme est affiché dans la Figure 1.2.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.2\textwidth,height=0.15\textwidth]{images/piazza-logo.png}
-        \caption{Logo du Piazza}[2]
+        \caption{Logo du Piazza \cite{piazza}}
         \label{fig:piazza-logo}
     \end{figure}
     \noindent \textbf{Piazza} permet de :
@@ -122,7 +122,7 @@ Le logo de cette plateforme est affiché dans la Figure 1.4.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.2\textwidth]{images/chatgpt-logo.png}
-    \caption{Logo du ChatGPT}[3]
+    \caption{Logo du ChatGPT \cite{chatgpt}}
     \label{fig:chatgpt-logo}
 \end{figure}
 \noindent \textbf{ChatGPT} permet de :
@@ -137,7 +137,7 @@ Le logo de cette plateforme est affiché dans la Figure 1.4.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.3\textwidth,height=0.2\textwidth]{images/poe-logo.png}
-        \caption{Logo du Poe}[4]
+        \caption{Logo du Poe \cite{poe}}
         \label{fig:poe-logo}
     \end{figure}
     \noindent \textbf{Poe} permet de :
@@ -147,54 +147,47 @@ Le logo de cette plateforme est affiché dans la Figure 1.4.
         \end{itemize}
 
 \subsection{Évaluation des solutions étudiées}
-Après une étude approfondie de l’existant, nous évaluons les plateformes selon les neuf critères \textit{(Cx)} suivants :
+Après une étude approfondie de l’existant, nous évaluons les plateformes selon les six critères \textbf{\textit{(Cx)}} suivants :
 \begin{itemize}[itemsep=2pt, parsep=2pt]
     \item \textbf{Tokens par contexte (C1)} : Ce critère d’évaluation permet d’indiquer le nombre de tokens par contexte, représentant une mesure de la capacité du modèle à comprendre et générer du texte cohérent.
-    \item \textbf{Accès gratuit (C2)} :  Ce critère d’évaluation permet de vérifier si l'utilisation de la plateforme ne nécessite aucun paiement ou frais d'inscription.
-    \item \textbf{Benchmark de la AlpacaEval (C3)} :  L'évaluation de la plateforme selon l'outil AlpacaEval, qui est un évaluateur automatique pour les modèles de langage de suivi d'instructions.
-    \item \textbf{Gestion de contenu multimédia (C4)} :  Ce critère teste la possibilité de télécharger, stocker et accéder à divers formats de contenu tels que des audios, PDFs, vidéos et images.
-    \item \textbf{Système de chat interactif avec l’Intelligence Artificiel (C5)} : Ce critère d’évaluation vérifie si une fonctionnalité de messagerie instantanée permettant aux étudiants de poser des questions et de recevoir des réponses basées sur les contenus téléchargés.
-    \item \textbf{Création et gestion de salles de classe virtuelles (C6)} : Ce critère d’évaluation examine l’existence d’outils pour créer, gérer et partager des ressources dans des espaces de classe virtuels.
-    \item \textbf{Résumés automatiques (C7)} : Ce critère d’évaluation vérifie l’existence des fonctionnalités pour résumer et traduire automatiquement le contenu téléchargé en facilitant la compréhension dans différentes langues.
-    \item \textbf{Système de partage et collaboration (C8)} : Ce critère d’évaluation permet de vérifier l’existence d’un système de partage et de collaboration qui permet aux étudiants de partager des informations et de collaborer sur des projets ou des discussions.
-    \item  \textbf{Temps de génération de la réponse (C9)} : Ce critère d'évaluation évalue le temps estimé et nécessaire pour qu'une application réponde à une requête. Il est spécifiquement conçu pour les solutions axées sur la rapidité et qui utilisent des algorithmes intelligents, en se concentrant sur les interactions entre l'utilisateur et le système pour fournir une réponse efficace.
+    \item \textbf{Accès gratuit (C2)} : Ce critère d’évaluation permet de vérifier si l'utilisation de la plateforme ne nécessite aucun paiement ou frais d'inscription.
+    \item \textbf{Gestion de contenu multimédia (C3)} : Ce critère teste la possibilité de télécharger, stocker et accéder à divers formats de contenu tels que des PDFs et images.
+    \item \textbf{Système de chat interactif avec l’intelligence artificiel (C4)} : Ce critère d’évaluation vérifie si une fonctionnalité de messagerie instantanée permettant aux utilisateurs de poser des questions et de recevoir des réponses basées sur les contenus téléchargés.
+    \item \textbf{Génération de tokens par seconde (C5)} : Ce critère évalue la rapidité à laquelle une solution utilisant des algorithmes intelligents peut générer des tokens, mesurant ainsi l'efficacité et la performance du système.
+    \item \textbf{Interface utilisateur (C6)} : Ce critère permet de voir si la plateforme a une interface facile à utiliser et à comprendre.
 \end{itemize}
 
 \vspace{0.5em}
 \noindent Le résultat de l’évaluation est affiché dans le tableau \ref{tab:tableau_comparatif} ci-dessous.
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.5}
-    \setlength{\tabcolsep}{10pt} 
     \caption{Tableau comparatif entre les solutions existantes}
     \label{tab:tableau_comparatif}
-    \begin{tabular}{|l|c|c|c|c|}
+    \begin{tabular}{|>{\centering\arraybackslash}p{1.5cm}|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{1.75cm}|>{\centering\arraybackslash}p{4.75cm}|>{\centering\arraybackslash}p{4.75cm}|}
       \hline
+      \rowcolor{gray!25}
       \textbf{Critère} & \textbf{Google Classroom} & \textbf{Piazza} & \textbf{ChatGPT} & \textbf{POE (Llama-2-70b)} \\
       \hline
-      C1 & - & - & 6.25\% & 6.25\% \\
+      C1 & -- & -- & 4096 & 4096 \\
       \hline
-      C2 & 100\% & 100\% & 40\% & 50\% \\
+      C2 & \oui & \oui & \textcolor{orange}{Oui, mais avec une version payante} & \textcolor{orange}{Oui, mais avec des limites} \\
       \hline
-      C3 & - & - & 14.13\% & 13.87\% \\
+      C3 & \oui & \oui & \non & \non \\
       \hline
-      C4 & 80\% & 70\% & - & - \\
+      C4 & \non & \non & \oui & \oui \\
       \hline
-      C5 & - & - & 100\% & 100\% \\
+      C5 & -- & -- & 68.73 token/second & 44.7 token/second \\
       \hline
-      C6 & 100\% & 40\% & - & - \\
-      \hline
-      C7 & - & - & 60\% & 65\% \\
-      \hline
-      C8 & 70\% & 50\% & - & - \\
-      \hline
-      C9 & - & - & 12\% & 14\% \\
+      C6 & \textcolor{vert}{Très bien} & \textcolor{rouge}{Mauvaise} & \textcolor{vert}{Très bien} & \textcolor{orange}{Bien}  \\
       \hline
     \end{tabular}
 \end{table}
 
 \vspace{0.5em}
-\noindent D'après notre étude et les résultats d'analyse présentés dans le tableau \ref{tab:tableau_comparatif}, il est évident qu' aucune des solutions étudiées n'a entièrement satisfait à nos critères d'évaluation. Les solutions comme \textit{Google Classroom} et \textit{Piazza} ne présentent pas d'aspect d'intelligence artificielle permettant d'aider les étudiants dans leurs études. En revanche, les solutions dotées d'intelligence artificielle telles que ChatGPT et Poe ne répondent pas aux critères de gestion de salle de classe virtuelle ni de gestion de contenu de différents types de documents. Bien que ces dernières proposent un chat interactif avec une intelligence artificielle, celui-ci se limite au texte et ne permet pas de partager d'autres types de documents tels que des PDF ou des fichiers audio, à moins d'utiliser leur version payante.En outre, le temps de réponse de leur chatbot devient plus long en raison de l’augmentation du nombre d’utilisateurs, ce qui peut affecter la qualité de l’expérience utilisateur.
+
+\noindent \textbf{Légende}:  \hspace{0.5em} "\textbf{--}": Critère n’est pas  adaptée à la solution.\\
+\noindent D'après notre étude et les résultats d'analyse présentés dans le tableau 1.1, il est évident qu' aucune des solutions étudiées n'a entièrement satisfait à nos critères d'évaluation. Les solutions comme \textbf{Google Classroom} et \textbf{Piazza} ne présentent pas d'aspect d'intelligence artificielle permettant d'aider les étudiants dans leurs études. En revanche, les solutions dotées d'intelligence artificielle telles que \textbf{ChatGPT} et \textbf{Poe} ne répondent pas au critère de de gestion de contenu de différents types de documents. Bien que ces dernières proposent un chat interactif avec une intelligence artificielle, celui-ci se limite au texte et ne permet pas de partager d'autres types de documents tels que des PDF, à moins d'utiliser leur version payante. En outre, le temps de réponse de leur chatbot devient plus long en raison de l’augmentation du nombre d’utilisateurs, ce qui peut affecter la qualité de l’expérience utilisateur.
 
 \section{Solution proposée}
 Après avoir identifié les lacunes des solutions existantes sur le marché, nous envisageons de concevoir et de développer une plateforme plus innovante, gratuite et open-source.\\
@@ -214,9 +207,9 @@ Notre plateforme incluera les fonctionnalités classiques existantes dans les so
     \end{itemize}   
 \end{itemize}
 \vspace{0.5em}
-\textbf{Fonctionnalités du système de chat intelligent :}\\
+\textbf{Fonctionnalités du système de chat intelligent :}
 \begin{itemize}
-    \item Espace de chat instantané qui se base sur un algorithme intelligent permettant aux apprenants d'interagir avec le système. Les apprenants pourront partager un document de format différent (image, pdf, text) dans cet espace de chat, bénéficiant ainsi d'une variété de services automatiques avec un temps de réponse très rapide (200 ms vous permettant d'obtenir une réponse de 2 pages) tels que :
+    \item Espace de chat instantané qui se base sur un algorithme intelligent permettant aux apprenants d'interagir avec le système. Les apprenants pourront partager un document de format différent (pdf et text) dans cet espace de chat, bénéficiant ainsi d'une variété de services automatiques avec un temps de réponse très rapide tels que :
     \begin{itemize}[itemsep=2pt, parsep=2pt]
         \item Synthèse.
         \item Résumé.
@@ -256,15 +249,17 @@ Parmi les avantages du Processus Unifié, on peut citer :
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth,height=0.65\textwidth]{images/chapitre-1/2tup.png}
-    \caption{Représentation de la méthodologie 2TUP}[5]
+    \caption{Représentation de la méthodologie 2TUP \cite{2tup}}
     \label{fig:2tup-image}    
 \end{figure}
+
+\newpage
 
 \noindent Le processus s'articule ensuite autour de trois phases essentielles comme l'indique la Figure \ref{fig:2tup-image} :
 \begin{itemize}[itemsep=2pt, parsep=2pt]
     \item \textbf{Une branche fonctionnelle} : Elle capitalise la connaissance du métier de l’entreprise. Cette branche capture des besoins fonctionnels, ce qui produit un modèle focalisé sur le métier des utilisateurs finaux.
-    \item \textbf{Une branche technique} : Cette phase consiste à concevoir l'architecture du système, à définir les composants et à établir les spécifications techniques.
-    \item \textbf{Une phase de réalisation} : Cette phase consiste à développer le système, à tester les composants et à valider le système.
+    \item \textbf{Une branche technique} : Elle capitalise un savoir-faire technique et/ou des contraintes techniques. Les techniques développées pour le système sont indépendamment des fonctions à réaliser.
+    \item \textbf{Une phase de réalisation} : Elle consiste à réunir les deux branches en permettant de mener une conception applicative et enfin la livraison d'une solution adaptée aux besoins.
 \end{itemize}
 
 \subsection{Raison du choix de la méthode 2TUP}
@@ -274,7 +269,7 @@ La méthode 2TUP offre une transparence en définissant un langage commun entre 
 Le diagramme de Gantt est un outil essentiel pour la gestion de projet. Il permet de planifier et de suivre les différentes étapes du projet au fil du temps. Notre projet, débuté le 5 Février et s’est déroulé durant 16 semaines, est représenté à travers ce diagramme. Les étapes clés incluent l'étude de préalable, l'analyse et la spécification des besoins, la conception, l'implémentation, les tests, ainsi que la rédaction du rapport. Chaque étape est visualisée dans le diagramme, fournissant une vue d'ensemble claire de la progression du projet au cours de la période de stage.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.1\textwidth,height=0.55\textwidth]{images/chapitre-1/gant.png}
+    \includegraphics[width=1\textwidth,height=0.5\textwidth]{images/chapitre-1/gant.png}
     \caption{Diagramme de Gantt}
     \label{fig:gantt-diagram}    
 \end{figure}

@@ -1,13 +1,7 @@
 \vfill 
 \chapter{Réalisation}
 \label{chap:conception}
-\vfill 
-\minitoc
 \mtcaddchapter
-\vfill 
-
-\newpage
-
 \section*{Introduction}
 \justifying
 Dans le dernier chapitre, nous allons présenter les divers outils et framework employés pour la création de notre application. Ensuite, nous illustrons l'intégration  du modèle LLM pour élucider les requêtes des étudiants et l’évaluation du modèle appliqué. Finalement, nous capturerons  quelques interfaces réalisées de notre plateforme.
@@ -20,25 +14,27 @@ Pour mettre en place notre solution, nous avons utilisé deux ordinateurs portab
 \begin{longtable}{|c|c|c|}
     \caption{Caractéristiques de l’environnement matériel} \\
     \hline
+    \rowcolor{gray!25}
     & \textbf{Ordinateur 1} & \textbf{Ordinateur 2} \\
     \hline
-    \textbf{Marque} & HP & Lenovo \\
+    \cellcolor{gray!25}\textbf{Marque} & HP & Lenovo \\
     \hline
-    \textbf{Processeur} & Intel i7 10\textsuperscript{ème} génération & Intel i5 8\textsuperscript{ème} génération \\
+    \cellcolor{gray!25}\textbf{Processeur} & Intel i7 10\textsuperscript{ème} génération & Intel i5 8\textsuperscript{ème} génération \\
     \hline
-    \textbf{Ram} & 12 GO & 8 GO \\
+    \cellcolor{gray!25}\textbf{Ram} & 12 GO & 8 GO \\
     \hline
-    \textbf{Disque Dur} & 512 GO SSD & 512 GO SSD \\
+    \cellcolor{gray!25}\textbf{Disque Dur} & 512 GO SSD & 512 GO SSD \\
     \hline
-    \textbf{Système d’exploitation} & Windows 10 & Kubuntu LTS 22 \\
+    \cellcolor{gray!25}\textbf{Système d’exploitation} & Windows 10 & Kubuntu LTS 22 \\
     \hline
 \end{longtable}
 
 \subsection{Environnement logiciel}
-Le tableau 5.2 illustre la liste des outils utilisés lors du développement de notre application web. \newpage
+Le tableau 5.2 illustre la liste des outils utilisés lors du développement de notre application web.
 \begin{longtable}{|p{4cm}|p{11cm}|}
     \caption{Liste des outils utilisé lors du développement de l’application} \\
     \hline
+        \rowcolor{gray!25}
         \textbf{Outil/Technologie} & \textbf{Description} \\
     \hline
     \centering \textbf{Visual Studio Code} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/vscode.png} & Visual Studio Code est un éditeur de code source développé par Microsoft reconnu pour sa légèreté, sa robustesse et ses extensions. \\
@@ -59,7 +55,7 @@ Le tableau 5.2 illustre la liste des outils utilisés lors du développement de 
     \hline
     \centering \textbf{Tailwind CSS} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1cm]{chp5/tailwind.png} & Tailwind CSS est une bibliothèque CSS utilitaire qui permet de concevoir rapidement des interfaces utilisateur modernes et personnalisées. \\
     \hline
-    \centering \textbf{Prisma} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/prisma.png} & Prisma est un ORM (Object-Relational Mapping) qui facilite l'interaction avec la base de données en utilisant un langage de requête TypeScript sécurisé. \\
+    \centering \textbf{Prisma} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/prisma.png} & Prisma est un \textbf{ORM} (\textbf{O}bject-\textbf{R}elational \textbf{M}apping) qui facilite l'interaction avec la base de données en utilisant un langage de requête TypeScript sécurisé. \\
     \hline
     \centering \textbf{PostgreSQL} \vspace{0.2cm} \newline \centering \includegraphics[width=1.5cm,height=1.5cm]{chp5/postgresql.png} & PostgreSQL est un système de gestion de base de données relationnelles robuste et performant. \\
     \hline
@@ -78,21 +74,40 @@ Le tableau 5.2 illustre la liste des outils utilisés lors du développement de 
 \end{longtable}
 
 \section{Framework Next.js}
-Notre application web est développée en utilisant le framework Next.js qui est construit sur la bibliothèque ReactJS et qui offre des fonctionnalités supplémentaires pour la création d'applications web modernes. Next.js est un framework full stack qui permet de créer des applications web performantes et optimisées en facilitant la création d'interfaces utilisateur.\\
+Notre plateforme est développée en utilisant le framework Next.js qui est construit sur la bibliothèque ReactJS et qui offre des fonctionnalités supplémentaires pour la création d'applications web modernes. Next.js est un framework full stack qui permet de créer des applications web performantes et optimisées en facilitant la création d'interfaces utilisateur.\\
 Avec Next.js, nous pouvons utiliser le dossier \textbf{"app"} pour gérer le routage de notre application. Il permet de créer des routes dynamiques, des groupes de routes et des routes imbriquées en créant simplement des dossiers.\\
 La Figure 5.1 illustre la structure du dossier \textbf{“app”}.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.6\textwidth]{images/chp5/fig1.png}
+    \caption{Structure du dossier "app"}
+    \label{fig:Structure du dossier "app"}    
+\end{figure}
 
-
+\newpage
 \noindent En outre, Next.js offre également un dossier spécial appelé \textbf{"api"} pour créer des endpoints API pour la partie backend de notre application.\\
 Cela permet de créer facilement des API REST pour notre application.\\
 De plus, il est important de noter que Next.js propose également les \textbf{"Server Actions"} qui peuvent également jouer un role rôle similaire à celui du dossier \textbf{"api"} pour créer des endpoints API.\\
-Les Figures 5.2 et 5.3 illustrent la structure des dossiers \textbf{“api”} et \textbf{“actions”}.\\
-
+Les Figures 5.2 et 5.3 illustrent la structure des dossiers \textbf{“api”} et \textbf{“actions”}.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth,height=0.9\textwidth]{images/chp5/fig2.png}
+        \caption{Structure du dossier "api"}
+        \label{fig:Structure du dossier "api"}
+    \end{minipage}
+    \hspace{0.05\textwidth}
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth,height=0.9\textwidth]{images/chp5/fig3.png}
+        \caption{Structure du dossier "actions"}
+        \label{fig:Structure du dossier "actions"}
+    \end{minipage}
+\end{figure}
 
 
 \noindent Next.js simplifie ainsi la création d'applications web full stack en fournissant une solution complète pour la gestion du routage et de la création d'API.
-
-
 
 
 \section{Intègration du Modèle LLM}
@@ -111,13 +126,13 @@ La Figure 5.5 synthétise les étapes et le fonctionnement de Dynamic RAG pour l
 Cette approche s'appuie sur l'utilisation de l'API GroqCloud ainsi que sur l'intégration d'autres technologies.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{images/chp5/fig5.png}
+    \includegraphics[width=1.1\textwidth,height=0.55\textwidth]{images/chp5/fig5.png}
     \caption{Exemple du déroulement et des étapes de Dynamic RAG avec nos technologies}
     \label{fig:Exemple du déroulement et des étapes de Dynamic RAG avec nos technologies}
 \end{figure}
 
 \subsection{Evaluation}
-Étant donné que nous avons appliqué  le modèle Mixtral 8x7b via l'intégration de l’API GroqCloud qui déjà évaluée et validée.  Nous ne sommes pas, donc, en mesure d'effectuer une évaluation du modèle par nous-mêmes ,mais, nous allons nous focaliser sur des métriques d'évaluations standards qui nous semblent pertinentes dans le contexte de notre travail. En particulier, nous avons mis le focus sur les cinq métriques d'évaluation suivantes :
+Étant donné que nous avons appliqué le modèle Mixtral 8x7b via l'intégration de l'API GroqCloud qui a déjà été évaluée et validée, nous ne sommes pas en mesure d'effectuer une évaluation du modèle par nous-mêmes. Nous allons donc nous focaliser sur des métriques d'évaluation standard qui nous semblent pertinentes dans le contexte de notre travail. En particulier, nous avons mis le focus sur les cinq métriques d'évaluation suivantes :
 \begin{itemize}
     \item \textbf{Qualité}: La qualité est une métrique qui mesure la précision et la fiabilité des résultats produits par le modèle. Elle permet d'évaluer la performance du modèle en termes de pertinence et de cohérence des réponses fournies.
     \item \textbf{Vitesse}: La vitesse est une métrique qui mesure le temps nécessaire pour qu'un modèle de langage traite une requête et génère une réponse.
@@ -125,18 +140,28 @@ Cette approche s'appuie sur l'utilisation de l'API GroqCloud ainsi que sur l'int
     \item \textbf{Fenêtre de contexte}: La fenêtre de contexte est une métrique qui mesure la quantité d'informations prises en compte par le modèle pour traiter une requête.
     \item \textbf{Codage}: Le critère de codage dans fait référence à la capacité du modèle à comprendre, interpréter et générer du code informatique.
 \end{itemize}
-Notons que les informations de cette section sont issues de la référence suivante.[15]
+Notons que les informations de cette section sont issues de la référence suivante. \cite{mixtral8x7b}
 
 \begin{itemize}
     \item \textbf{Qualité du Mixtral 8x7B }
 \end{itemize}
 \noindent Le modèle Mixtral 8x7B a obtenu un score \textbf{MMLU} (\textbf{M}assive \textbf{M}ultitask \textbf{L}anguage \textbf{U}nderstanding) de \textbf{0.706} qui reflète sa capacité à comprendre et à traiter le langage naturel dans diverses tâches. De plus, il a un indice de qualité de \textbf{65}. Ce score est le résultat de plusieurs évaluations et montre que le modèle est fiable et performant dans différents contextes d'utilisation. Bien que ces résultats puissent être améliorés, le Mixtral 8x7B reste un modèle compétitif sur le marché et offre une qualité satisfaisante pour de nombreuses applications de traitement automatique du langage naturel.
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth,height=0.5\textwidth]{images/chp5/fig6.png}
+    \caption{Indice de qualité des différents modèles de langage naturel}
+    \label{fig: Indice de qualité des différents modèles de langage naturel}    
+\end{figure}
 \begin{itemize}
     \item \textbf{Vitesse du Mixtral 8x7B}
 \end{itemize}
-\noindent Un des points forts du Mixtral 8x7B réside dans sa rapidité d'exécution. En effet, ce modèle est plus rapide que la moyenne avec un débit impressionnant de \textbf{97,7 tokens par seconde}. Cette caractéristique fait un choix avantageux pour les applications nécessitant une génération rapide de texte.
-
+\noindent Un des points forts du Mixtral 8x7B réside dans sa rapidité d'exécution. En effet, ce modèle est plus rapide que la moyenne avec un débit impressionnant de \textbf{73.1 tokens par seconde}. Cette caractéristique fait un choix avantageux pour les applications nécessitant une génération rapide de texte.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth,height=0.5\textwidth]{images/chp5/fig7.png}
+    \caption{Débit en tokens par seconde des différents modèles de langage naturel}
+    \label{fig:Débit en tokens par seconde des différents modèles de langage naturel}    
+\end{figure}
 \begin{itemize}
     \item \textbf{Latence du Mixtral 8x7B }
 \end{itemize}
@@ -150,10 +175,12 @@ Notons que les informations de cette section sont issues de la référence suiva
 \begin{itemize}
     \item \textbf{Codage }
 \end{itemize}
-\noindent \textbf{HumanEval} : Dans l'évaluation des compétences en codage, le modèle obtient un score de \textbf{40,2}, ce qui est considéré comme un bon résultat. Cela démontre la capacité du modèle à comprendre et à générer du code de manière efficace. [16]
+\noindent \textbf{HumanEval} : Dans l'évaluation des compétences en codage, le modèle obtient un score de \textbf{40.2}, ce qui est considéré comme un bon résultat. Cela démontre la capacité du modèle à comprendre et à générer du code de manière efficace. \cite{codage}
 
+\newpage
 \section{Travail réalisé }
 Dans cette section nous allons présenter quelques interfaces de notre plateforme.
 
 \section*{Conclusion}
-Dans ce chapitre final, nous avons débuté en présentant les outils logiciels et le matériel que nous avons employés pour la réalisation de notre projet, ainsi que l'intégration du modèle LLM pour. Enfin, nous avons clôturé par quelques interfaces qui présentent les principales fonctionnalités de notre plateforme.
+Dans ce chapitre final, nous avons débuté en présentant les outils logiciels et le matériel que nous avons employés pour la réalisation de notre projet, ainsi que l'intégration du modèle LLM. Enfin, nous avons clôturé par quelques interfaces qui présentent les principales fonctionnalités de notre plateforme.
+

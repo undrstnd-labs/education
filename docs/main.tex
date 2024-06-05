@@ -15,10 +15,10 @@
     \maketitle
     \pagenumbering{roman}
     \cleardoublepage
-
-    \include{specials/asbtract}
+   
     \cleardoublepage
 
+    \include{specials/abstract}
     \include{specials/dedicationAmine}
     \include{specials/dedicationMalek}
     \include{specials/appreciation}
@@ -26,15 +26,18 @@
     \cleardoublepage
 
     \include{specials/list}
-    \include{specials/introduction}
+    
 
     \pagenumbering{arabic}
-    
+    \include{specials/introduction}
     \include{chapitres/chapitre-1}
     \include{chapitres/chapitre-2}
     \include{chapitres/chapitre-3}
     \include{chapitres/chapitre-4}
     \include{chapitres/chapitre-5}
-
     \include{specials/conclusion}
+    \renewcommand{\bibname}{Webographie}
+    \bibliographystyle{plain}
+    \bibliography{specials/webographie}
+
 \end{document}
