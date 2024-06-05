@@ -17,16 +17,20 @@ export function FeedClassroomOpenChat({
   studentId: string
 }) {
   const router = useRouter()
-
   const t = useTranslations("app.components.app.feed-classroom-open-chat")
 
   return (
     <DropdownMenuItem
       className="flex items-center gap-2 hover:cursor-pointer"
       onClick={async () => {
-        await saveChat(file.id, studentId, file, `/chat/c/${file.id}`)
-        router.push(`/chat/c/${file.id}`)
-        router.refresh()
+        try {
+          await saveChat(file.id, studentId, file, `/chat/c/${file.id}`)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          router.push(`/chat/c/${file.id}`)
+          router.refresh()
+        }
       }}
     >
       {t("open-chat")}
