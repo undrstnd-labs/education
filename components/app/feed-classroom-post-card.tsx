@@ -100,8 +100,6 @@ export function FeedClassroomPostCard({
     {} as { [key: string]: number }
   )
 
-  console.log(post.comments)
-
   return (
     <section id={post.id} className="flex flex-col gap-2">
       <Card>

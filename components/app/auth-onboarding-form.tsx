@@ -261,7 +261,10 @@ export function AuthOnboaringForm({ user }: { user: User }) {
         />
 
         {user.universitySlug && (
-          <AuthOnboardingUniversityCard university={university} t={translateOnboarding} />
+          <AuthOnboardingUniversityCard
+            university={university}
+            t={translateOnboarding}
+          />
         )}
 
         <button

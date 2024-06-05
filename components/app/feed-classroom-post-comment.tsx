@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Post, Student, Teacher, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { set, z } from "zod"
 
 import { Comment } from "@/types/classroom"
 
@@ -201,13 +201,16 @@ function Reply({
   reply,
   post,
   t,
+  entity,
 }: {
   reply: Comment
   post: Post
   t: (key: string) => string
+  entity: (Student & { user: User }) | (Teacher & { user: User })
 }) {
   const [user, setUser] = React.useState(reply.user)
   const [isLoading, setIsLoading] = React.useState(true)
+  const [date, setDate] = React.useState(reply.createdAt)
 
   React.useEffect(() => {
     async function fetchData() {
@@ -217,6 +220,7 @@ function Reply({
           const data = (await getComment(reply.postId, reply.id))!
           setIsLoading(false)
           setUser(data.user as User)
+          setDate(data.createdAt)
         } catch (error) {
           console.log(error)
           setIsLoading(false)
@@ -252,12 +256,16 @@ function Reply({
             </h3>
           )}
           <span className="mx-1">•</span>
-          <time
-            dateTime={reply.createdAt.toString()}
-            className="flex-none text-xs text-secondary-foreground/50"
-          >
-            {formatDate(new Date(reply.createdAt), t)}
-          </time>
+          {isLoading ? (
+            <Skeleton className="h-4 w-16" />
+          ) : (
+            <time
+              dateTime={date.toString()}
+              className="flex-none text-xs text-secondary-foreground/50"
+            >
+              {formatDate(new Date(date), t)}
+            </time>
+          )}
           {reply.createdAt !== reply.updatedAt && (
             <span className="flex-none text-xs text-secondary-foreground/50">
               ({t("edited")})
@@ -270,7 +278,7 @@ function Reply({
           </div>
         ) : (
           <>
-            {user.id === user.id && (
+            {reply.userId === entity.user.id && (
               <div className="ml-auto flex items-center space-x-2">
                 <DropdownActions t={t} comment={reply} post={post} />
               </div>
@@ -340,7 +348,13 @@ function ReplyComment({
                 )
               })
               .map((reply) => (
-                <Reply key={reply.id} reply={reply} post={post} t={t} />
+                <Reply
+                  key={reply.id}
+                  reply={reply}
+                  post={post}
+                  t={t}
+                  entity={entity}
+                />
               ))
           ) : (
             <div className="flex flex-1 flex-col justify-center">
@@ -390,29 +404,62 @@ export function FeedClassroomPostComment({
   comment,
   post,
 }: FeedClassroomPostCommentProps) {
+  const [user, setUser] = React.useState(comment.user)
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [date, setDate] = React.useState(comment.createdAt)
+
   const t = useTranslations("app.components.app.feed-classroom-post-comment")
+
+  React.useEffect(() => {
+    async function fetchData() {
+      if (!user) {
+        setIsLoading(true)
+        try {
+          const data = (await getComment(comment.postId, comment.id))!
+          setIsLoading(false)
+          setUser(data.user as User)
+          setDate(data.createdAt)
+        } catch (error) {
+          console.log(error)
+          setIsLoading(false)
+        }
+      } else {
+        setIsLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [user])
 
   return (
     <li key={post.id} className="py-4">
       <div className="flex items-center gap-x-3">
-        <Image
-          src={entity.user.image!}
-          alt={entity.user.name!}
-          width={24}
-          height={24}
-          className="h-6 w-6 flex-none rounded-full"
-        />
+        {isLoading ? (
+          <Skeleton className="h-6 w-6 rounded-full" />
+        ) : (
+          <Image
+            src={user.image!}
+            alt={user.name!}
+            width={24}
+            height={24}
+            className="h-6 w-6 flex-none rounded-full"
+          />
+        )}
         <div className="flex items-center space-x-2">
           <h3 className="flex-auto truncate text-sm font-semibold capitalize leading-6 text-secondary-foreground">
             {entity.user.name}
           </h3>
           <span className="mx-1">•</span>
-          <time
-            dateTime={post.createdAt.toString()}
-            className="flex-none text-xs text-secondary-foreground/50"
-          >
-            {formatDate(new Date(comment.createdAt), t)}
-          </time>
+          {isLoading ? (
+            <Skeleton className="h-4 w-16" />
+          ) : (
+            <time
+              dateTime={date.toString()}
+              className="flex-none text-xs text-secondary-foreground/50"
+            >
+              {formatDate(new Date(date), t)}
+            </time>
+          )}
         </div>
         <div className="ml-auto flex items-center space-x-2">
           <ReplyComment t={t} entity={entity} post={post} comment={comment} />
