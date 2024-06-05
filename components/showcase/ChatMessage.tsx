@@ -6,10 +6,10 @@ import remarkMath from "remark-math"
 
 import { cn } from "@/lib/utils"
 
-import { CodeBlock } from "@/components/ui/Codeblock"
-import { MemoizedReactMarkdown } from "@/components/config/Markdown"
-import { Logo } from "@/components/icons/Overall"
+import { LogoPNG } from "@/components/shared/icons"
+import { MemoizedReactMarkdown } from "@/components/shared/markdown"
 import { ChatMessageActions } from "@/components/showcase/ChatMessageActions"
+import { CodeBlock } from "@/components/ui/codeblock"
 
 interface ChatMessageProps {
   message: Message
@@ -36,7 +36,7 @@ export function ChatMessage({ message, student, ...props }: ChatMessageProps) {
             className="rounded-full"
           />
         ) : (
-          <Logo />
+          <LogoPNG />
         )}
       </div>
       <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">

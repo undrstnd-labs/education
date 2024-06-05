@@ -1,7 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo "👷 Avant de valider vos modifications, nous effectuons une série d'opérations pour assurer la qualité du code."
+ echo "👷 Avant de valider vos modifications, nous effectuons une série d'opérations pour assurer la qualité du code."
 
 if ! pnpm run check-format; then
     echo '🤢 Formatage incorrect.'

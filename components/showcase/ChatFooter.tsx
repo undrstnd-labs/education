@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl"
 
 import { cn } from "@/lib/utils"
 
-import { ExternalLink } from "@/components/ui/ExternalLink"
+import { ExternalLink } from "@/components/ui/external-link"
 
 export function FooterText({ className, ...props }: React.ComponentProps<"p">) {
   const t = useTranslations("Components.Showcase.ChatFooter")

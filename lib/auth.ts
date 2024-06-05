@@ -7,8 +7,11 @@ import GitHubProvider from "next-auth/providers/github"
 import { db } from "@/lib/prisma"
 import { verifyEmail } from "@/lib/utils"
 
+import { sendMail } from "@/undrstnd/mailer"
+import { updateVerificationUrl } from "@/undrstnd/token"
+
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db),
+  adapter: PrismaAdapter(db as any),
   secret: process.env.NEXTAUTH_SECRET!,
   session: {
     strategy: "jwt",
@@ -37,30 +40,17 @@ export const authOptions: NextAuthOptions = {
         url,
         provider: { server, from },
       }) => {
-        const passCode = await fetch(
-          `${process.env.NEXTAUTH_URL}/api/auth/token/${identifier}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              url,
-            }),
-          }
-        ).then((res) => res.json())
+        const passCode = await updateVerificationUrl(identifier, url)
 
-        await fetch(`${process.env.NEXTAUTH_URL}/api/mailer`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            type: "magic-link",
-            email: identifier,
-            otp_link: url,
-            passCode: passCode,
-          }),
+        if (!passCode) {
+          console.log("Couldn't generate a passcode from the database")
+          return
+        }
+
+        await sendMail("magic-link", {
+          email: identifier,
+          otp_link: url,
+          passCode: passCode,
         })
       },
     }),

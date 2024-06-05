@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@navigation": ["./lib/navigation.ts"]
+      "@navigation": ["./lib/navigation.ts"],
+      "@/undrstnd/*": ["./actions/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -1,14 +1,15 @@
 "use client"
 
 import * as React from "react"
-import { ServerActionResult } from "@/types"
 import { useRouter } from "@navigation"
 import { useTranslations } from "next-intl"
 
+import { ServerActionResult } from "@/types"
 import { type Chat } from "@/types/chat"
 
 import { toast } from "@/hooks/use-toast"
 
+import { Icons } from "@/components/shared/icons"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,15 +19,14 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/AlertDialog"
-import { Button } from "@/components/ui/Button"
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip"
-import { IconSpinner, IconTrash } from "@/components/icons/Overall"
+} from "@/components/ui/tooltip"
 
 interface SidebarActionsProps {
   chat: Chat
@@ -39,7 +39,6 @@ interface SidebarActionsProps {
 export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
   const router = useRouter()
   const t = useTranslations("Components.Showcase.SidebarActions")
-  const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false)
   const [isRemovePending, startRemoveTransition] = React.useTransition()
 
@@ -57,9 +56,9 @@ export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
                 onClick={() => setDeleteDialogOpen(true)}
               >
                 {isRemovePending ? (
-                  <IconSpinner className="animate-spin" />
+                  <Icons.spinner className="animate-spin" />
                 ) : (
-                  <IconTrash />
+                  <Icons.trash className="h-4 w-4" />
                 )}
                 <span className="sr-only">Delete</span>
               </Button>
@@ -110,7 +109,9 @@ export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
                 })
               }}
             >
-              {isRemovePending && <IconSpinner className="mr-2 animate-spin" />}
+              {isRemovePending && (
+                <Icons.spinner className="mr-2 animate-spin" />
+              )}
               {t("delete-chat-confirm")}
             </AlertDialogAction>
           </AlertDialogFooter>

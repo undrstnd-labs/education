@@ -28,6 +28,16 @@ const nextConfig = {
         hostname: "owevajnqzufpffslceev.supabase.co",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "undrstnd.vercel.app",
+        port: "",
+      },
     ],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {

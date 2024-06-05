@@ -1,8 +1,8 @@
 import { UseChatHelpers } from "ai/react"
 import { useTranslations } from "next-intl"
 
-import { Button } from "@/components/ui/Button"
-import { Icons } from "@/components/icons/Lucide"
+import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
 
 const exampleMessages = (t: (arg: string) => string) => [
   {

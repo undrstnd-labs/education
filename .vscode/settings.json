@@ -8,5 +8,7 @@
   },
   "WillLuke.nextjs.addTypesOnSave": true,
   "WillLuke.nextjs.hasPrompted": true,
-  "discord.enabled": true
+  "discord.enabled": true,
+  "prettier.endOfLine": "crlf",
+  "reactSnippets.settings.prettierEnabled": true
 }

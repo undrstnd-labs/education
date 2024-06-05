@@ -1,20 +1,26 @@
-import { Classroom, Comment, File, Post, Reaction, User } from "@prisma/client"
+import {
+  Classroom,
+  Comment as CommentPrisma,
+  File,
+  Post as PostPrisma,
+  Reaction,
+  User,
+} from "@prisma/client"
 
-export type post = Post & {
+export type Post = PostPrisma & {
   teacher: { user: User; id: string; userId: string }
   files: File[]
   comments: comment[]
   reactions: Reaction[]
 }
 
-export type classroom = Classroom & {
+export type Classroom = Classroom & {
   teacher: { user: User; id: string; userId: string }
-  posts: post[]
+  posts: Post[]
 }
 
-export type comment = Comment & {
+export type Comment = CommentPrisma & {
   user: User
   reactions: Reaction[]
-  replies: comment[]
+  replies: Comment[]
 }
-//do not forget to wrap in () if you do a new type before [] in case of array

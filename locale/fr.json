@@ -1,0 +1,690 @@
+{
+  "Pages": {
+    "Login": {
+      "buttonBack": "Retour",
+      "loginTitle": "Bienvenue",
+      "loginDescription": "Entrez votre adresse e-mail ci-dessous pour vous connecter",
+      "buttonSignIn": "Se connecter",
+      "labelChoice": "OU SE CONNECTER AVEC",
+      "labelNew": "Nouveau sur le site ?",
+      "labelCreateAccount": "Créer un compte"
+    },
+    "Register": {
+      "buttonConnection": "Se connecter",
+      "registerTitle": "Créez votre compte",
+      "registerDescription": "Entrez votre adresse e-mail ci-dessous pour vous inscrire",
+      "labelChoice": "OU SE CONNECTER AVEC",
+      "labelAccept": "En créant votre compte, vous acceptez nos",
+      "labelConditions": "Conditions de service",
+      "labelAnd": "et",
+      "labelPolicy": "Politique de confidentialité."
+    },
+    "Dashboard": {
+      "home": "Accueil"
+    },
+    "Classroom": {
+      "firstReply": "Ajoutez votre première réponse",
+      "firstReplyDescription": "Créer une réponse à ce commentaire",
+      "updatedCommentTitleLabel": "Contenu du commentaire",
+      "updatedCommentTitle": "Mettre à jour le commentaire",
+      "upadtedCommentToastTitleError": "Erreur",
+      "upadtedCommentToastDescriptionError": "Une erreur est survenue lors de la mise à jour du commentaire. Veuillez réessayer.",
+      "upadtedCommentToastTitle": "Commentaire mis à jour avec succès",
+      "upadtedCommentToastDescription": "Vous avez mis à jour un commentaire avec succès.",
+      "commentAddedTitleToastErreur": "Erreur",
+      "commentAddedDescriptionToastErreur": "Une erreur est survenue lors de l'ajout d'un commentaire. Veuillez réessayer.",
+      "commendAddedTitleToast": "Commentaire ajouté avec succès",
+      "commendAddedDescriptionToast": "Vous avez ajouté un commentaire avec succès.",
+      "commentAddSchema": "Le contenu du commentaire doit comporter au moins 4 caractères.",
+      "repliesLabel": "Réponses au commentaire ci-dessus",
+      "addCommentPlaceholder": "Ajouter un commentaire",
+      "fileOptions": "Options de fichier",
+      "downloadFile": "Télécharger le fichier",
+      "fileCardSeeFile": "Voir le fichier",
+      "toastPostModifiedSuccess": "Post modifié avec succès",
+      "toastPostModifiedSuccessDescription": "Vous avez modifié un post avec succès.",
+      "toastPostModifiedFailed": "Échec de la modification du post",
+      "toastPostModifiedFailedDescription": "Une erreur est survenue lors de la modification du post. Veuillez réessayer.",
+      "toastPostCreatedFailed": "Échec de la création du post",
+      "toastPostCreatedFailedDescription": "Une erreur est survenue lors de la création du post. Veuillez réessayer.",
+      "toastPostCreatedSuccess": "Post créé avec succès",
+      "toastPostCreatedSuccessDescription": "Vous avez créé un post avec succès.",
+      "toastFilesFailed": "Erreur",
+      "toastFilesFailedDescription": "Une erreur est survenue lors du téléchargement des fichiers. Veuillez réessayer.",
+      "toastFilesSuccess": "Fichiers téléchargés",
+      "toastFilesSuccessDescription": "Vous avez téléchargé des fichiers avec succès. Vous pouvez maintenant les poster.",
+      "uploadButtonLabel": "Télécharger des fichiers",
+      "postFilesLabel": "Fichiers de post",
+      "formLabelDescriptionAddPost": "Description du post",
+      "formPlaceholderDescriptionAddPost": "Entrez la description du post ici",
+      "formLabelNameAddPost": "Titre du post",
+      "formPlaceholderNameAddPost": "Entrez le nom du post ici",
+      "createPostTitle": "Créer un nouveau post",
+      "updatePostTitle": "Mettre à jour le post",
+      "buttonCreate": "Créer une salle de classe",
+      "formSchemaPostName": "Le nom du post doit comporter au moins 4 caractères.",
+      "formSchemaDescriptionMessage": "La description du post doit comporter au moins 10 caractères.",
+      "formSchemaCodeMessage": "Le code est invalide",
+      "toastDescriptionUpdateClassroom": "Vous avez mis à jour une salle de classe avec succès.",
+      "formTitleAddClassroom": "Créer une salle de classe",
+      "formTitleUpdateClassroom": "Mettre à jour la salle de classe",
+      "formLabelClassroomCode": "Code de la salle de classe",
+      "formClassroomCodePlaceholder": "Entrez le code de la salle de classe ici",
+      "formClassroomButton": "Soumettre",
+      "formClassroomJoinButton": "Rejoindre",
+      "joinApiSuccess": "Salle de classe rejointe avec succès",
+      "joinApiSuccessDescription": "Vous avez rejoint cette salle de classe avec succès.",
+      "joinApiError": "Salle de classe introuvable",
+      "joinApiErrorDescription": "La salle de classe que vous essayez de rejoindre n'existe pas.",
+      "joinApiAlreadyError": "Vous êtes déjà dans cette salle de classe",
+      "joinApiAlreadyErrorDescription": "Vous êtes déjà membre de cette salle de classe.",
+      "joinApiErrorArchived": "Salle de classe archivée",
+      "joinApiErrorArchivedDescription": "La salle de classe que vous essayez de rejoindre est archivée.",
+      "toast-title-create-error": "Échec de la création de la salle de classe",
+      "toast-description-create-error": "Une erreur est survenue lors de la création de la salle de classe",
+      "toast-title-update-error": "Échec de la mise à jour de la salle de classe",
+      "toast-description-update-error": "Une erreur est survenue lors de la mise à jour de la salle de classe"
+    },
+    "TeacherDashboard": {
+      "title": "Tableau de bord de l'enseignant",
+      "name": "Nom",
+      "status": "Statut",
+      "classCode": "Code de la classe",
+      "archived": "Archivé",
+      "unarchived": "Désarchivé",
+      "inputFilterNames": "Filtrer les noms...",
+      "columnsLabel": "Colonnes",
+      "noResultsLablel": "Aucun résultat.",
+      "previousLabel": "Précédent",
+      "nextLabel": "Suivant",
+      "row": "rang",
+      "created": "créé"
+    }
+  },
+
+  "Components": {
+    "Form": {
+      "UserAuth": {
+        "labelEmail": "Adresse e-mail",
+        "buttonForm": "{type, select, login {Se connecter} register {S'inscrire} other {#}}",
+        "labelChoice": "OU SE CONNECTER AVEC",
+        "placeholderEmail": "étudiant@université.com",
+        "invalidEmail": "Veuillez entrer une adresse e-mail universitaire valide.",
+        "invalidUniversityEmail": "Veuillez entrer une adresse e-mail universitaire valide.",
+        "toastSignInFailedTitle": "Erreur",
+        "toastSignInFailedDescription": "Votre tentative de connexion a échoué",
+        "toastSignInSuccessTitle": "Vérifier votre e-mail",
+        "toastSignInSuccessDescription": "Nous vous avons envoyé un lien de connexion. Assurez-vous de vérifier vos spams également.",
+        "hoverCardTitle": "Authentification de Github",
+        "universityEmail": "Adresse e-mail universitaire",
+        "must": "doit être l'",
+        "primaryEmail": "adresse e-mail principale",
+        "yourGithub": "dans votre Github pour vous connecter.",
+        "githubErrorTitle": "Erreur d'authentification github",
+        "githubErrorDescription": "Pour vous connecter avec GitHub, l'adresse e-mail de votre université doit être l'adresse e-mail principale de votre compte GitHub. Veuillez suivre ces étapes:",
+        "step1": "Accédez à votre compte GitHub et accédez aux paramètres.",
+        "step2": "Allez dans 'Accès, Emails' et définissez l'adresse e-mail de votre université comme adresse e-mail principale.",
+        "step3": "Assurez-vous que sur la même page 'Accès, Emails', l'option 'Garder mes adresses e-mail privées' est décochée.",
+        "step4": "Accédez à 'Profil public' et sélectionnez l'adresse e-mail de votre université comme adresse e-mail publique."
+      },
+      "EmailInput": {
+        "empty-command": "Aucune université trouvée.",
+        "search-command": "Rechercher une université",
+        "options": {
+          "isimm": "Institut supérieur d'informatique et de mathématiques de Monastir",
+          "ensi": "École nationale des sciences de l'informatique",
+          "insat": "Institut national des sciences appliquées et de technologie",
+          "fst": "Faculté des sciences de Tunis",
+          "ipeit": "Institut préparatoire aux études d'ingénieur de Tunis",
+          "ihec": "Institut des hautes études commerciales de Carthage",
+          "ipeis": "Institut préparatoire aux études d'ingénieur de Sfax",
+          "ipest": "Institut préparatoire aux études d'ingénieur de Tunis",
+          "iset": "Institut des sciences et des techniques de Sousse",
+          "isetn": "Institut des sciences et des techniques de Nabeul",
+          "issatso": "Institut des sciences appliquées et de technologie de Sousse",
+          "esstt": "École supérieure des sciences et de la technologie de Tunis",
+          "enit": "École nationale d'ingénieurs de Tunis"
+        }
+      },
+      "PassCodeAuth": {
+        "verify-account": "Vérifier votre compte",
+        "verify-account-description": "Entrez le code à 6 chiffres envoyé à votre adresse e-mail",
+        "email-sent": "Un e-mail a été envoyé à",
+        "error": "Code invalide",
+        "try-again": "Veuillez vérifier votre e-mail et réessayer"
+      },
+      "OnboardingAuth": {
+        "photo": "Photo de profil",
+        "change-image": "Changer d'image",
+        "name": "Nom complet",
+        "placeholderName": "Jean Dupont",
+        "bio": "Biographie",
+        "placeholderBio": "Étudiant à ...",
+        "phone": "Appel",
+        "email": "Courriel",
+        "submit": "Soumettre",
+        "role": "Rôle",
+        "placeholderRole": "Veuillez sélectionner votre rôle",
+        "student": "Étudiant",
+        "teacher": "Enseignant",
+        "image-too-large": "L'image est trop grande",
+        "image-description-error": "Veuillez uploader une image inférieure à 3Mo",
+        "error-toast-title": "Échec de mise à jour du profil",
+        "success-toast-title": "Profil mis à jour",
+        "success-toast-description": "Votre profil a été mis à jour avec succès."
+      },
+      "Prompt": {
+        "new-chat": "Nouvelle conversation",
+        "send-message": "Envoyer un message",
+        "upload-file": "Télécharger un fichier",
+        "upload": "Télécharger",
+        "upload-file-description": "Pour télécharger des fichiers, vous ne pouvez télécharger qu'un fichier à la fois. La taille du fichier doit être inférieure à 25Mo.",
+        "file-size-error": "La taille du fichier doit être inférieure à 25Mo",
+        "file-max-error": "Vous ne pouvez télécharger qu'un fichier",
+        "click-to-select": "Cliquez pour télécharger",
+        "or-drag-drop": "ou glissez-déposez",
+        "pdf-only": "Seuls les fichiers PDF sont autorisés",
+        "upload-success": "Fichier téléchargé avec succès",
+        "upload-failed": "Échec de téléchargement du fichier"
+      },
+      "ChatPanel": {
+        "stop-generating": "Arrêter la génération",
+        "regenerate": "Régénérer la réponse",
+        "share": "Partager"
+      }
+    },
+    "Display": {
+      "RoleBadge": {
+        "student": "Étudiant",
+        "teacher": "Enseignant"
+      },
+      "StatusWidget": {
+        "operational": "Fonctionnel",
+        "degraded-performance": "Performance dégradée",
+        "partial-outage": "Perte partiel",
+        "major-outage": "Perte majeure",
+        "unknown": "Inconnu",
+        "incident": "Incident",
+        "under-maintenance": "En cours de maintenance"
+      },
+      "PostCardOptions": {
+        "toastTitleDeletePost": "Publication supprimée avec succès",
+        "toastDescriptionDeletePost": "Vous avez supprimé avec succès une publication.",
+        "error-toast-delete": "Erreur lors de la suppression de la publication",
+        "error-description-toast-delete": "Une erreur est survenue lors de la suppression de la publication",
+        "postOption": "Options de publication",
+        "editPost": "Éditer",
+        "deletePost": "Supprimer",
+        "alertDialogTitleDelete": " Êtes-vous sûr de vouloir supprimer ?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cette action supprimera votre publication.",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer",
+        "toastTitleDeletePostError": "Erreur lors de la suppression de la publication",
+        "toastDescriptionDeletePostError": "Une erreur est survenue lors de la suppression de la publication. Veuillez réessayer."
+      },
+      "Profile": {
+        "alertDialogTitleDelete": " Êtes-vous sûr de vouloir supprimer ?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cette action supprimera votre compte.",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer"
+      },
+      "CommentCardOptions": {
+        "commentOption": "Options de commentaire",
+        "editComment": "Éditer",
+        "deleteComment": "Supprimer",
+        "alertDialogTitleDelete": " Êtes-vous sûr de vouloir supprimer ?",
+        "alertDialogDescriptionDelete": "Cette action peut être annulée. Cette action supprimera votre commentaire.",
+        "alertDialogCancel": "Annuler",
+        "alertDialogAction": "Confirmer",
+        "toastTitleDeleteComment": "Commentaire supprimé avec succès",
+        "toastDescriptionDeleteComment": "Vous avez supprimé avec succès un commentaire.",
+        "toastTitleDeleteCommentError": "Erreur lors de la suppression du commentaire",
+        "toastDescriptionDeleteCommentError": "Une erreur est survenue lors de la suppression du commentaire. Veuillez réessayer."
+      },
+      "Chat": {
+        "placeholder": "Écrivez un message",
+        "send": "Envoyer"
+      },
+      "ChatHistory": {
+        "title": "Histoire de la conversation",
+        "newChat": "Nouvelle conversation"
+      },
+      "SidebarList": {
+        "no-chats": "Aucune conversation"
+      },
+      "SidebarItem": {
+        "shared-chat": "C'est une conversation partagée."
+      },
+      "PDFFullScreen": {
+        "open": "Ouvrir",
+        "download": "Télécharger le fichier",
+        "copy": "Copier le lien du fichier",
+        "error": "Erreur lors de l'affichage du PDF"
+      },
+      "PDFRender": {
+        "error": "Erreur lors de l'affichage du PDF",
+        "customize-view": "Options de visualisation",
+        "customize-view-description": "Personnalisez la visualisation du PDF",
+        "new-window": "Nouvelle fenêtre",
+        "zoom": "Zoom",
+        "rotation": "Rotation",
+        "just-now": "Juste maintenant",
+        "minutes-ago": "minutes chrono",
+        "hours-ago": "heures chrono",
+        "days-ago": "jours chrono"
+      }
+    },
+    "Showcase": {
+      "UserDropdown": {
+        "account": "Compte",
+        "classrooms": "Salles de classe",
+        "theme": "Thème",
+        "language": "Langue",
+        "logout": "Déconnexion"
+      },
+      "ClearHistory": {
+        "clear-history": "Effacer l'historique",
+        "clear-history-title": "Êtes-vous sûr de vouloir effacer l'historique des conversations ?",
+        "clear-history-description": "Cela supprimera définitivement l'historique des conversations et supprimera vos données de nos serveurs.",
+        "cancel": "Annuler",
+        "clear-history-confirm": "Confirmer",
+        "clear-history-failed": "Échec de l'effacement de l'historique des conversations"
+      },
+      "SidebarActions": {
+        "share-chat": "Partager la conversation",
+        "delete-chat": "Supprimer la conversation",
+        "delete-chat-title": "Êtes-vous sûr de vouloir supprimer cette conversation ?",
+        "delete-chat-description": "Cela supprimera définitivement le message de conversation et supprimera vos données de nos serveurs.",
+        "cancel": "Annuler",
+        "delete-chat-confirm": "Confirmer",
+        "delete-chat-error": "Échec de la suppression de la conversation",
+        "delete-chat-success": "Conversation supprimée avec succès"
+      },
+      "ChatShareDialog": {
+        "toast-error-title": "Impossible de copier le lien de partage dans le presse-papiers",
+        "toast-success-title": "Lien de partage copié dans le presse-papiers",
+        "share-title": "Partager le lien de la conversation",
+        "share-description": "Toute personne ayant l'URL pourra consulter la conversation partagée.",
+        "sharing": "Partage",
+        "copy": "Copier le lien"
+      },
+      "ChatFooter": {
+        "footer-text-1": "peut faire des erreurs. Considérez lire le",
+        "footer-text-2": "pour comprendre comment cela fonctionne."
+      },
+      "ChatEmptyScreen": {
+        "welcome": "Comment puis-je vous aider aujourd'hui ?",
+        "description": "Vous pouvez démarrer une conversation ici ou essayer les exemples suivants :",
+        "heading-1": "Aide aux devoirs",
+        "message-1": "Pouvez-vous m'aider à résoudre ce problème de mathématiques ? \n",
+        "heading-2": "Préparez un test",
+        "message-2": "J'ai un test de Python demain. Pouvez-vous me donner des exercices à pratiquer ? \n",
+        "heading-3": "Améliorer vos compétences en écriture",
+        "message-3": "Pouvez-vous vérifier mon essai pour les erreurs de grammaire et d'orthographe ? \n"
+      }
+    },
+    "Config": {
+      "LanguageSwitch": {
+        "locale": "{locale, select, en {Anglais} fr {Français} other {Unknown}}"
+      },
+      "ReactionSwitch": {
+        "LIKE": "J'aime",
+        "DISLIKE": "Je n'aime pas",
+        "LOVE": "J'adore",
+        "APPLAUSE": "Applaudissements",
+        "WOW": "Wouah",
+        "INSIGHTFUL": "Instructif"
+      }
+    }
+  },
+
+  "Metadata": {
+    "Layout": {
+      "PrincipalLayout": {
+        "title": "Undrstnd - Une meilleure expérience pour les étudiants"
+      }
+    },
+    "Pages": {
+      "Login": {
+        "title": "Se connecter à votre compte"
+      },
+      "Register": {
+        "title": "Créer votre compte"
+      },
+      "Dashboard": {
+        "title": "Tableau de board"
+      },
+      "Chat": {
+        "title": "Conversation"
+      },
+      "Onboarding": {
+        "title": "Compléter votre profil"
+      }
+    }
+  },
+
+  "app": {
+    "pages": {
+      "feed": {
+        "just-now": "À l'instant",
+        "minutes-ago": "minutes plus tôt",
+        "hours-ago": "heures plus tôt",
+        "days-ago": "jours plus tôt",
+        "weeks-ago": "semaines plus tôt",
+        "months-ago": "mois plus tôt",
+        "feed": "Votre fil",
+        "posted": "Publié",
+        "commented": "Commenté",
+        "metadata-title": "Accueil",
+        "nothing-title": "Il n'y a rien à montrer ici",
+        "paragraph": "Aucune activité n'a encore été enregistrée."
+      },
+      "classroom": {
+        "title": "Salles de classe",
+        "create-classroom": "Créez votre première salle de classe",
+        "paragraph": "Créez une salle de classe pour commencer à partager des publications et des fichiers avec vos étudiants.",
+        "join-classroom": "Rejoindre une salle de classe",
+        "join-classroom-description": "Entrez le code de la salle de classe pour rejoindre une salle de classe.",
+        "add-post": "Ajouter un post",
+        "add-post-description": "Créez un poste pour commencer à partager avec vos élèves.",
+        "nothing-title": "Il n'y a rien à montrer ici",
+        "nothing-paragraph": "Aucun poste n'a encore été créé."
+      },
+      "account": {
+        "metadata-title": "Compte",
+        "account": "Compte",
+        "back": "Retour",
+        "profile-title": "Votre profil",
+        "profile-description": "Modifier votre profile",
+        "profile-pic-title": "Photo de profil",
+        "profile-pic-description": "Téléchargez une photo de profil",
+        "profile-name-title": "Votre nom",
+        "profile-name-description": "Votre nom sera visible pour les autres utilisateurs.",
+        "danger-zone-title": "Zone dangereuse",
+        "danger-zone-description": "Supprimer votre description",
+        "profile-bio-title": "Bio",
+        "profile-bio-description": "Dites-nous un peu sur vous.",
+        "save": "Enregistrer"
+      },
+      "preference": {
+        "metadata-title": "Préférence",
+        "theme": "Changer de thème",
+        "theme-description": "Choisissez un thème qui vous convient.",
+        "language": "Changer de langue",
+        "language-description": "Choisissez une langue qui vous convient."
+      },
+      "danger-zone": {
+        "metadata-title": "Zone dangereuse"
+      },
+      "shared": {
+        "metadata-title": "Partagé",
+        "files": "Vos fichiers partagés",
+        "files-description": "Tous vos fichiers partagés avec nous sont ici.",
+        "messages": "messages",
+        "view-chat": "Voir la conversation",
+        "more-options": "Plus d'options",
+        "delete": "Supprimer le fichier",
+        "title-dialog": "Êtes-vous sûr de vouloir supprimer?",
+        "description-dialog": "Cette action peut être annulée. Cela supprimera définitivement votre fichier.",
+        "cancel": "Annuler",
+        "no-matching-results": "Aucun résultat correspondant",
+        "no-matching-results-description": "Aucun fichier trouvé correspondant à votre requête de recherche.",
+        "create-chat": "Créer une nouvelle conversation"
+      },
+      "otp-code": {
+        "metadata-title": "Code OTP",
+        "metadata-description": "Entrez le code que vous avez reçu par email",
+        "button-back": "Retour",
+        "page-title": "Bienvenue de retour",
+        "page-description": "Entrez votre adresse email pour recevoir un lien magique",
+        "new-user": "Nouveau sur le site ?",
+        "label-new-user": "Créer un compte"
+      }
+    },
+    "components": {
+      "layout": {
+        "feed-navigation-list": {
+          "feed": "Fil",
+          "classroom": "Salles de classe",
+          "dashboard": "Tableau de bord",
+          "chat": "Conversations",
+          "your-classrooms": "Vos salles de classe",
+          "archived": "Archivés",
+          "no-classrooms": "Pas de classrooms..."
+        },
+        "feed-add-classroom": {
+          "formSchemaNameMessage": "Le nom de la salle de classe doit comporter au moins 4 caractères.",
+          "toastTitleAddClassroom": "Salle de classe créée avec succès",
+          "toast-title-create-error": "Échec de création de la salle de classe",
+          "buttonCreate": "Créer une salle de classe",
+          "dialog-description-create": "Créez une salle de classe pour commencer à partager des publications et des fichiers avec vos étudiants.",
+          "formLabelClassroomName": "Nom de la salle de classe",
+          "formClassroomNamePlaceholder": "Entrez le nom de votre salle de classe ici",
+          "formLabelClassroomDescription": "Description de la salle de classe",
+          "formClassroomDescriptionPlaceholder": "Entrez la description de votre salle de classe ici",
+          "formClassroomButton": "Soumettre"
+        },
+        "account-navigation-list": {
+          "profile": "Profil",
+          "preference": "Préférences",
+          "shared": "Partagé",
+          "danger": "Zone dangereuse"
+        }
+      },
+      "app": {
+        "feed-classroom-card": {
+          "archived": "Archivé"
+        },
+        "feed-classroom-dropdown-actions": {
+          "classroomOption": "Options de la salle de classe",
+          "unarchiveClassroom": "Désarchiver",
+          "editClassroom": "Éditer",
+          "deleteClassroom": "Supprimer",
+          "archiveClassroom": "Archiver",
+          "alertDialogTitleUnarchive": "Êtes-vous sûr de vouloir désarchiver?",
+          "alertDialogTitleArchive": "Êtes-vous sûr de vouloir archiver?",
+          "alertDialogDescriptionArchive": "Cette action peut être annulée. Cela archivera la salle de classe ",
+          "alertDialogTitleDelete": " Êtes-vous sûr de vouloir supprimer?",
+          "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre salle de classe.",
+          "alertDialogCancel": "Annuler",
+          "alertDialogAction": "Confirmer",
+          "leaveApiSuccess": "Salle de classe quittée avec succès",
+          "alertDialogDescriptionUnarchive": "Cette action peut être annulée. Cela désarchivera la salle de classe.",
+          "leaveApiSuccessDescription": "Vous avez réussi à quitter cette salle de classe.",
+          "alertDialogLeave": "Êtes-vous sûr de vouloir quitter cette salle de classe?",
+          "alertDialogLeaveDescription": "Cette action peut être annulée. Cela vous retirera de la salle de classe.",
+          "toastDescriptionDeleteClassroom": "Vous avez supprimé une salle de classe avec succès.",
+          "toastTitleDeleteClassroom": "Salle de classe supprimée",
+          "toastDescriptionArchiveClassroom": "Vous avez archivé une salle de classe avec succès.",
+          "toastTitleArchiveClassroom": "Salle de classe archivée avec succès",
+          "toastTitleunarchiveClassroom": "Salle de classe désarchivée avec succès",
+          "toastDescriptionunarchiveClassroom": "Vous avez désarchivé une salle de classe avec succès.",
+          "error-toast-unarchive": "Échec de la désarchivation de la salle de classe",
+          "error-description-toast-unarchive": "Une erreur est survenue lors de la désarchivation de la salle de classe",
+          "error-toast-archive": "Échec de l'archivage de la salle de classe",
+          "error-description-toast-archive": "Une erreur est survenue lors de l'archivage de la salle de classe",
+          "error-toast-delete": "Échec de la suppression de la salle de classe",
+          "error-description-toast-delete": "Une erreur est survenue lors de la suppression de la salle de classe",
+          "dialog-title-edit": "Mettre à jour la salle de classe",
+          "dialog-description-edit": "Mettez à jour le nom et la description de la salle de classe",
+          "dialog-confirm-edit": "Confirmer",
+          "dialog-cancel-edit": "Annuler",
+          "formLabelClassroomName": "Nom de la salle de classe",
+          "formLabelClassroomDescription": "Description de la salle de classe",
+          "formClassroomNamePlaceholder": "Entrez le nom de votre salle de classe ici",
+          "formClassroomDescriptionPlaceholder": "Entrez la description de votre salle de classe ici",
+          "toastTitleUpdateClassroom": "Salle de classe mise à jour avec succès",
+          "toastTitleUpdateClassroomError": "Échec de la mise à jour de la salle de classe",
+          "formSchemaNameMessage": "Le nom de la salle de classe doit comporter au moins 4 caractères."
+        },
+        "account-profile-form": {
+          "image-too-large": "L'image est trop grande",
+          "image-description-error": "Veuillez télécharger une image de moins de 3Mo",
+          "save": "Enregistrer",
+          "image-uploaded": "Image téléchargée avec succès",
+          "image-upload-failed": "Échec du téléchargement de l'image",
+          "profile-no-updated": "Failed to update profile",
+          "name": "Nom complet",
+          "placeholderName": "John Doe",
+          "bio": "Biographie",
+          "placeholderBio": "Étudiant à ...",
+          "submit": "Modifier"
+        },
+        "account-delete-profile": {
+          "title-dialog": "Êtes-vous sûr de vouloir supprimer?",
+          "description-dialog": "Cette action peut être annulée. Cela supprimera définitivement votre compte.",
+          "cancel": "Annuler",
+          "delete": "Oui, supprimer mon compte"
+        },
+        "account-shared-pdf-preview": {
+          "error": "Erreur de chargement du PDF"
+        },
+        "auth-otp-code": {
+          "verify-account": "Vérifier votre compte",
+          "verify-account-description": "Entrez le code à 6 chiffres envoyé à votre adresse e-mail",
+          "email-sent": "Un e-mail a été envoyé à",
+          "email": "Vous devez entrer un email valide",
+          "toast-error": "Assurez-vous d'avoir entré le bon code"
+        },
+        "auth-input-university-form": {
+          "empty-command": "Aucune université trouvée.",
+          "search-command": "Rechercher une université",
+          "options": {
+            "isimm": "Higher Institute of Informatics and Mathematics of Monastir",
+            "ensi": "National School of Computer Science",
+            "insat": "National Institute of Applied Sciences and Technology",
+            "fst": "Faculty of Sciences of Tunis",
+            "ipeit": "Preparatory Institute for Engineering Studies of Tunis",
+            "ihec": "Carthage Higher Institute of Commerce",
+            "ipeis": "Preparatory Institute for Engineering Studies of Sfax",
+            "ipest": "Preparatory Institute for Engineering Studies of Tunis",
+            "iset": "Higher Institute of Technological Studies of Sousse",
+            "isetn": "Higher Institute of Technological Studies of Nabeul",
+            "issatso": "Higher Institute of Applied Sciences and Technology of Sousse",
+            "esstt": "Higher School of Sciences and Technology of Tunis",
+            "enit": "National Engineering School of Tunis"
+          }
+        },
+        "auth-onboarding-form": {
+          "photo": "Photo de profil",
+          "change-image": "Changer d'image",
+          "name": "Nom complet",
+          "placeholderName": "John Doe",
+          "bio": "Biographie",
+          "placeholderBio": "Étudiant à ...",
+          "phone": "Téléphone",
+          "email": "Email",
+          "submit": "Soumettre",
+          "role": "Rôle",
+          "placeholderRole": "Veuillez sélectionner votre rôle",
+          "student": "Étudiant",
+          "teacher": "Enseignant",
+          "image-too-large": "L'image est trop grande",
+          "image-description-error": "Veuillez télécharger une image de moins de 3Mo",
+          "error-toast-title": "Échec de la mise à jour du profil",
+          "success-toast-title": "Profile mis à jour",
+          "success-toast-description": "Votre profil a été mis à jour avec succès."
+        },
+        "feed-classroom-add-post": {
+          "create-post": "Créer un nouveau poste",
+          "create-post-description": "Créez un poste pour commencer à partager avec vos élèves.",
+          "classroom-name-label": "Nom de la salle de classe",
+          "classroom-name-placeholder": "Entrez le nom de votre salle de classe ici",
+          "classroom-content-label": "Contenu du poste",
+          "classroom-content-placeholder": "Entrez le contenu de votre poste ici",
+          "or-drag-drop": "ou glisser-déposer",
+          "file-type": "Les images et les fichiers PDF sont autorisés",
+          "upload-success": "Fichier importé avec succès",
+          "upload-failed": "Échec du importation du fichier",
+          "click-to-select": "Cliquez pour importer",
+          "formClassroomButton": "Soumettre",
+          "toastPostCreatedFailed": "Échec de la création du poste"
+        },
+        "feed-classroom-post-card": {
+          "just-now": "À l'instant",
+          "minutes-ago": "minutes plus tôt",
+          "hours-ago": "heures plus tôt",
+          "days-ago": "jours plus tôt",
+          "weeks-ago": "semaines plus tôt",
+          "months-ago": "mois plus tôt"
+        },
+        "feed-classroom-file-card": {
+          "open": "Ouvrir",
+          "download": "Télécharger le fichier",
+          "copy": "Copier le lien du fichier",
+          "error": "Erreur lors de l'affichage du PDF",
+          "more-options": "Plus d'options",
+          "view-file": "Voir le fichier",
+          "download-file": "Télécharger le fichier"
+        },
+        "feed-classroom-open-chat": {
+          "open-chat": "Discutez avec un fichier"
+        },
+        "feed-classroom-post-teacher-actions": {
+          "toastTitleDeletePost": "Poste supprimé avec succès",
+          "toastTitleDeletePostError": "Échec de la suppression du poste",
+          "postOption": "Options de poste",
+          "editPost": "Éditer",
+          "deletePost": "Supprimer",
+          "alertDialogTitleDelete": " Êtes-vous sûr de vouloir supprimer ?",
+          "alertDialogDescriptionDelete": "Cette action peut être annulée. Cela supprimera définitivement votre poste.",
+          "alertDialogCancel": "Annuler",
+          "alertDialogAction": "Confirmer",
+          "dialog-title-edit": "Modifier le poste",
+          "dialog-description-edit": "Mettez à jour le contenu du poste",
+          "formLabelNameAddPost": "Titre du poste",
+          "formLabelDescriptionAddPost": "Description du post",
+          "postFilesLabel": "Fichiers de post",
+          "formClassroomButton": "Soumettre"
+        },
+        "feed-classroom-post-reactions": {
+          "LIKE": "J'aime",
+          "DISLIKE": "Je n'aime pas",
+          "LOVE": "J'adore",
+          "APPLAUSE": "Applaudissements",
+          "WOW": "Wouah",
+          "INSIGHTFUL": "Instructif"
+        },
+        "feed-classroom-post-comment": {
+          "just-now": "Juste maintenant",
+          "minutes-ago": "minutes plus tôt",
+          "hours-ago": "heures plus tôt",
+          "days-ago": "jours plus tôt",
+          "option-comment": "Options de commentaire",
+          "edit-comment": "Éditer",
+          "delete-comment": "Supprimer",
+          "dialog-title-edit": "Modifier le commentaire",
+          "dialog-description-edit": "Mettez à jour le contenu du commentaire",
+          "dialog-confirm-edit": "Confirmer",
+          "dialog-cancel-edit": "Annuler",
+          "updated-comment-title-label": "Contenu du commentaire",
+          "add-comment-placeholder": "Ajouter un commentaire",
+          "form-comment-button": "Modifier",
+          "edited": "Modifié",
+          "toast-error-update": "Échec de la mise à jour du commentaire",
+          "toast-error-delete": "Échec de la suppression du commentaire",
+          "alert-dialog-title-delete": " Êtes-vous sûr de vouloir supprimer ?",
+          "alert-dialog-description-delete": "Cette action peut être annulée. Cela supprimera définitivement votre commentaire.",
+          "alert-dialog-cancel": "Annuler",
+          "alert-dialog-action": "Confirmer",
+          "placeholder-empty": "Écrivez votre première réponse",
+          "placeholder-empty-description": "Créer une réponse à ce commentaire"
+        }
+      },
+      "shared": {
+        "pdf-view-dialog": {
+          "open": "Aperçu du fichier",
+          "download": "Télécharger le fichier",
+          "copy": "Copier le lien du fichier",
+          "error": "Erreur de chargement du PDF"
+        },
+        "search-input": {
+          "placeholder": "Commencez à écrire ce que vous pensez..."
+        },
+        "download-file-button": {
+          "download": "Télécharger"
+        }
+      }
+    }
+  }
+}
