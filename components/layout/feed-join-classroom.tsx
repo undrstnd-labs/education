@@ -48,7 +48,7 @@ function SubmitButton({
       type="submit"
       className="absolute right-2 top-2 z-10 h-7 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
     >
-      {t("formClassroomJoinButton")}
+      <Icons.arrowRight className="size-4" />
     </button>
   )
 }
@@ -120,7 +120,7 @@ export function FeedJoinClassroom({ student }: { student: Student }) {
                       aria-label="classroom-code"
                       {...field}
                       disabled={isLoading}
-                      className="font-sm h-11 w-full rounded-lg border border-border bg-transparent px-3 py-1 text-primary outline-none"
+                      className="font-sm h-11 w-full rounded-lg border border-border bg-transparent px-3 py-1 text-xs text-primary outline-none"
                     />
                     <SubmitButton pending={isLoading} t={t} />
                   </fieldset>
