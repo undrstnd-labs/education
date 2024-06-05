@@ -61,7 +61,7 @@ function PDFLoader() {
   )
 }
 
-export function PDFRender({
+export function ChatPDFRender({
   file,
   student,
   chat,

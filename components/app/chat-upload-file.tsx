@@ -127,7 +127,10 @@ export function ChatUploadFile({
     try {
       const uploadedFile = await uploadFilesStudent(file, studentId, id)
       await Promise.all([
-        vectorizedDocument(id, uploadedFile),
+        vectorizedDocument(id, {
+          ...uploadedFile,
+          url: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/files/${uploadedFile.url}`,
+        }),
         saveChat(id, studentId, uploadedFile, `/chat/c/${id}`),
       ])
 

@@ -6,7 +6,7 @@ import { type Message } from "ai/react"
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
 
 import { ChatContext } from "@/components/app/chat-context"
-import { PDFRender } from "@/components/display/PDFRender"
+import { ChatPDFRender } from "@/components/app/chat-pdf-render"
 import {
   ResizableHandle,
   ResizablePanel,
@@ -93,7 +93,7 @@ export default async function ChatPage({
     <ResizablePanelGroup direction="horizontal">
       <ResizablePanel defaultSize={18} minSize={38} className="px-2">
         {/* @ts-ignore: chat is not null */}
-        <PDFRender file={chat.file} student={student} chat={chat} />
+        <ChatPDFRender file={chat.file} student={student} chat={chat} />
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel
