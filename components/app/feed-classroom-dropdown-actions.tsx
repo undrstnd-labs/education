@@ -2,13 +2,13 @@
 
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { usePathname, useRouter } from "@navigation"
 import { Classroom, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { editClassroomSchema } from "@/config/schema"
-import { useRouter } from "@/lib/navigation"
 import { toast } from "@/hooks/use-toast"
 
 import { Icons } from "@/components/shared/icons"
@@ -50,6 +50,7 @@ export function FeedClassroomDropdownActions({
   classroom,
 }: ClassroomCardProps) {
   const router = useRouter()
+  const path = usePathname()
   const t = useTranslations(
     "app.components.app.feed-classroom-dropdown-actions"
   )
@@ -85,6 +86,10 @@ export function FeedClassroomDropdownActions({
         title: t("error-toast-delete"),
         variant: "destructive",
       })
+    }
+
+    if (path === `/classroom/${classroom.id}`) {
+      router.push("/classroom")
     }
 
     setIsLoading(false)
