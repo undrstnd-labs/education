@@ -19,7 +19,9 @@ const exampleMessages = (t: (arg: string) => string) => [
   },
 ]
 
-export function EmptyScreen({ setInput }: Pick<UseChatHelpers, "setInput">) {
+export function ChatEmptyScreen({
+  setInput,
+}: Pick<UseChatHelpers, "setInput">) {
   const t = useTranslations("Components.Showcase.ChatEmptyScreen")
 
   return (

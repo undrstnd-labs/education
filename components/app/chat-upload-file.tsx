@@ -70,7 +70,7 @@ function FileSvgDraw({ t }: { t: any }) {
   )
 }
 
-export function UploadFile({
+export function ChatUploadFile({
   open,
   setOpen,
   id,

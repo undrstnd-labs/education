@@ -6,7 +6,7 @@ interface SidebarMobileProps {
   children: React.ReactNode
 }
 
-export function SidebarMobile({ children }: SidebarMobileProps) {
+export function ChatSidebarMobile({ children }: SidebarMobileProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>

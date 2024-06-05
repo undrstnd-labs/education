@@ -1,7 +1,7 @@
 import { Student, User } from "@prisma/client"
 import { type Message } from "ai"
 
-import { ChatMessage } from "@/components/showcase/ChatMessage"
+import { ChatMessage } from "@/components/app/chat-message"
 import { Separator } from "@/components/ui/separator"
 
 export interface ChatList {

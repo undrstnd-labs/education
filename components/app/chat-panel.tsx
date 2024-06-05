@@ -2,9 +2,8 @@ import * as React from "react"
 import { type UseChatHelpers } from "ai/react"
 import { useTranslations } from "next-intl"
 
-import { Prompt } from "@/components/form/Prompt"
+import { ChatPromptForm } from "@/components/app/chat-prompt-form"
 import { Icons } from "@/components/shared/icons"
-import { FooterText } from "@/components/showcase/ChatFooter"
 import { Button, ButtonScrollToBottom } from "@/components/ui/button"
 
 export interface ChatPanelProps
@@ -71,7 +70,7 @@ export function ChatPanel({
           )}
         </div>
         <div className="space-y-4 border-t bg-background px-4 py-2 shadow-lg sm:rounded-t-xl sm:border md:py-4">
-          <Prompt
+          <ChatPromptForm
             onSubmit={async (value: string) => {
               await append({
                 id,
@@ -85,7 +84,6 @@ export function ChatPanel({
             setInput={setInput}
             isLoading={isLoading}
           />
-          <FooterText className="hidden sm:block" />
         </div>
       </div>
     </div>

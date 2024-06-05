@@ -2,15 +2,18 @@
 
 import * as React from "react"
 import { Link, usePathname } from "@navigation"
-import { motion } from "framer-motion"
-import { useTranslations } from "next-intl"
+import { AnimatePresence, motion } from "framer-motion"
 
 import { type Chat } from "@/types/chat"
 
 import { cn } from "@/lib/utils"
 import { useLocalStorage } from "@/hooks/use-local-storage"
 
+import { ChatSidebarActions } from "@/components/layout/chat-sidebar-actions"
+import { Icons } from "@/components/shared/icons"
 import { buttonVariants } from "@/components/ui/button"
+
+import { removeChat } from "@/undrstnd/chat"
 
 interface SidebarItemProps {
   index: number
@@ -20,8 +23,6 @@ interface SidebarItemProps {
 
 export function SidebarItem({ index, chat, children }: SidebarItemProps) {
   const pathname = usePathname()
-  const t = useTranslations("Components.Display.SidebarItem")
-
   const isActive = pathname === chat.path
   const [newChatId, setNewChatId] = useLocalStorage("newChatId", null)
   const shouldAnimate = index === 0 && isActive && newChatId
@@ -60,7 +61,7 @@ export function SidebarItem({ index, chat, children }: SidebarItemProps) {
           className="relative max-h-5 flex-1 select-none overflow-hidden text-ellipsis break-all"
           title={chat.title}
         >
-          <span className="whitespace-nowrap">
+          <div className="whitespace-nowrap">
             {shouldAnimate ? (
               chat.title.split("").map((character, index) => (
                 <motion.span
@@ -93,12 +94,52 @@ export function SidebarItem({ index, chat, children }: SidebarItemProps) {
                 </motion.span>
               ))
             ) : (
-              <span>{chat.title}</span>
+              <span>
+                {chat.fileId && (
+                  <span className="mr-2 inline-flex">
+                    <Icons.post className="size-4 text-muted-foreground" />
+                  </span>
+                )}
+                {chat.title}
+              </span>
             )}
-          </span>
+          </div>
         </div>
       </Link>
+
       {isActive && <div className="absolute right-2 top-1">{children}</div>}
     </motion.div>
+  )
+}
+
+interface SidebarItemsProps {
+  chats?: Chat[]
+}
+
+export function ChatSidebarItems({ chats }: SidebarItemsProps) {
+  if (!chats?.length) return null
+
+  return (
+    <AnimatePresence>
+      {chats.map(
+        (chat, index) =>
+          chat && (
+            <motion.div
+              key={chat?.id}
+              exit={{
+                opacity: 0,
+                height: 0,
+              }}
+            >
+              <SidebarItem index={index} chat={chat}>
+                <ChatSidebarActions
+                  chat={chat}
+                  removeChat={removeChat as any}
+                />
+              </SidebarItem>
+            </motion.div>
+          )
+      )}
+    </AnimatePresence>
   )
 }

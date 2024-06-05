@@ -4,7 +4,7 @@ import { unstable_setRequestLocale } from "next-intl/server"
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
 import { generateUuid } from "@/lib/utils"
 
-import { Chat } from "@/components/display/Chat"
+import { ChatContext } from "@/components/app/chat-context"
 
 export default async function IndexPage({
   params: { locale },
@@ -20,5 +20,5 @@ export default async function IndexPage({
     user: User
   }
 
-  return <Chat id={id} student={student} />
+  return <ChatContext id={id} student={student} />
 }

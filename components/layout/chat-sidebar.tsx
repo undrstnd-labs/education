@@ -7,7 +7,7 @@ import { useSidebar } from "@/hooks/use-sidebar"
 
 export interface SidebarProps extends React.ComponentProps<"div"> {}
 
-export function Sidebar({ className, children }: SidebarProps) {
+export function ChatSidebar({ className, children }: SidebarProps) {
   const { isSidebarOpen, isLoading } = useSidebar()
 
   return (

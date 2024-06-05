@@ -36,7 +36,7 @@ interface SidebarActionsProps {
   }) => Promise<ServerActionResult<void>>
 }
 
-export function SidebarActions({ chat, removeChat }: SidebarActionsProps) {
+export function ChatSidebarActions({ chat, removeChat }: SidebarActionsProps) {
   const router = useRouter()
   const t = useTranslations("Components.Showcase.SidebarActions")
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false)

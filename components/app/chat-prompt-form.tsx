@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import { useEnterSubmit } from "@/hooks/use-enter-submit"
 
-import { UploadFile } from "@/components/form/UploadFile"
+import { ChatUploadFile } from "@/components/app/chat-upload-file"
 import { Icons } from "@/components/shared/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -47,7 +47,7 @@ function ActionButton({ onClick, icon, label }: any) {
   )
 }
 
-export function Prompt({
+export function ChatPromptForm({
   onSubmit,
   id,
   studentId,
@@ -132,7 +132,12 @@ export function Prompt({
           </TooltipProvider>
         </div>
       </div>
-      <UploadFile open={open} setOpen={setOpen} id={id} studentId={studentId} />
+      <ChatUploadFile
+        open={open}
+        setOpen={setOpen}
+        id={id}
+        studentId={studentId}
+      />
     </form>
   )
 }

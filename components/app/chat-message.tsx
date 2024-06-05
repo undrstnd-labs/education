@@ -6,9 +6,9 @@ import remarkMath from "remark-math"
 
 import { cn } from "@/lib/utils"
 
+import { ChatMessageActions } from "@/components/app/chat-message-actions"
 import { LogoPNG } from "@/components/shared/icons"
 import { MemoizedReactMarkdown } from "@/components/shared/markdown"
-import { ChatMessageActions } from "@/components/showcase/ChatMessageActions"
 import { CodeBlock } from "@/components/ui/codeblock"
 
 interface ChatMessageProps {

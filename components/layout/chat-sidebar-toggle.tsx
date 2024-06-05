@@ -7,7 +7,7 @@ import { useSidebar } from "@/hooks/use-sidebar"
 import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 
-export function SidebarToggle() {
+export function ChatSidebarToggle() {
   const { toggleSidebar } = useSidebar()
 
   return (

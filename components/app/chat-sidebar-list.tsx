@@ -2,7 +2,7 @@ import { cache } from "react"
 import { Student, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 
-import { SidebarItems } from "@/components/display/SidebarItems"
+import { ChatSidebarItems } from "@/components/app/chat-sidebar-items"
 
 import { getChats } from "@/undrstnd/chat"
 
@@ -10,7 +10,7 @@ const loadChats = cache(async (studentId?: string) => {
   return await getChats(studentId)
 })
 
-export async function SidebarList({
+export async function ChatSidebarList({
   student,
 }: {
   student: Student & { user: User }
@@ -23,7 +23,7 @@ export async function SidebarList({
       <div className="flex-1 overflow-auto">
         {chats?.length ? (
           <div className="space-y-2 px-2 py-4">
-            <SidebarItems chats={chats as any} />
+            <ChatSidebarItems chats={chats as any} />
           </div>
         ) : (
           <div className="p-8 text-center">

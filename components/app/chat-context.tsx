@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils"
 import { useScrollAnchor } from "@/hooks/use-scroll-anchor"
 import { toast } from "@/hooks/use-toast"
 
-import { ChatList } from "@/components/display/ChatList"
-import { ChatPanel } from "@/components/form/ChatPanel"
-import { EmptyScreen } from "@/components/showcase/ChatEmptyScreen"
+import { ChatEmptyScreen } from "@/components/app/chat-empty-screen"
+import { ChatList } from "@/components/app/chat-list"
+import { ChatPanel } from "@/components/app/chat-panel"
 
 export interface ChatProps {
   id: string
@@ -18,7 +18,7 @@ export interface ChatProps {
   initialMessages?: Message[]
 }
 
-export function Chat({ id, initialMessages, student }: ChatProps) {
+export function ChatContext({ id, initialMessages, student }: ChatProps) {
   const path = usePathname()
   const router = useRouter()
 
@@ -59,7 +59,7 @@ export function Chat({ id, initialMessages, student }: ChatProps) {
         {messages.length ? (
           <ChatList messages={messages} student={student} />
         ) : (
-          <EmptyScreen setInput={setInput} />
+          <ChatEmptyScreen setInput={setInput} />
         )}
         <div className="h-px w-full" ref={visibilityRef} />
       </div>
