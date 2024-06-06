@@ -598,7 +598,9 @@
           "upload-failed": "Échec du importation du fichier",
           "click-to-select": "Cliquez pour importer",
           "formClassroomButton": "Soumettre",
-          "toastPostCreatedFailed": "Échec de la création du poste"
+          "toastPostCreatedFailed": "Échec de la création du poste",
+          "formSchemaDescriptionMessage": "La description du post doit comporter au moins 10 caractères.",
+          "formSchemaPostName": "Le nom du post doit comporter au moins 4 caractères."
         },
         "feed-classroom-post-card": {
           "just-now": "À l'instant",
