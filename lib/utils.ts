@@ -1,4 +1,4 @@
-import { Comment, Post, Student, Teacher, User } from "@prisma/client"
+import { Comment, Post, User } from "@prisma/client"
 import { clsx, type ClassValue } from "clsx"
 import { customAlphabet } from "nanoid"
 import { twMerge } from "tailwind-merge"
@@ -69,7 +69,7 @@ export function processActivities(
     const activities: Activity[] = []
     const posts = classroom.teacher.posts
 
-    posts.forEach((post: Post) => {
+    posts.forEach((post: Post & { comments: Comment[] }) => {
       const postActivity: Activity = {
         id: post.id,
         type: "post",
@@ -78,36 +78,32 @@ export function processActivities(
           image: classroom.teacher.user.image,
         },
         imageUrl: classroom.teacher.user.image,
-        comment: post.content,
+        content: post.content,
         date: formatDate(new Date(post.createdAt), t),
         classroom: { id: classroom.id, name: classroom.name },
       }
 
       activities.push(postActivity)
 
-      // @ts-ignore: Object is possibly 'null'.
-      post.comments.forEach(
-        (
-          comment: Comment & {
-            user: User
-          }
-        ) => {
-          const commentActivity: Activity = {
-            id: comment.id,
-            type: "comment",
-            user: {
-              name: `${comment.user.name}`,
-              image: comment.user.image!,
-            },
-            imageUrl: comment.user.image!,
-            date: formatDate(new Date(comment.createdAt), t),
-            classroom: { id: classroom.id, name: classroom.name },
-            post: { id: post.id, name: post.name },
-          }
-
-          activities.push(commentActivity)
+      post.comments.forEach((comment: Comment) => {
+        const commentActivity: Activity = {
+          id: comment.id,
+          type: "comment",
+          user: {
+            // @ts-ignore: name is not nullable
+            name: `${comment.user.name}`,
+            // @ts-ignore: image is not nullable
+            image: comment.user.image!,
+          },
+          // @ts-ignore: image is not nullable
+          imageUrl: comment.user.image!,
+          date: formatDate(new Date(comment.createdAt), t),
+          classroom: { id: classroom.id, name: classroom.name },
+          post: { id: post.id, name: post.name },
         }
-      )
+
+        activities.push(commentActivity)
+      })
     })
 
     groupedActivities.push(activities)

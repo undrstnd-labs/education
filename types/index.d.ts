@@ -1,3 +1,4 @@
+import { Classroom as ClassroomPrisma } from "@prisma/client"
 import { LucideIcon } from "lucide-react"
 
 export interface NavItem {
@@ -71,15 +72,16 @@ export type Activity = {
   type: "post" | "comment"
   user: { name: string; image: string }
   imageUrl: string
-  comment?: string
+  content?: string
   date: string
+  comment?: string
 }
 
-export type Classroom = Classroom & {
-  teacher: Teacher
-  posts: Post[] & {
-    comments: Comment[] & {
+export type Classroom = ClassroomPrisma & {
+  teacher: Teacher & {
+    posts: Post[] & {
       user: User
+      comments: Comment[] & {}
     }
   }
 }
