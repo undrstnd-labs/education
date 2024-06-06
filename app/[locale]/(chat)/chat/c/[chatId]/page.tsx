@@ -1,18 +1,19 @@
 import { type Metadata } from "next"
 import { redirect } from "@navigation"
 import { Student, User } from "@prisma/client"
+import { type Message } from "ai/react"
 
-import { getChat } from "@/lib/actions"
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
-import { getFormattedChat } from "@/lib/utils"
 
+import { ChatContext } from "@/components/app/chat-context"
+import { ChatPDFRender } from "@/components/app/chat-pdf-render"
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/Resizable"
-import { Chat } from "@/components/display/Chat"
-import { PDFRender } from "@/components/display/PDFRender"
+} from "@/components/ui/resizable"
+
+import { getChat } from "@/undrstnd/chat"
 
 export interface ChatPageProps {
   params: {
@@ -33,6 +34,25 @@ export async function generateMetadata({
   return {
     title: `${chat?.title.toString().slice(0, 50)} | Undrstnd` ?? "Chat",
   }
+}
+
+async function getFormattedChat(chatId: string, studentId: string) {
+  const chat = await getChat(chatId, studentId)
+
+  const newChat = {
+    ...chat,
+    messages: chat!.messages.map((message: { role: string }) => {
+      if (message.role === "USER") {
+        return { ...message, role: "user" as Message["role"] }
+      } else if (message.role === "AI") {
+        return { ...message, role: "assistant" as Message["role"] }
+      } else {
+        return { ...message, role: "assistant" as Message["role"] }
+      }
+    }),
+  }
+
+  return newChat
 }
 
 export default async function ChatPage({
@@ -60,8 +80,12 @@ export default async function ChatPage({
 
   if (!chat.file) {
     return (
-      // @ts-ignore: initialMessages is not null
-      <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+      <ChatContext
+        id={chat.id}
+        student={student}
+        // @ts-ignore: initialMessages is not null
+        initialMessages={chat.messages}
+      />
     )
   }
 
@@ -69,7 +93,7 @@ export default async function ChatPage({
     <ResizablePanelGroup direction="horizontal">
       <ResizablePanel defaultSize={18} minSize={38} className="px-2">
         {/* @ts-ignore: chat is not null */}
-        <PDFRender file={chat.file} student={student} chat={chat} />
+        <ChatPDFRender file={chat.file} student={student} chat={chat} />
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel
@@ -77,8 +101,12 @@ export default async function ChatPage({
         minSize={40}
         style={{ height: "80vh", overflowY: "auto" }}
       >
-        {/* @ts-ignore: initialMessages is not null */}
-        <Chat id={chat.id} student={student} initialMessages={chat.messages} />
+        <ChatContext
+          id={chat.id}
+          student={student}
+          // @ts-ignore: initialMessages is not null
+          initialMessages={chat.messages}
+        />
       </ResizablePanel>
     </ResizablePanelGroup>
   )

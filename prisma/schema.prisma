@@ -1,10 +1,12 @@
 generator client {
   provider = "prisma-client-js"
+  engineType = "binary"
 }
 
 datasource db {
-  provider = "postgres"
-  url      = env("DATABASE_URL_DEV")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL_ACCELRATE")
+  directUrl = env("DATABASE_URL")
 }
 
 enum Role {
@@ -218,6 +220,7 @@ model Reaction {
   createdAt DateTime @default(now())
 
   @@map(name: "reactions")
+  @@unique([reactionType, userId, commentId, postId])
 }
 
 model Conversation {

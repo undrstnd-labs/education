@@ -1,13 +1,11 @@
-"use server"
-
 import { redirect } from "@navigation"
 import { Student, User } from "@prisma/client"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { getCurrentStudent } from "@/lib/session"
 
-import { Header } from "@/components/navigation/ChatHeader"
-import { SidebarDesktop } from "@/components/navigation/SidebarDesktop"
+import { ChatHeader } from "@/components/layout/chat-header"
+import { ChatSidebarDesktop } from "@/components/layout/chat-sidebar-desktop"
 
 import "simplebar-react/dist/simplebar.min.css"
 
@@ -18,21 +16,27 @@ export async function generateMetadata() {
 
 interface ChatLayoutProps {
   children: React.ReactNode
+  params: { locale: string }
 }
 
-export default async function ChatLayout({ children }: ChatLayoutProps) {
+export default async function ChatLayout({
+  children,
+  params: { locale },
+}: ChatLayoutProps) {
+  unstable_setRequestLocale(locale)
+
   const student = (await getCurrentStudent()) as Student & {
     user: User
   }
 
   if (!student) {
-    redirect("/dashboard")
+    redirect("/feed")
   }
 
   return (
     <div className="relative flex h-[calc(100vh_-_theme(spacing.16))] overflow-hidden">
-      <Header student={student} />
-      <SidebarDesktop student={student} />
+      <ChatHeader student={student} />
+      <ChatSidebarDesktop student={student} />
       <div className="group w-full overflow-auto pl-0 duration-300 ease-in-out animate-in peer-[[data-state=open]]:lg:pl-[250px] peer-[[data-state=open]]:xl:pl-[300px]">
         {children}
       </div>

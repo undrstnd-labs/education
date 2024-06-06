@@ -1,7 +1,7 @@
 import { CheckIcon } from "@heroicons/react/20/solid"
 import { Link } from "@navigation"
 
-import { Button } from "@/components/ui/Button"
+import { Button } from "@/components/ui/button"
 
 const tiers = [
   {

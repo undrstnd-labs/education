@@ -1,30 +1,25 @@
-import { Suspense } from "react"
 import { Link } from "@navigation"
-import { useTranslations } from "next-intl"
-import { getTranslations } from "next-intl/server"
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
-import { cn, verifyEmail } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 
-import { buttonVariants } from "@/components/ui/Button"
-import { PassCodeAuth } from "@/components/form/PassCodeAuth"
-import { UserAuthForm, UserAuthSkeleton } from "@/components/form/UserAuth"
-import { LogoPNG } from "@/components/icons/Overall"
+import { AuthUserEmail } from "@/components/app/auth-user-email"
+import { LogoPNG } from "@/components/shared/icons"
+import { buttonVariants } from "@/components/ui/button"
 
 export async function generateMetadata() {
   const t = await getTranslations("Metadata.Pages.Register")
   return { title: `${t("title")}` }
 }
 
-export default function RegisterPage({
-  searchParams,
+export default async function RegisterPage({
+  params: { locale },
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: { locale: string }
 }) {
-  const t = useTranslations("Pages.Register")
-  const email = searchParams.email as string
+  unstable_setRequestLocale(locale)
 
-  const isEmailValid = verifyEmail(email)
-
+  const t = await getTranslations("Pages.Register")
   return (
     <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link
@@ -60,22 +55,17 @@ export default function RegisterPage({
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <LogoPNG className="mx-auto size-10" />
-          {isEmailValid ? (
-            <PassCodeAuth email={email} />
-          ) : (
-            <div className="flex flex-col space-y-2 text-center">
-              <h1 className="text-2xl font-semibold tracking-tight">
-                {t("registerTitle")}
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                {t("registerDescription")}
-              </p>
 
-              <Suspense fallback={<UserAuthSkeleton />}>
-                <UserAuthForm type="register" />
-              </Suspense>
-            </div>
-          )}
+          <div className="flex flex-col space-y-2 text-center">
+            <h1 className="text-2xl font-semibold tracking-tight">
+              {t("registerTitle")}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {t("registerDescription")}
+            </p>
+
+            <AuthUserEmail type="register" />
+          </div>
 
           <p className="px-8 text-center text-sm text-muted-foreground">
             {t("labelAccept")}{" "}

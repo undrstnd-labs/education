@@ -1,11 +1,18 @@
 import { Student, User } from "@prisma/client"
+import { unstable_setRequestLocale } from "next-intl/server"
 
 import { getCurrentStudent, getCurrentUser } from "@/lib/session"
 import { generateUuid } from "@/lib/utils"
 
-import { Chat } from "@/components/display/Chat"
+import { ChatContext } from "@/components/app/chat-context"
 
-export default async function IndexPage() {
+export default async function IndexPage({
+  params: { locale },
+}: {
+  params: { locale: string }
+}) {
+  unstable_setRequestLocale(locale)
+
   const id = generateUuid()
   const user = await getCurrentUser()
 
@@ -13,5 +20,5 @@ export default async function IndexPage() {
     user: User
   }
 
-  return <Chat id={id} student={student} />
+  return <ChatContext id={id} student={student} />
 }
