@@ -1,4 +1,4 @@
-import { Classroom as ClassroomPrisma } from "@prisma/client"
+import { Classroom as ClassroomPrisma, Post, User } from "@prisma/client"
 import { LucideIcon } from "lucide-react"
 
 export interface NavItem {
@@ -84,4 +84,16 @@ export type Classroom = ClassroomPrisma & {
       comments: Comment[] & {}
     }
   }
+}
+
+export type EmailNewPost = {
+  user: User
+  teacherUser: User
+  post: Post
+  classroom: ClassroomPrisma
+}
+
+export type EmailNewUser = {
+  username: string
+  email: string
 }

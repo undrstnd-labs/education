@@ -175,3 +175,18 @@ export async function leaveClassroom(student: Student, classroom: Classroom) {
     },
   })
 }
+
+export async function getStudents(classroom: Classroom) {
+  return await db.student.findMany({
+    where: {
+      classrooms: {
+        some: {
+          id: classroom.id,
+        },
+      },
+    },
+    include: {
+      user: true,
+    },
+  })
+}

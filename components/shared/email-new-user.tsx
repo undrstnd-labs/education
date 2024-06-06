@@ -20,62 +20,41 @@ export function EmailNewUser({ username }: { username: string }) {
     <Html>
       <Head />
       <Preview>
-        Welcome to {siteConfig.name} - {username} will be thrilled to have you
-        on board!
+        Welcome to {siteConfig.name} - Hope you have an amazing experience,
+        {username}!
       </Preview>
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`${siteConfig.url}/logos/LogoIcon.png`}
-            width="170"
+            src={`${siteConfig.url}/images/logos/Rounded.png`}
+            width="50"
             height="50"
             alt={`${siteConfig.name} logo`}
             style={logo}
           />
           <Text style={heading}>Welcome to {siteConfig.name}</Text>
           <Text style={paragraph}>Hi {username},</Text>
-          <Text style={paragraph}>Welcome to {siteConfig.name}!.</Text>
           <Text style={paragraph}>
-            We&apos;ve been working on {siteConfig.name} for the past months,
-            and during this time, we&apos;ve implemented the basic functionality
-            to get started. However, with your feedback, we can make the right
-            decisions to improve the platform.
+            We're excited to have you on board with {siteConfig.name}! We've
+            been working on it for the past months and have implemented the
+            basic functionality. We hope that you'll have an amazing experience
+            with it, gain more from it, and help others. It's totally free and
+            open source, and we hope you enjoy it.
           </Text>
-          <Text style={paragraph}>
-            During our private beta phase, you may encounter some bugs, but we
-            genuinely want all your feedback.
-          </Text>
-          <Text style={paragraph}>
-            Should you have any questions, please don&apos;t hesitate to{" "}
-            <Link style={link} href={`${siteConfig.url}/contact`}>
-              contact us
-            </Link>
-          </Text>
-
-          <Img
-            src={`${siteConfig.url}/mail/hero.png`}
-            width={600}
-            height={400}
-            alt={`${siteConfig.name}`}
-            style={logo}
-          />
-
           <Text style={paragraph}>
             Best regards, founders
             <br />
             <Text style={boldText}>Malek & Amine.</Text>
           </Text>
-
           <Section style={btnContainer}>
             <Button style={button} href={siteConfig.url}>
               Get started
             </Button>
           </Section>
-
           <Hr style={hr} />
           <Text style={footer}>
-            <Link href="https://undrstnd.vercel.app/">Undrstnd</Link>, 290
-            Centre Urbain Nord Ariana, Tunisia
+            <Link href="https://undrstnd.vercel.app/">Undrstnd</Link>, Tunisie,
+            Monastir 5000
           </Text>
         </Container>
       </Body>
@@ -113,7 +92,7 @@ const btnContainer = {
 }
 
 const button = {
-  backgroundColor: "#73cb6b",
+  backgroundColor: "#0ea5e9",
   borderRadius: "3px",
   color: "#fff",
   fontSize: "16px",
