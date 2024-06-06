@@ -598,7 +598,9 @@
           "upload-failed": "Failed to upload file",
           "click-to-select": "Click to upload",
           "formClassroomButton": "Submit",
-          "toastPostCreatedFailed": "Post creation failed"
+          "toastPostCreatedFailed": "Post creation failed",
+          "formSchemaDescriptionMessage": "Post Description must contain at least 10 characters.",
+          "formSchemaPostName": "Post Name must contain at least 4 characters."
         },
         "feed-classroom-post-card": {
           "just-now": "Just now",
