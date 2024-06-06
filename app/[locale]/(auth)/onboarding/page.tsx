@@ -47,7 +47,8 @@ export default async function OnboardingPage({
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo; Kif tjik haja blesh matfalathash &rdquo;
+              &ldquo; For the best understanding of the world, we need to
+              understand each other. &rdquo;
             </p>
             <footer className="text-sm">@findmalek</footer>
           </blockquote>

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { usePathname, useRouter } from "@navigation"
-import { File as SupabaseFile, Teacher } from "@prisma/client"
+import { File as SupabaseFile, Teacher, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { DropzoneOptions } from "react-dropzone"
 import { useForm } from "react-hook-form"
@@ -37,11 +37,13 @@ import { Input } from "@/components/ui/input"
 import { Progress } from "@/components/ui/progress"
 import { Textarea } from "@/components/ui/textarea"
 
+import { getStudents } from "@/undrstnd/classroom"
+import { sendMail } from "@/undrstnd/mailer"
 import { vectorizedDocument } from "@/undrstnd/pinecone"
 import { createPost, updatePostFiles } from "@/undrstnd/post"
 
 interface FeedClassroomAddPost {
-  teacher: Teacher
+  teacher: Teacher & { user: User }
   classroom: Classroom
 }
 
@@ -211,6 +213,16 @@ export function FeedClassroomAddPost({
 
     await new Promise((resolve) => setTimeout(resolve, 1500))
     router.push(`${path}`)
+
+    const students = await getStudents(classroom)
+    for (const student of students) {
+      await sendMail("new-post", {
+        user: student.user,
+        teacherUser: teacher.user,
+        classroom,
+        post: postCreated,
+      })
+    }
   }
 
   return (
@@ -391,7 +403,6 @@ export function FeedClassroomAddPostTrigger({
     return interval
   }
 
-  // TODO: Send an email using nodemailer
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true)
     router.push(`${path}?loading=true`)
@@ -478,6 +489,17 @@ export function FeedClassroomAddPostTrigger({
 
     await new Promise((resolve) => setTimeout(resolve, 1500))
     router.push(`${path}`)
+
+    const students = await getStudents(classroom)
+    for (const student of students) {
+      console.log(teacher, student, classroom, postCreated)
+      await sendMail("new-post", {
+        user: student.user,
+        teacherUser: teacher.user,
+        classroom,
+        post: postCreated,
+      })
+    }
   }
 
   return (

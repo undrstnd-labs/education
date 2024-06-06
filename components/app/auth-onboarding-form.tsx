@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 
+import { sendMail } from "@/undrstnd/mailer"
 import { updateProfileImage, updateUserOnboarding } from "@/undrstnd/user"
 
 export function AuthOnboaringForm({ user }: { user: User }) {
@@ -111,7 +112,10 @@ export function AuthOnboaringForm({ user }: { user: User }) {
     }
 
     const updatedUser = await updateUserOnboarding(user, values)
-
+    await sendMail("new-user", {
+      username: values.name,
+      email: user.email,
+    })
     if (!updatedUser) {
       toast({
         title: translateOnboarding("error-toast-title"),

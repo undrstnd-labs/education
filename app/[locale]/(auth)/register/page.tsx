@@ -46,9 +46,9 @@ export default async function RegisterPage({
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">
-              &ldquo; Kif tjik haja blesh matfalathash &rdquo;
+              &ldquo; Understand better with Undrstnd &rdquo;
             </p>
-            <footer className="text-sm">@findmalek</footer>
+            <footer className="text-sm">@mohamed-amine-jguirim</footer>
           </blockquote>
         </div>
       </div>

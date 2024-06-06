@@ -226,6 +226,7 @@ const handlePostInserts = (payload: any, posts: Post[]) => {
     ...posts,
     {
       ...payload.new,
+      reactions: [],
       createdAt: new Date().toISOString(),
     },
   ].sort(

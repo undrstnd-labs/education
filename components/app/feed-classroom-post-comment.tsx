@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Post, Student, Teacher, User } from "@prisma/client"
 import { useTranslations } from "next-intl"
 import { useForm } from "react-hook-form"
-import { set, z } from "zod"
+import { z } from "zod"
 
 import { Comment } from "@/types/classroom"
 
@@ -298,11 +298,13 @@ function ReplyComment({
   entity,
   post,
   comment,
+  user,
 }: {
   t: (key: string) => string
   entity: (Student & { user: User }) | (Teacher & { user: User })
   post: Post
   comment: Comment
+  user: User
 }) {
   return (
     <Sheet>
@@ -315,15 +317,15 @@ function ReplyComment({
         <SheetHeader className="my-2 rounded-lg border p-4 pt-6">
           <div className="flex items-center gap-x-3">
             <Image
-              src={entity.user.image!}
-              alt={entity.user.name!}
+              src={user.image!}
+              alt={user.name!}
               width={300}
               height={300}
               className="size-10 flex-none rounded-full"
             />
             <div className="flex items-center space-x-2">
               <h3 className="flex-auto truncate text-sm font-semibold capitalize leading-6 text-secondary-foreground">
-                {entity.user.name}
+                {user.name}
               </h3>
               <span className="mx-1">•</span>
               <time
@@ -447,7 +449,7 @@ export function FeedClassroomPostComment({
         )}
         <div className="flex items-center space-x-2">
           <h3 className="flex-auto truncate text-sm font-semibold capitalize leading-6 text-secondary-foreground">
-            {entity.user.name}
+            {user.name}
           </h3>
           <span className="mx-1">•</span>
           {isLoading ? (
@@ -462,7 +464,13 @@ export function FeedClassroomPostComment({
           )}
         </div>
         <div className="ml-auto flex items-center space-x-2">
-          <ReplyComment t={t} entity={entity} post={post} comment={comment} />
+          <ReplyComment
+            t={t}
+            entity={entity}
+            post={post}
+            comment={comment}
+            user={user}
+          />
           {comment.userId === entity.user.id && (
             <DropdownActions t={t} comment={comment} post={post} />
           )}
