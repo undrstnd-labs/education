@@ -448,9 +448,14 @@ export function FeedClassroomPostComment({
           />
         )}
         <div className="flex items-center space-x-2">
-          <h3 className="flex-auto truncate text-sm font-semibold capitalize leading-6 text-secondary-foreground">
-            {user.name}
-          </h3>
+          {isLoading ? (
+            <Skeleton className="h-4 w-[250px]" />
+          ) : (
+            <h3 className="flex-auto truncate text-sm font-semibold capitalize leading-6 text-secondary-foreground">
+              {user.name}
+            </h3>
+          )}
+
           <span className="mx-1">•</span>
           {isLoading ? (
             <Skeleton className="h-4 w-16" />
@@ -464,13 +469,18 @@ export function FeedClassroomPostComment({
           )}
         </div>
         <div className="ml-auto flex items-center space-x-2">
-          <ReplyComment
-            t={t}
-            entity={entity}
-            post={post}
-            comment={comment}
-            user={user}
-          />
+          {isLoading ? (
+            <Skeleton className="size-6" />
+          ) : (
+            <ReplyComment
+              t={t}
+              entity={entity}
+              post={post}
+              comment={comment}
+              user={user}
+            />
+          )}
+
           {comment.userId === entity.user.id && (
             <DropdownActions t={t} comment={comment} post={post} />
           )}
