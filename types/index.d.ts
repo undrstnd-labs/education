@@ -97,3 +97,9 @@ export type EmailNewUser = {
   username: string
   email: string
 }
+
+export type EmailInviteStudent = {
+  teacher: Teacher & { user: User }
+  student: Student & { user: User }
+  classroom: ClassroomPrisma
+}
