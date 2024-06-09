@@ -314,7 +314,7 @@
       },
       "ChatEmptyScreen": {
         "welcome": "How can I help you today?",
-        "description": "You can start a conversation here or try the following examples:",
+        "description": "Start a conversation here or try the following examples:",
         "heading-1": "Help with homework",
         "message-1": "Can you help me solve this math problem? \n",
         "heading-2": "Prepare for a test",
@@ -364,6 +364,7 @@
   },
 
   "app": {
+    "lang": "en",
     "pages": {
       "feed": {
         "just-now": "Just now",

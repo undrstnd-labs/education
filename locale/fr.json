@@ -314,7 +314,7 @@
       },
       "ChatEmptyScreen": {
         "welcome": "Comment puis-je vous aider aujourd'hui ?",
-        "description": "Vous pouvez démarrer une conversation ici ou essayer les exemples suivants :",
+        "description": "Démarrer une conversation ici ou essayer les exemples suivants:",
         "heading-1": "Aide aux devoirs",
         "message-1": "Pouvez-vous m'aider à résoudre ce problème de mathématiques ? \n",
         "heading-2": "Préparez un test",
@@ -364,6 +364,7 @@
   },
 
   "app": {
+    "lang": "fr",
     "pages": {
       "feed": {
         "just-now": "À l'instant",
