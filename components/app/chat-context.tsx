@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "@navigation"
 import { Student, User } from "@prisma/client"
 import { useChat, type Message } from "ai/react"
+import { useTranslations } from "next-intl"
 
 import { cn } from "@/lib/utils"
 import { useScrollAnchor } from "@/hooks/use-scroll-anchor"
@@ -21,6 +22,7 @@ export interface ChatProps {
 export function ChatContext({ id, initialMessages, student }: ChatProps) {
   const path = usePathname()
   const router = useRouter()
+  const t = useTranslations("app")
 
   const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
     useScrollAnchor()
@@ -31,6 +33,7 @@ export function ChatContext({ id, initialMessages, student }: ChatProps) {
       body: {
         id,
         studentId: student.id,
+        lang: t("lang"),
       },
       onFinish() {
         if (path === "/chat") {
@@ -39,7 +42,6 @@ export function ChatContext({ id, initialMessages, student }: ChatProps) {
         }
       },
       onError(error) {
-        console.log(error)
         toast({
           title: error.message,
           description: error.stack,

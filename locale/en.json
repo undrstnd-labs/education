@@ -364,6 +364,7 @@
   },
 
   "app": {
+    "lang": "en",
     "pages": {
       "feed": {
         "just-now": "Just now",
