@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { CopyText } from "@/components/ui/copy-text"
 
+import { getStudentsUniversity } from "@/undrstnd/classroom"
+
 interface classroomCardProps {
   entity: Teacher | Student
   classroom: Classroom & {
@@ -24,6 +26,11 @@ export async function FeedClassroomCard({
   entity,
 }: classroomCardProps) {
   const t = await getTranslations("app.components.app.feed-classroom-card")
+  const students = await getStudentsUniversity(
+    classroom,
+    classroom.teacher.user.universitySlug!
+  )
+
   return (
     <Card className="flex flex-col gap-4 p-4 transition-all duration-150 hover:border hover:border-secondary hover:bg-accent/30 sm:p-6">
       <div className="flex items-start justify-between">
@@ -59,7 +66,10 @@ export async function FeedClassroomCard({
                   <span className="sr-only">Open classroom</span>
                 </Button>
               </Link>
-              <FeedClassroomShare classroom={classroom} />
+              <FeedClassroomShare
+                classroom={classroom}
+                students={students as any}
+              />
             </>
           )}
           {entity.id === classroom.teacher.id ? (

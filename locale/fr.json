@@ -314,7 +314,7 @@
       },
       "ChatEmptyScreen": {
         "welcome": "Comment puis-je vous aider aujourd'hui ?",
-        "description": "Vous pouvez démarrer une conversation ici ou essayer les exemples suivants :",
+        "description": "Démarrer une conversation ici ou essayer les exemples suivants:",
         "heading-1": "Aide aux devoirs",
         "message-1": "Pouvez-vous m'aider à résoudre ce problème de mathématiques ? \n",
         "heading-2": "Préparez un test",
@@ -672,6 +672,13 @@
           "alert-dialog-action": "Confirmer",
           "placeholder-empty": "Écrivez votre première réponse",
           "placeholder-empty-description": "Créer une réponse à ce commentaire"
+        },
+        "feed-classroom-share": {
+          "dialog-title-share": "Partager la classe",
+          "dialog-description-share": "Partager le code de la classe avec vos étudiants",
+          "copied": "Copié",
+          "copy": "Copier le lien",
+          "student-university": "Étudiants de l'université"
         }
       },
       "shared": {

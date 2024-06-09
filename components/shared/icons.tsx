@@ -64,8 +64,10 @@ import {
   Trash2Icon,
   TrashIcon,
   Upload,
+  UserCheck,
   UserCircleIcon,
   UserCogIcon,
+  UserPlus,
   X,
   XCircle,
 } from "lucide-react"
@@ -242,4 +244,6 @@ export const Icons = {
   chevronUp: ChevronUpIcon,
   sleep: GiNightSleep,
   info: MdOutlineInfo,
+  userCheck: UserCheck,
+  userPlus: UserPlus,
 }
