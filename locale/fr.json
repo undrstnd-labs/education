@@ -671,6 +671,13 @@
           "alert-dialog-action": "Confirmer",
           "placeholder-empty": "Écrivez votre première réponse",
           "placeholder-empty-description": "Créer une réponse à ce commentaire"
+        },
+        "feed-classroom-share": {
+          "dialog-title-share": "Partager la classe",
+          "dialog-description-share": "Partager le code de la classe avec vos étudiants",
+          "copied": "Copié",
+          "copy": "Copier le lien",
+          "student-university": "Étudiants de l'université"
         }
       },
       "shared": {

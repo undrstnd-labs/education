@@ -190,3 +190,24 @@ export async function getStudents(classroom: Classroom) {
     },
   })
 }
+
+export async function getStudentsUniversity(
+  classroom: Classroom,
+  universitySlug: string
+) {
+  return await db.student.findMany({
+    where: {
+      user: {
+        universitySlug,
+      },
+      classrooms: {
+        none: {
+          id: classroom.id,
+        },
+      },
+    },
+    include: {
+      user: true,
+    },
+  })
+}

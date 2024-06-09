@@ -671,6 +671,13 @@
           "alert-dialog-action": "Confirm",
           "placeholder-empty": "Write your first reply",
           "placeholder-empty-description": "Create a reply to this comment"
+        },
+        "feed-classroom-share": {
+          "dialog-title-share": "Share classroom",
+          "dialog-description-share": "Share the classroom code with your students",
+          "copied": "Copied",
+          "copy": "Copy link",
+          "student-university": "Students from the university"
         }
       },
       "shared": {
