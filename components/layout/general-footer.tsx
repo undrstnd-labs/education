@@ -57,7 +57,10 @@ export function GeneralFooter() {
             @FindMalek
           </Link>{" "}
           and{" "}
-          <Link href="https://github.com/aminejguirim10" className="text-primary">
+          <Link
+            href="https://github.com/aminejguirim10"
+            className="text-primary"
+          >
             @Jguirim
           </Link>
           .

@@ -7,6 +7,7 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server"
 
 import { locales } from "@/config/locale"
 import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 
 import { Analytics } from "@/components/layout/analytics"
 import { Providers } from "@/components/layout/providers"
@@ -107,7 +108,7 @@ export default function PrincipalLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head />
-      <body className={GeistSans.className}>
+      <body className={cn(GeistSans.className, "bg-secondary")}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Providers>
             {children}

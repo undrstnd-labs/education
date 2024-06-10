@@ -1,5 +1,6 @@
 import { unstable_setRequestLocale } from "next-intl/server"
 
+import { GeneralFeatures } from "@/components/app/general-features"
 import { GeneralHero } from "@/components/app/general-hero"
 import CallToAction from "@/components/showcase/CallToAction"
 import FAQs from "@/components/showcase/FAQs"
@@ -16,7 +17,7 @@ export default function Home({
   return (
     <div>
       <GeneralHero />
-      <Features />
+      <GeneralFeatures />
       <Pricing />
       <CallToAction />
       <FAQs />

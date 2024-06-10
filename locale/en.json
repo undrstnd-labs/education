@@ -685,6 +685,37 @@
           "headline-1": "Unlock document insights with",
           "headline-2": "Elevate your documentary experience with Undrstnd. Simply upload your files and start exploring.",
           "star-us": "Star us on Github"
+        },
+        "general-features": {
+          "headline": "Everything you need to know",
+          "subheadline": "For students by students",
+          "description": "Explore the robust and user-friendly features that make our platform a standout choice for students and teachers alike. Whether you're a student looking to interact seamlessly with your study materials or a teacher aiming to manage your classroom efficiently, our platform has got you covered.",
+          "features": {
+            "feature-1": {
+              "name": "Chat with Uploaded Documents",
+              "description": "Students can chat with the documents they upload, making learning more interactive."
+            },
+            "feature-2": {
+              "name": "Create and Manage Classrooms",
+              "description": "Teachers can create classrooms and invite students, with notifications for new posts."
+            },
+            "feature-3": {
+              "name": "Chat with Teacher's Documents",
+              "description": "Students can chat with documents uploaded by teachers using a super-fast, intelligent model."
+            },
+            "feature-4": {
+              "name": "Interact and Open Threads",
+              "description": "Students can interact with posts and open threads in the comment sections for deeper discussions."
+            },
+            "feature-5": {
+              "name": "Intuitive UI and Secure Platform",
+              "description": "We offer an intuitive user interface and a secure platform using passwordless authentication for maximum security."
+            },
+            "feature-6": {
+              "name": "Free and Open Source",
+              "description": "This platform is completely free and open source, making it accessible to everyone."
+            }
+          }
         }
       },
       "shared": {

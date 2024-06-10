@@ -32,8 +32,10 @@ import {
   ImageIcon,
   Laptop,
   LayoutDashboardIcon,
+  LightbulbIcon,
   Loader2,
   LoaderIcon,
+  Lock,
   LucideIcon,
   MailIcon,
   Menu,
@@ -246,4 +248,6 @@ export const Icons = {
   info: MdOutlineInfo,
   userCheck: UserCheck,
   userPlus: UserPlus,
+  lock: Lock,
+  idea: LightbulbIcon,
 }

@@ -679,6 +679,43 @@
           "copied": "Copié",
           "copy": "Copier le lien",
           "student-university": "Étudiants de l'université"
+        },
+        "general-hero": {
+          "get-started": "Commencer",
+          "headline-1": "Déverrouillez les insights des documents avec",
+          "headline-2": "Élevez votre expérience documentaire avec Undrstnd. Téléchargez simplement vos fichiers et commencez à explorer.",
+          "star-us": "Étoilez-nous sur Github"
+        },
+        "general-features": {
+          "headline": "Tout ce que vous devez savoir",
+          "subheadline": "Par les étudiants, pour les étudiants",
+          "description": "Découvrez les fonctionnalités solides et conviviales qui font de notre plateforme un choix exceptionnel pour les étudiants et les enseignants. Que vous soyez un étudiant cherchant à interagir en douceur avec vos documents d'étude ou un enseignant visant à gérer votre salle de classe de manière efficace, notre plateforme a tout prévu.",
+          "features": {
+            "feature-1": {
+              "name": "Discuter avec des documents téléchargés",
+              "description": "Les étudiants peuvent discuter avec les documents qu'ils téléchargent, rendant l'apprentissage plus interactif."
+            },
+            "feature-2": {
+              "name": "Créer et gérer des salles de classe",
+              "description": "Les enseignants peuvent créer des salles de classe et inviter des étudiants, avec des notifications pour les nouveaux posts."
+            },
+            "feature-3": {
+              "name": "Discuter avec des documents d'enseignant",
+              "description": "Les étudiants peuvent discuter avec les documents téléchargés par les enseignants en utilisant un modèle intelligent très rapide."
+            },
+            "feature-4": {
+              "name": "Interagir et ouvrir des fils de discussion",
+              "description": "Les étudiants peuvent interagir avec les posts et ouvrir des fils de discussion dans les sections de commentaire pour des discussions plus approfondies."
+            },
+            "feature-5": {
+              "name": "Interface utilisateur intuitive et plateforme sécurisée",
+              "description": "Nous offrons une interface utilisateur intuitive et une plateforme sécurisée utilisant l'authentification sans mot de passe pour une sécurité maximale."
+            },
+            "feature-6": {
+              "name": "Gratuit et open source",
+              "description": "Cette plateforme est complètement gratuite et open source, ce qui la rend accessible à tous."
+            }
+          }
         }
       },
       "shared": {
