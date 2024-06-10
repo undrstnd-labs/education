@@ -15,11 +15,11 @@ export function ToggleThemeImage({
   alt: string
   className?: string
 }) {
-  const { theme, themes } = useTheme()
+  const { resolvedTheme } = useTheme()
 
   return (
     <Image
-      src={theme === "dark" ? darkSrc : lightSrc}
+      src={resolvedTheme === "dark" ? darkSrc : lightSrc}
       alt={alt}
       className={className}
       width={1600}

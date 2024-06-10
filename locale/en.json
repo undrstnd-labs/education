@@ -685,7 +685,8 @@
           "dialog-description-share": "Share the classroom code with your students",
           "copied": "Copied",
           "copy": "Copy link",
-          "student-university": "Students from the university"
+          "student-university": "Students from the university",
+          "no-students": "No students have been registered from this university yet."
         },
         "general-hero": {
           "get-started": "Get started",

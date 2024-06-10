@@ -79,6 +79,12 @@ export function FeedClassroomShare({
         <div className="space-y-4">
           <h4 className="text-sm font-medium">{t("student-university")}</h4>
           <ScrollArea className="grid h-[200px] px-2">
+            {students.length === 0 && (
+              <p className="text-sm text-muted-foreground">
+                {t("no-students")}
+              </p>
+            )}
+
             {students.map((student) => (
               <div
                 key={student.user.id}

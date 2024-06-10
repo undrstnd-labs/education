@@ -685,7 +685,8 @@
           "dialog-description-share": "Partager le code de la classe avec vos étudiants",
           "copied": "Copié",
           "copy": "Copier le lien",
-          "student-university": "Étudiants de l'université"
+          "student-university": "Étudiants de l'université",
+          "no-students": "Aucun étudiant n'a encore été inscrit dans cette université."
         },
         "general-hero": {
           "get-started": "Commencer",
