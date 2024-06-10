@@ -722,6 +722,50 @@
           "headline-2": "We love to have you on board.",
           "description": "Start chatting with your documents, code, and data. We're here to help you get started.",
           "join": "Join us now"
+        },
+        "general-faqs": {
+          "headline": "Frequently asked questions",
+          "description-1": "Have a different question and can&apos;t find the answer you're  looking for? Reach out to our support team by",
+          "description-2": "and we'll get back to you as soon as we can.",
+          "email": "sending us an email",
+          "faqs": {
+            "question-1": {
+              "question": "What is the main purpose of this platform?",
+              "answer": "Our platform is designed to facilitate interactive learning by allowing students to chat with documents they upload, and enabling teachers to create classrooms, post content, and manage student interactions efficiently."
+            },
+            "question-2": {
+              "question": "How can students benefit from this platform?",
+              "answer": "Students can upload their documents and interact with them using our super-fast and smart model, open threads in the comment sections of posts, and receive notifications about new posts from their teachers. This enhances their learning experience by providing an engaging and interactive environment."
+            },
+            "question-3": {
+              "question": "What features are available for teachers?",
+              "answer": "Teachers can create classrooms, invite students, post content, and manage student interactions. They can also upload documents that students can chat with, providing a dynamic and interactive way to share knowledge and resources."
+            },
+            "question-4": {
+              "question": "Is the platform free to use?",
+              "answer": "Yes, our platform is completely free and open source. There are no hidden costs or subscription fees, making it accessible to everyone."
+            },
+            "question-5": {
+              "question": "How secure is the platform?",
+              "answer": "We prioritize security and use passwordless authentication to ensure maximum security for our users. This means you don't need to worry about password management, making the platform both secure and user-friendly."
+            },
+            "question-6": {
+              "question": "What technology and models does the platform use?",
+              "answer": "We use the Mistral 8x7B model, known for its speed and intelligence, to provide a seamless experience. Additionally, we employ Shadcn for reusable components and other open-source projects to enhance functionality and user experience."
+            },
+            "question-7": {
+              "question": "Can students interact with posts made by teachers?",
+              "answer": "Yes, students can interact with posts by opening threads in the comment sections. This allows for a rich, collaborative learning environment where students can discuss and engage with the content posted by their teachers."
+            },
+            "question-8": {
+              "question": "Who sponsors this platform?",
+              "answer": "Our platform is sponsored by Groq, which supports us in delivering a high-quality, reliable service to our users."
+            },
+            "question-9": {
+              "question": "What inspired the creation of this platform?",
+              "answer": "The idea for this project came from our personal experiences as students. We aimed to create a tool that addresses common challenges in the learning process, making education more interactive, engaging, and accessible."
+            }
+          }
         }
       },
       "shared": {

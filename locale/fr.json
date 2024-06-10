@@ -722,6 +722,50 @@
           "headline-2": "Nous serions ravis de vous accueillir à bord.",
           "description": "Commencez à discuter avec vos documents, votre code et vos données. Nous sommes là pour vous aider à démarrer.",
           "join": "Rejoignez-nous maintenant"
+        },
+        "general-faqs": {
+          "headline": "Questions fréquentes",
+          "description-1": "Avez-vous une autre question et ne pas trouver la réponse que vous cherchez ? Contactez notre équipe de soutien en",
+          "description-2": "et nous vous répondrons dès que possible.",
+          "email": "en nous envoyant un email",
+          "faqs": {
+            "question-1": {
+              "question": "Quel est le but principal de cette plateforme ?",
+              "answer": "Notre plateforme est conçue pour faciliter l'apprentissage interactif en permettant aux étudiants de discuter avec les documents qu'ils téléchargent, et aux enseignants de créer des salles de classe, de publier du contenu et de gérer les interactions étudiantes de manière efficace."
+            },
+            "question-2": {
+              "question": "Comment les étudiants peuvent-ils bénéficier de cette plateforme ?",
+              "answer": "Les étudiants peuvent télécharger leurs documents et interagir avec eux en utilisant notre modèle rapide et intelligent, ouvrir des fils de discussion dans les sections de commentaire des posts et recevoir des notifications sur les nouveaux posts de leurs enseignants. Cela améliore leur expérience d'apprentissage en fournissant un environnement interactif et engageant."
+            },
+            "question-3": {
+              "question": "Quelles fonctionnalités sont disponibles pour les enseignants ?",
+              "answer": "Les enseignants peuvent créer des salles de classe, inviter des étudiants, publier du contenu et gérer les interactions étudiantes. Ils peuvent également télécharger des documents que les étudiants peuvent discuter, fournissant une façon dynamique et interactive de partager des connaissances et des ressources."
+            },
+            "question-4": {
+              "question": "La plateforme est-elle gratuite ?",
+              "answer": "Oui, notre plateforme est complètement gratuite et open source. Il n'y a pas de coûts cachés ou de frais d'abonnement, la rendant accessible à tous."
+            },
+            "question-5": {
+              "question": "La plateforme est-elle sécurisée ?",
+              "answer": "Nous priorisons la sécurité et utilisons une authentification sans mot de passe pour assurer une sécurité maximale pour nos utilisateurs. Cela signifie que vous n'avez pas à vous soucier de la gestion des mots de passe, rendant la plateforme à la fois sécurisée et conviviale."
+            },
+            "question-6": {
+              "question": "Quelle technologie et quels modèles la plateforme utilise-t-elle ?",
+              "answer": "Nous utilisons le modèle Mistral 8x7B, connu pour sa vitesse et son intelligence, pour fournir une expérience sans accroc. Nous employons également Shadcn pour des composants réutilisables et d'autres projets open source pour améliorer la fonctionnalité et l'expérience utilisateur."
+            },
+            "question-7": {
+              "question": "Les étudiants peuvent-ils interagir avec les posts des enseignants ?",
+              "answer": "Oui, les étudiants peuvent interagir avec les posts en ouvrant des fils de discussion dans les sections de commentaire. Cela permet un environnement d'apprentissage collaboratif riche où les étudiants peuvent discuter et s'engager avec le contenu publié par leurs enseignants."
+            },
+            "question-8": {
+              "question": "Qui parraine cette plateforme ?",
+              "answer": "Notre plateforme est parrainée par Groq, qui nous soutient pour offrir un service de haute qualité et fiable à nos utilisateurs."
+            },
+            "question-9": {
+              "question": "Qu'est-ce qui a inspiré la création de cette plateforme ?",
+              "answer": "L'idée de ce projet vient de nos expériences personnelles en tant qu'étudiants. Nous avons voulu créer un outil qui aborde les défis couramment rencontrés dans le processus d'apprentissage, rendant l'éducation plus interactive, engageante et accessible."
+            }
+          }
         }
       },
       "shared": {
