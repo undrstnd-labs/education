@@ -679,6 +679,12 @@
           "copied": "Copied",
           "copy": "Copy link",
           "student-university": "Students from the university"
+        },
+        "general-hero": {
+          "get-started": "Get started",
+          "headline-1": "Unlock document insights with",
+          "headline-2": "Elevate your documentary experience with Undrstnd. Simply upload your files and start exploring.",
+          "star-us": "Star us on Github"
         }
       },
       "shared": {

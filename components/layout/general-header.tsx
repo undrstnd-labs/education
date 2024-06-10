@@ -9,7 +9,7 @@ import { Icons, LogoPNG } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 
-export default function Header() {
+export function GeneralHeader() {
   return (
     <header>
       <nav>
