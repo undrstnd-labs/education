@@ -716,6 +716,12 @@
               "description": "This platform is completely free and open source, making it accessible to everyone."
             }
           }
+        },
+        "general-call-to-action": {
+          "headline-1": "Ready to dive in?",
+          "headline-2": "We love to have you on board.",
+          "description": "Start chatting with your documents, code, and data. We're here to help you get started.",
+          "join": "Join us now"
         }
       },
       "shared": {

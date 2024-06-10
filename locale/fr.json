@@ -716,6 +716,12 @@
               "description": "Cette plateforme est complètement gratuite et open source, ce qui la rend accessible à tous."
             }
           }
+        },
+        "general-call-to-action": {
+          "headline-1": "Prêt à plonger?",
+          "headline-2": "Nous serions ravis de vous accueillir à bord.",
+          "description": "Commencez à discuter avec vos documents, votre code et vos données. Nous sommes là pour vous aider à démarrer.",
+          "join": "Rejoignez-nous maintenant"
         }
       },
       "shared": {

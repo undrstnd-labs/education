@@ -1,11 +1,10 @@
 import { unstable_setRequestLocale } from "next-intl/server"
 
+import { GeneralCallToAction } from "@/components/app/general-call-to-action"
 import { GeneralFeatures } from "@/components/app/general-features"
 import { GeneralHero } from "@/components/app/general-hero"
 import { GeneralTestimonial } from "@/components/app/general-testimonial"
-import CallToAction from "@/components/showcase/CallToAction"
 import FAQs from "@/components/showcase/FAQs"
-import Pricing from "@/components/showcase/Pricing"
 
 export default function Home({
   params: { locale },
@@ -19,8 +18,7 @@ export default function Home({
       <GeneralHero />
       <GeneralFeatures />
       <GeneralTestimonial />
-      <Pricing />
-      <CallToAction />
+      <GeneralCallToAction />
       <FAQs />
     </div>
   )
