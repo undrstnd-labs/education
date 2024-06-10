@@ -54,7 +54,10 @@ const faqs = (t: (arg: string) => string) => [
 export async function GeneralFAQs() {
   const t = await getTranslations("app.components.app.general-faqs")
   return (
-    <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <section
+      id="faqs"
+      className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl text-left">
         <h2 className="text-2xl font-bold leading-10 tracking-tight text-secondary-foreground">
           {t("headline")}
@@ -79,13 +82,13 @@ export async function GeneralFAQs() {
               <dt className="text-base font-semibold leading-7 text-secondary-foreground">
                 {faq.question}
               </dt>
-              <dd className="mt-2 text-base leading-7 text-gray-600">
+              <dd className="mt-2 text-base leading-7 text-secondary-foreground/70">
                 {faq.answer}
               </dd>
             </div>
           ))}
         </dl>
       </div>
-    </div>
+    </section>
   )
 }

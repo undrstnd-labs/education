@@ -2,14 +2,17 @@
 
 import { Popover } from "@headlessui/react"
 import { Link } from "@navigation"
+import { useTranslations } from "next-intl"
 
-import MobileAnimatePresence from "@/components/navigation/MobileAnimatePresence"
-import NavLinks from "@/components/navigation/NavLinks"
+import { GeneralHeaderMobile } from "@/components/layout/general-header-mobile"
+import { GeneralHeaderNavLinks } from "@/components/layout/general-header-nav-links"
 import { Icons, LogoPNG } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 
 export function GeneralHeader() {
+  const t = useTranslations("app.components.layout.general-header")
+
   return (
     <header>
       <nav>
@@ -18,13 +21,11 @@ export function GeneralHeader() {
             <Link href="/" aria-label="Home">
               <div className="flex items-center gap-2">
                 <LogoPNG className="-mt-1 h-7 w-auto" />
-                <p className="text-base font-bold text-zinc-700 dark:text-zinc-300 ">
-                  Undrstnd
-                </p>
+                <p className="text-base font-bold text-black">Undrstnd</p>
               </div>
             </Link>
             <div className="hidden lg:flex lg:gap-10">
-              <NavLinks />
+              <GeneralHeaderNavLinks />
             </div>
           </div>
           <div className="flex items-center gap-1">
@@ -43,17 +44,17 @@ export function GeneralHeader() {
                       )
                     }
                   </Popover.Button>
-                  <MobileAnimatePresence open={open} />
+                  <GeneralHeaderMobile open={open} />
                 </>
               )}
             </Popover>
             <Link href="/login">
               <Button variant="outline" className="hidden lg:block">
-                Se connecter
+                {t("login")}
               </Button>
             </Link>
             <Link href="/register">
-              <Button className="hidden lg:block">Créer un compte</Button>
+              <Button className="hidden lg:block"> {t("register")}</Button>
             </Link>
           </div>
         </Container>

@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export function GeneralTestimonial() {
   return (
-    <div className="bg-secondary py-16 sm:py-24">
+    <section id="testimonial" className="bg-secondary py-16 sm:py-24">
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="relative overflow-hidden bg-gray-900 px-6 py-20 shadow-xl sm:rounded-3xl sm:px-10 sm:py-24 md:px-12 lg:px-20">
           <Image
@@ -61,6 +61,6 @@ export function GeneralTestimonial() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

@@ -71,7 +71,7 @@ export async function GeneralFeatures() {
   const t = await getTranslations("app.components.app.general-features")
 
   return (
-    <div className="py-12 sm:py-8">
+    <section id="features" className="py-12 sm:py-8">
       <div className="mx-auto max-w-7xl px-6  lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-base font-semibold leading-7 text-primary">
@@ -111,6 +111,6 @@ export async function GeneralFeatures() {
           ))}
         </dl>
       </div>
-    </div>
+    </section>
   )
 }

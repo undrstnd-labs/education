@@ -470,6 +470,13 @@
           "preference": "Preferences",
           "shared": "Shared",
           "danger": "Danger zone"
+        },
+        "general-header": {
+          "features": "Features",
+          "faqs": "FAQs",
+          "testimonials": "Testimonials",
+          "login": "Log in",
+          "register": "Sign up"
         }
       },
       "app": {
