@@ -222,16 +222,20 @@ export function useSubscribeToComments(posts: Post[], callback: Callback) {
 }
 
 const handlePostInserts = (payload: any, posts: Post[]) => {
-  return [
-    ...posts,
-    {
-      ...payload.new,
-      reactions: [],
-      createdAt: new Date().toISOString(),
-    },
-  ].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  )
+  const newPost = {
+    ...payload.new,
+    reactions: [],
+    createdAt: new Date().toISOString(),
+  }
+
+  if (posts.length > 0 && newPost.classroomId === posts[0].classroomId) {
+    return [newPost, ...posts].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+  } else {
+    return posts
+  }
 }
 
 const handlePostDeletes = (payload: any, posts: Post[]) => {
