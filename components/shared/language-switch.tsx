@@ -20,7 +20,7 @@ export function LanguageSwitch() {
   const pathname = usePathname()
   const t = useTranslations("Components.Config.LanguageSwitch")
 
-  function onSelectChange(nextLocale: string) {
+  function onSelectChange(nextLocale: (typeof locales)[number]) {
     router.push(pathname, { locale: nextLocale })
   }
 
