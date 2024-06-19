@@ -492,7 +492,6 @@ export function FeedClassroomAddPostTrigger({
 
     const students = await getStudents(classroom)
     for (const student of students) {
-      console.log(teacher, student, classroom, postCreated)
       await sendMail("new-post", {
         user: student.user,
         teacherUser: teacher.user,

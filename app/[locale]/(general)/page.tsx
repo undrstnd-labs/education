@@ -1,11 +1,10 @@
 import { unstable_setRequestLocale } from "next-intl/server"
 
-import Footer from "@/components/navigation/Footer"
-import CallToAction from "@/components/showcase/CallToAction"
-import FAQs from "@/components/showcase/FAQs"
-import Features from "@/components/showcase/Feature"
-import HerosectionHome from "@/components/showcase/Herohome"
-import Pricing from "@/components/showcase/Pricing"
+import { GeneralCallToAction } from "@/components/app/general-call-to-action"
+import { GeneralFeatures } from "@/components/app/general-features"
+import { GeneralFAQs } from "@/components/app/general-frequently-asked-questions"
+import { GeneralHero } from "@/components/app/general-hero"
+import { GeneralTestimonial } from "@/components/app/general-testimonial"
 
 export default function Home({
   params: { locale },
@@ -15,13 +14,12 @@ export default function Home({
   unstable_setRequestLocale(locale)
 
   return (
-    <main>
-      <HerosectionHome />
-      <Features />
-      <Pricing />
-      <CallToAction />
-      <FAQs />
-      <Footer />
-    </main>
+    <div>
+      <GeneralHero />
+      <GeneralFeatures />
+      <GeneralTestimonial />
+      <GeneralCallToAction />
+      <GeneralFAQs />
+    </div>
   )
 }

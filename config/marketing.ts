@@ -1,22 +1,20 @@
 import { MarketingConfig } from "@/types"
 
-export const marketingConfig: MarketingConfig = {
+export const marketingConfig = (
+  t: (arg: string) => string
+): MarketingConfig => ({
   mainNav: [
     {
-      title: "Fonctionnalités",
+      title: t("features"),
       href: "/#features",
     },
     {
-      title: "Tarification",
-      href: "/pricing",
+      title: t("testimonials"),
+      href: "/#testimonial",
     },
     {
-      title: "Blog",
-      href: "/blog",
-    },
-    {
-      title: "Documentation",
-      href: "/docs",
+      title: t("faqs"),
+      href: "/#faqs",
     },
   ],
-}
+})

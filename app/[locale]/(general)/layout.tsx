@@ -1,6 +1,7 @@
 import { unstable_setRequestLocale } from "next-intl/server"
 
-import Header from "@/components/navigation/Header"
+import { GeneralFooter } from "@/components/layout/general-footer"
+import { GeneralHeader } from "@/components/layout/general-header"
 
 export default function RootLayout({
   params: { locale },
@@ -12,8 +13,9 @@ export default function RootLayout({
   unstable_setRequestLocale(locale)
   return (
     <main>
-      <Header />
+      <GeneralHeader />
       {children}
+      <GeneralFooter />
     </main>
   )
 }
