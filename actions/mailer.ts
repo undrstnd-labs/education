@@ -4,18 +4,24 @@ import { render } from "@react-email/render"
 import nodemailer from "nodemailer"
 
 import {
+  EmailInviteStudent as EmailInviteStudentType,
   EmailNewPost as EmailNewPostType,
   EmailNewUser as EmailNewUserType,
 } from "@/types"
 import { MagicLinkData } from "@/types/auth"
 
+import { EmailInviteStudent } from "@/components/shared/email-invite-student"
 import { MagicLink } from "@/components/shared/email-magic-link"
 import { EmailNewPost } from "@/components/shared/email-new-post"
 import { EmailNewUser } from "@/components/shared/email-new-user"
 
 function selectMailOptions(
   type: string,
-  body: MagicLinkData | EmailNewPostType | EmailNewUserType
+  body:
+    | MagicLinkData
+    | EmailNewPostType
+    | EmailNewUserType
+    | EmailInviteStudentType
 ) {
   let html
   const mailOptions = {
@@ -50,6 +56,16 @@ function selectMailOptions(
         html: html,
       }
 
+    case "invite-student":
+      html = render(EmailInviteStudent(body as EmailInviteStudentType))
+      console.log(body)
+      return {
+        from: mailOptions.from,
+        to: (body as EmailInviteStudentType).student.user.email,
+        subject: `Invitation to join ${(body as EmailInviteStudentType).teacher.user.name}'s classroom on Undrstnd`,
+        html: html,
+      }
+
     default:
       throw new Error("Invalid submission type")
   }
@@ -57,7 +73,11 @@ function selectMailOptions(
 
 export async function sendMail(
   type: string,
-  body: MagicLinkData | EmailNewPostType | EmailNewUserType
+  body:
+    | MagicLinkData
+    | EmailNewPostType
+    | EmailNewUserType
+    | EmailInviteStudentType
 ) {
   const mailTransporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,

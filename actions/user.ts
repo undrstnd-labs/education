@@ -39,7 +39,7 @@ export async function updateUserOnboarding(user: User, values: any) {
       name: values.name,
       bio: values.bio,
       image: values.image,
-      universitySlug: values.universitySlug,
+      universitySlug: user.email.split("@")[1],
       role: values.role,
     },
   })

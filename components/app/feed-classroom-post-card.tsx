@@ -73,16 +73,12 @@ export function FeedClassroomPostCard({
   useEffect(() => {
     const fetchDataPost = async () => {
       await new Promise((resolve) => setTimeout(resolve, 4000))
-      if (searchParams.has("loading")) {
-        return
-      } else {
-        const newPost = await getPost(post.id)
-        setCurrentPost(newPost as Post)
-        setIsLoading(false)
-      }
+      const newPost = await getPost(post.id)
+      setCurrentPost(newPost as Post)
+      setIsLoading(false)
     }
 
-    if (!post.teacher) {
+    if (!post.teacher || searchParams.has("loading")) {
       fetchDataPost()
     } else {
       setIsLoading(false)
@@ -106,7 +102,7 @@ export function FeedClassroomPostCard({
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {isLoading ? (
+              {isLoading || !post.teacher || !post.teacher.user ? (
                 <Skeleton className="size-6 rounded-xl" />
               ) : (
                 <Image
@@ -119,7 +115,7 @@ export function FeedClassroomPostCard({
               )}
 
               <div className="flex flex-col">
-                {isLoading ? (
+                {isLoading || !post.teacher || !post.teacher.user ? (
                   <>
                     <Skeleton className="h-4 w-[60px] pb-1" />
                     <Skeleton className="h-4 w-[40px]" />

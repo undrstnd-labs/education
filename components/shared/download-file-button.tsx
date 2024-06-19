@@ -13,6 +13,7 @@ interface FileCardProps {
 
 export function DownloadFileButton({ file }: FileCardProps) {
   const t = useTranslations("app.components.shared.download-file-button")
+
   return (
     <DropdownMenuItem
       className="flex items-center gap-2 hover:cursor-pointer"
